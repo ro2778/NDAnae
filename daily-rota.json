@@ -1,0 +1,145 @@
+{
+  "date": "2026-03-24",
+  "day": "Tue",
+  "scraped_at": "2026-03-24T10:46:00+01:00",
+  "available_consultants": {
+    "am": "—",
+    "pm": "—",
+    "eve": "—",
+    "night": "—"
+  },
+  "on_call": {
+    "300": {
+      "label": "Anaesthetics On Call",
+      "bleep": "300",
+      "am": "D. Beard",
+      "pm": "D. Beard",
+      "eve": "D. Beard",
+      "night": "D. Beard"
+    },
+    "508": {
+      "label": "Emergency Rota",
+      "bleep": "508",
+      "am": {"name": "R. Child", "grade": "Fellow", "role": "LD"},
+      "pm": {"name": "R. Child", "grade": "Fellow", "role": "LD"},
+      "eve": {"name": "T. Mitchell", "role": "LD"},
+      "night": {"name": "N. Nath", "role": "N"}
+    },
+    "822": {
+      "label": "Maternity Rota",
+      "bleep": "822",
+      "am": {"name": "T. Mitchell", "role": "LD"},
+      "pm": {"name": "T. Mitchell", "role": "LD"},
+      "eve": {"name": "R. Child", "grade": "Fellow", "role": "LD"},
+      "night": {"name": "Lavers S", "grade": "ST4", "role": "N"}
+    },
+    "itu_consultant": {
+      "label": "ITU Consultant On Call",
+      "am": "G. Moncaster",
+      "pm": "N. Love",
+      "eve": "N. Love",
+      "night": "N. Love"
+    },
+    "504": {
+      "label": "ITU Resident",
+      "bleep": "504",
+      "am": [
+        {"name": "L Poulton", "grade": "ACCP", "role": "LD"},
+        {"name": "S. Coates", "grade": "ACCS Anaes", "role": "LD"}
+      ],
+      "pm": [
+        {"name": "L Poulton", "grade": "ACCP", "role": "LD"},
+        {"name": "S. Coates", "grade": "ACCS Anaes", "role": "LD"}
+      ],
+      "eve": [
+        {"name": "L Poulton", "grade": "ACCP", "role": "LD"},
+        {"name": "I. Talbot", "grade": "CT Anaes", "role": "LD"}
+      ],
+      "night": {"name": "Kellermann M", "grade": "CT1", "role": "N"}
+    }
+  },
+  "theatres": {
+    "th1": {
+      "label": "Theatre 1",
+      "ext": "3140",
+      "type": "Elective Ortho",
+      "am": {"list": "Cove / Ortho", "cancelled": true, "primary": null, "support": []},
+      "pm": {"list": "Cove / Ortho", "primary": "N. Hollister", "support": []}
+    },
+    "th2": {
+      "label": "Theatre 2",
+      "ext": "3141",
+      "type": "Trauma",
+      "am": {"list": "Trauma / Trauma", "primary": "N. Hollister", "support": [{"name": "A. Khalid", "grade": "ACCS Med"}]},
+      "pm": {"list": "Trauma / Trauma", "primary": "M. Abouelsaad", "support": [{"name": "R. Conway"}, {"name": "A. Khalid", "grade": "ACCS Med"}]}
+    },
+    "th3": {
+      "label": "Theatre 3",
+      "ext": "3142",
+      "type": "CEPOD",
+      "am": {"list": "CEPOD / CEPOD", "primary": "508", "support": [{"name": "C. Wright", "grade": "CT2"}]},
+      "pm": {"list": "CEPOD / CEPOD", "primary": "508", "support": [{"name": "C. Wright", "grade": "CT2"}]}
+    },
+    "th4": {
+      "label": "Theatre 4",
+      "ext": "3167",
+      "type": "General/CEPOD",
+      "am": {"list": "Sanders / UGI", "primary": "N. Love ", "support": [{"name": "B. Evliya Felek", "grade": "ST3"}]},
+      "pm": {"list": "Sanders / UGI", "primary": "J. Preece", "support": [{"name": "B. Evliya Felek", "grade": "ST3"}]}
+    },
+    "th5": {
+      "label": "Theatre 5",
+      "ext": "3247",
+      "type": "Day Case",
+      "am": {"list": "Kedjanyi / ENT", "primary": "R. Conway", "support": [{"name": "A. Koffman", "grade": "ACCS Anaes"}]},
+      "pm": {"list": "Honey / MaxFax", "primary": "T. Johnson", "support": [{"name": "A. Koffman", "grade": "ACCS Anaes"}]}
+    },
+    "th6": {
+      "label": "Theatre 6",
+      "ext": "2488",
+      "type": "Day Case",
+      "am": {"list": "Baldwick / Upper Limb Ortho", "primary": "M. Abouelsaad", "support": [{"name": "E. Hosker", "grade": "CT Anaes"}]},
+      "pm": {"list": "Findlay / UGI", "primary": "M. Abouelsaad ", "support": [{"name": "E. Hosker", "grade": "CT Anaes"}]}
+    },
+    "th7": {
+      "label": "Theatre 7",
+      "ext": "3709",
+      "type": "Gynae/Breast",
+      "am": {"list": "Eskandar / Gynae", "primary": "J. Powell", "support": [{"name": "O. Kirby", "grade": "CT2"}]},
+      "pm": {"list": "Eskandar / Gynae", "primary": "J. Powell", "support": [{"name": "O. Kirby", "grade": "CT2"}]}
+    },
+    "th8": {
+      "label": "Theatre 8",
+      "ext": "3868",
+      "bleep": "822",
+      "type": "Obstetrics",
+      "am": {"list": "Obstetrics / Obstetrics", "primary": "T. Mitchell ", "support": [{"name": "I. Talbot", "grade": "CT Anaes"}]},
+      "pm": {"list": "Obstetrics / Obstetrics", "primary": "T. Mitchell ", "support": [{"name": "I. Talbot", "grade": "CT Anaes"}]}
+    },
+    "th9": {
+      "label": "Theatre 9",
+      "type": "Eyes",
+      "am": {},
+      "pm": {}
+    },
+    "th10": {
+      "label": "Theatre 10",
+      "ext": "5963",
+      "type": "Endoscopy",
+      "am": {"list": "Endoscopy / Endoscopy", "primary": "J. Preece"},
+      "pm": {}
+    }
+  },
+  "itu_day": {
+    "label": "ITU Day Staff",
+    "ext": "2707",
+    "day": [
+      {"name": "S. Docherty", "grade": "ITU Fellow"},
+      {"name": "A. Styles", "grade": "FY1"}
+    ]
+  },
+  "support": {
+    "esa135": {"label": "ESA Bleep 135", "am": "A. Koffman", "pm": "A. Koffman"},
+    "epidural234": {"label": "Epidural Bleep 234", "am": "I. Talbot", "pm": "I. Talbot"}
+  }
+}

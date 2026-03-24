@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Rota — North Devon Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Theme variables */
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --card-shadow: none;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 700px; margin: 0 auto; }
+
+/* Header */
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 4px; }
+h1 { font-size: 18px; color: var(--accent); }
+.theme-toggle { position: absolute; right: 0; top: 0; background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; }
+
+.date { text-align: center; color: var(--text2); font-size: 13px; margin-bottom: 4px; }
+.updated { text-align: center; color: var(--text3); font-size: 11px; margin-bottom: 16px; }
+
+/* Section headers */
+.section-header { font-size: 14px; font-weight: 700; color: var(--gold); margin: 16px 0 8px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+
+/* On-call grid: 2 columns, specific layout */
+.oncall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.oncall-card { background: var(--bg2); border-radius: 10px; padding: 10px; border-left: 4px solid var(--accent); box-shadow: var(--card-shadow); }
+.oncall-card.itu { border-left-color: #e67e22; }
+.oncall-card.emergency { border-left-color: #e74c3c; }
+.oncall-card.maternity { border-left-color: #9b59b6; }
+.oncall-label { font-size: 11px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.oncall-bleep { font-size: 10px; color: var(--text3); }
+.oncall-slots { margin-top: 6px; }
+.oncall-slot { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0; border-bottom: 1px solid var(--border); }
+.oncall-slot:last-child { border-bottom: none; }
+.oncall-slot-label { color: var(--text3); font-weight: 600; min-width: 36px; }
+.oncall-slot-name { color: var(--white); font-weight: 600; text-align: right; }
+
+/* Theatre grid: 2 columns */
+.theatre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.theatre-card { background: var(--bg2); border-radius: 10px; padding: 8px 10px; box-shadow: var(--card-shadow); }
+.theatre-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.theatre-num { font-size: 16px; font-weight: 800; color: var(--text3); }
+.theatre-type { font-size: 10px; color: var(--text3); font-weight: 600; text-transform: uppercase; }
+
+.theatre-session { margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.theatre-session:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.session-label { font-size: 10px; color: var(--text3); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+.theatre-list { font-size: 11px; color: var(--text2); }
+.theatre-primary { font-size: 13px; color: var(--white); font-weight: 600; }
+.theatre-support { font-size: 11px; color: var(--text2); }
+.theatre-support .grade { color: var(--text3); font-size: 10px; }
+.empty-session { color: var(--text3); font-style: italic; font-size: 11px; }
+.theatre-session.cancelled .theatre-list { text-decoration: line-through; color: var(--text3); }
+.cancelled-tag { display: inline-block; font-size: 10px; font-weight: 700; color: #e74c3c; background: rgba(231,76,60,0.15); padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+.grade-tag { font-size: 10px; color: var(--text3); font-weight: 400; }
+
+/* Responsive: single column on very small screens */
+@media (max-width: 380px) {
+  .oncall-grid, .theatre-grid, .support-grid { grid-template-columns: 1fr; }
+}
+
+/* Support dots */
+.support-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.dot-red { background: #e74c3c; }
+.dot-orange { background: #e67e22; }
+.dot-green { background: #2ecc71; }
+.dot-purple { background: #9b59b6; }
+
+/* Support section */
+.support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.support-card { background: var(--bg2); border-radius: 10px; padding: 8px 10px; box-shadow: var(--card-shadow); }
+.support-card-label { font-size: 11px; color: var(--text2); font-weight: 600; }
+.support-card-slots { margin-top: 4px; }
+.support-slot { display: flex; justify-content: space-between; font-size: 12px; padding: 1px 0; }
+.support-slot-label { color: var(--text3); font-weight: 600; }
+.support-slot-name { color: var(--white); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Daily Rota</h1>
+  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
+</div>
+<div class="date" id="date-display"></div>
+<div class="updated" id="updated-display"></div>
+
+<div class="section-header">On Call</div>
+<div class="oncall-grid" id="oncall-grid"></div>
+
+<div class="section-header">Theatres</div>
+<div class="theatre-grid" id="theatres"></div>
+
+<div class="section-header">Support</div>
+<div class="support-grid" id="support"></div>
+
+<script>
+var DATA = null;
+var SLOTS = ['am', 'pm', 'eve', 'night'];
+var SLOT_LABELS = { am: 'AM', pm: 'PM', eve: 'Eve', night: 'Night' };
+
+/* Theme toggle */
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  this.textContent = theme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('ndanae-theme', theme);
+});
+
+function formatDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function formatUpdatedTime(isoStr) {
+  if (!isoStr) return 'just now';
+  var d = new Date(isoStr);
+  return d.toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London', hour12: false }) +
+    ' ' + (d.toLocaleString('en-GB', { timeZoneName: 'short', timeZone: 'Europe/London' }).split(' ').pop());
+}
+
+function cleanName(name) {
+  if (!name) return name;
+  /* Remove tags: [Hot], [FIY], [PP], [Paid Extra] — keep [Glanso] */
+  return name.replace(/\s*\[(Hot|FIY|PP|Paid Extra)\]\s*/gi, ' ').trim();
+}
+
+function formatPerson(entry) {
+  if (!entry) return '—';
+  var name = cleanName(entry.name || entry);
+  if (!name) return '—';
+  if (entry.grade) return name + ' <span class="grade-tag">' + entry.grade + '</span>';
+  return name;
+}
+
+function getPersonName(entry) {
+  if (!entry) return '—';
+  if (typeof entry === 'string') return cleanName(entry) || '—';
+  if (Array.isArray(entry)) return entry.map(function(e) { return formatPerson(e); }).join('<br>');
+  return formatPerson(entry);
+}
+
+
+function renderOnCall() {
+  var grid = document.getElementById('oncall-grid');
+  var oc = DATA.on_call;
+
+  /* Layout: Left column = Gen, Emergency, Maternity. Right column = ITU Cons, ITU Resident, ITU Day */
+  var leftCards = [
+    { key: '300', cls: '', label: 'Gen Consultant', bleep: '300' },
+    { key: '508', cls: 'emergency', label: 'Emergency', bleep: '508' },
+    { key: '822', cls: 'maternity', label: 'Maternity', bleep: '822' },
+  ];
+  var rightCards = [
+    { key: 'itu_consultant', cls: 'itu', label: 'ITU Consultant', bleep: '505' },
+    { key: '504', cls: 'itu', label: 'ITU Resident', bleep: '504' },
+  ];
+
+  function buildOncallCard(c) {
+    var data = oc[c.key];
+    if (!data) return '';
+    var html = '<div class="oncall-card ' + c.cls + '">';
+    html += '<div class="oncall-label">' + c.label + '</div>';
+    html += '<div class="oncall-bleep">Bleep ' + c.bleep + '</div>';
+    html += '<div class="oncall-slots">';
+    for (var s = 0; s < SLOTS.length; s++) {
+      var slot = SLOTS[s];
+      var name = getPersonName(data[slot]);
+      html += '<div class="oncall-slot">';
+      html += '<span class="oncall-slot-label">' + SLOT_LABELS[slot] + '</span>';
+      html += '<span class="oncall-slot-name">' + name + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function buildItuDayCard() {
+    var ituDay = DATA.itu_day;
+    if (!ituDay) return '';
+    var html = '<div class="oncall-card itu">';
+    html += '<div class="oncall-label">' + ituDay.label + '</div>';
+    html += '<div class="oncall-bleep">Ext ' + ituDay.ext + '</div>';
+    html += '<div class="oncall-slots">';
+    html += '<div class="oncall-slot">';
+    html += '<span class="oncall-slot-label">Day</span>';
+    html += '<span class="oncall-slot-name">';
+    if (Array.isArray(ituDay.day)) {
+      html += ituDay.day.map(function(p) { return formatPerson(p); }).join('<br>');
+    }
+    html += '</span></div>';
+    html += '</div></div>';
+    return html;
+  }
+
+  /* Build as left-column then right-column using CSS grid order */
+  var html = '';
+  for (var i = 0; i < Math.max(leftCards.length, rightCards.length + 1); i++) {
+    if (i < leftCards.length) html += buildOncallCard(leftCards[i]);
+    if (i < rightCards.length) html += buildOncallCard(rightCards[i]);
+    else if (i === rightCards.length) html += buildItuDayCard();
+  }
+  grid.innerHTML = html;
+}
+
+function renderTheatres() {
+  var container = document.getElementById('theatres');
+  var theatreKeys = ['th1','th2','th3','th4','th5','th6','th7','th8','th9','th10'];
+  var th = DATA.theatres;
+  var html = '';
+
+  for (var i = 0; i < theatreKeys.length; i++) {
+    var key = theatreKeys[i];
+    var theatre = th[key];
+    if (!theatre) continue;
+
+    var num = key.replace('th', '');
+    html += '<div class="theatre-card">';
+    html += '<div class="theatre-header">';
+    html += '<span class="theatre-num">' + num + '</span>';
+    html += '<span class="theatre-type">' + (theatre.type || '') + '</span>';
+    html += '</div>';
+
+    /* Show AM and PM sessions (the main ones) */
+    var sessionSlots = ['am', 'pm'];
+    for (var s = 0; s < sessionSlots.length; s++) {
+      var slot = sessionSlots[s];
+      var slotData = theatre[slot] || {};
+      var list = slotData.list || '';
+      var primary = slotData.primary || '';
+      var support = slotData.support || [];
+      var isEmpty = !primary && !list;
+      var isCancelled = slotData.cancelled || false;
+
+      html += '<div class="theatre-session' + (isCancelled ? ' cancelled' : '') + '">';
+      html += '<div class="session-label">' + SLOT_LABELS[slot] + '</div>';
+
+      if (isEmpty) {
+        html += '<div class="empty-session">No list</div>';
+      } else if (isCancelled) {
+        html += '<span class="theatre-list">' + list + '</span>';
+        html += '<span class="cancelled-tag">Cancelled</span>';
+      } else {
+        html += '<span class="theatre-list">' + list + '</span>';
+        html += '<div class="theatre-primary">' + cleanName(primary) + '</div>';
+        for (var j = 0; j < support.length; j++) {
+          html += '<div class="theatre-support">' + support[j].name;
+          if (support[j].grade) html += ' <span class="grade">' + support[j].grade + '</span>';
+          html += '</div>';
+        }
+      }
+      html += '</div>';
+    }
+
+    html += '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function renderSupport() {
+  var container = document.getElementById('support');
+  var sp = DATA.support;
+  var html = '';
+
+  /* Available consultants - AM and PM only */
+  if (DATA.available_consultants) {
+    html += '<div class="support-card" style="grid-column: span 2;">';
+    html += '<div class="support-card-label">Available Consultants</div>';
+    html += '<div class="support-card-slots">';
+    var acSlots = ['am', 'pm'];
+    for (var s = 0; s < acSlots.length; s++) {
+      var names = DATA.available_consultants[acSlots[s]] || '—';
+      html += '<div class="support-slot">';
+      html += '<span class="support-slot-label">' + SLOT_LABELS[acSlots[s]] + '</span>';
+      html += '<span class="support-slot-name">' + names + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+
+  for (var key in sp) {
+    var entry = sp[key];
+    html += '<div class="support-card">';
+    html += '<div class="support-card-label">' + entry.label + '</div>';
+    html += '<div class="support-card-slots">';
+    for (var s = 0; s < SLOTS.length; s++) {
+      var slot = SLOTS[s];
+      var name = entry[slot] || '—';
+      if (name === '—' && (slot === 'eve' || slot === 'night')) continue;
+      html += '<div class="support-slot">';
+      html += '<span class="support-slot-label">' + SLOT_LABELS[slot] + '</span>';
+      html += '<span class="support-slot-name">' + name + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+  container.innerHTML = html;
+}
+
+function render() {
+  renderOnCall();
+  renderTheatres();
+  renderSupport();
+}
+
+/* Load data */
+fetch('daily-rota.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    DATA = data;
+
+    /* Auto-fill 822 AM/PM from Theatre 8 primary if missing */
+    if (DATA.on_call['822'] && DATA.theatres.th8) {
+      ['am', 'pm'].forEach(function(slot) {
+        var entry822 = DATA.on_call['822'][slot];
+        var th8data = DATA.theatres.th8[slot];
+        var missing = !entry822 || entry822 === '—' || (typeof entry822 === 'object' && !entry822.name);
+        if (missing && th8data && th8data.primary) {
+          DATA.on_call['822'][slot] = { name: th8data.primary, role: 'LD' };
+        }
+      });
+    }
+
+    document.getElementById('date-display').textContent = formatDate(data.date);
+    document.getElementById('updated-display').textContent = 'Updated: ' + formatUpdatedTime(data.scraped_at);
+    render();
+  })
+  .catch(function(err) {
+    document.body.innerHTML = '<h1 style="color:red;text-align:center;margin-top:40px">Failed to load rota data</h1>';
+  });
+</script>
+</body>
+</html>

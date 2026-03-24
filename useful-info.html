@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Useful Information — North Devon Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --mono: #7ab5e8;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --mono: #1A5276;
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 600px; margin: 0 auto; }
+
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 16px; }
+h1 { font-size: 18px; color: var(--accent); }
+.theme-toggle { position: absolute; right: 0; top: 0; background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; }
+
+/* Section */
+.section { margin-bottom: 20px; }
+.section-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 8px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+.section-icon { font-size: 16px; }
+
+/* Rows */
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border); }
+.info-row:first-of-type { border-radius: 8px 8px 0 0; }
+.info-row:last-of-type { border-radius: 0 0 8px 8px; }
+.info-row:only-of-type { border-radius: 8px; }
+.info-row + .info-row { border-top: none; }
+.info-row:nth-child(even) { background: var(--bg3); }
+
+.info-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.info-note { font-size: 10px; color: var(--text3); font-weight: 400; }
+.info-value { font-size: 15px; font-weight: 700; color: var(--mono); font-family: 'SF Mono', 'Menlo', monospace; letter-spacing: 0.05em; }
+.info-value.tba { color: #E74C3C; }
+
+/* Search */
+.search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-size: 14px; margin-bottom: 16px; outline: none; }
+.search-box:focus { border-color: var(--accent); }
+.search-box::placeholder { color: var(--text3); }
+
+.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Useful Information</h1>
+  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
+</div>
+
+<input type="text" class="search-box" id="search" placeholder="Search bleeps, codes, numbers...">
+
+<div id="content"></div>
+
+<script>
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  this.textContent = theme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('ndanae-theme', theme);
+});
+
+var DATA = {
+  sections: [
+    {
+      title: "Bleeps",
+      icon: "📟",
+      items: [
+        { label: "Gen Consultant", note: "or via Switchboard", value: "300" },
+        { label: "ITU Consultant", note: "or via Switchboard", value: "505" },
+        { label: "Resident Anaesthetist Emergencies", value: "508" },
+        { label: "Resident Anaesthetist Maternity", value: "822" },
+        { label: "ITU Resident", value: "504" },
+        { label: "Resident Surgeon", value: "900" },
+        { label: "ODP", value: "119" },
+        { label: "Blood Bank", value: "045" },
+        { label: "X-ray", value: "042" },
+        { label: "Acute Pain", note: "504 out of hours", value: "274" }
+      ]
+    },
+    {
+      title: "Door Codes / Access Codes",
+      icon: "🚪",
+      items: [
+        { label: "Resus Paramedics Entrance", value: "1994" },
+        { label: "ITU", value: "5432" },
+        { label: "Recovery", value: "1970" },
+        { label: "Labour Ward Main Entrance", value: "6532" },
+        { label: "Epidural Level 1", value: "700" },
+        { label: "Epidural Level 2", value: "279" },
+        { label: "PCA", value: "2414" },
+        { label: "Library", value: "C 9538" },
+        { label: "Labour Ward Doctors Office", value: "C 1920 A" },
+        { label: "Pool Room", value: "TBA" }
+      ]
+    },
+    {
+      title: "Extensions & Phone Numbers",
+      icon: "📞",
+      items: [
+        { label: "Theatre 1", note: "Elective Ortho", value: "3140" },
+        { label: "Theatre 2", note: "Trauma", value: "3141" },
+        { label: "Theatre 3", note: "CEPOD", value: "3142" },
+        { label: "Theatre 4", note: "General/CEPOD", value: "3167" },
+        { label: "Theatre 5", note: "Day Case", value: "3247" },
+        { label: "Theatre 6", note: "Day Case", value: "2488" },
+        { label: "Theatre 7", note: "Gynae/Breast", value: "3709" },
+        { label: "Theatre 8", note: "Obstetrics", value: "3868" },
+        { label: "Theatre 10", note: "Endoscopy", value: "5963" },
+        { label: "ITU", value: "2707" },
+        { label: "Preop Clinic Reception", value: "2825" },
+        { label: "Preop Clinic Room", value: "6500" }
+      ]
+    }
+  ]
+};
+
+function render(filter) {
+  var container = document.getElementById('content');
+  var html = '';
+  var query = (filter || '').toLowerCase();
+
+  for (var s = 0; s < DATA.sections.length; s++) {
+    var section = DATA.sections[s];
+    var visibleItems = section.items.filter(function(item) {
+      if (!query) return true;
+      return item.label.toLowerCase().indexOf(query) >= 0 ||
+             item.value.toLowerCase().indexOf(query) >= 0 ||
+             (item.note || '').toLowerCase().indexOf(query) >= 0;
+    });
+
+    if (visibleItems.length === 0) continue;
+
+    html += '<div class="section">';
+    html += '<div class="section-title"><span class="section-icon">' + section.icon + '</span> ' + section.title + '</div>';
+
+    for (var i = 0; i < visibleItems.length; i++) {
+      var item = visibleItems[i];
+      var isTba = item.value === 'TBA' || item.value === 'xxx';
+      html += '<div class="info-row">';
+      html += '<div><span class="info-label">' + item.label + '</span>';
+      if (item.note) html += '<br><span class="info-note">' + item.note + '</span>';
+      html += '</div>';
+      html += '<span class="info-value' + (isTba ? ' tba' : '') + '">' + item.value + '</span>';
+      html += '</div>';
+    }
+
+    html += '</div>';
+  }
+
+  if (!html) {
+    html = '<div style="text-align:center;color:var(--text3);padding:40px 0;font-style:italic">No results</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+document.getElementById('search').addEventListener('input', function() {
+  render(this.value);
+});
+
+render();
+</script>
+</body>
+</html>
