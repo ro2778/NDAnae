@@ -1,6 +1,6 @@
 {
   "name": "ND Anaesthetics",
-  "short_name": "NDAnae",
+  "short_name": "ND Anaesthetics",
   "description": "North Devon District Hospital Anaesthetics Department App",
   "start_url": "./index.html",
   "display": "standalone",

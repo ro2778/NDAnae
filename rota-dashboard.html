@@ -91,7 +91,6 @@ h1 { font-size: 18px; color: var(--accent); }
 
 <div class="header">
   <h1>Daily Rota</h1>
-  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
 </div>
 <div class="date" id="date-display"></div>
 <div class="updated" id="updated-display"></div>
@@ -113,14 +112,7 @@ var SLOT_LABELS = { am: 'AM', pm: 'PM', eve: 'Eve', night: 'Night' };
 /* Theme toggle */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
 document.documentElement.setAttribute('data-theme', theme);
-document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
-
-document.getElementById('theme-toggle').addEventListener('click', function() {
-  theme = theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  this.textContent = theme === 'dark' ? '☀️' : '🌙';
-  localStorage.setItem('ndanae-theme', theme);
-});
+/* Theme inherited from parent app via localStorage */
 
 function formatDate(dateStr) {
   var d = new Date(dateStr + 'T00:00:00');

@@ -54,7 +54,6 @@ h1 { font-size: 18px; color: var(--accent); }
 
 <div class="header">
   <h1>Useful Information</h1>
-  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
 </div>
 
 <input type="text" class="search-box" id="search" placeholder="Search bleeps, codes, numbers...">
@@ -64,13 +63,7 @@ h1 { font-size: 18px; color: var(--accent); }
 <script>
 var theme = localStorage.getItem('ndanae-theme') || 'light';
 document.documentElement.setAttribute('data-theme', theme);
-document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
-document.getElementById('theme-toggle').addEventListener('click', function() {
-  theme = theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  this.textContent = theme === 'dark' ? '☀️' : '🌙';
-  localStorage.setItem('ndanae-theme', theme);
-});
+/* Theme inherited from parent app via localStorage */
 
 var DATA = {
   sections: [
