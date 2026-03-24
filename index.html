@@ -27,6 +27,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg); color: var(--text);
   min-height: 100dvh; display: flex; flex-direction: column;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* Splash screen */
@@ -34,10 +35,10 @@ body {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   flex: 1; padding: 40px 20px; text-align: center; position: relative;
 }
-.splash-logo { width: 120px; height: 120px; border-radius: 24px; margin-bottom: 20px; }
-.splash-title { font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
-.splash-dept { font-size: 14px; color: var(--text2); margin-bottom: 24px; }
-.splash-version { font-size: 11px; color: var(--text3); margin-top: 16px; }
+.splash-logo { width: 120px; height: 120px; min-height: 120px; border-radius: 24px; margin-bottom: 20px; object-fit: cover; transition: opacity 0.2s; }
+.splash-title { font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 4px; transition: color 0.3s; }
+.splash-dept { font-size: 14px; color: var(--text2); margin-bottom: 24px; transition: color 0.3s; }
+.splash-version { font-size: 11px; color: var(--text3); margin-top: 16px; transition: color 0.3s; }
 .splash-btn {
   padding: 14px 40px; border: none; border-radius: 12px; font-size: 16px;
   font-weight: 700; cursor: pointer; margin: 6px; background: var(--accent); color: #fff;
@@ -92,7 +93,7 @@ body {
 }
 .module-card:active { transform: scale(0.97); }
 .module-icon { font-size: 40px; }
-.module-icon-img { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; }
+.module-icon-img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; }
 .module-name { font-size: 14px; font-weight: 700; }
 .module-desc { font-size: 11px; color: var(--text3); line-height: 1.3; }
 .module-card.placeholder { opacity: 0.4; pointer-events: none; }
@@ -246,7 +247,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.7';
+var APP_VERSION = '1.0.8';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -257,9 +258,15 @@ function updateThemeAssets() {
   /* Splash toggle */
   var splashToggle = document.getElementById('theme-toggle-splash');
   if (splashToggle) splashToggle.textContent = isDark ? '☀️' : '🌙';
-  /* Splash logo */
+  /* Splash logo — crossfade on theme change */
   var logo = document.getElementById('splash-logo');
-  if (logo) logo.src = 'icon-512-' + theme + '.png';
+  if (logo) {
+    logo.style.opacity = '0';
+    setTimeout(function() {
+      logo.src = 'icon-512-' + theme + '.png';
+      logo.style.opacity = '1';
+    }, 200);
+  }
   /* Drawer logo */
   var dLogo = document.getElementById('drawer-logo');
   if (dLogo) dLogo.src = 'icon-192-' + theme + '.png';

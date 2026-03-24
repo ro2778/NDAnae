@@ -4,7 +4,6 @@
   "description": "North Devon District Hospital Anaesthetics Department App",
   "start_url": "./index.html",
   "display": "standalone",
-  "orientation": "any",
   "background_color": "#1B2631",
   "theme_color": "#1B2631",
   "icons": [
