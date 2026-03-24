@@ -247,7 +247,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.8';
+var APP_VERSION = '1.0.9';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -388,14 +388,19 @@ function openModule(mod) {
   currentModule = mod;
   document.getElementById('launcher-wrap').classList.add('hidden');
   document.getElementById('module-frame').classList.add('active');
-  document.getElementById('module-iframe').src = url;
+  /* Use replace so iframe doesn't add a history entry */
+  var iframe = document.getElementById('module-iframe');
+  iframe.contentWindow.location.replace(url);
   history.pushState({ module: mod }, '');
 }
 
 function closeModule() {
+  if (!currentModule) return;
   currentModule = null;
+  /* Clear iframe immediately */
+  var iframe = document.getElementById('module-iframe');
+  iframe.contentWindow.location.replace('about:blank');
   document.getElementById('module-frame').classList.remove('active');
-  document.getElementById('module-iframe').src = '';
   document.getElementById('launcher-wrap').classList.remove('hidden');
 }
 
