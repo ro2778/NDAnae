@@ -247,7 +247,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.10';
+var APP_VERSION = '1.0.11';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -381,7 +381,7 @@ function openModule(mod) {
   if (!url) return;
 
   if (url.indexOf('http') === 0) {
-    window.open(url, '_blank');
+    window.location.href = url;
     return;
   }
 
