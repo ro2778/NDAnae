@@ -171,8 +171,11 @@ body {
         <input type="number" id="weightInput" min="0.5" max="100" step="0.1" placeholder="e.g. 15" inputmode="decimal">
       </div>
       <div class="input-group">
-        <label>Date of Birth</label>
-        <input type="date" id="dobInput">
+        <label>Age</label>
+        <div style="display:flex;gap:8px">
+          <input type="number" id="ageYearsInput" min="0" max="18" step="1" placeholder="Years" inputmode="numeric" style="flex:1">
+          <input type="number" id="ageMonthsInput" min="0" max="11" step="1" placeholder="Months" inputmode="numeric" style="flex:1">
+        </div>
       </div>
     </div>
     <div class="checkbox-row">
@@ -204,7 +207,8 @@ document.documentElement.setAttribute('data-theme', theme);
 
 // Elements
 var weightInput = document.getElementById('weightInput');
-var dobInput = document.getElementById('dobInput');
+var ageYearsInput = document.getElementById('ageYearsInput');
+var ageMonthsInput = document.getElementById('ageMonthsInput');
 var aplsToggle = document.getElementById('aplsToggle');
 var weightDisplay = document.getElementById('weightDisplay');
 var estWeightEl = document.getElementById('estWeight');
@@ -288,12 +292,10 @@ function aplsWeight(ageDays) {
 }
 
 function getAgeDays() {
-  var dob = dobInput.value;
-  if (!dob) return null;
-  var d = new Date(dob);
-  var now = new Date();
-  var diff = now - d;
-  return Math.floor(diff / 86400000);
+  var y = parseInt(ageYearsInput.value) || 0;
+  var m = parseInt(ageMonthsInput.value) || 0;
+  if (y === 0 && m === 0 && !ageYearsInput.value && !ageMonthsInput.value) return null;
+  return Math.round(y * 365.25 + m * 30.44);
 }
 
 function formatAge(ageDays) {
@@ -828,7 +830,8 @@ weightInput.addEventListener('input', function() {
   if (this.value) aplsToggle.checked = false;
   recalc();
 });
-dobInput.addEventListener('input', recalc);
+ageYearsInput.addEventListener('input', recalc);
+ageMonthsInput.addEventListener('input', recalc);
 aplsToggle.addEventListener('change', function() {
   if (this.checked) weightInput.value = '';
   recalc();
@@ -836,7 +839,8 @@ aplsToggle.addEventListener('change', function() {
 
 function clearAll() {
   weightInput.value = '';
-  dobInput.value = '';
+  ageYearsInput.value = '';
+  ageMonthsInput.value = '';
   aplsToggle.checked = false;
   recalc();
 }
