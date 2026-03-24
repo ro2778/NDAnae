@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>WATCh Drug Calculator — ND Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --mono: #7ab5e8; --red: #e74c3c; --green: #27ae60;
+  --header-bg: #111; --shadow: rgba(0,0,0,0.3);
+  --drug-bg: #1a1a1a; --drug-border: #333;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --mono: #1A5276; --red: #c0392b; --green: #1e8449;
+  --header-bg: #fff; --shadow: rgba(0,0,0,0.08);
+  --drug-bg: #ffffff; --drug-border: #ddd;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text);
+  padding: 0; margin: 0; min-height: 100dvh;
+}
+
+/* Header */
+.header {
+  display: flex; align-items: center; justify-content: center;
+  position: sticky; top: 0; z-index: 10;
+  padding: 12px 16px; background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+}
+.back-btn {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  text-decoration: none; font-size: 20px; color: var(--accent);
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: var(--bg3); border: 1px solid var(--border);
+}
+.header h1 { font-size: 16px; font-weight: 700; color: var(--accent); }
+
+/* Container */
+.container { max-width: 600px; margin: 0 auto; padding: 12px; }
+
+/* Input Section */
+.input-section {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px; margin-bottom: 16px;
+}
+.input-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-end; }
+.input-group { flex: 1; }
+.input-group label {
+  display: block; font-size: 11px; font-weight: 700; color: var(--text2);
+  margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.input-group input {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg3); color: var(--text); font-size: 16px; font-weight: 600;
+  font-family: 'SF Mono', Menlo, monospace; outline: none;
+}
+.input-group input:focus { border-color: var(--accent); }
+
+.checkbox-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer;
+}
+.checkbox-row label { font-size: 13px; color: var(--text2); cursor: pointer; }
+
+.weight-display {
+  display: none; padding: 10px 14px; background: var(--bg3); border-radius: 8px;
+  border: 1px solid var(--border); margin-top: 8px;
+}
+.weight-display.show { display: block; }
+.weight-display .wd-label { font-size: 11px; color: var(--text3); text-transform: uppercase; }
+.weight-display .wd-value { font-size: 20px; font-weight: 700; color: var(--accent); font-family: 'SF Mono', Menlo, monospace; }
+.weight-display .wd-age { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+.clear-btn {
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg3); color: var(--red); font-size: 13px; font-weight: 600;
+  cursor: pointer; margin-top: 8px;
+}
+
+/* Sections */
+.section { margin-bottom: 12px; }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer; user-select: none;
+}
+.section-header.open { border-radius: 10px 10px 0 0; border-bottom: none; }
+.section-title {
+  font-size: 13px; font-weight: 700; color: var(--gold);
+  display: flex; align-items: center; gap: 6px;
+}
+.section-chevron {
+  font-size: 14px; color: var(--text3); transition: transform 0.2s;
+}
+.section-header.open .section-chevron { transform: rotate(180deg); }
+.section-body {
+  display: none; border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 10px 10px; overflow: hidden;
+}
+.section-body.open { display: block; }
+
+/* Drug rows */
+.drug-row {
+  padding: 10px 14px; background: var(--drug-bg);
+  border-bottom: 1px solid var(--border);
+}
+.drug-row:last-child { border-bottom: none; }
+.drug-row:nth-child(even) { background: var(--bg3); }
+.drug-name { font-size: 13px; font-weight: 700; color: var(--white); }
+.drug-dose { font-size: 14px; font-weight: 600; color: var(--accent); font-family: 'SF Mono', Menlo, monospace; margin-top: 2px; }
+.drug-note { font-size: 11px; color: var(--text2); margin-top: 1px; }
+.drug-warn { font-size: 11px; color: var(--red); font-weight: 600; margin-top: 1px; }
+.drug-route { font-size: 10px; color: var(--text3); font-style: italic; }
+
+/* Info rows for tubes etc */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.info-cell {
+  padding: 8px 14px; background: var(--drug-bg); border-bottom: 1px solid var(--border);
+}
+.info-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+.info-cell:nth-child(even) { background: var(--bg3); }
+.info-cell-label { font-size: 11px; color: var(--text3); }
+.info-cell-value { font-size: 14px; font-weight: 700; color: var(--mono); font-family: 'SF Mono', Menlo, monospace; }
+
+/* Infusion rows */
+.infusion-row {
+  padding: 10px 14px; background: var(--drug-bg);
+  border-bottom: 1px solid var(--border);
+}
+.infusion-row:last-child { border-bottom: none; }
+.infusion-row:nth-child(even) { background: var(--bg3); }
+.infusion-name { font-size: 13px; font-weight: 700; color: var(--white); }
+.infusion-detail { font-size: 12px; color: var(--accent); font-family: 'SF Mono', Menlo, monospace; margin-top: 2px; }
+.infusion-note { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+/* Footer */
+.footer {
+  text-align: center; padding: 20px 16px; margin-top: 8px;
+}
+.footer-warn { font-size: 12px; color: var(--red); font-weight: 600; margin-bottom: 8px; }
+.footer-credit { font-size: 10px; color: var(--text3); line-height: 1.4; }
+
+/* No results */
+.no-weight { text-align: center; padding: 40px 16px; color: var(--text3); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="#" onclick="if(window.parent!==window){window.parent.postMessage('closeModule','*')}else{window.location.href='index.html'}; return false" class="back-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </a>
+  <h1>WATCh Drug Calculator</h1>
+</div>
+
+<div class="container">
+  <div class="input-section">
+    <div class="input-row">
+      <div class="input-group">
+        <label>Weight (kg)</label>
+        <input type="number" id="weightInput" min="0.5" max="100" step="0.1" placeholder="e.g. 15" inputmode="decimal">
+      </div>
+      <div class="input-group">
+        <label>Date of Birth</label>
+        <input type="date" id="dobInput">
+      </div>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="aplsToggle">
+      <label for="aplsToggle">Use APLS weight estimate from DOB</label>
+    </div>
+    <div class="weight-display" id="weightDisplay">
+      <div class="wd-label">APLS Estimated Weight</div>
+      <div class="wd-value" id="estWeight">--</div>
+      <div class="wd-age" id="estAge"></div>
+    </div>
+    <button class="clear-btn" onclick="clearAll()">Clear All</button>
+  </div>
+
+  <div id="results">
+    <div class="no-weight" id="noWeight">Enter a weight or DOB to calculate drug doses</div>
+  </div>
+
+  <div class="footer" id="footer" style="display:none">
+    <div class="footer-warn">Please note warnings at WATCh.nhs.uk/drug-sheet/</div>
+    <div class="footer-credit">Drug sheet developed by Will Marriage &amp; WATCh Service &copy;2014. Version 27.19</div>
+  </div>
+</div>
+
+<script>
+// Theme
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+
+// Elements
+var weightInput = document.getElementById('weightInput');
+var dobInput = document.getElementById('dobInput');
+var aplsToggle = document.getElementById('aplsToggle');
+var weightDisplay = document.getElementById('weightDisplay');
+var estWeightEl = document.getElementById('estWeight');
+var estAgeEl = document.getElementById('estAge');
+var resultsEl = document.getElementById('results');
+var noWeightEl = document.getElementById('noWeight');
+var footerEl = document.getElementById('footer');
+
+// Surface area lookup
+var SA_TABLE = {2.5:0.19,3:0.21,3.5:0.24,4:0.26,4.5:0.28,5:0.3,5.5:0.38,6:0.38,7:0.38,7.5:0.4,8:0.42,8.5:0.44,9:0.46,9.5:0.47,10:0.49,11:0.53,12:0.56,13:0.59,14:0.62,15:0.65,16:0.68,17:0.71,18:0.74,19:0.77,20:0.79,21:0.82,22:0.85,23:0.87,24:0.9,25:0.92,26:0.95,27:0.97,28:1,29:1,30:1.1,35:1.2,40:1.3,45:1.4,50:1.5,55:1.6,60:1.7,65:1.8,70:1.9,75:1.9,80:2,85:2.1,90:2.2};
+
+function getSA(w) {
+  var keys = Object.keys(SA_TABLE).map(Number).sort(function(a,b){return a-b});
+  if (w <= keys[0]) return SA_TABLE[keys[0]];
+  if (w >= keys[keys.length-1]) return SA_TABLE[keys[keys.length-1]];
+  for (var i = 0; i < keys.length - 1; i++) {
+    if (w >= keys[i] && w <= keys[i+1]) {
+      // Use nearest
+      return (w - keys[i] <= keys[i+1] - w) ? SA_TABLE[keys[i]] : SA_TABLE[keys[i+1]];
+    }
+  }
+  return SA_TABLE[keys[keys.length-1]];
+}
+
+// Kit by age
+var KIT_AGE = [
+  {d:0, ett:"3", lips:11, nose:14, suction:"6", urinary:"6", chest:"10"},
+  {d:90, ett:"3", lips:12, nose:15, suction:"7", urinary:"6", chest:"10"},
+  {d:180, ett:"3.0-3.5", lips:12.5, nose:15.5, suction:"7-8", urinary:"6", chest:"10"},
+  {d:365, ett:"3.5", lips:13, nose:16, suction:"8", urinary:"6", chest:"12"},
+  {d:730, ett:"4", lips:13.5, nose:16.5, suction:"10", urinary:"8", chest:"12"},
+  {d:1095, ett:"4.0-4.5", lips:14, nose:17, suction:"10", urinary:"8", chest:"16"},
+  {d:1460, ett:"4.5", lips:14.5, nose:17.5, suction:"10", urinary:"8", chest:"16"},
+  {d:1825, ett:"4.5-5.0", lips:15, nose:18, suction:"12", urinary:"8", chest:"16"},
+  {d:2190, ett:"5", lips:15.5, nose:18.5, suction:"12", urinary:"8", chest:"16"},
+  {d:2555, ett:"5.0-5.5", lips:16, nose:19, suction:"12", urinary:"8", chest:"16"},
+  {d:2920, ett:"6.0-6.5", lips:16.5, nose:19.5, suction:"12", urinary:"8", chest:"16"},
+  {d:3285, ett:"6.0-6.5", lips:17, nose:20, suction:"12", urinary:"8", chest:"16"},
+  {d:3650, ett:"7", lips:17.5, nose:20.5, suction:"12", urinary:"10", chest:"18"},
+  {d:4015, ett:"7", lips:18, nose:21, suction:"12", urinary:"10", chest:"18"},
+  {d:4380, ett:"7.0-7.5", lips:18.5, nose:21.5, suction:"12", urinary:"10", chest:"18"},
+  {d:4745, ett:"7.0-7.5", lips:21, nose:24, suction:"12", urinary:"10", chest:"20"},
+  {d:5110, ett:"7.0-8.0", lips:21, nose:24, suction:"12", urinary:"12", chest:"20"}
+];
+
+// Kit by weight (<=3.2kg)
+var KIT_WEIGHT = [
+  {w:0.7, ett:"uncuffed 2.5", lips:7.5, nose:9, suction:"5"},
+  {w:1.1, ett:"uncuffed 2.5", lips:8, nose:9.5, suction:"5"},
+  {w:1.6, ett:"uncuffed 3.0", lips:8.5, nose:10, suction:"6"},
+  {w:2.1, ett:"3", lips:9, nose:10.5, suction:"6"},
+  {w:2.6, ett:"3", lips:9.5, nose:11, suction:"6"}
+];
+
+function getKitByAge(ageDays) {
+  var best = KIT_AGE[0];
+  for (var i = 0; i < KIT_AGE.length; i++) {
+    if (ageDays >= KIT_AGE[i].d) best = KIT_AGE[i];
+  }
+  return best;
+}
+
+function getKitByWeight(w) {
+  var best = KIT_WEIGHT[0];
+  for (var i = 0; i < KIT_WEIGHT.length; i++) {
+    if (w >= KIT_WEIGHT[i].w) best = KIT_WEIGHT[i];
+  }
+  return best;
+}
+
+// Rounding helpers
+function R(v, d) { if (d < 0) { var f = Math.pow(10, -d); return Math.round(v / f) * f; } return parseFloat(v.toFixed(d)); }
+function ceilTo(v, step) { return Math.ceil(v / step) * step; }
+
+// APLS weight
+function aplsWeight(ageDays) {
+  var ageYears = ageDays / 365.25;
+  if (ageDays < 365) return Math.round(ageDays / 60 + 4);
+  if (ageYears < 6) return Math.round(ageYears) * 2 + 8;
+  return Math.round(ageYears) * 3 + 7;
+}
+
+function getAgeDays() {
+  var dob = dobInput.value;
+  if (!dob) return null;
+  var d = new Date(dob);
+  var now = new Date();
+  var diff = now - d;
+  return Math.floor(diff / 86400000);
+}
+
+function formatAge(ageDays) {
+  if (ageDays < 0) return 'Invalid DOB';
+  if (ageDays < 30) return ageDays + ' day' + (ageDays !== 1 ? 's' : '');
+  if (ageDays < 365) { var m = Math.floor(ageDays / 30.44); return m + ' month' + (m !== 1 ? 's' : ''); }
+  var y = Math.floor(ageDays / 365.25);
+  var rem = Math.floor((ageDays - y * 365.25) / 30.44);
+  return y + ' year' + (y !== 1 ? 's' : '') + (rem > 0 ? ', ' + rem + ' month' + (rem !== 1 ? 's' : '') : '');
+}
+
+function recalc() {
+  var ageDays = getAgeDays();
+  var useApls = aplsToggle.checked && ageDays !== null && ageDays >= 0;
+  var w = null;
+
+  if (useApls) {
+    w = aplsWeight(ageDays);
+    estWeightEl.textContent = w + ' kg';
+    estAgeEl.textContent = 'Age: ' + formatAge(ageDays);
+    weightDisplay.classList.add('show');
+    weightInput.value = '';
+  } else {
+    weightDisplay.classList.remove('show');
+    if (weightInput.value) w = parseFloat(weightInput.value);
+  }
+
+  if (!w || w <= 0) {
+    noWeightEl.style.display = 'block';
+    footerEl.style.display = 'none';
+    // Remove all sections
+    var secs = resultsEl.querySelectorAll('.section');
+    for (var i = 0; i < secs.length; i++) secs[i].remove();
+    return;
+  }
+
+  noWeightEl.style.display = 'none';
+  footerEl.style.display = 'block';
+
+  buildResults(w, ageDays);
+}
+
+function buildResults(w, ageDays) {
+  var html = '';
+
+  // 1. Emergency Drugs
+  html += section('Emergency Drugs', emergencyDrugs(w));
+
+  // 2. Tube Sizes & Emergency Calcs
+  html += section('Tube Sizes & Emergency Calcs', tubeSizes(w, ageDays));
+
+  // 3. Bolus Drugs
+  html += section('Bolus Drugs', bolusDrugs(w, ageDays));
+
+  // 4. Intubation Drugs
+  html += section('Intubation Drugs', intubationDrugs(w));
+
+  // 5. Fluid Requirement
+  html += section('Fluid Requirement', fluidRequirement(w));
+
+  // 6. Sedation Infusions
+  html += section('Sedation Infusions', sedationInfusions(w));
+
+  // 7. Cardiac Infusions
+  html += section('Cardiac Infusions', cardiacInfusions(w));
+
+  // 8. Other Infusions
+  html += section('Other Infusions', otherInfusions(w));
+
+  // Preserve open/closed state
+  var openSections = {};
+  var headers = resultsEl.querySelectorAll('.section-header');
+  for (var i = 0; i < headers.length; i++) {
+    openSections[headers[i].dataset.section] = headers[i].classList.contains('open');
+  }
+
+  // Remove old sections
+  var secs = resultsEl.querySelectorAll('.section');
+  for (var i = 0; i < secs.length; i++) secs[i].remove();
+
+  resultsEl.insertAdjacentHTML('beforeend', html);
+
+  // Restore open states (default: first section open)
+  var newHeaders = resultsEl.querySelectorAll('.section-header');
+  for (var i = 0; i < newHeaders.length; i++) {
+    var sn = newHeaders[i].dataset.section;
+    var shouldOpen = openSections.hasOwnProperty(sn) ? openSections[sn] : (i === 0);
+    if (shouldOpen) {
+      newHeaders[i].classList.add('open');
+      newHeaders[i].nextElementSibling.classList.add('open');
+    }
+  }
+}
+
+function section(title, bodyHtml) {
+  var id = title.replace(/[^a-z]/gi, '');
+  return '<div class="section">' +
+    '<div class="section-header" data-section="' + id + '" onclick="toggleSection(this)">' +
+    '<span class="section-title">' + title + '</span>' +
+    '<span class="section-chevron">&#9660;</span>' +
+    '</div>' +
+    '<div class="section-body">' + bodyHtml + '</div>' +
+    '</div>';
+}
+
+function toggleSection(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function drugRow(name, dose, note, warn, route) {
+  var h = '<div class="drug-row"><div class="drug-name">' + name + '</div>';
+  h += '<div class="drug-dose">' + dose + '</div>';
+  if (note) h += '<div class="drug-note">' + note + '</div>';
+  if (warn) h += '<div class="drug-warn">' + warn + '</div>';
+  if (route) h += '<div class="drug-route">' + route + '</div>';
+  h += '</div>';
+  return h;
+}
+
+function infRow(name, detail, note) {
+  var h = '<div class="infusion-row"><div class="infusion-name">' + name + '</div>';
+  h += '<div class="infusion-detail">' + detail + '</div>';
+  if (note) h += '<div class="infusion-note">' + note + '</div>';
+  h += '</div>';
+  return h;
+}
+
+// Emergency Drugs
+function emergencyDrugs(w) {
+  var h = '';
+
+  // Adenosine
+  var adDose = R(w / 30, 2);
+  var adMax = R(w / 12, 2);
+  h += drugRow('Adenosine', adDose + ' ml', '100mcg/kg (3mg/ml). Can use up to ' + adMax + ' ml (250mcg/kg)');
+
+  // Adrenaline
+  var adrDose = R(w * 0.1, w < 10 ? 2 : 1);
+  h += drugRow('Adrenaline', adrDose + ' ml 1:10,000', '10mcg/kg IV/IO');
+
+  // Amiodarone
+  var amiDose = Math.min(w * 5, 300);
+  var amiVol = R(amiDose / 50, 2);
+  h += drugRow('Amiodarone', amiDose + ' mg', amiVol + ' ml (50mg/ml) &mdash; 5mg/kg, max 300mg');
+
+  // Atropine
+  var atrDose, atrLabel;
+  if (w < 5) { atrDose = 100; atrLabel = 'min dose 100mcg'; }
+  else if (w < 30) { atrDose = R(w * 20, -1); atrLabel = '20mcg/kg'; }
+  else { atrDose = 600; atrLabel = 'max dose 600mcg'; }
+  var atrVol = R(atrDose / 600, 2);
+  h += drugRow('Atropine', atrDose + ' mcg', atrVol + ' ml (600mcg/ml) &mdash; ' + atrLabel);
+
+  // Sodium Bicarb
+  var sbDose = Math.min(w, 50);
+  h += drugRow('Sodium Bicarbonate 8.4%', R(sbDose, 1) + ' mmol', R(sbDose, 1) + ' ml (1mmol/ml) &mdash; 1mmol/kg, max 50');
+
+  // Calcium Gluconate
+  var cgDose = R(Math.min(w * 0.5, 30), 1);
+  h += drugRow('Calcium Gluconate 10%', cgDose + ' ml', '0.5ml/kg, max 30ml');
+
+  // Lidocaine
+  var lidDose = R(w, 1);
+  var lidVol = R(w * 0.1, w < 10 ? 2 : 1);
+  h += drugRow('Lidocaine', lidDose + ' mg', lidVol + ' ml of 1% (1mg/kg)');
+
+  // Naloxone
+  var nalDose = R(w * 10, -1);
+  if (nalDose < 10) nalDose = 10;
+  var nalVol = R(nalDose / 400, w < 20 ? 2 : 1);
+  h += drugRow('Naloxone', nalDose + ' mcg', nalVol + ' ml (400mcg/ml) &mdash; 10mcg/kg');
+
+  // Tranexamic Acid
+  var txaDose = Math.min(w * 15, 1500);
+  var txaVol = R(txaDose / 100, 2);
+  var txaLabel = txaDose < 1500 ? '15mg/kg' : 'max dose';
+  h += drugRow('Tranexamic Acid', R(txaDose, 0) + ' mg', txaVol + ' ml (100mg/ml) &mdash; ' + txaLabel);
+
+  // Vasopressin
+  var vpDose = R(Math.min(w * 0.4, 40), 1);
+  var vpVol = R(vpDose / 20, 2);
+  h += drugRow('Vasopressin', vpDose + ' Units', vpVol + ' ml (20 Units/ml) &mdash; 0.4 U/kg, max 40U');
+
+  return h;
+}
+
+// Tube Sizes
+function tubeSizes(w, ageDays) {
+  var h = '';
+
+  // Fluid bolus
+  var fb = w > 50 ? '500ml (max)' : R(w * 10, 0) + ' ml';
+  h += drugRow('Fluid Bolus (10ml/kg)', fb, 'Crystalloid');
+
+  // Defibrillation
+  var defib;
+  if (w > 37.5) defib = '150J (Max - Biphasic)';
+  else if (w > 10) defib = R(w * 4, -1) + ' J';
+  else defib = ceilTo(w * 4, 5) + ' J';
+  h += drugRow('Defibrillation (4J/kg)', defib, '');
+
+  // Tube sizes
+  var kit = null;
+  if (w <= 3.2) {
+    kit = getKitByWeight(w);
+    h += '<div class="info-grid">';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT Size</div><div class="info-cell-value">' + kit.ett + '</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT @ Lips</div><div class="info-cell-value">' + kit.lips + ' cm</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT @ Nose</div><div class="info-cell-value">' + kit.nose + ' cm</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">Suction (Fr)</div><div class="info-cell-value">' + kit.suction + '</div></div>';
+    h += '</div>';
+  } else if (ageDays !== null && ageDays >= 0) {
+    kit = getKitByAge(ageDays);
+    h += '<div class="info-grid">';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT Size</div><div class="info-cell-value">' + kit.ett + '</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT @ Lips</div><div class="info-cell-value">' + kit.lips + ' cm</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">ETT @ Nose</div><div class="info-cell-value">' + kit.nose + ' cm</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">Suction (Fr)</div><div class="info-cell-value">' + kit.suction + '</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">Urinary Cath (Fr)</div><div class="info-cell-value">' + kit.urinary + '</div></div>';
+    h += '<div class="info-cell"><div class="info-cell-label">Chest Drain (Fr)</div><div class="info-cell-value">' + kit.chest + '</div></div>';
+    h += '</div>';
+  } else {
+    h += '<div class="drug-row"><div class="drug-note">Enter DOB for tube size lookup (age-based) or weight &le;3.2kg for neonatal lookup</div></div>';
+  }
+
+  return h;
+}
+
+// Bolus Drugs
+function bolusDrugs(w, ageDays) {
+  var h = '';
+
+  // Aciclovir
+  var aciDose, aciNote;
+  if (ageDays !== null && ageDays < 90) {
+    aciDose = R(w * 20, 1) + ' mg';
+    aciNote = '20mg/kg 8-hourly (neonate)';
+  } else if (ageDays !== null && ageDays < 4380) {
+    var sa = getSA(w);
+    aciDose = R(sa * 500, -1) + ' mg';
+    aciNote = '500mg/m&sup2; 8-hourly (BSA ' + sa + ' m&sup2;)';
+  } else if (ageDays !== null) {
+    aciDose = R(w * 5, -1) + ' mg';
+    aciNote = '5mg/kg 8-hourly (12y+)';
+  } else {
+    aciDose = R(w * 20, 1) + ' mg (neonate) / see notes';
+    aciNote = 'Enter DOB for age-specific dosing';
+  }
+  h += drugRow('Aciclovir', aciDose, aciNote);
+
+  // Ceftriaxone
+  var cefDose = w < 50 ? R(80 * w, -1) + ' mg' : '4g (max)';
+  h += drugRow('Ceftriaxone', cefDose, '80mg/kg, max 4g');
+
+  // Glucose 10%
+  var gluVol = w < 33.3 ? R(w * 3, 0) + ' ml' : '100ml (max)';
+  h += drugRow('Glucose 10%', gluVol, '3ml/kg bolus for hypoglycaemia');
+
+  // Lorazepam
+  var lorDose = R(Math.min(w * 0.1, 4), 1);
+  h += drugRow('Lorazepam', lorDose + ' mg', '0.1mg/kg, max 4mg');
+
+  // Levetiracetam
+  var levDose = Math.min(w * 40, 3000);
+  var levNote = 'Neonate: infuse over 30min. Otherwise 5min.';
+  h += drugRow('Levetiracetam', R(levDose, 0) + ' mg', '40mg/kg, max 3000mg', levNote);
+
+  // Magnesium Sulphate 50%
+  var mgVol = R(Math.min(w * 0.08, 4), 2);
+  h += drugRow('Magnesium Sulphate 50%', mgVol + ' ml', '0.2mmol/kg slow IV over 20min, dilute x10');
+
+  // Phenobarbital
+  var phbDose = R(w * 20, w < 10 ? 0 : -1);
+  h += drugRow('Phenobarbital', phbDose + ' mg', '20mg/kg slow IV over 30min');
+
+  // Phenytoin
+  var phyDose;
+  if (w > 100) phyDose = '2000mg (max)';
+  else if (w < 10) phyDose = R(w * 20, 0) + ' mg';
+  else phyDose = R(w * 20, -1) + ' mg';
+  h += drugRow('Phenytoin', phyDose, '20mg/kg slow IV over 30min');
+
+  // Hypertonic Saline
+  var htsDose;
+  if (w > 50) htsDose = '250ml 3% or 150ml 5% (Max)';
+  else htsDose = R(5 * w, 0) + ' ml 3% or ' + R(3 * w, 0) + ' ml 5%';
+  h += drugRow('Hypertonic Saline', htsDose, 'For raised ICP');
+
+  return h;
+}
+
+// Intubation Drugs
+function intubationDrugs(w) {
+  var h = '';
+
+  // Atropine (same as emergency)
+  var atrDose, atrLabel;
+  if (w < 5) { atrDose = 100; atrLabel = 'min dose 100mcg'; }
+  else if (w < 30) { atrDose = R(w * 20, -1); atrLabel = '20mcg/kg'; }
+  else { atrDose = 600; atrLabel = 'max dose 600mcg'; }
+  var atrVol = R(atrDose / 600, 2);
+  h += drugRow('Atropine', atrDose + ' mcg', atrVol + ' ml (600mcg/ml) &mdash; ' + atrLabel);
+
+  // Fentanyl
+  var fenDose = R(w * 2, 0);
+  var fenVol = R(fenDose / 50, w < 10 ? 2 : 1);
+  h += drugRow('Fentanyl', fenDose + ' mcg', fenVol + ' ml (50mcg/ml) &mdash; 2mcg/kg');
+
+  // Ketamine
+  var ketDose = R(w * 2, 0);
+  h += drugRow('Ketamine', ketDose + ' mg', '2mg/kg', 'Many concentrations available - please check!');
+
+  // Midazolam
+  var midDose = R(w * 0.1, 1);
+  var midVol = R(midDose / 5, 2);
+  h += drugRow('Midazolam', midDose + ' mg', midVol + ' ml (5mg/ml) &mdash; 100mcg/kg');
+
+  // Rocuronium
+  var rocDose = R(w * 1, 1);
+  var rocVol = R(rocDose * 0.1, 1);
+  h += drugRow('Rocuronium', rocDose + ' mg', rocVol + ' ml (10mg/ml) &mdash; 1mg/kg');
+
+  // Propofol
+  var propVol = R(2.5 * R(w * 0.1, 1), 1);
+  h += drugRow('Propofol 1%', propVol + ' ml = ' + R(w * 2.5, 0) + ' mg', '2.5mg/kg', 'Titrate dose (1-5 mg/kg)');
+
+  // Suxamethonium
+  var suxDose = w < 10 ? R(w * 2, 0) : R(w * 1, 0);
+  var suxVol = R(suxDose / 50, 1);
+  var suxNote = w < 10 ? '2mg/kg (<10kg)' : '1mg/kg';
+  h += drugRow('Suxamethonium', suxDose + ' mg', suxVol + ' ml (50mg/ml) &mdash; ' + suxNote);
+
+  // Thiopentone
+  var thiDose = R(w * 5, 0);
+  var thiVol = R(w * 0.2, 1);
+  h += drugRow('Thiopentone', thiDose + ' mg', thiVol + ' ml (25mg/ml) &mdash; 5mg/kg', '(Rarely indicated)');
+
+  return h;
+}
+
+// Fluid Requirement
+function fluidRequirement(w) {
+  var full = 4 * Math.min(w, 10) + 2 * Math.max(Math.min(w - 10, 10), 0) + 1 * Math.max(w - 20, 0);
+  var eighty = R(full * 0.8, 1);
+  var h = '';
+  h += drugRow('100% Maintenance', R(full, 1) + ' ml/hr', '4/2/1 rule');
+  h += drugRow('80% Maintenance', eighty + ' ml/hr', '');
+  return h;
+}
+
+// Sedation Infusions
+function sedationInfusions(w) {
+  var h = '';
+
+  // Morphine
+  if (w < 50) {
+    var morAmt = R(w * 1, 1);
+    h += infRow('Morphine', morAmt + ' mg in 50ml', '1ml/hr = 20mcg/kg/hr. Standard regime: 1mg/kg in 50ml');
+  } else {
+    h += infRow('Morphine', 'Neat 1mg/ml', '1ml/hr = 1mg/hr');
+  }
+
+  // Midazolam
+  if (w < 50) {
+    var midAmt = R(w * 5, 0);
+    h += infRow('Midazolam', midAmt + ' mg in 50ml', '1ml/hr = 100mcg/kg/hr. Standard regime: 5mg/kg in 50ml');
+  } else {
+    h += infRow('Midazolam', 'Neat 5mg/ml', '1ml/hr = 5mg/hr');
+  }
+
+  // Rocuronium
+  if (w < 16.6) {
+    var rocAmt = R(w * 30, 0);
+    var rocRate = R(rocAmt / 50, 1);
+    h += infRow('Rocuronium', rocAmt + ' mg in 50ml', '1ml/hr = ' + R(rocRate * 1000 / w, 0) + ' mcg/kg/hr. 30mg/kg in 50ml');
+  } else {
+    h += infRow('Rocuronium', 'Neat 10mg/ml', '1ml/hr = ' + R(10000 / w, 0) + ' mcg/kg/hr');
+  }
+
+  // Atracurium
+  if (w < 33) {
+    var atrAmt = R(w * 15, 0);
+    h += infRow('Atracurium', atrAmt + ' mg in 50ml', '1ml/hr = ' + R(atrAmt / 50 * 1000 / w, 0) + ' mcg/kg/hr. 15mg/kg in 50ml');
+  } else {
+    h += infRow('Atracurium', 'Neat 10mg/ml', '1ml/hr = ' + R(10000 / w, 0) + ' mcg/kg/hr');
+  }
+
+  // Fentanyl
+  var fenLow = R(1 * w / 50, 1);
+  var fenHigh = R(2 * w / 50, 1);
+  h += infRow('Fentanyl', 'Neat 50mcg/ml', fenLow + ' - ' + fenHigh + ' ml/hr (1-2 mcg/kg/hr)');
+
+  // Thiopentone
+  var thioBolus = R(w * 0.2, 1);
+  var thioLow = R(w * 1 / 25, 1);
+  var thioHigh = R(w * 6 / 25, 1);
+  h += infRow('Thiopentone', 'Neat 25mg/ml', 'Bolus 5mg/kg = ' + thioBolus + ' ml. Infusion: ' + thioLow + ' - ' + thioHigh + ' ml/hr (1-6 mg/kg/hr)');
+
+  return h;
+}
+
+// Cardiac Infusions
+function cardiacInfusions(w) {
+  var h = '';
+
+  // Central Dopamine
+  if (w < 40) {
+    var dopAmt = R(w * 15, 0);
+    h += infRow('Central Dopamine', dopAmt + ' mg in 50ml', '1ml/hr = 5 mcg/kg/min. 15mg/kg in 50ml');
+  } else {
+    var dopAmt2 = R(w * 3, 0);
+    h += infRow('Central Dopamine', dopAmt2 + ' mg in 50ml', '1ml/hr = 1 mcg/kg/min. 3mg/kg in 50ml');
+  }
+
+  // Dobutamine
+  if (w < 40) {
+    var dobAmt = R(w * 15, 0);
+    h += infRow('Dobutamine', dobAmt + ' mg in 50ml', '1ml/hr = 5 mcg/kg/min. 15mg/kg in 50ml');
+  } else {
+    var dobAmt2 = R(w * 3, 0);
+    h += infRow('Dobutamine', dobAmt2 + ' mg in 50ml', '1ml/hr = 1 mcg/kg/min. 3mg/kg in 50ml');
+  }
+
+  // Peripheral Adrenaline
+  if (w < 40) {
+    var paAmt = R(w * 0.03, 2);
+    h += infRow('Peripheral Adrenaline', paAmt + ' mg in 50ml', '1ml/hr = 0.01 mcg/kg/min. Usual start 0.1mcg/kg/min = 10 ml/hr');
+  } else {
+    var paAmt2 = R(w * 0.006, 3);
+    h += infRow('Peripheral Adrenaline', paAmt2 + ' mg in 50ml', '1ml/hr = 0.002 mcg/kg/min. Usual start 0.1mcg/kg/min = 50 ml/hr');
+  }
+
+  // Central Adrenaline
+  if (w < 40) {
+    var caAmt = R(w * 0.3, 1);
+    h += infRow('Central Adrenaline', caAmt + ' mg in 50ml', '1ml/hr = 0.1 mcg/kg/min. 0.3mg/kg in 50ml');
+  } else {
+    var caAmt2 = R(w * 0.06, 2);
+    h += infRow('Central Adrenaline', caAmt2 + ' mg in 50ml', '1ml/hr = 0.02 mcg/kg/min. 0.06mg/kg in 50ml');
+  }
+
+  // Metaraminol
+  if (w < 10) {
+    var metAmt = R(w * 0.3, 2);
+    h += infRow('Metaraminol', metAmt + ' mg in 50ml', '0.3mg/kg in 50ml');
+  } else if (w < 66.6) {
+    var metAmt2 = R(w * 0.15, 1);
+    h += infRow('Metaraminol', metAmt2 + ' mg in 50ml', '0.15mg/kg in 50ml');
+  } else {
+    h += infRow('Metaraminol', '10 mg in 50ml', 'Standard 10mg in 50ml');
+  }
+
+  // Noradrenaline (same as central adrenaline)
+  if (w < 40) {
+    var naAmt = R(w * 0.3, 1);
+    h += infRow('Noradrenaline', naAmt + ' mg in 50ml', '1ml/hr = 0.1 mcg/kg/min. 0.3mg/kg in 50ml');
+  } else {
+    var naAmt2 = R(w * 0.06, 2);
+    h += infRow('Noradrenaline', naAmt2 + ' mg in 50ml', '1ml/hr = 0.02 mcg/kg/min. 0.06mg/kg in 50ml');
+  }
+
+  // Vasopressin
+  if (w < 16.6) {
+    var vpAmt = R(2.4 * w, 1);
+    h += infRow('Vasopressin', vpAmt + ' Units in 40ml', '1ml/hr = 0.001 U/kg/min');
+  } else {
+    h += infRow('Vasopressin', '40 Units in 40ml', '1ml/hr = ' + R(1 / w, 4) + ' U/kg/min');
+  }
+
+  // Milrinone
+  if (w < 33.3) {
+    var milAmt = R(w * 1.5, 1);
+    h += infRow('Milrinone', milAmt + ' mg in 50ml', '1ml/hr = 0.5 mcg/kg/min. 1.5mg/kg in 50ml');
+  } else {
+    h += infRow('Milrinone', 'Neat (200mcg/ml)', '1ml/hr = ' + R(200 / w, 1) + ' mcg/kg/min');
+  }
+
+  // Dinoprostone (PGE2) - only for w<10
+  if (w < 10) {
+    var dinoRate = R(100 / (w * 50) * 1000 / 60, 0);
+    h += infRow('Dinoprostone (PGE2)', '100 mcg in 50ml', '1ml/hr = ' + R(100 / 50 * 1000 / (w * 60), 0) + ' ng/kg/min');
+  }
+
+  return h;
+}
+
+// Other Infusions
+function otherInfusions(w) {
+  var h = '';
+
+  // Peripheral header
+  h += '<div class="drug-row" style="background:var(--bg3);border-bottom:2px solid var(--gold)"><div class="drug-name" style="color:var(--gold);font-size:11px;text-transform:uppercase">Peripheral</div></div>';
+
+  // Salbutamol peripheral
+  var salRate = R(0.3 * w, 1);
+  h += infRow('Salbutamol', '10 mg in 50ml', 'Rate: ' + salRate + ' ml/hr = 1 mcg/kg/min');
+
+  // Aminophylline peripheral
+  h += infRow('Aminophylline', '500 mg in 500ml', 'Rate: ' + R(w, 1) + ' ml/hr = 1 mg/kg/hr');
+
+  // Tranexamic Acid peripheral
+  var txaRate;
+  if (w > 62.5) txaRate = '125 ml/hr (max)';
+  else txaRate = R(2 * w, 1) + ' ml/hr';
+  h += infRow('Tranexamic Acid', '500 mg in 500ml', txaRate + ' = 2 mg/kg/hr for 8hr');
+
+  // Central header
+  h += '<div class="drug-row" style="background:var(--bg3);border-bottom:2px solid var(--gold)"><div class="drug-name" style="color:var(--gold);font-size:11px;text-transform:uppercase">Central</div></div>';
+
+  // Salbutamol central
+  if (w < 16) {
+    var salCAmt = R(3 * w, 0);
+    h += infRow('Salbutamol', salCAmt + ' mg in 50ml', '1ml/hr = ' + R(salCAmt / 50 * 1000 / (w * 60), 2) + ' mcg/kg/min. 3mg/kg in 50ml');
+  } else {
+    h += infRow('Salbutamol', 'Neat 1mg/ml', '1ml/hr = ' + R(1000 / (w * 60), 2) + ' mcg/kg/min');
+  }
+
+  // Aminophylline central
+  if (w < 25) {
+    var aminCAmt = R(50 * w, 0);
+    h += infRow('Aminophylline', aminCAmt + ' mg in 50ml', '1ml/hr = ' + R(aminCAmt / 50 / w, 2) + ' mg/kg/hr. 50mg/kg in 50ml');
+  } else {
+    h += infRow('Aminophylline', 'Neat 25mg/ml', '1ml/hr = ' + R(25 / w, 2) + ' mg/kg/hr');
+  }
+
+  return h;
+}
+
+// Event listeners
+weightInput.addEventListener('input', function() {
+  if (this.value) aplsToggle.checked = false;
+  recalc();
+});
+dobInput.addEventListener('input', recalc);
+aplsToggle.addEventListener('change', function() {
+  if (this.checked) weightInput.value = '';
+  recalc();
+});
+
+function clearAll() {
+  weightInput.value = '';
+  dobInput.value = '';
+  aplsToggle.checked = false;
+  recalc();
+}
+
+// Listen for theme changes from parent
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.theme) {
+    document.documentElement.setAttribute('data-theme', e.data.theme);
+  }
+});
+// Also watch localStorage
+window.addEventListener('storage', function(e) {
+  if (e.key === 'ndanae-theme') {
+    document.documentElement.setAttribute('data-theme', e.newValue);
+  }
+});
+</script>
+</body>
+</html>
