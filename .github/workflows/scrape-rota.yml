@@ -3,6 +3,8 @@ name: Scrape CLW Rota
 on:
   schedule:
     # UK times (UTC+1 BST / UTC+0 GMT)
+    # Every day: 11pm UTC (= midnight BST) — load next day's rota
+    - cron: '0 23 * * *'
     # Mon-Fri: 5am, 7am, 7:30am, 8am, 4pm, 7pm UTC (= 6am, 8am, 8:30am, 9am, 5pm, 8pm BST)
     - cron: '0 5 * * 1-5'
     - cron: '0 7 * * 1-5'
