@@ -102,14 +102,15 @@ body {
 .module-frame { display: none; flex: 1; width: 100%; flex-direction: column; position: relative; }
 .module-frame.active { display: flex; }
 .module-float-back {
-  position: absolute; top: 6px; left: 6px; z-index: 10;
-  width: 36px; height: 36px; border-radius: 50%;
+  position: absolute; top: 8px; left: 8px; z-index: 10;
+  height: 32px; padding: 0 10px 0 6px; border-radius: 16px;
   background: var(--bg2); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; gap: 4px;
   cursor: pointer; box-shadow: 0 1px 4px var(--shadow);
-  color: var(--accent); font-size: 18px; font-weight: 700;
+  color: var(--accent); font-size: 13px; font-weight: 600;
 }
-.module-float-back:active { transform: scale(0.9); }
+.module-float-back svg { width: 18px; height: 18px; fill: var(--accent); }
+.module-float-back:active { transform: scale(0.95); opacity: 0.8; }
 .module-frame iframe { flex: 1; border: none; width: 100%; }
 
 /* Hamburger drawer */
@@ -198,7 +199,7 @@ body {
   <div class="launcher-bar">
     <div class="launcher-left">
       <button class="hamburger" id="hamburger-btn">☰</button>
-      <span class="launcher-title">🏠 Home</span>
+      <span class="launcher-title">Home</span>
     </div>
   </div>
 
@@ -240,12 +241,12 @@ body {
 
 <!-- Module frame -->
 <div class="module-frame" id="module-frame">
-  <div class="module-float-back" id="back-btn" title="Back to Home">←</div>
+  <div class="module-float-back" id="back-btn" title="Back to Home"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
   <iframe id="module-iframe"></iframe>
 </div>
 
 <script>
-var APP_VERSION = '1.0.6';
+var APP_VERSION = '1.0.7';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
