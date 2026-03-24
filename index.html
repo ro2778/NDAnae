@@ -98,18 +98,18 @@ body {
 .module-card.placeholder { opacity: 0.4; pointer-events: none; }
 .module-card.placeholder .module-name::after { content: " (coming soon)"; font-weight: 400; font-style: italic; }
 
-/* Module frame — full screen */
-.module-frame { display: none; flex: 1; width: 100%; flex-direction: column; }
+/* Module frame — full screen with floating back arrow */
+.module-frame { display: none; flex: 1; width: 100%; flex-direction: column; position: relative; }
 .module-frame.active { display: flex; }
-.module-back {
-  padding: 12px 16px; background: var(--header-bg);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
+.module-float-back {
+  position: absolute; top: 6px; left: 6px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 1px 4px var(--shadow);
+  color: var(--accent); font-size: 18px; font-weight: 700;
 }
-.module-back-btn {
-  background: none; border: none; color: var(--accent); font-size: 15px;
-  font-weight: 600; cursor: pointer; padding: 6px 0;
-}
+.module-float-back:active { transform: scale(0.9); }
 .module-frame iframe { flex: 1; border: none; width: 100%; }
 
 /* Hamburger drawer */
@@ -198,7 +198,7 @@ body {
   <div class="launcher-bar">
     <div class="launcher-left">
       <button class="hamburger" id="hamburger-btn">☰</button>
-      <span class="launcher-title">ND Anaesthetics</span>
+      <span class="launcher-title">🏠 Home</span>
     </div>
   </div>
 
@@ -240,14 +240,12 @@ body {
 
 <!-- Module frame -->
 <div class="module-frame" id="module-frame">
-  <div class="module-back">
-    <button class="module-back-btn" id="back-btn">← ND Anaesthetics</button>
-  </div>
+  <div class="module-float-back" id="back-btn" title="Back to Home">←</div>
   <iframe id="module-iframe"></iframe>
 </div>
 
 <script>
-var APP_VERSION = '1.0.5';
+var APP_VERSION = '1.0.6';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
