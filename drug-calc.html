@@ -31,7 +31,7 @@ body {
 /* Header */
 .header {
   display: flex; justify-content: center; align-items: center;
-  position: relative; margin-bottom: 4px; padding: 8px 44px 4px 44px;
+  position: relative; margin-bottom: 4px; padding: 14px 44px 4px 44px;
 }
 h1 { font-size: 18px; color: var(--accent); }
 
@@ -160,11 +160,7 @@ h1 { font-size: 18px; color: var(--accent); }
       </div>
       <div class="input-group">
         <label>DOB</label>
-        <div style="display:flex;gap:6px">
-          <input type="number" id="dobDay" min="1" max="31" step="1" placeholder="DD" inputmode="numeric" style="flex:1">
-          <input type="number" id="dobMonth" min="1" max="12" step="1" placeholder="MM" inputmode="numeric" style="flex:1">
-          <input type="number" id="dobYear" min="2006" max="2026" step="1" placeholder="YYYY" inputmode="numeric" style="flex:1.5">
-        </div>
+        <input type="text" id="dobInput" inputmode="numeric" placeholder="DD/MM/YY" maxlength="8" autocomplete="off" style="letter-spacing:2px;font-family:monospace">
       </div>
     </div>
     <div class="checkbox-row">
@@ -196,9 +192,7 @@ document.documentElement.setAttribute('data-theme', theme);
 
 // Elements
 var weightInput = document.getElementById('weightInput');
-var dobDay = document.getElementById('dobDay');
-var dobMonth = document.getElementById('dobMonth');
-var dobYear = document.getElementById('dobYear');
+var dobInput = document.getElementById('dobInput');
 var aplsToggle = document.getElementById('aplsToggle');
 var weightDisplay = document.getElementById('weightDisplay');
 var estWeightEl = document.getElementById('estWeight');
@@ -281,12 +275,28 @@ function aplsWeight(ageDays) {
   return Math.round(ageYears) * 3 + 7;
 }
 
+/* Auto-format DOB: user types 6 digits, displayed as DD/MM/YY */
+dobInput.addEventListener('input', function(e) {
+  var raw = this.value.replace(/\D/g, '');
+  if (raw.length > 6) raw = raw.slice(0, 6);
+  var formatted = '';
+  if (raw.length > 0) formatted = raw.slice(0, Math.min(2, raw.length));
+  if (raw.length > 2) formatted += '/' + raw.slice(2, Math.min(4, raw.length));
+  if (raw.length > 4) formatted += '/' + raw.slice(4, 6);
+  this.value = formatted;
+  recalc();
+});
+
 function getAgeDays() {
-  var d = parseInt(dobDay.value);
-  var m = parseInt(dobMonth.value);
-  var y = parseInt(dobYear.value);
-  if (!d || !m || !y) return null;
-  var dob = new Date(y, m - 1, d);
+  var raw = dobInput.value.replace(/\D/g, '');
+  if (raw.length < 6) return null;
+  var dd = parseInt(raw.slice(0, 2));
+  var mm = parseInt(raw.slice(2, 4));
+  var yy = parseInt(raw.slice(4, 6));
+  /* Convert 2-digit year: 00-26 = 2000s, 27-99 = 1900s */
+  var yyyy = yy <= 26 ? 2000 + yy : 1900 + yy;
+  if (dd < 1 || dd > 31 || mm < 1 || mm > 12) return null;
+  var dob = new Date(yyyy, mm - 1, dd);
   var now = new Date();
   var diff = now - dob;
   if (diff < 0) return -1;
@@ -825,9 +835,7 @@ weightInput.addEventListener('input', function() {
   if (this.value) aplsToggle.checked = false;
   recalc();
 });
-dobDay.addEventListener('input', recalc);
-dobMonth.addEventListener('input', recalc);
-dobYear.addEventListener('input', recalc);
+/* dobInput listener already added above */
 aplsToggle.addEventListener('change', function() {
   if (this.checked) weightInput.value = '';
   recalc();
@@ -835,9 +843,7 @@ aplsToggle.addEventListener('change', function() {
 
 function clearAll() {
   weightInput.value = '';
-  dobDay.value = '';
-  dobMonth.value = '';
-  dobYear.value = '';
+  dobInput.value = '';
   aplsToggle.checked = false;
   recalc();
 }
