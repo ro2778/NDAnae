@@ -1,0 +1,24 @@
+{
+  "name": "ndanae",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ro2778/NDAnae.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ro2778/NDAnae/issues"
+  },
+  "homepage": "https://github.com/ro2778/NDAnae#readme",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

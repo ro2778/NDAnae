@@ -1,0 +1,55 @@
+name: Scrape CLW Rota
+
+on:
+  schedule:
+    # UK times (UTC+1 BST / UTC+0 GMT)
+    # Mon-Fri: 5am, 7am, 7:30am, 8am, 4pm, 7pm UTC (= 6am, 8am, 8:30am, 9am, 5pm, 8pm BST)
+    - cron: '0 5 * * 1-5'
+    - cron: '0 7 * * 1-5'
+    - cron: '30 7 * * 1-5'
+    - cron: '0 8 * * 1-5'
+    - cron: '0 16 * * 1-5'
+    - cron: '0 19 * * 1-5'
+    # Sat-Sun: 5am, 5pm UTC (= 6am, 6pm BST)
+    - cron: '0 5 * * 0,6'
+    - cron: '0 17 * * 0,6'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd scraper
+          npm ci || npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Run scraper
+        env:
+          CLW_USER: ${{ secrets.CLW_USER }}
+          CLW_PASS: ${{ secrets.CLW_PASS }}
+        run: node scraper/scrape-rota.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add daily-rota.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update daily rota $(date -u +%Y-%m-%d\ %H:%M\ UTC)"
+            git push
+          fi
