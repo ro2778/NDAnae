@@ -319,13 +319,28 @@ function hasGlanso(raw) {
       }
     }
 
-    // Auto-fill 822 AM/PM from Theatre 8
+    // Auto-fill 822 AM/PM from Theatre 8 primary
     if (result.on_call['822'] && result.theatres.th8) {
       for (var s of ['am', 'pm']) {
         var entry = result.on_call['822'][s];
         var missing = !entry || (typeof entry === 'object' && !entry.name);
         if (missing && result.theatres.th8[s] && result.theatres.th8[s].primary) {
           result.on_call['822'][s] = { name: result.theatres.th8[s].primary, role: 'LD' };
+        }
+      }
+    }
+
+    // Auto-fill Theatre 3 (CEPOD) primary from 508 on-call
+    if (result.on_call['508'] && result.theatres.th3) {
+      for (var s2 of ['am', 'pm']) {
+        var th3slot = result.theatres.th3[s2];
+        if (th3slot && (!th3slot.primary || th3slot.primary === '508')) {
+          var oc508 = result.on_call['508'][s2];
+          var name508 = '';
+          if (typeof oc508 === 'string') name508 = oc508;
+          else if (oc508 && oc508.name) name508 = oc508.name;
+          else if (Array.isArray(oc508) && oc508.length > 0) name508 = oc508[0].name || '';
+          if (name508) th3slot.primary = name508;
         }
       }
     }
