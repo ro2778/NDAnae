@@ -70,17 +70,20 @@ var DATA = {
     {
       title: "Bleeps",
       icon: "📟",
+      note: "To bleep: dial 74 + bleep number + your extension",
       items: [
-        { label: "Gen Consultant", note: "or via Switchboard", value: "300" },
-        { label: "ITU Consultant", note: "or via Switchboard", value: "505" },
-        { label: "Resident Anaesthetist Emergencies", value: "508" },
-        { label: "Resident Anaesthetist Maternity", value: "822" },
-        { label: "ITU Resident", value: "504" },
-        { label: "Resident Surgeon", value: "900" },
-        { label: "ODP", value: "119" },
-        { label: "Blood Bank", value: "045" },
-        { label: "X-ray", value: "042" },
-        { label: "Acute Pain", note: "504 out of hours", value: "274" }
+        { label: "Gen Consultant", note: "or via Switchboard", value: "Bleep 300" },
+        { label: "ITU Consultant", note: "or via Switchboard", value: "Bleep 505" },
+        { label: "Resident Anaesthetist Emergencies", value: "Bleep 508" },
+        { label: "Resident Anaesthetist Maternity", value: "Bleep 822" },
+        { label: "ITU Resident", value: "Bleep 504" },
+        { label: "Resident Surgeon", value: "Bleep 900" },
+        { label: "ODP", value: "Bleep 119" },
+        { label: "Blood Bank", value: "Bleep 045" },
+        { label: "X-ray", value: "Bleep 042" },
+        { label: "Acute Pain", note: "Bleep 504 out of hours", value: "Bleep 274" },
+        { label: "Haem Reg", value: "Bleep 879" },
+        { label: "Out of Hours Haem", value: "Bleep 227" }
       ]
     },
     {
@@ -103,18 +106,20 @@ var DATA = {
       title: "Extensions & Phone Numbers",
       icon: "📞",
       items: [
-        { label: "Theatre 1", note: "Elective Ortho", value: "3140" },
-        { label: "Theatre 2", note: "Trauma", value: "3141" },
-        { label: "Theatre 3", note: "CEPOD", value: "3142" },
-        { label: "Theatre 4", note: "General/CEPOD", value: "3167" },
-        { label: "Theatre 5", note: "Day Case", value: "3247" },
-        { label: "Theatre 6", note: "Day Case", value: "2488" },
-        { label: "Theatre 7", note: "Gynae/Breast", value: "3709" },
-        { label: "Theatre 8", note: "Obstetrics", value: "3868" },
-        { label: "Theatre 10", note: "Endoscopy", value: "5963" },
-        { label: "ITU", value: "2707" },
-        { label: "Preop Clinic Reception", value: "2825" },
-        { label: "Preop Clinic Room", value: "6500" }
+        { label: "Theatre 1", note: "Elective Ortho", value: "Ext 3140" },
+        { label: "Theatre 2", note: "Trauma", value: "Ext 3141" },
+        { label: "Theatre 3", note: "CEPOD", value: "Ext 3142" },
+        { label: "Theatre 4", note: "General/CEPOD", value: "Ext 3167" },
+        { label: "Theatre 5", note: "Day Case", value: "Ext 3247" },
+        { label: "Theatre 6", note: "Day Case", value: "Ext 2488" },
+        { label: "Theatre 7", note: "Gynae/Breast", value: "Ext 3709" },
+        { label: "Theatre 8", note: "Obstetrics", value: "Ext 3868" },
+        { label: "Theatre 10", note: "Endoscopy", value: "Ext 5963" },
+        { label: "ITU", value: "Ext 2707" },
+        { label: "Blood Bank", note: "also Bleep 045", value: "Ext 2467 / 2466" },
+        { label: "Haematology Lab", value: "Ext 2918" },
+        { label: "Preop Clinic Reception", value: "Ext 2825" },
+        { label: "Preop Clinic Room", value: "Ext 6500" }
       ]
     }
   ]
@@ -138,6 +143,7 @@ function render(filter) {
 
     html += '<div class="section">';
     html += '<div class="section-title"><span class="section-icon">' + section.icon + '</span> ' + section.title + '</div>';
+    if (section.note) html += '<div style="font-size:12px;color:var(--text2);padding:0 12px 8px;margin-top:-4px;">' + section.note + '</div>';
 
     for (var i = 0; i < visibleItems.length; i++) {
       var item = visibleItems[i];

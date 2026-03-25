@@ -217,7 +217,7 @@ body {
         <div class="module-name">Useful Info</div>
         <div class="module-desc">Bleeps, codes & extensions</div>
       </a>
-      <a class="module-card placeholder">
+      <a class="module-card" data-module="audit" data-src="audit.html" data-title="Audit / QI">
         <div class="module-icon">📊</div>
         <div class="module-name">Audit / QI</div>
         <div class="module-desc">Active projects & data collection</div>
@@ -236,7 +236,7 @@ body {
         <div class="module-name">Drug Calculator</div>
         <div class="module-desc">WATCh paediatric emergency drug doses</div>
       </a>
-      <a class="module-card placeholder">
+      <a class="module-card" data-module="guidelines" data-src="guidelines.html" data-title="Guidelines">
         <div class="module-icon">📖</div>
         <div class="module-name">Guidelines</div>
         <div class="module-desc">Emergency protocols & references</div>
@@ -252,7 +252,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.17';
+var APP_VERSION = '1.0.18';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -363,6 +363,8 @@ var MODULES = {
   rota: 'rota-dashboard.html',
   info: 'useful-info.html',
   'drug-calc': 'drug-calc.html',
+  guidelines: 'guidelines.html',
+  audit: 'audit.html',
   atlas: 'https://ro2778.github.io/nerve-block-atlas/?from=ndanae'
 };
 
@@ -381,6 +383,14 @@ document.querySelectorAll('.module-card[data-module]').forEach(function(card) {
     e.preventDefault();
     openModule(this.getAttribute('data-module'));
   });
+});
+
+// Listen for module-switching messages from iframes
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.openModule) {
+    closeModule();
+    setTimeout(function() { openModule(e.data.openModule); }, 100);
+  }
 });
 
 function openModule(mod) {

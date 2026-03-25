@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guidelines — North Devon Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --mono: #7ab5e8;
+  --green-bg: #0d2818; --green-border: #1a5c2e; --green-text: #4ade80;
+  --amber-bg: #2d1f00; --amber-border: #6b4c00; --amber-text: #fbbf24;
+  --red-bg: #2d0a0a; --red-border: #7f1d1d; --red-text: #f87171;
+  --warning-bg: #2d1f00; --warning-border: #92400e; --warning-text: #fbbf24;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --mono: #1A5276;
+  --green-bg: #ecfdf5; --green-border: #86efac; --green-text: #166534;
+  --amber-bg: #fffbeb; --amber-border: #fcd34d; --amber-text: #92400e;
+  --red-bg: #fef2f2; --red-border: #fca5a5; --red-text: #991b1b;
+  --warning-bg: #fffbeb; --warning-border: #f59e0b; --warning-text: #92400e;
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 600px; margin: 0 auto; -webkit-tap-highlight-color: transparent; }
+
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 16px; padding: 8px 44px 4px 44px; }
+h1 { font-size: 18px; color: var(--accent); }
+.back-btn { position: absolute; left: 0; top: 4px; background: none; border: none; font-size: 14px; color: var(--accent); cursor: pointer; padding: 8px 12px; min-height: 44px; min-width: 44px; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+
+/* Search */
+.search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-size: 14px; margin-bottom: 16px; outline: none; }
+.search-box:focus { border-color: var(--accent); }
+.search-box::placeholder { color: var(--text3); }
+
+/* Guideline list */
+.guideline-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; min-height: 44px; transition: background 0.15s; }
+.guideline-item:active { background: var(--bg3); }
+.guideline-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.guideline-arrow { color: var(--text3); font-size: 18px; }
+.alpha-label { font-size: 12px; font-weight: 700; color: var(--gold); margin: 12px 0 6px 4px; }
+
+.no-results { text-align: center; color: var(--text3); padding: 40px 0; font-style: italic; }
+
+/* Protocol detail view */
+#detail-view { display: none; }
+#list-view { display: block; }
+
+/* Cards */
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+.card-title { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.card-body { font-size: 13px; line-height: 1.5; color: var(--text); }
+.card-body ul { padding-left: 18px; margin-top: 4px; }
+.card-body li { margin-bottom: 4px; }
+
+/* Toggle pill */
+.toggle-pill { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 25px; overflow: hidden; margin-bottom: 14px; }
+.toggle-pill button { flex: 1; padding: 10px 8px; border: none; background: transparent; color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; transition: all 0.2s; }
+.toggle-pill button.active { background: var(--accent); color: #fff; border-radius: 25px; }
+
+/* Warning banner */
+.warning-banner { background: var(--warning-bg); border: 2px solid var(--warning-border); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; text-align: center; font-size: 14px; font-weight: 700; color: var(--warning-text); }
+
+/* Threshold rows */
+.threshold-green { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; }
+.threshold-green .th-label { color: var(--green-text); font-weight: 700; font-size: 12px; }
+.threshold-green .th-detail { color: var(--green-text); font-size: 13px; margin-top: 2px; }
+
+.threshold-amber { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; }
+.threshold-amber .th-label { color: var(--amber-text); font-weight: 700; font-size: 12px; }
+.threshold-amber .th-detail { color: var(--amber-text); font-size: 13px; margin-top: 2px; }
+
+.threshold-red { background: var(--red-bg); border: 1px solid var(--red-border); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; }
+.threshold-red .th-label { color: var(--red-text); font-weight: 700; font-size: 12px; }
+.threshold-red .th-detail { color: var(--red-text); font-size: 13px; margin-top: 2px; }
+
+.threshold-note { font-size: 12px; color: var(--text3); font-style: italic; margin-top: 4px; padding-left: 4px; }
+
+/* Expandable */
+.expandable { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.expandable-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; cursor: pointer; min-height: 44px; font-size: 14px; font-weight: 600; color: var(--text); }
+.expandable-header .chevron { transition: transform 0.2s; color: var(--text3); font-size: 16px; }
+.expandable.open .expandable-header .chevron { transform: rotate(180deg); }
+.expandable-body { display: none; padding: 0 14px 14px 14px; font-size: 13px; line-height: 1.5; color: var(--text); }
+.expandable.open .expandable-body { display: block; }
+
+/* Step card */
+.step-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.step-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; cursor: pointer; min-height: 44px; }
+.step-num { font-size: 11px; font-weight: 800; color: #fff; background: var(--accent); border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-title { flex: 1; margin-left: 10px; font-size: 14px; font-weight: 600; color: var(--text); }
+.step-header .chevron { transition: transform 0.2s; color: var(--text3); font-size: 16px; }
+.step-card.open .step-header .chevron { transform: rotate(180deg); }
+.step-body { display: none; padding: 0 14px 14px 14px; }
+.step-card.open .step-body { display: block; }
+
+/* Decision point */
+.decision { background: var(--bg2); border: 2px solid var(--accent); border-radius: 10px; padding: 14px; margin-bottom: 10px; text-align: center; }
+.decision-q { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.decision-options { display: flex; gap: 8px; }
+.decision-yes, .decision-no { flex: 1; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.decision-yes { background: var(--amber-bg); border: 1px solid var(--amber-border); color: var(--amber-text); }
+.decision-no { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green-text); }
+
+/* Contact rows */
+.contact-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border); min-height: 44px; }
+.contact-row:first-of-type { border-radius: 10px 10px 0 0; }
+.contact-row:last-of-type { border-radius: 0 0 10px 10px; }
+.contact-row + .contact-row { border-top: none; }
+.contact-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.contact-link { font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: none; font-family: 'SF Mono', 'Menlo', monospace; }
+
+/* Heparin card */
+.heparin-card { background: var(--bg2); border: 2px dashed var(--amber-border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+.heparin-card .card-title { color: var(--amber-text); }
+
+/* Attribution */
+.attribution { text-align: center; font-size: 11px; color: var(--text3); padding: 20px 0 12px; line-height: 1.5; }
+
+/* Section label */
+.section-label { font-size: 13px; font-weight: 700; color: var(--gold); margin: 16px 0 8px 0; padding: 4px 0; border-bottom: 1px solid var(--border); }
+
+.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- LIST VIEW -->
+<div id="list-view">
+  <div class="header">
+    <h1>Guidelines</h1>
+  </div>
+
+  <input type="text" class="search-box" id="search" placeholder="Search guidelines...">
+
+  <div id="guideline-list"></div>
+</div>
+
+<!-- DETAIL VIEW -->
+<div id="detail-view">
+  <div class="header">
+    <button class="back-btn" onclick="showList()">&#8249; Back</button>
+    <h1 id="detail-title"></h1>
+  </div>
+
+  <div id="detail-content"></div>
+</div>
+
+<script>
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+
+var GUIDELINES = [
+  { id: 'teg6s', name: 'TEG6s Haemorrhage Protocol' }
+];
+
+var currentMode = 'obstetric';
+
+function renderList(filter) {
+  var container = document.getElementById('guideline-list');
+  var query = (filter || '').toLowerCase();
+  var filtered = GUIDELINES.filter(function(g) {
+    return !query || g.name.toLowerCase().indexOf(query) >= 0;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="no-results">No guidelines found</div>';
+    return;
+  }
+
+  var grouped = {};
+  filtered.forEach(function(g) {
+    var letter = g.name.charAt(0).toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(g);
+  });
+
+  var letters = Object.keys(grouped).sort();
+  var html = '';
+  letters.forEach(function(letter) {
+    html += '<div class="alpha-label">' + letter + '</div>';
+    grouped[letter].forEach(function(g) {
+      html += '<div class="guideline-item" onclick="openGuideline(\'' + g.id + '\')">';
+      html += '<span class="guideline-name">' + g.name + '</span>';
+      html += '<span class="guideline-arrow">&#8250;</span>';
+      html += '</div>';
+    });
+  });
+
+  container.innerHTML = html;
+}
+
+function showList() {
+  document.getElementById('list-view').style.display = 'block';
+  document.getElementById('detail-view').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+function openGuideline(id) {
+  if (id === 'teg6s') {
+    document.getElementById('detail-title').textContent = 'TEG6s Haemorrhage Protocol';
+    currentMode = 'obstetric';
+    renderProtocol();
+    document.getElementById('list-view').style.display = 'none';
+    document.getElementById('detail-view').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  renderProtocol();
+}
+
+function toggleExpand(el) {
+  el.closest('.expandable, .step-card').classList.toggle('open');
+}
+
+function scrollToHowTo() {
+  var el = document.getElementById('teg-howto');
+  if (el) {
+    // Open it if closed
+    if (!el.classList.contains('open')) el.classList.add('open');
+    // Scroll to it
+    el.scrollIntoView({ behavior: 'smooth' });
+    // Highlight briefly
+    el.style.boxShadow = '0 0 0 3px var(--accent)';
+    setTimeout(function() { el.style.boxShadow = ''; }, 3000);
+  }
+}
+
+function openAudit() {
+  // Try parent postMessage (when in iframe within NDAnae)
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ openModule: 'audit' }, '*');
+      return;
+    }
+  } catch(e) {}
+  // Fallback: navigate directly
+  window.location.href = 'audit.html';
+}
+
+function renderProtocol() {
+  var isObs = currentMode === 'obstetric';
+  var html = '';
+
+  // Toggle pill
+  html += '<div class="toggle-pill">';
+  html += '<button class="' + (isObs ? 'active' : '') + '" onclick="setMode(\'obstetric\')">Obstetric</button>';
+  html += '<button class="' + (!isObs ? 'active' : '') + '" onclick="setMode(\'non-obstetric\')">Non-Obstetric</button>';
+  html += '</div>';
+
+  // Alert bars
+  html += '<div class="warning-banner" style="cursor:pointer;" onclick="scrollToHowTo();">&#128296; How to use the TEG6s machine &darr;</div>';
+  html += '<div class="warning-banner" style="cursor:pointer;margin-top:8px;" onclick="openAudit();">&#128203; Record every TEG sample in the <u>TEG Audit</u></div>';
+
+  // Trigger criteria
+  html += '<div class="card">';
+  html += '<div class="card-title">&#128680; Trigger Criteria</div>';
+  html += '<div class="card-body">';
+  html += '<ul>';
+  html += '<li>Blood loss &gt;1000ml</li>';
+  html += '<li><strong>OR</strong> clinical concerns:</li>';
+  html += '<ul>';
+  html += '<li>BP &lt;90/40</li>';
+  html += '<li>HR &gt;120</li>';
+  html += '<li>Sats &lt;92%</li>';
+  html += '<li>RR &gt;30</li>';
+  html += '</ul>';
+  html += '</ul>';
+  html += '</div></div>';
+
+  // Initial actions
+  html += '<div class="card">';
+  html += '<div class="card-title">&#9889; Initial Actions</div>';
+  html += '<div class="card-body">';
+  html += '<p style="font-weight:600;margin-bottom:6px;">Take bloods:</p>';
+  html += '<ul>';
+  html += '<li><strong>POC:</strong> TEG6 (blue coag bottle), Hb &amp; lactate (blood gas)</li>';
+  html += '<li><strong>Labs:</strong> FBC, coag + Clauss fibrinogen, X-match</li>';
+  html += '</ul>';
+  html += '<p style="font-weight:600;margin:8px 0 6px;">Give Tranexamic Acid</p>';
+  html += '<p style="font-weight:600;margin-bottom:6px;">Optimise patient targets:</p>';
+  if (isObs) {
+    html += '<ul>';
+    html += '<li>Temp &gt;36&deg;C</li>';
+    html += '<li>Hb &gt;80 g/L</li>';
+    html += '<li>pH &gt;7.2</li>';
+    html += '<li>Ca<sup>2+</sup> &gt;1 mmol/L</li>';
+    html += '</ul>';
+  } else {
+    html += '<ul>';
+    html += '<li>Temp &gt;36&deg;C</li>';
+    html += '<li>Hb &gt;70 g/L</li>';
+    html += '<li>pH &gt;7.2</li>';
+    html += '<li>Ca<sup>2+</sup> &gt;1 mmol/L</li>';
+    html += '</ul>';
+  }
+  html += '</div></div>';
+
+  // Decision point
+  html += '<div class="decision">';
+  html += '<div class="decision-q">Ongoing bleeding or clinical concern?</div>';
+  html += '<div class="decision-options">';
+  html += '<div class="decision-yes"><strong>YES</strong><br><span style="font-size:12px;">Proceed to steps below</span></div>';
+  html += '<div class="decision-no"><strong>NO</strong><br><span style="font-size:12px;">Clinical monitoring</span></div>';
+  html += '</div></div>';
+
+  // Section label
+  html += '<div class="section-label">TEG-Guided Replacement</div>';
+
+  // Build steps based on mode
+  var steps;
+  if (isObs) {
+    steps = [
+      { num: 1, title: 'Fibrinogen', subtitle: 'Review CFF A10', content: renderFibrinogen(true) },
+      { num: 2, title: 'Clotting', subtitle: 'Review CK-R time', content: renderClotting(true) },
+      { num: 3, title: 'Platelets', subtitle: 'Review FBC', content: renderPlatelets(true) }
+    ];
+  } else {
+    steps = [
+      { num: 1, title: 'Clotting', subtitle: 'Review CK-R time', content: renderClotting(false) },
+      { num: 2, title: 'Fibrinogen', subtitle: 'Review CFF A10', content: renderFibrinogen(false) },
+      { num: 3, title: 'Platelets', subtitle: 'Review FBC', content: renderPlatelets(false) }
+    ];
+  }
+
+  steps.forEach(function(step) {
+    html += '<div class="step-card">';
+    html += '<div class="step-header" onclick="toggleExpand(this)">';
+    html += '<span class="step-num">' + step.num + '</span>';
+    html += '<span class="step-title">' + step.title + '<br><span style="font-size:11px;color:var(--text3);font-weight:400;">' + step.subtitle + '</span></span>';
+    html += '<span class="chevron">&#9660;</span>';
+    html += '</div>';
+    html += '<div class="step-body">' + step.content + '</div>';
+    html += '</div>';
+  });
+
+  // Non-obstetric heparin check
+  if (!isObs) {
+    html += '<div class="heparin-card">';
+    html += '<div class="card-title">&#128137; Heparin Check</div>';
+    html += '<div class="card-body">';
+    html += '<p style="margin-bottom:6px;">Look at <strong>CKH-R</strong> time</p>';
+    html += '<p>If CK-R is &gt;3 mins longer than CKH-R:</p>';
+    html += '<p style="margin-top:4px;font-weight:600;color:var(--amber-text);">Consider protamine 1mg per 100 IU heparin</p>';
+    html += '</div></div>';
+  }
+
+  // Re-assessment
+  html += '<div class="card">';
+  html += '<div class="card-title">&#128260; Re-assessment</div>';
+  html += '<div class="card-body">';
+  html += '<p>Re-enter protocol if:</p>';
+  html += '<ul>';
+  html += '<li>Blood products given</li>';
+  html += '<li>&gt;500ml further blood loss</li>';
+  html += '<li>Ongoing clinical concern</li>';
+  html += '</ul>';
+  html += '</div></div>';
+
+  // Expandable sections
+  // Cautions
+  html += '<div class="expandable">';
+  html += '<div class="expandable-header" onclick="toggleExpand(this)"><span>&#9888;&#65039; Cautions</span><span class="chevron">&#9660;</span></div>';
+  html += '<div class="expandable-body">';
+  html += '<p style="margin-bottom:6px;">Manage jointly with haematology:</p>';
+  html += '<ul>';
+  html += '<li>Inherited bleeding disorders (incl. vWD)</li>';
+  html += '<li>LMWH</li>';
+  html += '<li>Warfarin</li>';
+  html += '<li>Aspirin</li>';
+  html += '<li>Clopidogrel</li>';
+  html += '<li>DOACs</li>';
+  html += '</ul>';
+  html += '</div></div>';
+
+  // How to use the machine
+  html += '<div class="expandable" id="teg-howto">';
+  html += '<div class="expandable-header" onclick="toggleExpand(this)"><span>&#128161; How to Use the TEG6s Machine</span><span class="chevron">&#9660;</span></div>';
+  html += '<div class="expandable-body">';
+  html += '<ol style="padding-left:18px;">';
+  html += '<li style="margin-bottom:8px;">Machine is in <strong>Theatre 8</strong> anaesthetic room, next to the fridge</li>';
+  html += '<li style="margin-bottom:8px;">Turn on the machine &mdash; <strong>power button is at the back</strong></li>';
+  html += '<li style="margin-bottom:8px;">Take a cartridge from the fridge and <strong>warm in your hands for a few seconds</strong></li>';
+  html += '<li style="margin-bottom:8px;">Pipette blood from the <strong>blue (coag) bottle</strong> into the cartridge</li>';
+  html += '<li style="margin-bottom:8px;">Slot the cartridge into the machine &mdash; it only fits one way</li>';
+  html += '<li style="margin-bottom:8px;">Follow on-screen instructions</li>';
+  html += '</ol>';
+  html += '</div></div>';
+
+  // TEG Training
+  html += '<div class="expandable">';
+  html += '<div class="expandable-header" onclick="toggleExpand(this)"><span>&#127891; TEG Training</span><span class="chevron">&#9660;</span></div>';
+  html += '<div class="expandable-body">';
+  html += '<p style="margin-bottom:6px;">Portal: <a href="https://educationportal.haemonetics.com" target="_blank" style="color:var(--accent);word-break:break-all;">educationportal.haemonetics.com</a></p>';
+  html += '<p>Hospital passkey: <strong style="font-family:\'SF Mono\',Menlo,monospace;color:var(--mono);">teg1225</strong></p>';
+  html += '</div></div>';
+
+  // Contact Numbers
+  html += '<div class="section-label">Contact Numbers</div>';
+  html += '<div class="contact-row"><span class="contact-label">Haem Reg</span><a href="tel:879" class="contact-link">Bleep 879</a></div>';
+  html += '<div class="contact-row"><span class="contact-label">Blood Bank</span><a href="tel:2467" class="contact-link">Ext 2467 / 2466</a></div>';
+  html += '<div class="contact-row"><span class="contact-label">Haematology Lab</span><a href="tel:2918" class="contact-link">Ext 2918</a></div>';
+  html += '<div class="contact-row"><span class="contact-label">Out of Hours</span><a href="tel:227" class="contact-link">Bleep 227</a></div>';
+
+  // Attribution
+  html += '<div class="attribution">Adapted from CYMRU NHS Wales.<br>Royal Devon University Healthcare NHS Foundation Trust.</div>';
+
+  document.getElementById('detail-content').innerHTML = html;
+}
+
+function renderFibrinogen(isObs) {
+  var html = '';
+  if (isObs) {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO REPLACEMENT</div>';
+    html += '<div class="th-detail">CFF A10 &gt;17mm or Fibrinogen &gt;2 g/L</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE 4g FIBRINOGEN CONCENTRATE</div>';
+    html += '<div class="th-detail">CFF A10 10&ndash;17mm</div>';
+    html += '</div>';
+    html += '<div class="threshold-red">';
+    html += '<div class="th-label">GIVE 6g FIBRINOGEN CONCENTRATE</div>';
+    html += '<div class="th-detail">CFF A10 &lt;10mm</div>';
+    html += '</div>';
+  } else {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO REPLACEMENT</div>';
+    html += '<div class="th-detail">CFF A10 &gt;12mm or Fibrinogen &gt;1.5 g/L</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE 4g FIBRINOGEN CONCENTRATE</div>';
+    html += '<div class="th-detail">CFF A10 &lt;12mm</div>';
+    html += '</div>';
+    html += '<div class="threshold-red">';
+    html += '<div class="th-label">GIVE 6g FIBRINOGEN CONCENTRATE</div>';
+    html += '<div class="th-detail">CFF A10 &lt;10mm</div>';
+    html += '</div>';
+  }
+  html += '<div class="threshold-note">If no concentrate available: 2x cryoprecipitate</div>';
+  return html;
+}
+
+function renderClotting(isObs) {
+  var html = '';
+  if (isObs) {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO FFP</div>';
+    html += '<div class="th-detail">CK-R &lt;7.6 mins</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE FFP</div>';
+    html += '<div class="th-detail">CK-R &gt;7.6 mins<br>&lt;50kg = 3 units &nbsp;|&nbsp; &gt;50kg = 4 units</div>';
+    html += '</div>';
+  } else {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO FFP</div>';
+    html += '<div class="th-detail">CK-R &lt;9.1 mins</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE FFP 15ml/kg</div>';
+    html += '<div class="th-detail">CK-R &gt;9.1 mins</div>';
+    html += '</div>';
+  }
+  return html;
+}
+
+function renderPlatelets(isObs) {
+  var html = '';
+  if (isObs) {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO PLATELETS</div>';
+    html += '<div class="th-detail">Platelets &gt;75 &times; 10<sup>9</sup>/L</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE 1 ADULT UNIT PLATELETS</div>';
+    html += '<div class="th-detail">Platelets &lt;75 &times; 10<sup>9</sup>/L</div>';
+    html += '</div>';
+  } else {
+    html += '<div class="threshold-green">';
+    html += '<div class="th-label">NO PLATELETS</div>';
+    html += '<div class="th-detail">Platelets &gt;50 &times; 10<sup>9</sup>/L</div>';
+    html += '</div>';
+    html += '<div class="threshold-amber">';
+    html += '<div class="th-label">GIVE 1 ADULT UNIT PLATELETS</div>';
+    html += '<div class="th-detail">Platelets &lt;50 &times; 10<sup>9</sup>/L</div>';
+    html += '</div>';
+  }
+  return html;
+}
+
+document.getElementById('search').addEventListener('input', function() {
+  renderList(this.value);
+});
+
+renderList();
+</script>
+</body>
+</html>

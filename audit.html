@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Audit / QI — North Devon Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --mono: #7ab5e8;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --mono: #1A5276;
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 600px; margin: 0 auto; }
+
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 16px; padding: 8px 44px 4px 44px; }
+h1 { font-size: 18px; color: var(--accent); }
+
+/* Search */
+.search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-size: 14px; margin-bottom: 16px; outline: none; }
+.search-box:focus { border-color: var(--accent); }
+.search-box::placeholder { color: var(--text3); }
+
+/* Section */
+.section { margin-bottom: 20px; }
+.section-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 8px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+.section-icon { font-size: 16px; }
+
+/* Project rows */
+.project-row { display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; min-height: 44px; }
+.project-row:active { background: var(--bg3); }
+.project-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.project-lead { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.project-arrow { color: var(--text3); font-size: 18px; }
+
+.hidden { display: none; }
+
+/* Step indicator */
+.step-indicator { display: flex; justify-content: center; gap: 6px; margin-bottom: 16px; padding: 8px 0; }
+.step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+.step-dot.active { background: var(--accent); }
+.step-dot.completed { background: var(--gold); }
+
+/* Form styles */
+.form-view { display: none; }
+.form-view.active { display: block; }
+
+.form-step { display: none; }
+.form-step.active { display: block; }
+
+.step-title { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg2); color: var(--text); font-size: 14px; font-family: inherit;
+  outline: none; min-height: 44px;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-textarea { min-height: 80px; resize: vertical; }
+
+/* Toggle */
+.toggle-row { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.toggle-btn { padding: 10px 20px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; min-width: 60px; font-family: inherit; }
+.toggle-btn:first-of-type { border-radius: 8px 0 0 8px; }
+.toggle-btn:last-of-type { border-radius: 0 8px 8px 0; }
+.toggle-btn.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Checkboxes & Radios */
+.check-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.check-item { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 13px; -webkit-tap-highlight-color: transparent; }
+.check-item input { width: 18px; height: 18px; accent-color: var(--accent); }
+.check-item.selected { border-color: var(--accent); background: var(--bg3); }
+
+/* Subsection header */
+.subsection { font-size: 12px; font-weight: 700; color: var(--gold); margin: 16px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+/* Channel tabs (Step 5) */
+.channel-tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+.channel-tab { flex: 1; padding: 10px 0; text-align: center; font-size: 13px; font-weight: 700; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); cursor: pointer; min-height: 44px; font-family: inherit; }
+.channel-tab:first-child { border-radius: 8px 0 0 8px; }
+.channel-tab:last-child { border-radius: 0 8px 8px 0; }
+.channel-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.channel-panel { display: none; }
+.channel-panel.active { display: block; }
+
+/* Transfusion product row */
+.product-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+.product-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.product-details { display: none; margin-top: 8px; }
+.product-details.visible { display: block; }
+
+/* Nav buttons */
+.nav-buttons { display: flex; gap: 10px; margin-top: 20px; padding-bottom: 20px; }
+.nav-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 44px; font-family: inherit; }
+.nav-btn.back { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+.nav-btn.next { background: var(--accent); color: #fff; }
+.nav-btn.submit-email { background: #2e7d32; color: #fff; }
+.nav-btn.submit-copy { background: var(--gold); color: #000; }
+
+/* Back to list */
+.back-link { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--accent); cursor: pointer; margin-bottom: 12px; min-height: 44px; -webkit-tap-highlight-color: transparent; }
+
+/* Inline pair (two inputs side by side) */
+.inline-pair { display: flex; gap: 8px; }
+.inline-pair .form-group { flex: 1; }
+
+/* No results */
+.no-results { text-align: center; color: var(--text3); padding: 40px 0; font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- AUDIT LIST VIEW -->
+<div id="listView">
+  <div class="header">
+    <h1>Audit / QI</h1>
+  </div>
+  <input type="text" class="search-box" id="search" placeholder="Search audits, QI projects...">
+  <div id="projectList"></div>
+</div>
+
+<!-- FORM VIEW -->
+<div id="formView" class="form-view">
+  <div class="back-link" onclick="showList()">&#8592; Back to audits</div>
+  <div class="header" style="margin-bottom:8px;">
+    <h1 id="formTitle"></h1>
+  </div>
+
+  <!-- Drafts bar -->
+  <div id="draftsBar" style="margin-bottom:12px;">
+    <div style="display:flex;gap:8px;margin-bottom:8px;">
+      <button class="nav-btn" onclick="newPatient()" style="flex:1;background:var(--accent);color:#fff;font-size:13px;">New Patient</button>
+      <button class="nav-btn" onclick="saveDraft()" style="flex:1;font-size:13px;">Save Patient</button>
+    </div>
+    <div id="draftsList" style="max-height:120px;overflow-y:auto;"></div>
+  </div>
+
+  <div class="step-indicator" id="stepIndicator"></div>
+
+  <!-- Step 1: Patient Details -->
+  <div class="form-step" data-step="1">
+    <div class="step-title">1. Patient Details</div>
+    <div class="form-group">
+      <label class="form-label">Hospital Number</label>
+      <input class="form-input" type="text" id="f_hospitalNo" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Consultant</label>
+      <input class="form-input" type="text" id="f_consultant">
+    </div>
+    <div class="form-group">
+      <label class="form-label">DOB (DDMMYY)</label>
+      <input class="form-input" type="text" id="f_dobAge" inputmode="numeric" maxlength="8" placeholder="DDMMYY" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Sex</label>
+      <select class="form-select" id="f_sex">
+        <option value="">Select...</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">BMI</label>
+      <input class="form-input" type="number" inputmode="decimal" id="f_bmi" step="0.1">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Operation</label>
+      <input class="form-input" type="text" id="f_operation">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Theatre</label>
+      <select class="form-select" id="f_theatre">
+        <option value="">Select...</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Date / Time</label>
+      <input class="form-input" type="datetime-local" id="f_dateTime">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Reason for TEG</label>
+      <select class="form-select" id="f_tegReason" onchange="toggleConditional('f_tegReason','Other','f_tegReasonOtherWrap')">
+        <option value="">Select...</option>
+        <option value="Haemorrhage">Haemorrhage</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group hidden" id="f_tegReasonOtherWrap">
+      <label class="form-label">Other reason</label>
+      <input class="form-input" type="text" id="f_tegReasonOther">
+    </div>
+  </div>
+
+  <!-- Step 2: Anticoagulation -->
+  <div class="form-step" data-step="2">
+    <div class="step-title">2. Anticoagulation</div>
+    <div class="form-group">
+      <label class="form-label">Is the patient on anticoagulation?</label>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn" data-field="f_anticoag" data-val="Yes" onclick="setToggle(this)">Yes</button>
+        <button type="button" class="toggle-btn" data-field="f_anticoag" data-val="No" onclick="setToggle(this)">No</button>
+      </div>
+      <input type="hidden" id="f_anticoag" value="">
+    </div>
+    <div class="form-group hidden" id="f_anticoagDrugsWrap">
+      <label class="form-label">Which anticoagulants?</label>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" id="f_ac_aspirin" onchange="this.parentElement.classList.toggle('selected',this.checked)"> Aspirin</label>
+        <label class="check-item"><input type="checkbox" id="f_ac_clopidogrel" onchange="this.parentElement.classList.toggle('selected',this.checked)"> Clopidogrel</label>
+        <label class="check-item"><input type="checkbox" id="f_ac_warfarin" onchange="this.parentElement.classList.toggle('selected',this.checked)"> Warfarin</label>
+        <label class="check-item"><input type="checkbox" id="f_ac_heparin" onchange="this.parentElement.classList.toggle('selected',this.checked)"> Heparin</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Category -->
+  <div class="form-step" data-step="3">
+    <div class="step-title">3. Category</div>
+    <div class="form-group">
+      <label class="form-label">Category</label>
+      <div class="check-group" id="f_categoryGroup">
+        <label class="check-item"><input type="radio" name="f_category" value="Obstetric" onchange="categoryChanged()"> Obstetric</label>
+        <label class="check-item"><input type="radio" name="f_category" value="Gastrointestinal haemorrhage" onchange="categoryChanged()"> GI Haemorrhage</label>
+        <label class="check-item"><input type="radio" name="f_category" value="Trauma" onchange="categoryChanged()"> Trauma</label>
+        <label class="check-item"><input type="radio" name="f_category" value="Other" onchange="categoryChanged()"> Other</label>
+      </div>
+    </div>
+    <div class="form-group hidden" id="f_categoryOtherWrap">
+      <label class="form-label">Specify other category</label>
+      <input class="form-input" type="text" id="f_categoryOther">
+    </div>
+  </div>
+
+  <!-- Step 4: Baseline Bloods -->
+  <div class="form-step" data-step="4">
+    <div class="step-title">4. Baseline Bloods</div>
+
+    <div class="subsection">FBC</div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Hb</label>
+        <input class="form-input" type="number" inputmode="decimal" id="f_hb" step="0.1">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Platelets</label>
+        <input class="form-input" type="number" inputmode="numeric" id="f_platelets">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">HCT</label>
+      <input class="form-input" type="number" inputmode="decimal" id="f_hct" step="0.01">
+    </div>
+
+    <div class="subsection">U&amp;E</div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Na</label>
+        <input class="form-input" type="number" inputmode="numeric" id="f_na">
+      </div>
+      <div class="form-group">
+        <label class="form-label">K</label>
+        <input class="form-input" type="number" inputmode="decimal" id="f_k" step="0.1">
+      </div>
+    </div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Urea</label>
+        <input class="form-input" type="number" inputmode="decimal" id="f_urea" step="0.1">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Creatinine</label>
+        <input class="form-input" type="number" inputmode="numeric" id="f_creatinine">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">eGFR</label>
+      <input class="form-input" type="text" inputmode="numeric" id="f_egfr" placeholder="e.g. 65 or >90">
+    </div>
+
+    <div class="subsection">Clotting</div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">INR / PT</label>
+        <input class="form-input" type="number" inputmode="decimal" id="f_inr" step="0.1">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fibrinogen</label>
+        <input class="form-input" type="number" inputmode="decimal" id="f_fibrinogen" step="0.1">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">APTT</label>
+      <input class="form-input" type="number" inputmode="decimal" id="f_aptt" step="0.1">
+    </div>
+  </div>
+
+  <!-- Step 5: TEG6s Results -->
+  <div class="form-step" data-step="5">
+    <div class="step-title">5. TEG6s Results</div>
+
+    <div class="channel-tabs" id="channelTabs">
+      <button type="button" class="channel-tab active" onclick="switchChannel('CK',this)">CK</button>
+      <button type="button" class="channel-tab" onclick="switchChannel('CKH',this)">CKH</button>
+      <button type="button" class="channel-tab" onclick="switchChannel('CRT',this)">CRT</button>
+      <button type="button" class="channel-tab" onclick="switchChannel('CFF',this)">CFF</button>
+    </div>
+
+    <div class="channel-panel active" id="panel_CK"></div>
+    <div class="channel-panel" id="panel_CKH"></div>
+    <div class="channel-panel" id="panel_CRT"></div>
+    <div class="channel-panel" id="panel_CFF"></div>
+
+    <div class="form-group" style="margin-top:16px;">
+      <label class="form-label">POCT Results</label>
+      <textarea class="form-textarea" id="f_poctResults"></textarea>
+    </div>
+  </div>
+
+  <!-- Step 6: Transfusion -->
+  <div class="form-step" data-step="6">
+    <div class="step-title">6. Transfusion</div>
+    <div id="transfusionProducts"></div>
+  </div>
+
+  <!-- Step 7: Outcome -->
+  <div class="form-step" data-step="7">
+    <div class="step-title">7. Outcome</div>
+    <div class="form-group">
+      <label class="form-label">Did TEG alter your transfusion management?</label>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn" data-field="f_tegAltered" data-val="Yes" onclick="setToggle(this)">Yes</button>
+        <button type="button" class="toggle-btn" data-field="f_tegAltered" data-val="No" onclick="setToggle(this)">No</button>
+      </div>
+      <input type="hidden" id="f_tegAltered" value="">
+    </div>
+    <div class="form-group">
+      <label class="form-label">48hr Transfusion Requirements</label>
+      <textarea class="form-textarea" id="f_48hrTransfusion"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Length of stay in critical care</label>
+      <input class="form-input" type="text" id="f_critCareLOS">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Return to Theatre</label>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn" data-field="f_returnTheatre" data-val="Yes" onclick="setToggle(this)">Yes</button>
+        <button type="button" class="toggle-btn" data-field="f_returnTheatre" data-val="No" onclick="setToggle(this)">No</button>
+      </div>
+      <input type="hidden" id="f_returnTheatre" value="">
+    </div>
+    <div class="form-group">
+      <label class="form-label">30 Day Outcome</label>
+      <textarea class="form-textarea" id="f_30dayOutcome"></textarea>
+    </div>
+  </div>
+
+  <!-- Step 8: Test Details -->
+  <div class="form-step" data-step="8">
+    <div class="step-title">8. Test Details</div>
+    <div class="form-group">
+      <label class="form-label">Who performed the test?</label>
+      <input class="form-input" type="text" id="f_performedBy" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <select class="form-select" id="f_performedByRole">
+        <option value="">Select...</option>
+        <option>Anaesthetist</option>
+        <option>ODP</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Who interpreted the result?</label>
+      <input class="form-input" type="text" id="f_interpretedBy" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <select class="form-select" id="f_interpretedByRole">
+        <option value="">Select...</option>
+        <option>Anaesthetist</option>
+        <option>ODP</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Any difficulties / problems?</label>
+      <textarea class="form-textarea" id="f_difficulties"></textarea>
+    </div>
+
+    <!-- Submit buttons -->
+    <div class="subsection" style="margin-top:24px;">Submit</div>
+    <div class="nav-buttons" style="flex-direction:column;">
+      <button type="button" class="nav-btn submit-email" onclick="submitEmail()">Email to Dr Powell</button>
+      <button type="button" class="nav-btn submit-copy" onclick="submitCopy()">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav-buttons" id="navButtons">
+    <button type="button" class="nav-btn back" id="btnBack" onclick="prevStep()">Back</button>
+    <button type="button" class="nav-btn next" id="btnNext" onclick="nextStep()">Next</button>
+  </div>
+</div>
+
+<script>
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+
+var TOTAL_STEPS = 8;
+var currentStep = 1;
+var currentProjectId = null;
+
+var PROJECTS = [
+  { id: 'teg6s', name: 'TEG6s Post-Implementation Audit', lead: 'Dr James Powell', letter: 'T' }
+];
+
+var TEG_PARAMS = ['TEG-ACT','R-time','K','Angle','A10','MA','LY30'];
+var CHANNELS = ['CK','CKH','CRT','CFF'];
+var PRODUCTS = ['Red cells','FFP','Platelets','Cryoprecipitate','TXA','Aprotinin','PCC','Fibrinogen concentrate','rFVIIa'];
+
+// Build channel panels
+CHANNELS.forEach(function(ch) {
+  var panel = document.getElementById('panel_' + ch);
+  var html = '';
+  for (var i = 0; i < TEG_PARAMS.length; i += 2) {
+    html += '<div class="inline-pair">';
+    html += '<div class="form-group"><label class="form-label">' + TEG_PARAMS[i] + '</label>';
+    html += '<input class="form-input" type="number" inputmode="decimal" step="0.1" id="f_teg_' + ch + '_' + i + '"></div>';
+    if (i + 1 < TEG_PARAMS.length) {
+      html += '<div class="form-group"><label class="form-label">' + TEG_PARAMS[i+1] + '</label>';
+      html += '<input class="form-input" type="number" inputmode="decimal" step="0.1" id="f_teg_' + ch + '_' + (i+1) + '"></div>';
+    }
+    html += '</div>';
+  }
+  panel.innerHTML = html;
+});
+
+// Build transfusion products
+(function() {
+  var container = document.getElementById('transfusionProducts');
+  var html = '';
+  PRODUCTS.forEach(function(p, idx) {
+    var key = 'tx_' + idx;
+    html += '<div class="product-block">';
+    html += '<div class="product-name">' + p + '</div>';
+    html += '<div class="toggle-row">';
+    html += '<button type="button" class="toggle-btn" data-field="f_' + key + '" data-val="Yes" onclick="setToggle(this);toggleProduct(\'' + key + '\')">Yes</button>';
+    html += '<button type="button" class="toggle-btn" data-field="f_' + key + '" data-val="No" onclick="setToggle(this);toggleProduct(\'' + key + '\')">No</button>';
+    html += '<input type="hidden" id="f_' + key + '" value="">';
+    html += '</div>';
+    html += '<div class="product-details" id="' + key + '_details">';
+    html += '<div class="form-group"><label class="form-label">Dose given</label>';
+    html += '<input class="form-input" type="text" id="f_' + key + '_dose"></div>';
+    html += '<div class="form-group"><label class="form-label">Decision based on</label>';
+    html += '<div class="check-group">';
+    html += '<label class="check-item"><input type="checkbox" id="f_' + key + '_clinical" onchange="this.parentElement.classList.toggle(\'selected\',this.checked)"> Clinical</label>';
+    html += '<label class="check-item"><input type="checkbox" id="f_' + key + '_lab" onchange="this.parentElement.classList.toggle(\'selected\',this.checked)"> Lab</label>';
+    html += '<label class="check-item"><input type="checkbox" id="f_' + key + '_teg" onchange="this.parentElement.classList.toggle(\'selected\',this.checked)"> TEG</label>';
+    html += '</div></div>';
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+})();
+
+function toggleProduct(key) {
+  var val = document.getElementById('f_' + key).value;
+  var details = document.getElementById(key + '_details');
+  if (val === 'Yes') { details.classList.add('visible'); }
+  else { details.classList.remove('visible'); }
+}
+
+function switchChannel(ch, btn) {
+  var tabs = document.querySelectorAll('.channel-tab');
+  var panels = document.querySelectorAll('.channel-panel');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('panel_' + ch).classList.add('active');
+}
+
+function setToggle(btn) {
+  var field = btn.getAttribute('data-field');
+  var val = btn.getAttribute('data-val');
+  document.getElementById(field).value = val;
+  var siblings = btn.parentElement.querySelectorAll('.toggle-btn');
+  siblings.forEach(function(s) { s.classList.remove('selected'); });
+  btn.classList.add('selected');
+  // conditional show/hide for anticoag
+  if (field === 'f_anticoag') {
+    var wrap = document.getElementById('f_anticoagDrugsWrap');
+    if (val === 'Yes') wrap.classList.remove('hidden');
+    else wrap.classList.add('hidden');
+  }
+  saveForm();
+}
+
+function toggleConditional(selectId, triggerVal, wrapId) {
+  var el = document.getElementById(selectId);
+  var wrap = document.getElementById(wrapId);
+  if (el.value === triggerVal) wrap.classList.remove('hidden');
+  else wrap.classList.add('hidden');
+  saveForm();
+}
+
+function categoryChanged() {
+  var checked = document.querySelector('input[name="f_category"]:checked');
+  var wrap = document.getElementById('f_categoryOtherWrap');
+  if (checked && checked.value === 'Other') wrap.classList.remove('hidden');
+  else wrap.classList.add('hidden');
+  // style selected
+  document.querySelectorAll('#f_categoryGroup .check-item').forEach(function(ci) {
+    ci.classList.toggle('selected', ci.querySelector('input').checked);
+  });
+  saveForm();
+}
+
+// Render project list
+function renderList(filter) {
+  var container = document.getElementById('projectList');
+  var q = (filter || '').toLowerCase();
+  var grouped = {};
+  PROJECTS.forEach(function(p) {
+    if (q && p.name.toLowerCase().indexOf(q) < 0 && p.lead.toLowerCase().indexOf(q) < 0) return;
+    var letter = p.name[0].toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(p);
+  });
+
+  var letters = Object.keys(grouped).sort();
+  var html = '';
+  if (letters.length === 0) {
+    html = '<div class="no-results">No projects found</div>';
+  }
+  letters.forEach(function(letter) {
+    html += '<div class="section">';
+    html += '<div class="section-title">' + letter + '</div>';
+    grouped[letter].forEach(function(p) {
+      html += '<div class="project-row" onclick="openProject(\'' + p.id + '\')">';
+      html += '<div><div class="project-name">' + p.name + '</div>';
+      html += '<div class="project-lead">Lead: ' + p.lead + '</div></div>';
+      html += '<span class="project-arrow">›</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function openProject(id) {
+  currentProjectId = id;
+  var project = PROJECTS.find(function(p) { return p.id === id; });
+  document.getElementById('formTitle').textContent = project.name;
+  document.getElementById('listView').style.display = 'none';
+  document.getElementById('formView').classList.add('active');
+  currentStep = 1;
+  loadForm();
+  showStep(currentStep);
+}
+
+function showList() {
+  saveForm();
+  document.getElementById('formView').classList.remove('active');
+  document.getElementById('listView').style.display = 'block';
+}
+
+function showStep(n) {
+  var steps = document.querySelectorAll('.form-step');
+  steps.forEach(function(s) { s.classList.remove('active'); });
+  var target = document.querySelector('.form-step[data-step="' + n + '"]');
+  if (target) target.classList.add('active');
+
+  // Step indicator
+  var indicatorHtml = '';
+  for (var i = 1; i <= TOTAL_STEPS; i++) {
+    var cls = 'step-dot';
+    if (i === n) cls += ' active';
+    else if (i < n) cls += ' completed';
+    indicatorHtml += '<div class="' + cls + '"></div>';
+  }
+  document.getElementById('stepIndicator').innerHTML = indicatorHtml;
+
+  // Nav buttons
+  var nav = document.getElementById('navButtons');
+  var btnBack = document.getElementById('btnBack');
+  var btnNext = document.getElementById('btnNext');
+  if (n === 1) { btnBack.style.display = 'none'; } else { btnBack.style.display = ''; }
+  if (n === TOTAL_STEPS) { nav.style.display = 'none'; } else { nav.style.display = ''; btnNext.style.display = ''; }
+
+  window.scrollTo(0, 0);
+}
+
+function nextStep() {
+  saveForm();
+  if (currentStep < TOTAL_STEPS) { currentStep++; showStep(currentStep); }
+}
+
+function prevStep() {
+  saveForm();
+  if (currentStep > 1) { currentStep--; showStep(currentStep); }
+}
+
+// Persistence — multi-draft support
+var STORAGE_KEY = 'ndanae-audit-';
+var DRAFTS_KEY = 'ndanae-audit-drafts-';
+var currentDraftId = null;
+
+function getDrafts() {
+  try { return JSON.parse(localStorage.getItem(DRAFTS_KEY + currentProjectId) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveDrafts(drafts) {
+  localStorage.setItem(DRAFTS_KEY + currentProjectId, JSON.stringify(drafts));
+}
+
+function generateDraftId() {
+  return 'draft_' + Date.now();
+}
+
+function newPatient() {
+  // Save current if has data
+  if (currentDraftId) { saveDraft(); }
+  currentDraftId = generateDraftId();
+  clearFormFields();
+  currentStep = 1;
+  showStep(1);
+  renderDraftsList();
+}
+
+function isFormEmpty(data) {
+  for (var key in data) {
+    if (!data.hasOwnProperty(key)) continue;
+    var val = data[key];
+    if (val === true) return false; // checkbox checked
+    if (typeof val === 'string' && val.trim() !== '') return false;
+  }
+  return true;
+}
+
+function saveDraft() {
+  if (!currentProjectId) return;
+  if (!currentDraftId) currentDraftId = generateDraftId();
+  var data = collectFormData();
+  // Don't save empty forms
+  if (isFormEmpty(data)) return;
+  var hospNo = data['f_hospitalNo'] || 'No ID';
+  var dt = data['f_dateTime'] || new Date().toISOString().slice(0, 10);
+  var drafts = getDrafts();
+  // Update or add
+  var found = false;
+  for (var i = 0; i < drafts.length; i++) {
+    if (drafts[i].id === currentDraftId) {
+      drafts[i].hospNo = hospNo;
+      drafts[i].date = dt;
+      drafts[i].updated = new Date().toISOString();
+      drafts[i].step = currentStep;
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    drafts.push({ id: currentDraftId, hospNo: hospNo, date: dt, updated: new Date().toISOString(), step: currentStep });
+  }
+  saveDrafts(drafts);
+  localStorage.setItem(STORAGE_KEY + currentProjectId + '-' + currentDraftId, JSON.stringify(data));
+  renderDraftsList();
+}
+
+function loadDraft(draftId) {
+  if (currentDraftId) { saveDraft(); } // save current first
+  currentDraftId = draftId;
+  var raw = localStorage.getItem(STORAGE_KEY + currentProjectId + '-' + draftId);
+  if (raw) {
+    try { restoreFormData(JSON.parse(raw)); } catch(e) {}
+  }
+  var drafts = getDrafts();
+  for (var i = 0; i < drafts.length; i++) {
+    if (drafts[i].id === draftId) {
+      currentStep = drafts[i].step || 1;
+      break;
+    }
+  }
+  showStep(currentStep);
+  renderDraftsList();
+}
+
+function deleteDraft(draftId) {
+  var drafts = getDrafts().filter(function(d) { return d.id !== draftId; });
+  saveDrafts(drafts);
+  localStorage.removeItem(STORAGE_KEY + currentProjectId + '-' + draftId);
+  if (currentDraftId === draftId) {
+    currentDraftId = null;
+    clearFormFields();
+    currentStep = 1;
+    showStep(1);
+  }
+  renderDraftsList();
+}
+
+function renderDraftsList() {
+  var el = document.getElementById('draftsList');
+  var drafts = getDrafts();
+  if (drafts.length === 0) { el.innerHTML = '<div style="font-size:12px;color:var(--text3);text-align:center;padding:4px;">No saved drafts</div>'; return; }
+  var html = '';
+  drafts.forEach(function(d) {
+    var isActive = d.id === currentDraftId;
+    html += '<div style="display:flex;align-items:center;gap:8px;padding:6px 8px;margin-bottom:4px;border-radius:8px;background:' + (isActive ? 'var(--bg3)' : 'transparent') + ';border:1px solid ' + (isActive ? 'var(--accent)' : 'var(--border)') + ';">';
+    html += '<div style="flex:1;cursor:pointer;" onclick="loadDraft(\'' + d.id + '\')">';
+    html += '<div style="font-size:13px;font-weight:600;color:var(--text);">' + d.hospNo + '</div>';
+    html += '<div style="font-size:11px;color:var(--text2);">' + d.date + ' &middot; Step ' + (d.step || 1) + '/8</div>';
+    html += '</div>';
+    html += '<button onclick="deleteDraft(\'' + d.id + '\')" style="background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;padding:4px 8px;">&times;</button>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function collectFormData() {
+  var data = {};
+  getAllFieldIds().forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'checkbox') data[id] = el.checked;
+    else data[id] = el.value;
+  });
+  var cat = document.querySelector('input[name="f_category"]:checked');
+  data['f_category'] = cat ? cat.value : '';
+  return data;
+}
+
+function restoreFormData(data) {
+  getAllFieldIds().forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el || data[id] === undefined) return;
+    if (el.type === 'checkbox') { el.checked = data[id]; if (el.checked && el.parentElement) el.parentElement.classList.add('selected'); }
+    else el.value = data[id];
+  });
+  if (data['f_category']) {
+    var r = document.querySelector('input[name="f_category"][value="' + data['f_category'] + '"]');
+    if (r) { r.checked = true; categoryChanged(); }
+  }
+  ['f_anticoag','f_tegAltered','f_returnTheatre'].forEach(function(field) {
+    var el = document.getElementById(field);
+    if (el && el.value) {
+      var btns = el.parentElement.querySelectorAll('.toggle-btn[data-field="' + field + '"]');
+      btns.forEach(function(b) { b.classList.toggle('selected', b.getAttribute('data-val') === el.value); });
+      if (field === 'f_anticoag' && el.value === 'Yes') document.getElementById('f_anticoagDrugsWrap').classList.remove('hidden');
+    }
+  });
+  PRODUCTS.forEach(function(p, idx) {
+    var key = 'tx_' + idx;
+    var el = document.getElementById('f_' + key);
+    if (el && el.value) {
+      var btns = el.parentElement.querySelectorAll('.toggle-btn[data-field="f_' + key + '"]');
+      btns.forEach(function(b) { b.classList.toggle('selected', b.getAttribute('data-val') === el.value); });
+      toggleProduct(key);
+    }
+  });
+  toggleConditional('f_tegReason', 'Other', 'f_tegReasonOtherWrap');
+}
+
+function clearFormFields() {
+  getAllFieldIds().forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'checkbox') { el.checked = false; if (el.parentElement) el.parentElement.classList.remove('selected'); }
+    else el.value = '';
+  });
+  // Clear radios
+  document.querySelectorAll('input[name="f_category"]').forEach(function(r) { r.checked = false; });
+  // Clear toggle visual states
+  document.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
+  // Hide conditional sections
+  ['f_tegReasonOtherWrap', 'f_anticoagDrugsWrap'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+  PRODUCTS.forEach(function(p, idx) { toggleProduct('tx_' + idx); });
+}
+
+function getAllFieldIds() {
+  var ids = [];
+  // Simple fields
+  ['hospitalNo','consultant','dobAge','sex','bmi','operation','theatre','dateTime',
+   'tegReason','tegReasonOther','anticoag','ac_aspirin','ac_clopidogrel','ac_warfarin','ac_heparin',
+   'categoryOther','hb','platelets','hct','na','k','urea','creatinine','egfr','inr','fibrinogen','aptt',
+   'poctResults','tegAltered','48hrTransfusion','critCareLOS','returnTheatre','30dayOutcome',
+   'performedBy','performedByRole','interpretedBy','interpretedByRole','difficulties'].forEach(function(f) {
+    ids.push('f_' + f);
+  });
+  // TEG channels
+  CHANNELS.forEach(function(ch) {
+    for (var i = 0; i < TEG_PARAMS.length; i++) {
+      ids.push('f_teg_' + ch + '_' + i);
+    }
+  });
+  // Transfusion
+  PRODUCTS.forEach(function(p, idx) {
+    var key = 'tx_' + idx;
+    ids.push('f_' + key);
+    ids.push('f_' + key + '_dose');
+    ids.push('f_' + key + '_clinical');
+    ids.push('f_' + key + '_lab');
+    ids.push('f_' + key + '_teg');
+  });
+  return ids;
+}
+
+function saveForm() {
+  if (!currentProjectId || !currentDraftId) return;
+  saveDraft();
+}
+
+function loadForm() {
+  if (!currentProjectId) return;
+  // Load the most recent draft, or start fresh
+  var drafts = getDrafts();
+  if (drafts.length > 0) {
+    var latest = drafts[drafts.length - 1];
+    currentDraftId = latest.id;
+    var raw = localStorage.getItem(STORAGE_KEY + currentProjectId + '-' + currentDraftId);
+    if (raw) {
+      try { restoreFormData(JSON.parse(raw)); } catch(e) {}
+    }
+    currentStep = latest.step || 1;
+  } else {
+    currentDraftId = generateDraftId();
+  }
+  renderDraftsList();
+}
+
+function buildSubmissionText() {
+  var g = function(id) { var e = document.getElementById(id); return e ? e.value || '' : ''; };
+  var c = function(id) { var e = document.getElementById(id); return e ? e.checked : false; };
+  var cat = document.querySelector('input[name="f_category"]:checked');
+
+  var lines = [];
+  lines.push('=== TEG6s Post-Implementation Audit ===');
+  lines.push('');
+  lines.push('--- 1. Patient Details ---');
+  lines.push('Hospital Number: ' + g('f_hospitalNo'));
+  lines.push('Consultant: ' + g('f_consultant'));
+  lines.push('DOB/Age: ' + g('f_dobAge'));
+  lines.push('Sex: ' + g('f_sex'));
+  lines.push('BMI: ' + g('f_bmi'));
+  lines.push('Operation: ' + g('f_operation'));
+  lines.push('Theatre: ' + g('f_theatre'));
+  lines.push('Date/Time: ' + g('f_dateTime'));
+  var reason = g('f_tegReason');
+  lines.push('Reason for TEG: ' + (reason === 'Other' ? g('f_tegReasonOther') : reason));
+  lines.push('');
+
+  lines.push('--- 2. Anticoagulation ---');
+  lines.push('On anticoagulation: ' + g('f_anticoag'));
+  if (g('f_anticoag') === 'Yes') {
+    var drugs = [];
+    if (c('f_ac_aspirin')) drugs.push('Aspirin');
+    if (c('f_ac_clopidogrel')) drugs.push('Clopidogrel');
+    if (c('f_ac_warfarin')) drugs.push('Warfarin');
+    if (c('f_ac_heparin')) drugs.push('Heparin');
+    lines.push('Drugs: ' + (drugs.join(', ') || 'None selected'));
+  }
+  lines.push('');
+
+  lines.push('--- 3. Category ---');
+  var catVal = cat ? cat.value : '';
+  lines.push('Category: ' + (catVal === 'Other' ? g('f_categoryOther') : catVal));
+  lines.push('');
+
+  lines.push('--- 4. Baseline Bloods ---');
+  lines.push('FBC: Hb=' + g('f_hb') + ', Platelets=' + g('f_platelets') + ', HCT=' + g('f_hct'));
+  lines.push('U&E: Na=' + g('f_na') + ', K=' + g('f_k') + ', Urea=' + g('f_urea') + ', Creatinine=' + g('f_creatinine') + ', eGFR=' + g('f_egfr'));
+  lines.push('Clotting: INR/PT=' + g('f_inr') + ', Fibrinogen=' + g('f_fibrinogen') + ', APTT=' + g('f_aptt'));
+  lines.push('');
+
+  lines.push('--- 5. TEG6s Results ---');
+  CHANNELS.forEach(function(ch) {
+    var vals = [];
+    for (var i = 0; i < TEG_PARAMS.length; i++) {
+      vals.push(TEG_PARAMS[i] + '=' + g('f_teg_' + ch + '_' + i));
+    }
+    lines.push(ch + ': ' + vals.join(', '));
+  });
+  lines.push('POCT Results: ' + g('f_poctResults'));
+  lines.push('');
+
+  lines.push('--- 6. Transfusion ---');
+  PRODUCTS.forEach(function(p, idx) {
+    var key = 'tx_' + idx;
+    var admin = g('f_' + key);
+    lines.push(p + ': ' + (admin || 'Not answered'));
+    if (admin === 'Yes') {
+      lines.push('  Dose: ' + g('f_' + key + '_dose'));
+      var basis = [];
+      if (c('f_' + key + '_clinical')) basis.push('Clinical');
+      if (c('f_' + key + '_lab')) basis.push('Lab');
+      if (c('f_' + key + '_teg')) basis.push('TEG');
+      lines.push('  Decision based on: ' + (basis.join(', ') || 'Not specified'));
+    }
+  });
+  lines.push('');
+
+  lines.push('--- 7. Outcome ---');
+  lines.push('TEG altered transfusion management: ' + g('f_tegAltered'));
+  lines.push('48hr Transfusion Requirements: ' + g('f_48hrTransfusion'));
+  lines.push('Critical care LOS: ' + g('f_critCareLOS'));
+  lines.push('Return to Theatre: ' + g('f_returnTheatre'));
+  lines.push('30 Day Outcome: ' + g('f_30dayOutcome'));
+  lines.push('');
+
+  lines.push('--- 8. Test Details ---');
+  lines.push('Performed by: ' + g('f_performedBy') + ' (' + g('f_performedByRole') + ')');
+  lines.push('Interpreted by: ' + g('f_interpretedBy') + ' (' + g('f_interpretedByRole') + ')');
+  lines.push('Difficulties: ' + g('f_difficulties'));
+
+  return lines.join('\n');
+}
+
+var emailSending = false;
+function submitEmail() {
+  if (emailSending) return;
+  emailSending = true;
+  saveForm();
+  var text = buildSubmissionText();
+  var hospNo = document.getElementById('f_hospitalNo').value || 'Unknown';
+  var dt = document.getElementById('f_dateTime').value || new Date().toISOString().slice(0,10);
+  var subject = 'TEG Audit Submission - ' + hospNo + ' - ' + dt;
+  var mailto = 'mailto:james.powell@nhs.net?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+  saveDraft(); // auto-save before emailing
+  window.location.href = mailto;
+  setTimeout(function() { emailSending = false; }, 3000);
+}
+
+function submitCopy() {
+  saveForm();
+  var text = buildSubmissionText();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      alert('Copied to clipboard');
+      clearFormData();
+    }).catch(function() {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); alert('Copied to clipboard'); clearFormData(); }
+  catch(e) { alert('Copy failed. Please select and copy manually.'); }
+  document.body.removeChild(ta);
+}
+
+function clearFormData() {
+  if (currentProjectId && currentDraftId) {
+    deleteDraft(currentDraftId);
+  }
+}
+
+// DOB auto-formatting (DDMMYY with / separators)
+document.getElementById('f_dobAge').addEventListener('input', function(e) {
+  var raw = this.value.replace(/\D/g, '');
+  if (raw.length > 6) raw = raw.substring(0, 6);
+  var formatted = '';
+  for (var i = 0; i < raw.length; i++) {
+    if (i === 2 || i === 4) formatted += '/';
+    formatted += raw[i];
+  }
+  this.value = formatted;
+});
+
+// Auto-save on input changes
+document.addEventListener('input', function(e) {
+  if (e.target.closest('#formView')) { saveForm(); }
+});
+document.addEventListener('change', function(e) {
+  if (e.target.closest('#formView')) { saveForm(); }
+});
+
+// Search
+document.getElementById('search').addEventListener('input', function() {
+  renderList(this.value);
+});
+
+// Init
+renderList();
+</script>
+</body>
+</html>

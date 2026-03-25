@@ -1,10 +1,12 @@
-var CACHE = 'ndanae-v5';
+var CACHE = 'ndanae-v7';
 var ASSETS = [
   './',
   './index.html',
   './rota-dashboard.html',
   './useful-info.html',
   './drug-calc.html',
+  './guidelines.html',
+  './audit.html',
   './icon-192.png',
   './icon-512.png'
 ];
