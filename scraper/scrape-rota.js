@@ -35,11 +35,14 @@ const GRADES = [
 const GRADE_RE = new RegExp('\\s+(' + GRADES.join('|') + ')\\s*$', 'i');
 
 // Tags to remove from names
-const TAG_RE = /\s*\[(Hot|FIY|PP|Paid Extra|TempRE)\]\s*/gi;
+const TAG_RE = /\s*\[(Hot|FIY|PP|Paid Extra|TempRE|Glanso)\]\s*/gi;
+
+// Shift type suffixes appended by CLW (not in brackets)
+const SHIFT_RE = /,?\s*(?:OC|300\s*\w*|508\s*\w*|822\s*\w*|504\s*\w*|505\s*\w*|ITU\s*(?:AM|PM|Eve|Night|N)?|LD)\s*$/i;
 
 function cleanName(raw) {
   if (!raw) return '';
-  return raw.replace(TAG_RE, ' ').trim();
+  return raw.replace(TAG_RE, ' ').replace(SHIFT_RE, '').replace(/,\s*$/, '').trim();
 }
 
 function splitNameGrade(raw) {
@@ -183,331 +186,184 @@ function hasGlanso(raw) {
     console.log(`Tomorrow: extracted ${rawTomorrow.length} rows.`);
   }
 
-  // Process into structured JSON
-  var rota = {
-    date: now.toISOString().split('T')[0],
-    day: dayNames[dayOfWeek],
-    scraped_at: now.toISOString(),
-    available_consultants: { am: '—', pm: '—' },
-    on_call: {},
-    theatres: {},
-    itu_day: null,
-    support: {}
-  };
-
-  // Helper: parse people from raw text, removing session title and badges
-  function parsePeople(raw, session, badges) {
-    var text = raw;
-    // Remove session title
-    if (session) text = text.replace(session, '').trim();
-    // Remove badge texts
-    for (var b of badges) {
-      text = text.replace(b, '').trim();
-    }
-    // Split by common separators — names are usually separated by their position
-    // This is tricky; for now return the cleaned text
-    return text.trim();
-  }
-
-  // Process each row
-  for (var row of rawData) {
-    var loc = row.location;
-    var slot = row.slot;
-    var raw = row.raw;
-
-    // --- On Call 300 ---
-    if (loc.indexOf('Anaesthetics On Call') === 0) {
-      if (!rota.on_call['300']) {
-        rota.on_call['300'] = { label: 'Anaesthetics On Call', bleep: '300' };
-      }
-      // Remove OC badge prefix
-      var name300 = raw.replace(/^OC\s*/i, '').trim();
-      rota.on_call['300'][slot] = cleanName(name300);
-    }
-
-    // --- 508 ---
-    else if (loc === '508') {
-      if (!rota.on_call['508']) {
-        rota.on_call['508'] = { label: 'Emergency Rota', bleep: '508' };
-      }
-      // Remove badge prefix like "508 LD" or "508 N"
-      var text508 = raw.replace(/^508\s*(LD|N)\s*/i, '').trim();
-      var role508 = raw.match(/508\s*(LD|N)/i);
-      var person508 = splitNameGrade(text508);
-      person508.role = role508 ? role508[1] : '';
-      rota.on_call['508'][slot] = person508;
-    }
-
-    // --- 822 ---
-    else if (loc === '822') {
-      if (!rota.on_call['822']) {
-        rota.on_call['822'] = { label: 'Maternity Rota', bleep: '822' };
-      }
-      var text822 = raw.replace(/^822\s*(LD|N)\s*/i, '').trim();
-      var role822 = raw.match(/822\s*(LD|N)/i);
-      var person822 = text822 ? splitNameGrade(text822) : { name: '' };
-      person822.role = role822 ? role822[1] : '';
-      rota.on_call['822'][slot] = person822;
-    }
-
-    // --- ITU On call ---
-    else if (loc.indexOf('ITU On call') === 0) {
-      if (!rota.on_call['itu_consultant']) {
-        rota.on_call['itu_consultant'] = { label: 'ITU Consultant On Call', bleep: '505' };
-      }
-      var textITU = raw.replace(/^ITU\s*(AM|PM|OC)\s*/i, '').trim();
-      rota.on_call['itu_consultant'][slot] = cleanName(textITU);
-    }
-
-    // --- 504 ---
-    else if (loc === '504') {
-      if (!rota.on_call['504']) {
-        rota.on_call['504'] = { label: 'ITU Resident', bleep: '504' };
-      }
-      // Can have multiple people - split by "504 LD" or "504 N" badges
-      var parts504 = raw.split(/504\s*(LD|N)\s*/i).filter(Boolean);
-      var people504 = [];
-      for (var i = 0; i < parts504.length; i++) {
-        var p = parts504[i].trim();
-        if (p === 'LD' || p === 'N') continue;
-        if (p) {
-          var person = splitNameGrade(p);
-          people504.push(person);
-        }
-      }
-      if (people504.length === 1) {
-        rota.on_call['504'][slot] = people504[0];
-      } else if (people504.length > 1) {
-        rota.on_call['504'][slot] = people504;
-      }
-    }
-
-    // --- Available Consultants ---
-    else if (loc.indexOf('Available Consultants') === 0) {
-      if (slot === 'am' || slot === 'pm') {
-        rota.available_consultants[slot] = raw || '—';
-      }
-    }
-
-    // --- Theatres ---
-    else if (loc.indexOf('Theatre') === 0) {
-      var thMatch = loc.match(/Theatre\s+(\d+)/);
-      if (thMatch) {
-        var thKey = 'th' + thMatch[1];
-        if (!rota.theatres[thKey]) {
-          rota.theatres[thKey] = {
-            label: 'Theatre ' + thMatch[1],
-            ext: loc.match(/Ext\s+(\d+)/i) ? loc.match(/Ext\s+(\d+)/i)[1] : '',
-            type: ''
-          };
-        }
-
-        if (slot === 'am' || slot === 'pm') {
-          var sessionClean = (row.session || '').replace(/\s+/g, ' ').trim();
-
-          // Primary and support come pre-parsed from the HTML structure
-          // primary is now an array (can have multiple primary anaesthetists)
-          var primaries = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          var primaryStr = primaries.join(', ');
-
-          var supportList = [];
-          for (var si = 0; si < (row.support || []).length; si++) {
-            var sp = splitNameGrade(row.support[si]);
-            if (sp.name) supportList.push(sp);
-          }
-
-          // Check for Glanso tag
-          if (hasGlanso(raw) && primaryStr) {
-            primaryStr = primaryStr + ' [Glanso]';
-          }
-
-          rota.theatres[thKey][slot] = {
-            list: sessionClean,
-            primary: primaryStr,
-            support: supportList,
-            cancelled: row.cancelled
-          };
-        }
-      }
-    }
-
-    // --- ITU day staff ---
-    else if (loc.indexOf('ITU') === 0 && loc.indexOf('ITU On call') === -1 && loc.indexOf('Ext') > -1) {
-      if (!rota.itu_day) {
-        rota.itu_day = {
-          label: 'ITU Day Staff',
-          ext: loc.match(/Ext\s+(\d+)/i) ? loc.match(/Ext\s+(\d+)/i)[1] : '2707',
-          day: []
-        };
-      }
-      if (slot === 'am') {
-        // Use pre-parsed primary + support from HTML
-        var ituPrimaries = row.primary || [];
-        for (var pi = 0; pi < ituPrimaries.length; pi++) {
-          var ituP = splitNameGrade(ituPrimaries[pi]);
-          if (ituP.name) rota.itu_day.day.push(ituP);
-        }
-        for (var si = 0; si < (row.support || []).length; si++) {
-          var ituSupport = splitNameGrade(row.support[si]);
-          if (ituSupport.name) rota.itu_day.day.push(ituSupport);
-        }
-      }
-    }
-
-    // --- ESA / Epidural ---
-    else if (loc.indexOf('ESA') === 0) {
-      if (!rota.support.esa135) rota.support.esa135 = { label: 'ESA Bleep 135' };
-      if (slot === 'am' || slot === 'pm') {
-        rota.support.esa135[slot] = cleanName(raw) || '—';
-      }
-    }
-    else if (loc.indexOf('Epidural') === 0) {
-      if (!rota.support.epidural234) rota.support.epidural234 = { label: 'Epidural Bleep 234' };
-      if (slot === 'am' || slot === 'pm') {
-        rota.support.epidural234[slot] = cleanName(raw) || '—';
-      }
-    }
-  }
-
-  // Auto-fill 822 AM/PM from Theatre 8 if missing
-  if (rota.on_call['822'] && rota.theatres.th8) {
-    for (var s of ['am', 'pm']) {
-      var entry = rota.on_call['822'][s];
-      var missing = !entry || (typeof entry === 'object' && !entry.name);
-      if (missing && rota.theatres.th8[s] && rota.theatres.th8[s].primary) {
-        rota.on_call['822'][s] = { name: rota.theatres.th8[s].primary, role: 'LD' };
-      }
-    }
-  }
-
-  // Set theatre types from first session we see
-  var theatreTypes = {
-    th1: 'Elective Ortho', th2: 'Trauma', th3: 'CEPOD',
-    th4: 'General/CEPOD', th5: 'Day Case', th6: 'Day Case',
-    th7: 'Gynae/Breast', th8: 'Obstetrics', th9: 'Eyes',
-    th10: 'Endoscopy'
-  };
-  for (var tk in theatreTypes) {
-    if (rota.theatres[tk]) rota.theatres[tk].type = theatreTypes[tk];
-  }
-
-  // Process tomorrow's data (simplified — just theatres and on-call)
-  if (includeTomorrow && rawTomorrow.length > 0) {
-    var tomorrowIdx = (dayOfWeek + 1) % 7;
-    var tmDate = new Date(now);
-    tmDate.setDate(tmDate.getDate() + 1);
-    rota.tomorrow = {
-      date: tmDate.toISOString().split('T')[0],
-      day: dayNames[tomorrowIdx],
+  // Reusable function to process raw row data into structured rota
+  function processRotaData(rawRows) {
+    var result = {
+      available_consultants: { am: '—', pm: '—' },
       on_call: {},
       theatres: {},
-      available_consultants: { am: '—', pm: '—' },
       itu_day: null,
       support: {}
     };
 
-    for (var ri = 0; ri < rawTomorrow.length; ri++) {
-      var row = rawTomorrow[ri];
-      var loc = row.location.toLowerCase();
-      var slot = row.slot.toLowerCase().replace(/\s+/g, '');
+    for (var row of rawRows) {
+      var loc = row.location;
+      var slot = row.slot;
+      var raw = row.raw;
 
-      // Map time slots
-      if (slot === 'morning' || slot === 'am') slot = 'am';
-      else if (slot === 'afternoon' || slot === 'pm') slot = 'pm';
-      else if (slot === 'evening' || slot === 'eve') slot = 'eve';
-      else if (slot === 'night') slot = 'night';
-
-      // On-call — match by location containing key identifiers
-      var bleep = '';
-      if (loc.indexOf('300') >= 0 || (loc.indexOf('anaesth') >= 0 && loc.indexOf('on call') >= 0)) bleep = '300';
-      else if (loc === '508' || (loc.indexOf('508') >= 0 && loc.indexOf('theatre') < 0)) bleep = '508';
-      else if (loc === '822' || (loc.indexOf('822') >= 0 && loc.indexOf('theatre') < 0)) bleep = '822';
-      else if (loc === '504' || loc.indexOf('itu ext') >= 0) bleep = '504';
-      else if (loc.indexOf('itu on call') >= 0 || loc.indexOf('itu on-call') >= 0) bleep = 'itu_consultant';
-
-      if (bleep) {
-          if (!rota.tomorrow.on_call[bleep]) rota.tomorrow.on_call[bleep] = { label: row.location, bleep: bleep };
-          var people = row.primary.concat(row.support);
-          if (people.length === 1) {
-            rota.tomorrow.on_call[bleep][slot] = splitNameGrade(people[0]);
-          } else if (people.length > 1) {
-            rota.tomorrow.on_call[bleep][slot] = people.map(function(p) { return splitNameGrade(p); });
-          } else {
-            rota.tomorrow.on_call[bleep][slot] = cleanName(row.raw) || '—';
-          }
+      // --- On Call 300 ---
+      if (loc.indexOf('Anaesthetics On Call') === 0) {
+        if (!result.on_call['300']) result.on_call['300'] = { label: 'Anaesthetics On Call', bleep: '300' };
+        var name300 = raw.replace(/^OC\s*/i, '').trim();
+        result.on_call['300'][slot] = cleanName(name300);
       }
 
-      // Theatres
-      var thMatch = loc.match(/theatre\s*(\d+)/i) || loc.match(/th\s*(\d+)/i);
-      if (thMatch) {
-        var thKey = 'th' + thMatch[1];
-        if (!rota.tomorrow.theatres[thKey]) rota.tomorrow.theatres[thKey] = { number: parseInt(thMatch[1]), name: row.location };
-        var th = rota.tomorrow.theatres[thKey];
-        if (!th[slot]) th[slot] = {};
-        if (row.cancelled) {
-          th[slot].cancelled = true;
-          th[slot].session = row.session || '';
-        } else {
-          th[slot].session = row.session || '';
-          if (row.primary.length > 0) th[slot].primary = row.primary.map(function(p) { return cleanName(p); }).join(', ');
-          if (row.support.length > 0) {
-            th[slot].support = row.support.map(function(s) { return splitNameGrade(s); });
+      // --- 508 ---
+      else if (loc === '508') {
+        if (!result.on_call['508']) result.on_call['508'] = { label: 'Emergency Rota', bleep: '508' };
+        var text508 = raw.replace(/^508\s*(LD|N)\s*/i, '').trim();
+        var role508 = raw.match(/508\s*(LD|N)/i);
+        var person508 = splitNameGrade(text508);
+        person508.role = role508 ? role508[1] : '';
+        result.on_call['508'][slot] = person508;
+      }
+
+      // --- 822 ---
+      else if (loc === '822') {
+        if (!result.on_call['822']) result.on_call['822'] = { label: 'Maternity Rota', bleep: '822' };
+        var text822 = raw.replace(/^822\s*(LD|N)\s*/i, '').trim();
+        var role822 = raw.match(/822\s*(LD|N)/i);
+        var person822 = text822 ? splitNameGrade(text822) : { name: '' };
+        person822.role = role822 ? role822[1] : '';
+        result.on_call['822'][slot] = person822;
+      }
+
+      // --- ITU On call ---
+      else if (loc.indexOf('ITU On call') === 0) {
+        if (!result.on_call['itu_consultant']) result.on_call['itu_consultant'] = { label: 'ITU Consultant On Call', bleep: '505' };
+        var textITU = raw.replace(/^ITU\s*(AM|PM|OC)\s*/i, '').trim();
+        result.on_call['itu_consultant'][slot] = cleanName(textITU);
+      }
+
+      // --- 504 ---
+      else if (loc === '504') {
+        if (!result.on_call['504']) result.on_call['504'] = { label: 'ITU Resident', bleep: '504' };
+        var parts504 = raw.split(/504\s*(LD|N)\s*/i).filter(Boolean);
+        var people504 = [];
+        for (var i = 0; i < parts504.length; i++) {
+          var p = parts504[i].trim();
+          if (p === 'LD' || p === 'N') continue;
+          if (p) people504.push(splitNameGrade(p));
+        }
+        if (people504.length === 1) result.on_call['504'][slot] = people504[0];
+        else if (people504.length > 1) result.on_call['504'][slot] = people504;
+      }
+
+      // --- Available Consultants ---
+      else if (loc.indexOf('Available Consultants') === 0) {
+        if (slot === 'am' || slot === 'pm') result.available_consultants[slot] = raw || '—';
+      }
+
+      // --- Theatres ---
+      else if (loc.indexOf('Theatre') === 0) {
+        var thMatch = loc.match(/Theatre\s+(\d+)/);
+        if (thMatch) {
+          var thKey = 'th' + thMatch[1];
+          if (!result.theatres[thKey]) {
+            result.theatres[thKey] = {
+              label: 'Theatre ' + thMatch[1],
+              ext: loc.match(/Ext\s+(\d+)/i) ? loc.match(/Ext\s+(\d+)/i)[1] : '',
+              type: ''
+            };
           }
-          if (hasGlanso(row.raw)) th[slot].glanso = true;
+          if (slot === 'am' || slot === 'pm') {
+            var sessionClean = (row.session || '').replace(/\s+/g, ' ').trim();
+            var primaries = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
+            var primaryStr = primaries.join(', ');
+            var supportList = [];
+            for (var si = 0; si < (row.support || []).length; si++) {
+              var sp = splitNameGrade(row.support[si]);
+              if (sp.name) supportList.push(sp);
+            }
+            if (hasGlanso(raw) && primaryStr) primaryStr = primaryStr + ' [Glanso]';
+            result.theatres[thKey][slot] = {
+              list: sessionClean,
+              primary: primaryStr,
+              support: supportList,
+              cancelled: row.cancelled
+            };
+          }
         }
       }
 
-      // Available Consultants
-      if (loc.indexOf('available') >= 0 && loc.indexOf('consultant') >= 0) {
-        var acPeople = row.primary.concat(row.support);
-        if (acPeople.length > 0) {
-          rota.tomorrow.available_consultants[slot] = acPeople.map(function(p) { return cleanName(p); }).join(', ');
+      // --- ITU day staff ---
+      else if (loc.indexOf('ITU') === 0 && loc.indexOf('ITU On call') === -1 && loc.indexOf('Ext') > -1) {
+        if (!result.itu_day) {
+          result.itu_day = {
+            label: 'ITU Day Staff',
+            ext: loc.match(/Ext\s+(\d+)/i) ? loc.match(/Ext\s+(\d+)/i)[1] : '2707',
+            day: []
+          };
         }
-      }
-
-      // ITU Day Staff
-      if (loc.indexOf('itu ext') >= 0) {
-        if (!rota.tomorrow.itu_day) rota.tomorrow.itu_day = [];
-        var ituPeople = row.primary.concat(row.support);
-        for (var ip = 0; ip < ituPeople.length; ip++) {
-          var parsed = splitNameGrade(ituPeople[ip]);
-          if (parsed.name && rota.tomorrow.itu_day.findIndex(function(x) { return x.name === parsed.name; }) < 0) {
-            rota.tomorrow.itu_day.push(parsed);
+        if (slot === 'am') {
+          var ituPrimaries = row.primary || [];
+          for (var pi = 0; pi < ituPrimaries.length; pi++) {
+            var ituP = splitNameGrade(ituPrimaries[pi]);
+            if (ituP.name) result.itu_day.day.push(ituP);
+          }
+          for (var si2 = 0; si2 < (row.support || []).length; si2++) {
+            var ituSupport = splitNameGrade(row.support[si2]);
+            if (ituSupport.name) result.itu_day.day.push(ituSupport);
           }
         }
       }
 
-      // Support (ESA, Epidural)
-      if (loc.indexOf('esa') >= 0) {
-        if (!rota.tomorrow.support.esa135) rota.tomorrow.support.esa135 = {};
-        var raw = cleanName(row.raw);
-        if (slot === 'am' || slot === 'pm') rota.tomorrow.support.esa135[slot] = raw || '—';
+      // --- ESA / Epidural ---
+      else if (loc.indexOf('ESA') === 0) {
+        if (!result.support.esa135) result.support.esa135 = { label: 'ESA Bleep 135' };
+        if (slot === 'am' || slot === 'pm') result.support.esa135[slot] = cleanName(raw) || '—';
       }
-      if (loc.indexOf('epidural') >= 0) {
-        if (!rota.tomorrow.support.epidural234) rota.tomorrow.support.epidural234 = {};
-        var raw2 = cleanName(row.raw);
-        if (slot === 'am' || slot === 'pm') rota.tomorrow.support.epidural234[slot] = raw2 || '—';
+      else if (loc.indexOf('Epidural') === 0) {
+        if (!result.support.epidural234) result.support.epidural234 = { label: 'Epidural Bleep 234' };
+        if (slot === 'am' || slot === 'pm') result.support.epidural234[slot] = cleanName(raw) || '—';
       }
     }
 
-    // Set theatre types for tomorrow
+    // Auto-fill 822 AM/PM from Theatre 8
+    if (result.on_call['822'] && result.theatres.th8) {
+      for (var s of ['am', 'pm']) {
+        var entry = result.on_call['822'][s];
+        var missing = !entry || (typeof entry === 'object' && !entry.name);
+        if (missing && result.theatres.th8[s] && result.theatres.th8[s].primary) {
+          result.on_call['822'][s] = { name: result.theatres.th8[s].primary, role: 'LD' };
+        }
+      }
+    }
+
+    // Set theatre types
+    var theatreTypes = {
+      th1: 'Elective Ortho', th2: 'Trauma', th3: 'CEPOD',
+      th4: 'General/CEPOD', th5: 'Day Case', th6: 'Day Case',
+      th7: 'Gynae/Breast', th8: 'Obstetrics', th9: 'Eyes',
+      th10: 'Endoscopy'
+    };
     for (var tk in theatreTypes) {
-      if (rota.tomorrow.theatres[tk]) rota.tomorrow.theatres[tk].type = theatreTypes[tk];
+      if (result.theatres[tk]) result.theatres[tk].type = theatreTypes[tk];
     }
 
-    // Auto-fill tomorrow's 822 from Theatre 8
-    if (rota.tomorrow.on_call['822'] && rota.tomorrow.theatres.th8) {
-      for (var ts of ['am', 'pm']) {
-        var tEntry = rota.tomorrow.on_call['822'][ts];
-        var tMissing = !tEntry || (typeof tEntry === 'object' && !tEntry.name);
-        if (tMissing && rota.tomorrow.theatres.th8[ts] && rota.tomorrow.theatres.th8[ts].primary) {
-          rota.tomorrow.on_call['822'][ts] = { name: rota.tomorrow.theatres.th8[ts].primary, role: 'LD' };
-        }
-      }
-    }
+    return result;
+  }
 
+  // Process today
+  var todayResult = processRotaData(rawData);
+  var rota = todayResult;
+  rota.date = now.toISOString().split('T')[0];
+  rota.day = dayNames[dayOfWeek];
+  rota.scraped_at = now.toISOString();
+
+  // Process tomorrow (Mon-Sat only)
+  if (includeTomorrow && rawTomorrow.length > 0) {
+    var tomorrowIdx = (dayOfWeek + 1) % 7;
+    var tmDate = new Date(now);
+    tmDate.setDate(tmDate.getDate() + 1);
+    var tomorrowResult = processRotaData(rawTomorrow);
+    tomorrowResult.date = tmDate.toISOString().split('T')[0];
+    tomorrowResult.day = dayNames[tomorrowIdx];
+    rota.tomorrow = tomorrowResult;
     console.log('Tomorrow processed.');
   }
+
+  /* Old duplicate processing code removed — now handled by processRotaData() above */
 
   // Write output
   var outPath = path.join(__dirname, '..', 'daily-rota.json');
