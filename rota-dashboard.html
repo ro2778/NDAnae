@@ -27,7 +27,16 @@ h1 { font-size: 18px; color: var(--accent); }
 .theme-toggle { position: absolute; right: 0; top: 0; background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; }
 
 .date { text-align: center; color: var(--text2); font-size: 13px; margin-bottom: 4px; }
-.updated { text-align: center; color: var(--text3); font-size: 11px; margin-bottom: 16px; }
+.updated { text-align: center; color: var(--text3); font-size: 11px; margin-bottom: 8px; }
+
+/* Day toggle */
+.day-toggle { display: flex; justify-content: center; gap: 0; margin-bottom: 16px; }
+.day-btn { padding: 6px 24px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.day-btn:first-child { border-radius: 8px 0 0 8px; }
+.day-btn:last-child { border-radius: 0 8px 8px 0; }
+.day-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.day-btn:not(.active):hover { background: var(--bg); }
+.day-btn.disabled { opacity: 0.4; cursor: default; }
 
 /* Section headers */
 .section-header { font-size: 14px; font-weight: 700; color: var(--gold); margin: 16px 0 8px; padding: 4px 0; border-bottom: 1px solid var(--border); }
@@ -97,6 +106,11 @@ h1 { font-size: 18px; color: var(--accent); }
 <div class="date" id="date-display"></div>
 <div class="updated" id="updated-display"></div>
 
+<div class="day-toggle">
+  <button class="day-btn active" id="btn-today" onclick="switchDay('today')">Today</button>
+  <button class="day-btn" id="btn-tomorrow" onclick="switchDay('tomorrow')">Tomorrow</button>
+</div>
+
 <div class="section-header">On Call</div>
 <div class="oncall-grid" id="oncall-grid"></div>
 
@@ -108,8 +122,26 @@ h1 { font-size: 18px; color: var(--accent); }
 
 <script>
 var DATA = null;
+var FULL_DATA = null;
+var currentDay = 'today';
 var SLOTS = ['am', 'pm', 'eve', 'night'];
 var SLOT_LABELS = { am: 'AM', pm: 'PM', eve: 'Eve', night: 'Night' };
+
+function switchDay(day) {
+  currentDay = day;
+  document.getElementById('btn-today').classList.toggle('active', day === 'today');
+  document.getElementById('btn-tomorrow').classList.toggle('active', day === 'tomorrow');
+
+  if (day === 'tomorrow' && FULL_DATA.tomorrow) {
+    DATA = FULL_DATA.tomorrow;
+    document.getElementById('date-display').textContent = formatDate(FULL_DATA.tomorrow.date);
+  } else {
+    DATA = FULL_DATA;
+    document.getElementById('date-display').textContent = formatDate(FULL_DATA.date);
+  }
+  render();
+}
+
 
 /* Theme toggle */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -318,26 +350,40 @@ function render() {
   renderSupport();
 }
 
+/* Auto-fill 822 from Theatre 8 for a rota object */
+function autoFill822(rota) {
+  if (rota.on_call && rota.on_call['822'] && rota.theatres && rota.theatres.th8) {
+    ['am', 'pm'].forEach(function(slot) {
+      var entry822 = rota.on_call['822'][slot];
+      var th8data = rota.theatres.th8[slot];
+      var missing = !entry822 || entry822 === '—' || (typeof entry822 === 'object' && !entry822.name);
+      if (missing && th8data && th8data.primary) {
+        rota.on_call['822'][slot] = { name: th8data.primary, role: 'LD' };
+      }
+    });
+  }
+}
+
 /* Load data */
 fetch('daily-rota.json')
   .then(function(r) { return r.json(); })
   .then(function(data) {
+    FULL_DATA = data;
     DATA = data;
 
-    /* Auto-fill 822 AM/PM from Theatre 8 primary if missing */
-    if (DATA.on_call['822'] && DATA.theatres.th8) {
-      ['am', 'pm'].forEach(function(slot) {
-        var entry822 = DATA.on_call['822'][slot];
-        var th8data = DATA.theatres.th8[slot];
-        var missing = !entry822 || entry822 === '—' || (typeof entry822 === 'object' && !entry822.name);
-        if (missing && th8data && th8data.primary) {
-          DATA.on_call['822'][slot] = { name: th8data.primary, role: 'LD' };
-        }
-      });
-    }
+    autoFill822(DATA);
+    if (data.tomorrow) autoFill822(data.tomorrow);
 
     document.getElementById('date-display').textContent = formatDate(data.date);
     document.getElementById('updated-display').textContent = 'Updated: ' + formatUpdatedTime(data.scraped_at);
+
+    /* Enable/disable tomorrow button */
+    var tmBtn = document.getElementById('btn-tomorrow');
+    if (!data.tomorrow) {
+      tmBtn.classList.add('disabled');
+      tmBtn.onclick = null;
+    }
+
     render();
   })
   .catch(function(err) {

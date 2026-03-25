@@ -77,16 +77,22 @@ function hasGlanso(raw) {
   await page.waitForSelector('table.rota', { timeout: 10000 });
   console.log('Rota page loaded.');
 
-  // Determine today's column
+  // Determine today's and tomorrow's columns
   const now = new Date();
   const dayOfWeek = now.getDay(); // 0=Sun
   const todayCol = dayOfWeek === 0 ? 8 : dayOfWeek + 1;
+  // Tomorrow: Mon-Sat only (Sunday's tomorrow is next week, skip)
+  const hasTomorrow = dayOfWeek !== 0 && dayOfWeek !== 6; // not Sun, not Sat→Sun is fine actually
+  const tomorrowCol = dayOfWeek === 6 ? 8 : todayCol + 1; // Sat→Sun=col8
+  const includeTomorrow = dayOfWeek !== 0; // skip tomorrow on Sunday only
   const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-  console.log(`Today: ${dayNames[dayOfWeek]}, column index: ${todayCol}`);
+  console.log(`Today: ${dayNames[dayOfWeek]}, column index: ${todayCol}` +
+    (includeTomorrow ? `, tomorrow col: ${tomorrowCol}` : ', no tomorrow (Sunday)'));
 
-  // Extract all rows using CLW's HTML structure
-  const rawData = await page.evaluate((col) => {
+  // Generic column extractor
+  function extractColumn(col) {
+    return page.evaluate((col) => {
     var table = document.querySelector('table.rota');
     if (!table) return [];
     var rows = table.querySelectorAll('tr');
@@ -163,9 +169,19 @@ function hasGlanso(raw) {
       });
     }
     return data;
-  }, todayCol);
+    }, col);
+  }
 
-  console.log(`Extracted ${rawData.length} rows.`);
+  // Extract today
+  const rawData = await extractColumn(todayCol);
+  console.log(`Today: extracted ${rawData.length} rows.`);
+
+  // Extract tomorrow (Mon-Sat only)
+  var rawTomorrow = [];
+  if (includeTomorrow) {
+    rawTomorrow = await extractColumn(tomorrowCol);
+    console.log(`Tomorrow: extracted ${rawTomorrow.length} rows.`);
+  }
 
   // Process into structured JSON
   var rota = {
@@ -373,6 +389,124 @@ function hasGlanso(raw) {
   };
   for (var tk in theatreTypes) {
     if (rota.theatres[tk]) rota.theatres[tk].type = theatreTypes[tk];
+  }
+
+  // Process tomorrow's data (simplified — just theatres and on-call)
+  if (includeTomorrow && rawTomorrow.length > 0) {
+    var tomorrowIdx = (dayOfWeek + 1) % 7;
+    var tmDate = new Date(now);
+    tmDate.setDate(tmDate.getDate() + 1);
+    rota.tomorrow = {
+      date: tmDate.toISOString().split('T')[0],
+      day: dayNames[tomorrowIdx],
+      on_call: {},
+      theatres: {},
+      available_consultants: { am: '—', pm: '—' },
+      itu_day: null,
+      support: {}
+    };
+
+    for (var ri = 0; ri < rawTomorrow.length; ri++) {
+      var row = rawTomorrow[ri];
+      var loc = row.location.toLowerCase();
+      var slot = row.slot.toLowerCase().replace(/\s+/g, '');
+
+      // Map time slots
+      if (slot === 'morning' || slot === 'am') slot = 'am';
+      else if (slot === 'afternoon' || slot === 'pm') slot = 'pm';
+      else if (slot === 'evening' || slot === 'eve') slot = 'eve';
+      else if (slot === 'night') slot = 'night';
+
+      // On-call — match by location containing key identifiers
+      var bleep = '';
+      if (loc.indexOf('300') >= 0 || (loc.indexOf('anaesth') >= 0 && loc.indexOf('on call') >= 0)) bleep = '300';
+      else if (loc === '508' || (loc.indexOf('508') >= 0 && loc.indexOf('theatre') < 0)) bleep = '508';
+      else if (loc === '822' || (loc.indexOf('822') >= 0 && loc.indexOf('theatre') < 0)) bleep = '822';
+      else if (loc === '504' || loc.indexOf('itu ext') >= 0) bleep = '504';
+      else if (loc.indexOf('itu on call') >= 0 || loc.indexOf('itu on-call') >= 0) bleep = 'itu_consultant';
+
+      if (bleep) {
+          if (!rota.tomorrow.on_call[bleep]) rota.tomorrow.on_call[bleep] = { label: row.location, bleep: bleep };
+          var people = row.primary.concat(row.support);
+          if (people.length === 1) {
+            rota.tomorrow.on_call[bleep][slot] = splitNameGrade(people[0]);
+          } else if (people.length > 1) {
+            rota.tomorrow.on_call[bleep][slot] = people.map(function(p) { return splitNameGrade(p); });
+          } else {
+            rota.tomorrow.on_call[bleep][slot] = cleanName(row.raw) || '—';
+          }
+      }
+
+      // Theatres
+      var thMatch = loc.match(/theatre\s*(\d+)/i) || loc.match(/th\s*(\d+)/i);
+      if (thMatch) {
+        var thKey = 'th' + thMatch[1];
+        if (!rota.tomorrow.theatres[thKey]) rota.tomorrow.theatres[thKey] = { number: parseInt(thMatch[1]), name: row.location };
+        var th = rota.tomorrow.theatres[thKey];
+        if (!th[slot]) th[slot] = {};
+        if (row.cancelled) {
+          th[slot].cancelled = true;
+          th[slot].session = row.session || '';
+        } else {
+          th[slot].session = row.session || '';
+          if (row.primary.length > 0) th[slot].primary = row.primary.map(function(p) { return cleanName(p); }).join(', ');
+          if (row.support.length > 0) {
+            th[slot].support = row.support.map(function(s) { return splitNameGrade(s); });
+          }
+          if (hasGlanso(row.raw)) th[slot].glanso = true;
+        }
+      }
+
+      // Available Consultants
+      if (loc.indexOf('available') >= 0 && loc.indexOf('consultant') >= 0) {
+        var acPeople = row.primary.concat(row.support);
+        if (acPeople.length > 0) {
+          rota.tomorrow.available_consultants[slot] = acPeople.map(function(p) { return cleanName(p); }).join(', ');
+        }
+      }
+
+      // ITU Day Staff
+      if (loc.indexOf('itu ext') >= 0) {
+        if (!rota.tomorrow.itu_day) rota.tomorrow.itu_day = [];
+        var ituPeople = row.primary.concat(row.support);
+        for (var ip = 0; ip < ituPeople.length; ip++) {
+          var parsed = splitNameGrade(ituPeople[ip]);
+          if (parsed.name && rota.tomorrow.itu_day.findIndex(function(x) { return x.name === parsed.name; }) < 0) {
+            rota.tomorrow.itu_day.push(parsed);
+          }
+        }
+      }
+
+      // Support (ESA, Epidural)
+      if (loc.indexOf('esa') >= 0) {
+        if (!rota.tomorrow.support.esa135) rota.tomorrow.support.esa135 = {};
+        var raw = cleanName(row.raw);
+        if (slot === 'am' || slot === 'pm') rota.tomorrow.support.esa135[slot] = raw || '—';
+      }
+      if (loc.indexOf('epidural') >= 0) {
+        if (!rota.tomorrow.support.epidural234) rota.tomorrow.support.epidural234 = {};
+        var raw2 = cleanName(row.raw);
+        if (slot === 'am' || slot === 'pm') rota.tomorrow.support.epidural234[slot] = raw2 || '—';
+      }
+    }
+
+    // Set theatre types for tomorrow
+    for (var tk in theatreTypes) {
+      if (rota.tomorrow.theatres[tk]) rota.tomorrow.theatres[tk].type = theatreTypes[tk];
+    }
+
+    // Auto-fill tomorrow's 822 from Theatre 8
+    if (rota.tomorrow.on_call['822'] && rota.tomorrow.theatres.th8) {
+      for (var ts of ['am', 'pm']) {
+        var tEntry = rota.tomorrow.on_call['822'][ts];
+        var tMissing = !tEntry || (typeof tEntry === 'object' && !tEntry.name);
+        if (tMissing && rota.tomorrow.theatres.th8[ts] && rota.tomorrow.theatres.th8[ts].primary) {
+          rota.tomorrow.on_call['822'][ts] = { name: rota.tomorrow.theatres.th8[ts].primary, role: 'LD' };
+        }
+      }
+    }
+
+    console.log('Tomorrow processed.');
   }
 
   // Write output
