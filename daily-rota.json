@@ -1,7 +1,7 @@
 {
   "date": "2026-03-25",
   "day": "Wed",
-  "scraped_at": "2026-03-25T08:08:30.575Z",
+  "scraped_at": "2026-03-25T08:49:16.420Z",
   "available_consultants": {
     "am": "—",
     "pm": "—"
@@ -135,23 +135,6 @@
       "ext": "3142",
       "type": "CEPOD",
       "am": {
-        "list": "Arunagiri / EGS",
-        "primary": "A. Edmonds",
-        "support": [],
-        "cancelled": false
-      },
-      "pm": {
-        "list": "Bunting / UGI",
-        "primary": "A. Edmonds, J. Powell",
-        "support": [],
-        "cancelled": false
-      }
-    },
-    "th4": {
-      "label": "Theatre 4",
-      "ext": "3167",
-      "type": "General/CEPOD",
-      "am": {
         "list": "CEPOD / CEPOD",
         "primary": "508",
         "support": [
@@ -169,6 +152,33 @@
           {
             "name": "O. Kirby",
             "grade": "CT2"
+          }
+        ],
+        "cancelled": false
+      }
+    },
+    "th4": {
+      "label": "Theatre 4",
+      "ext": "3167",
+      "type": "General/CEPOD",
+      "am": {
+        "list": "Findlay / UGI",
+        "primary": "M. Abouelsaad",
+        "support": [
+          {
+            "name": "E. Hosker",
+            "grade": "CT Anaes"
+          }
+        ],
+        "cancelled": false
+      },
+      "pm": {
+        "list": "Findlay / UGI",
+        "primary": "M. Abouelsaad",
+        "support": [
+          {
+            "name": "E. Hosker",
+            "grade": "CT Anaes"
           }
         ],
         "cancelled": false
@@ -206,25 +216,15 @@
       "ext": "2488",
       "type": "Day Case",
       "am": {
-        "list": "Findlay / UGI",
-        "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "list": "Arunagiri / EGS",
+        "primary": "A. Edmonds",
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Findlay / UGI",
-        "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "primary": "A. Edmonds, J. Powell",
+        "support": [],
         "cancelled": false
       }
     },
