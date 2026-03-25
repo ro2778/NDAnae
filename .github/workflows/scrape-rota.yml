@@ -10,6 +10,7 @@ on:
     - cron: '0 7 * * 1-5'
     - cron: '30 7 * * 1-5'
     - cron: '0 8 * * 1-5'
+    - cron: '0 12 * * 1-5'
     - cron: '0 16 * * 1-5'
     - cron: '0 19 * * 1-5'
     # Sat-Sun: 5am, 5pm UTC (= 6am, 6pm BST)
