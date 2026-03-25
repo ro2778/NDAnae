@@ -252,7 +252,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.25';
+var APP_VERSION = '1.0.26';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -424,9 +424,12 @@ function closeModule() {
 document.getElementById('back-btn').addEventListener('click', closeModule);
 window.addEventListener('popstate', function() { if (currentModule) closeModule(); });
 
-/* Service worker */
+/* Service worker — version-busted to force update check on each app version */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(function() {});
+  navigator.serviceWorker.register('sw.js?v=' + APP_VERSION).then(function(reg) {
+    /* Force check for updates on every page load */
+    reg.update();
+  }).catch(function() {});
 }
 </script>
 </body>

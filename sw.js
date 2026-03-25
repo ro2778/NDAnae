@@ -1,4 +1,4 @@
-var CACHE = 'ndanae-v13';
+var CACHE = 'ndanae-v1.0.26';
 var ASSETS = [
   './',
   './index.html',
@@ -12,11 +12,7 @@ var ASSETS = [
 ];
 
 self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open(CACHE).then(function(cache) {
-      return cache.addAll(ASSETS);
-    })
-  );
+  /* Skip cache prefetch — network-first means cache is populated on demand */
   self.skipWaiting();
 });
 
@@ -34,6 +30,15 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   var url = e.request.url;
+
+  /* Skip non-GET and chrome-extension requests */
+  if (e.request.method !== 'GET' || url.indexOf('chrome-extension') >= 0) return;
+
+  /* daily-rota.json: always network, never cache (changes frequently) */
+  if (url.indexOf('daily-rota.json') >= 0) {
+    e.respondWith(fetch(e.request));
+    return;
+  }
 
   /* Images: cache first (they rarely change) */
   if (url.match(/\.(png|jpg|webp|ico|svg)$/)) {
