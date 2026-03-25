@@ -131,7 +131,7 @@ h1 { font-size: 18px; color: var(--accent); }
 
 <!-- FORM VIEW -->
 <div id="formView" class="form-view">
-  <div class="back-link" onclick="showList()">&#8592; Back to audits</div>
+  <!-- Back handled by NDAnae parent floating button -->
   <div class="header" style="margin-bottom:8px;">
     <h1 id="formTitle"></h1>
   </div>
@@ -288,7 +288,7 @@ h1 { font-size: 18px; color: var(--accent); }
     </div>
     <div class="form-group">
       <label class="form-label">eGFR</label>
-      <input class="form-input" type="text" inputmode="numeric" id="f_egfr" placeholder="e.g. 65 or >90">
+      <input class="form-input" type="text" id="f_egfr" placeholder="e.g. 65 or >90">
     </div>
 
     <div class="subsection">Clotting</div>
@@ -978,7 +978,7 @@ function clearFormData() {
   }
 }
 
-// DOB auto-formatting (DDMMYY with / separators)
+// DOB auto-formatting (DDMMYY with / separators — slash appears after 2nd and 4th digit)
 document.getElementById('f_dobAge').addEventListener('input', function(e) {
   var raw = this.value.replace(/\D/g, '');
   if (raw.length > 6) raw = raw.substring(0, 6);
@@ -987,6 +987,8 @@ document.getElementById('f_dobAge').addEventListener('input', function(e) {
     if (i === 2 || i === 4) formatted += '/';
     formatted += raw[i];
   }
+  // Add trailing slash after 2nd or 4th digit to prompt next section
+  if (raw.length === 2 || raw.length === 4) formatted += '/';
   this.value = formatted;
 });
 
