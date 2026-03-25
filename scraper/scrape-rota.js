@@ -330,17 +330,25 @@ function hasGlanso(raw) {
       }
     }
 
-    // Auto-fill Theatre 3 (CEPOD) primary from 508 on-call
-    if (result.on_call['508'] && result.theatres.th3) {
-      for (var s2 of ['am', 'pm']) {
-        var th3slot = result.theatres.th3[s2];
-        if (th3slot && (!th3slot.primary || th3slot.primary === '508')) {
-          var oc508 = result.on_call['508'][s2];
-          var name508 = '';
-          if (typeof oc508 === 'string') name508 = oc508;
-          else if (oc508 && oc508.name) name508 = oc508.name;
-          else if (Array.isArray(oc508) && oc508.length > 0) name508 = oc508[0].name || '';
-          if (name508) th3slot.primary = name508;
+    // Auto-fill CEPOD theatre primary from 508 on-call
+    // CEPOD theatre has no named primary (508 is stripped by cleanName), detect by list name or type
+    if (result.on_call['508']) {
+      for (var thk in result.theatres) {
+        var th = result.theatres[thk];
+        for (var s2 of ['am', 'pm']) {
+          var thSlot = th[s2];
+          if (thSlot && !thSlot.primary && !thSlot.cancelled) {
+            // Check if this is a CEPOD/emergency list
+            var isCepod = (thSlot.list && /cepod/i.test(thSlot.list)) || (th.type && /cepod/i.test(th.type));
+            if (isCepod) {
+              var oc508 = result.on_call['508'][s2];
+              var name508 = '';
+              if (typeof oc508 === 'string') name508 = oc508;
+              else if (oc508 && oc508.name) name508 = oc508.name;
+              else if (Array.isArray(oc508) && oc508.length > 0) name508 = oc508[0].name || '';
+              if (name508) thSlot.primary = name508;
+            }
+          }
         }
       }
     }
