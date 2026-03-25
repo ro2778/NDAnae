@@ -1,4 +1,4 @@
-var CACHE = 'ndanae-v8';
+var CACHE = 'ndanae-v9';
 var ASSETS = [
   './',
   './index.html',

@@ -20,8 +20,8 @@
 
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 600px; margin: 0 auto; }
 
-.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 16px; padding: 8px 44px 4px 44px; }
-h1 { font-size: 18px; color: var(--accent); }
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 16px; padding: 8px 50px 4px 50px; }
+h1 { font-size: 17px; color: var(--accent); text-align: center; }
 
 /* Search */
 .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-size: 14px; margin-bottom: 16px; outline: none; }
@@ -425,7 +425,7 @@ var currentStep = 1;
 var currentProjectId = null;
 
 var PROJECTS = [
-  { id: 'teg6s', name: 'TEG6s Post-Implementation Audit', lead: 'Dr James Powell', letter: 'T' }
+  { id: 'teg6s', name: 'TEG6 Audit', lead: 'Dr James Powell', letter: 'T' }
 ];
 
 var TEG_PARAMS = ['TEG-ACT','R-time','K','Angle','A10','MA','LY30'];
@@ -849,7 +849,7 @@ function buildSubmissionText() {
   var cat = document.querySelector('input[name="f_category"]:checked');
 
   var lines = [];
-  lines.push('=== TEG6s Post-Implementation Audit ===');
+  lines.push('=== TEG6 Audit ===');
   lines.push('');
   lines.push('--- 1. Patient Details ---');
   lines.push('Hospital Number: ' + g('f_hospitalNo'));
