@@ -356,7 +356,7 @@
   },
   "date": "2026-03-26",
   "day": "Thu",
-  "scraped_at": "2026-03-26T12:51:20.183Z",
+  "scraped_at": "2026-03-26T17:05:53.781Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -423,11 +423,11 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "B. Vidanapathirana",
+          "name": "K. Pyatt",
           "role": "LD"
         },
         "pm": {
-          "name": "B. Vidanapathirana",
+          "name": "K. Pyatt",
           "role": "LD"
         },
         "eve": {
@@ -463,9 +463,9 @@
         },
         "pm": {
           "list": "Van Heerden / Kale / Ortho",
-          "primary": "E. Szelei",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th2": {
@@ -616,13 +616,13 @@
         "type": "Obstetrics",
         "am": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "B. Vidanapathirana",
+          "primary": "K. Pyatt",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "B. Vidanapathirana",
+          "primary": "K. Pyatt",
           "support": [],
           "cancelled": false
         }
@@ -633,13 +633,13 @@
         "type": "Eyes",
         "am": {
           "list": "Razzaq - Additional GA / Ophth GA",
-          "primary": "K. Pyatt",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Razzaq - Additional GA / Ophth GA",
-          "primary": "K. Pyatt",
+          "primary": "E. Szelei",
           "support": [],
           "cancelled": false
         }
@@ -689,7 +689,7 @@
       "epidural234": {
         "label": "Epidural Bleep 234",
         "am": "—",
-        "pm": "B. Vidanapathirana"
+        "pm": "—"
       }
     },
     "date": "2026-03-27",
