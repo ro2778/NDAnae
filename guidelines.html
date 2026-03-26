@@ -225,11 +225,13 @@ function scrollToHowTo() {
   if (el) {
     // Open it if closed
     if (!el.classList.contains('open')) el.classList.add('open');
-    // Scroll to it
-    el.scrollIntoView({ behavior: 'smooth' });
-    // Highlight briefly
-    el.style.boxShadow = '0 0 0 3px var(--accent)';
-    setTimeout(function() { el.style.boxShadow = ''; }, 3000);
+    // Delay scroll to let DOM settle after expanding
+    setTimeout(function() {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Highlight briefly
+      el.style.boxShadow = '0 0 0 3px var(--accent)';
+      setTimeout(function() { el.style.boxShadow = ''; }, 3000);
+    }, 150);
   }
 }
 
