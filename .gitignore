@@ -1,3 +1,8 @@
 node_modules/
 package-lock.json
 .env
+Guidelines/Hub_Guidelines/
+Guidelines/NDDH_Guidelines_All.zip
+Guidelines/eolas_all_guidelines.json
+WATCh-Drug-Sheet-v27.19.xlsx
+*.DS_Store
