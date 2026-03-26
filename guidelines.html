@@ -225,13 +225,17 @@ function scrollToHowTo() {
   if (el) {
     // Open it if closed
     if (!el.classList.contains('open')) el.classList.add('open');
-    // Delay scroll to let DOM settle after expanding
+    // Longer delay to let DOM fully settle after expanding
     setTimeout(function() {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Use manual scroll with offset to account for banners/fixed elements
+      var rect = el.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var offset = 20; // extra padding above the target
+      window.scrollTo({ top: scrollTop + rect.top - offset, behavior: 'smooth' });
       // Highlight briefly
       el.style.boxShadow = '0 0 0 3px var(--accent)';
       setTimeout(function() { el.style.boxShadow = ''; }, 3000);
-    }, 150);
+    }, 300);
   }
 }
 
