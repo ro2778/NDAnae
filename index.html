@@ -254,7 +254,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.0.31';
+var APP_VERSION = '1.0.32';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -400,7 +400,8 @@ function openModule(mod) {
   if (!url) return;
 
   if (url.indexOf('http') === 0) {
-    window.location.href = url;
+    /* Open external apps in new tab to preserve NDAnae PWA state */
+    window.open(url, '_blank');
     return;
   }
 
