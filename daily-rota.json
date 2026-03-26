@@ -216,23 +216,13 @@
       "am": {
         "list": "Sanders / UGI",
         "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "F. Francis",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Sanders / UGI",
         "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "F. Francis",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -366,7 +356,7 @@
   },
   "date": "2026-03-26",
   "day": "Thu",
-  "scraped_at": "2026-03-26T06:12:57.705Z",
+  "scraped_at": "2026-03-26T08:01:12.091Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -468,23 +458,13 @@
         "am": {
           "list": "Van Heerden / Kale / Ortho",
           "primary": "E. Szelei",
-          "support": [
-            {
-              "name": "F. Francis",
-              "grade": "ACCS Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Van Heerden / Kale / Ortho",
           "primary": "E. Szelei",
-          "support": [
-            {
-              "name": "F. Francis",
-              "grade": "ACCS Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
