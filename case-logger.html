@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Case Logger</title>
+<style>
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222;
+  --text: #e0e0e0; --text2: #aaa; --text3: #666;
+  --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --shadow: rgba(0,0,0,0.3); --header-bg: #111;
+  --success: #27ae60; --danger: #e74c3c;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc;
+  --text: #1a1a2e; --text2: #555; --text3: #999;
+  --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --shadow: rgba(0,0,0,0.08); --header-bg: #fff;
+  --success: #1e8449; --danger: #c0392b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); max-width: 600px; margin: 0 auto; padding: 0 12px 120px; padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+/* Header */
+.header { text-align: center; padding: 12px 0 8px; }
+.header h1 { font-size: 18px; color: var(--accent); font-weight: 700; }
+.mode-toggle { display: flex; justify-content: center; gap: 0; margin: 8px 0; }
+.mode-btn { padding: 5px 16px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.mode-btn:first-child { border-radius: 6px 0 0 6px; }
+.mode-btn:last-child { border-radius: 0 6px 6px 0; }
+.mode-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* View tabs */
+.view-tabs { display: flex; justify-content: center; gap: 0; margin-bottom: 12px; }
+.view-btn { flex: 1; padding: 8px 16px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.view-btn:first-child { border-radius: 8px 0 0 8px; }
+.view-btn:last-child { border-radius: 0 8px 8px 0; }
+.view-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Form elements */
+.section { margin-bottom: 16px; }
+.section-title { font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+.form-group { margin-bottom: 10px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+.form-input, .form-select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg2); color: var(--text); font-size: 14px; min-height: 44px; font-family: inherit; }
+.form-input:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+.form-textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg2); color: var(--text); font-size: 14px; min-height: 60px; resize: vertical; font-family: inherit; }
+.form-textarea:focus { outline: none; border-color: var(--accent); }
+.inline-pair { display: flex; gap: 8px; }
+.inline-pair .form-group { flex: 1; }
+
+/* Toggle buttons (single select) */
+.toggle-row { display: flex; gap: 0; }
+.toggle-btn { flex: 1; padding: 10px 4px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 12px; font-weight: 600; cursor: pointer; min-height: 44px; transition: all 0.15s; text-align: center; }
+.toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+.toggle-btn:not(:first-child) { border-left: none; }
+.toggle-btn.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+.toggle-btn.selected + .toggle-btn { border-left-color: var(--accent); }
+
+/* Checkbox group (multi select) */
+.check-group { display: flex; flex-wrap: wrap; gap: 6px; }
+.check-item { display: flex; align-items: center; gap: 5px; padding: 6px 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 12px; color: var(--text2); transition: all 0.15s; }
+.check-item input { width: 16px; height: 16px; accent-color: var(--accent); }
+.check-item.selected { border-color: var(--accent); background: var(--bg3); color: var(--text); }
+
+/* Theatre picker */
+.rota-banner { background: var(--bg3); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 12px; color: var(--accent); font-weight: 600; text-align: center; }
+.theatre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+.theatre-card { padding: 8px 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+.theatre-card:active { transform: scale(0.97); }
+.theatre-card.selected { border-color: var(--accent); background: var(--bg3); }
+.theatre-card.cancelled { opacity: 0.35; pointer-events: none; text-decoration: line-through; }
+.theatre-num { font-size: 11px; font-weight: 700; color: var(--accent); }
+.theatre-type { font-size: 10px; color: var(--text3); }
+.theatre-list { font-size: 11px; color: var(--text2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.theatre-staff { font-size: 10px; color: var(--text3); margin-top: 1px; }
+
+/* Regional block rows */
+.block-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 8px; padding: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; }
+.block-row .form-select { flex: 1; min-height: 36px; padding: 6px 8px; font-size: 12px; }
+.block-techniques { display: flex; gap: 4px; flex-shrink: 0; }
+.block-techniques .check-item { padding: 4px 8px; font-size: 11px; }
+.block-remove { width: 32px; height: 32px; border: none; background: none; color: var(--danger); font-size: 18px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.add-btn { display: inline-flex; align-items: center; gap: 4px; padding: 8px 14px; background: var(--bg2); border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; }
+.add-btn:active { background: var(--bg3); }
+
+/* Action bar */
+.action-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 8px; justify-content: center; z-index: 20; }
+.action-bar .btn { flex: 1; max-width: 280px; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; min-height: 44px; border: none; transition: all 0.15s; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:active { opacity: 0.8; }
+.btn-secondary { background: var(--bg3); color: var(--accent); border: 1px solid var(--accent) !important; }
+.btn-secondary:active { background: var(--bg2); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-small { padding: 6px 12px; font-size: 12px; min-height: 32px; border-radius: 6px; }
+
+/* Case list */
+.case-card { padding: 10px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+.case-card:active { transform: scale(0.98); }
+.case-header { display: flex; justify-content: space-between; align-items: center; }
+.case-date { font-size: 12px; font-weight: 700; color: var(--accent); }
+.case-asa { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--bg3); color: var(--text2); font-weight: 600; }
+.case-op { font-size: 14px; font-weight: 600; color: var(--text); margin-top: 3px; }
+.case-detail { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.case-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.case-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--bg3); color: var(--text2); }
+
+/* Stats bar */
+.stats-bar { display: flex; gap: 8px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap; }
+.stat { text-align: center; padding: 8px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; min-width: 60px; }
+.stat-num { font-size: 18px; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 10px; color: var(--text3); }
+
+/* Export modal */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 30; align-items: center; justify-content: center; }
+.modal-overlay.active { display: flex; }
+.modal { background: var(--bg2); border-radius: 16px; padding: 20px; width: 90%; max-width: 360px; }
+.modal h3 { font-size: 16px; color: var(--accent); margin-bottom: 12px; }
+
+/* Toast */
+.toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; z-index: 50; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+/* Utility */
+.hidden { display: none !important; }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text3); }
+.empty-state .empty-icon { font-size: 48px; margin-bottom: 8px; }
+.empty-state .empty-text { font-size: 14px; }
+
+/* Filter bar */
+.filter-bar { display: flex; gap: 6px; margin-bottom: 10px; }
+.filter-bar .form-input, .filter-bar .form-select { min-height: 36px; padding: 6px 8px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Case Logger</h1>
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="mode-trainee" onclick="setMode('trainee')">Trainee</button>
+    <button class="mode-btn" id="mode-independent" onclick="setMode('independent')">Independent</button>
+  </div>
+</div>
+
+<div class="view-tabs">
+  <button class="view-btn active" id="tab-entry" onclick="switchView('entry')">New Case</button>
+  <button class="view-btn" id="tab-list" onclick="switchView('list')">Case Log</button>
+</div>
+
+<!-- ===== ENTRY VIEW ===== -->
+<div id="entryView">
+
+  <!-- Date + Session -->
+  <div class="section">
+    <div class="section-title">Date & Session</div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input class="form-input" type="date" id="f_date" onchange="onDateChange()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Session</label>
+        <div class="toggle-row" id="f_session_group">
+          <button class="toggle-btn" data-val="Morning" onclick="setToggleBtn(this,'f_session')">AM</button>
+          <button class="toggle-btn" data-val="Afternoon" onclick="setToggleBtn(this,'f_session')">PM</button>
+          <button class="toggle-btn" data-val="Evening" onclick="setToggleBtn(this,'f_session')">Eve</button>
+          <button class="toggle-btn" data-val="Night" onclick="setToggleBtn(this,'f_session')">Night</button>
+        </div>
+        <input type="hidden" id="f_session" value="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Theatre Picker (rota) -->
+  <div class="section" id="rotaSection">
+    <div class="rota-banner" id="rotaBanner">Loading rota...</div>
+    <div class="theatre-grid" id="theatreGrid"></div>
+  </div>
+
+  <!-- Patient -->
+  <div class="section">
+    <div class="section-title">Patient</div>
+    <div class="inline-pair">
+      <div class="form-group" style="flex:1">
+        <label class="form-label">Age</label>
+        <input class="form-input" type="number" id="f_age" inputmode="numeric" min="0" max="120" placeholder="Age">
+      </div>
+      <div class="form-group" style="flex:0.6">
+        <label class="form-label">Units</label>
+        <div class="toggle-row" id="f_ageUnits_group">
+          <button class="toggle-btn selected" data-val="Years" onclick="setToggleBtn(this,'f_ageUnits')">Yrs</button>
+          <button class="toggle-btn" data-val="Months" onclick="setToggleBtn(this,'f_ageUnits')">Mths</button>
+        </div>
+        <input type="hidden" id="f_ageUnits" value="Years">
+      </div>
+      <div class="form-group" style="flex:1.2">
+        <label class="form-label">ASA</label>
+        <div class="toggle-row" id="f_asa_group">
+          <button class="toggle-btn" data-val="1" onclick="setToggleBtn(this,'f_asa')">1</button>
+          <button class="toggle-btn" data-val="2" onclick="setToggleBtn(this,'f_asa')">2</button>
+          <button class="toggle-btn" data-val="3" onclick="setToggleBtn(this,'f_asa')">3</button>
+          <button class="toggle-btn" data-val="4" onclick="setToggleBtn(this,'f_asa')">4</button>
+          <button class="toggle-btn" data-val="5" onclick="setToggleBtn(this,'f_asa')">5</button>
+        </div>
+        <input type="hidden" id="f_asa" value="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Case Details -->
+  <div class="section">
+    <div class="section-title">Case Details</div>
+    <div class="inline-pair">
+      <div class="form-group" style="flex:1">
+        <label class="form-label">Specialty</label>
+        <select class="form-select" id="f_specialty" onchange="onSpecialtyChange()">
+          <option value="">Select...</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1">
+        <label class="form-label">Operation</label>
+        <input class="form-input" type="text" id="f_operation" list="opSuggestions" placeholder="Type or select...">
+        <datalist id="opSuggestions"></datalist>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Priority</label>
+      <div class="toggle-row" id="f_priority_group">
+        <button class="toggle-btn" data-val="Elective" onclick="setToggleBtn(this,'f_priority')">Elective</button>
+        <button class="toggle-btn" data-val="Urgent" onclick="setToggleBtn(this,'f_priority')">Urgent</button>
+        <button class="toggle-btn" data-val="Expedited" onclick="setToggleBtn(this,'f_priority')">Expedited</button>
+        <button class="toggle-btn" data-val="Immediate" onclick="setToggleBtn(this,'f_priority')">Immediate</button>
+      </div>
+      <input type="hidden" id="f_priority" value="">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Destination</label>
+      <div class="toggle-row" id="f_destination_group">
+        <button class="toggle-btn" data-val="Day Case" onclick="setToggleBtn(this,'f_destination')">Day Case</button>
+        <button class="toggle-btn" data-val="Inpatient" onclick="setToggleBtn(this,'f_destination')">Inpatient</button>
+        <button class="toggle-btn" data-val="HDU" onclick="setToggleBtn(this,'f_destination')">HDU</button>
+        <button class="toggle-btn" data-val="ITU" onclick="setToggleBtn(this,'f_destination')">ITU</button>
+      </div>
+      <input type="hidden" id="f_destination" value="">
+    </div>
+  </div>
+
+  <!-- Anaesthesia Type -->
+  <div class="section">
+    <div class="section-title">Anaesthesia</div>
+    <div class="check-group" id="f_anaesthesia_group">
+      <label class="check-item"><input type="checkbox" value="GA LMA" onchange="toggleCheck(this)">GA LMA</label>
+      <label class="check-item"><input type="checkbox" value="GA ETT" onchange="toggleCheck(this)">GA ETT</label>
+      <label class="check-item"><input type="checkbox" value="GA Face Mask" onchange="toggleCheck(this)">GA Mask</label>
+      <label class="check-item"><input type="checkbox" value="Sedation" onchange="toggleCheck(this)">Sedation</label>
+      <label class="check-item"><input type="checkbox" value="Spinal" onchange="toggleCheck(this)">Spinal</label>
+      <label class="check-item"><input type="checkbox" value="Epidural" onchange="toggleCheck(this)">Epidural</label>
+      <label class="check-item"><input type="checkbox" value="Regional" onchange="toggleCheck(this)">Regional</label>
+      <label class="check-item"><input type="checkbox" value="Local" onchange="toggleCheck(this)">Local</label>
+    </div>
+  </div>
+
+  <!-- Supervision (trainee mode only) -->
+  <div class="section" id="supervisionSection">
+    <div class="section-title">Supervision</div>
+    <div class="form-group">
+      <label class="form-label">Level</label>
+      <div class="toggle-row" id="f_supervision_group">
+        <button class="toggle-btn" data-val="Immediate" onclick="setToggleBtn(this,'f_supervision')">Immediate</button>
+        <button class="toggle-btn" data-val="Local" onclick="setToggleBtn(this,'f_supervision')">Local</button>
+        <button class="toggle-btn" data-val="Distant" onclick="setToggleBtn(this,'f_supervision')">Distant</button>
+        <button class="toggle-btn" data-val="Solo" onclick="setToggleBtn(this,'f_supervision')">Solo</button>
+      </div>
+      <input type="hidden" id="f_supervision" value="">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Supervisor</label>
+      <div class="toggle-row" id="f_supervisorType_group">
+        <button class="toggle-btn" data-val="Consultant" onclick="setToggleBtn(this,'f_supervisorType')">Consultant</button>
+        <button class="toggle-btn" data-val="SAS" onclick="setToggleBtn(this,'f_supervisorType')">SAS</button>
+        <button class="toggle-btn" data-val="Other" onclick="setToggleBtn(this,'f_supervisorType')">Other</button>
+      </div>
+      <input type="hidden" id="f_supervisorType" value="">
+    </div>
+  </div>
+
+  <!-- Teaching -->
+  <div class="section">
+    <div class="section-title">Teaching</div>
+    <div class="form-group">
+      <label class="form-label">Did you provide teaching?</label>
+      <div class="toggle-row" id="f_teaching_group">
+        <button class="toggle-btn" data-val="Yes" onclick="setToggleBtn(this,'f_teaching')">Yes</button>
+        <button class="toggle-btn" data-val="No" onclick="setToggleBtn(this,'f_teaching')">No</button>
+      </div>
+      <input type="hidden" id="f_teaching" value="">
+    </div>
+  </div>
+
+  <!-- Regional Blocks -->
+  <div class="section">
+    <div class="section-title">Regional Blocks</div>
+    <div id="blocksContainer"></div>
+    <button class="add-btn" onclick="addBlock()">+ Add Block</button>
+  </div>
+
+  <!-- Procedures -->
+  <div class="section">
+    <div class="section-title">Procedures</div>
+    <div class="check-group" id="f_procedures_group">
+      <label class="check-item"><input type="checkbox" value="Arterial line" onchange="toggleCheck(this)">Arterial line</label>
+      <label class="check-item"><input type="checkbox" value="Central line" onchange="toggleCheck(this)">Central line</label>
+      <label class="check-item"><input type="checkbox" value="RSI" onchange="toggleCheck(this)">RSI</label>
+      <label class="check-item"><input type="checkbox" value="Fibreoptic intubation" onchange="toggleCheck(this)">Fibreoptic</label>
+      <label class="check-item"><input type="checkbox" value="Videolaryngoscopy" onchange="toggleCheck(this)">Videolaryngoscopy</label>
+      <label class="check-item"><input type="checkbox" value="Chest drain" onchange="toggleCheck(this)">Chest drain</label>
+      <label class="check-item"><input type="checkbox" value="Cricothyroidotomy" onchange="toggleCheck(this)">Cricothyroidotomy</label>
+      <label class="check-item"><input type="checkbox" value="Awake intubation" onchange="toggleCheck(this)">Awake intubation</label>
+      <label class="check-item"><input type="checkbox" value="Blood transfusion" onchange="toggleCheck(this)">Blood transfusion</label>
+      <label class="check-item"><input type="checkbox" value="Nerve catheter" onchange="toggleCheck(this)">Nerve catheter</label>
+      <label class="check-item"><input type="checkbox" value="TIVA" onchange="toggleCheck(this)">TIVA</label>
+      <label class="check-item"><input type="checkbox" value="Cell salvage" onchange="toggleCheck(this)">Cell salvage</label>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="section">
+    <div class="section-title">Notes</div>
+    <div class="form-group">
+      <label class="form-label">Incidents</label>
+      <textarea class="form-textarea" id="f_incidents" placeholder="Any incidents or complications..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes</label>
+      <textarea class="form-textarea" id="f_notes" placeholder="Additional notes..."></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== LIST VIEW ===== -->
+<div id="listView" class="hidden">
+  <div class="stats-bar" id="statsBar"></div>
+  <div class="filter-bar">
+    <input class="form-input" type="text" id="filterSearch" placeholder="Search..." oninput="renderCaseList()">
+    <select class="form-select" id="filterSpecialty" onchange="renderCaseList()" style="max-width:140px">
+      <option value="">All specialties</option>
+    </select>
+  </div>
+  <div id="caseListContainer"></div>
+</div>
+
+<!-- ===== EXPORT MODAL ===== -->
+<div class="modal-overlay" id="exportModal">
+  <div class="modal">
+    <h3>Export Cases</h3>
+    <div class="form-group">
+      <label class="form-label">From</label>
+      <input class="form-input" type="date" id="exportFrom">
+    </div>
+    <div class="form-group">
+      <label class="form-label">To</label>
+      <input class="form-input" type="date" id="exportTo">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Format</label>
+      <div class="toggle-row">
+        <button class="toggle-btn selected" data-val="logbook" onclick="setToggleBtn(this,'exportFormat')">.logbook</button>
+        <button class="toggle-btn" data-val="xlsx" onclick="setToggleBtn(this,'exportFormat')">Excel</button>
+        <button class="toggle-btn" data-val="csv" onclick="setToggleBtn(this,'exportFormat')">CSV</button>
+        <button class="toggle-btn" data-val="pdf" onclick="setToggleBtn(this,'exportFormat')">PDF</button>
+      </div>
+      <input type="hidden" id="exportFormat" value="logbook">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button class="btn btn-secondary btn-small" style="flex:1" onclick="closeExportModal()">Cancel</button>
+      <button class="btn btn-primary btn-small" style="flex:1" onclick="doExport()">Export</button>
+    </div>
+  </div>
+</div>
+
+<!-- Action bar -->
+<div class="action-bar" id="entryActions">
+  <button class="btn btn-secondary" onclick="sameAsLast()">Same as Last</button>
+  <button class="btn btn-primary" onclick="saveCase()">Save Case</button>
+</div>
+<div class="action-bar hidden" id="listActions">
+  <button class="btn btn-secondary" onclick="openExportModal()">Export</button>
+  <button class="btn btn-primary" onclick="switchView('entry')">+ New Case</button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==================== DATA ==================== */
+
+var SPECIALTIES = [
+  'Orthopaedics','Trauma','General Surgery','Obstetrics','Gynaecology',
+  'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
+  'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain','Other'
+];
+
+var OPERATION_SUGGESTIONS = {
+  'Orthopaedics': ['Total hip replacement','Total knee replacement','Hemiarthroplasty','ORIF ankle','ORIF wrist','Arthroscopy knee','Carpal tunnel','ACL reconstruction','Shoulder replacement','MUA'],
+  'Trauma': ['Hip fracture fixation (DHS)','Hip fracture fixation (IM nail)','Hemiarthroplasty (NOF)','ORIF','Washout','MUA + K-wire','Fasciotomy'],
+  'General Surgery': ['Appendicectomy','Cholecystectomy','Inguinal hernia repair','Umbilical hernia repair','Right hemicolectomy','Anterior resection','Hartmanns procedure','Laparotomy','I&D abscess'],
+  'Obstetrics': ['Caesarean section (elective)','Caesarean section (emergency)','Manual removal of placenta','Perineal repair','Cervical cerclage','Examination under anaesthesia'],
+  'Gynaecology': ['Hysterectomy (abdominal)','Hysterectomy (laparoscopic)','Diagnostic laparoscopy','Hysteroscopy','Anterior repair','Posterior repair','Oophorectomy','Ectopic pregnancy'],
+  'ENT': ['Tonsillectomy','Adenotonsillectomy','Septoplasty','FESS','Grommets','Microlaryngoscopy','Parotidectomy','Thyroidectomy'],
+  'Ophthalmology': ['Cataract (GA)','Vitrectomy','Squint correction','DCR','Enucleation'],
+  'Urology': ['TURP','TURBT','Nephrectomy','Circumcision','Cystoscopy (GA)','Ureteric stent'],
+  'Breast': ['Wide local excision','Mastectomy','Sentinel node biopsy','Axillary clearance'],
+  'Vascular': ['Varicose vein surgery','Below knee amputation','Above knee amputation','Femoral embolectomy','AAA repair','Carotid endarterectomy'],
+  'Paediatrics': ['Dental extractions (GA)','Inguinal herniotomy','Orchidopexy','Circumcision','Pyloromyotomy'],
+  'Cardiothoracic': ['CABG','Valve replacement','VATS','Chest drain insertion'],
+  'Maxillofacial': ['Dental extractions','ORIF mandible','ORIF zygoma'],
+  'Plastics': ['Skin graft','Flap','Tendon repair','Carpal tunnel'],
+  'Neurosurgery': ['Craniotomy','Burr hole','VP shunt','Spinal decompression']
+};
+
+var BLOCKS = [
+  'Interscalene','Supraclavicular','Infraclavicular','Axillary',
+  'Pecs I','Pecs II','Serratus anterior','Paravertebral',
+  'Erector spinae','TAP','Rectus sheath','Quadratus lumborum',
+  'Fascia iliaca','Femoral','Adductor canal','Sciatic (subgluteal)',
+  'Sciatic (popliteal)','Ankle','LCNT','Forearm','Spinal','Epidural','CSE',
+  'Caudal','Penile','Ilioinguinal / iliohypogastric'
+];
+
+var SPECIALTY_MAP = {
+  'ortho': 'Orthopaedics', 'elective ortho': 'Orthopaedics',
+  'trauma': 'Trauma',
+  'ugi': 'General Surgery', 'colorectal': 'General Surgery', 'egs': 'General Surgery', 'general': 'General Surgery',
+  'obstetrics': 'Obstetrics', 'obstetric': 'Obstetrics',
+  'gynae': 'Gynaecology', 'gynaecology': 'Gynaecology',
+  'ent': 'ENT',
+  'ophth ga': 'Ophthalmology', 'ophth': 'Ophthalmology', 'eyes': 'Ophthalmology',
+  'urology': 'Urology',
+  'breast': 'Breast',
+  'vascular': 'Vascular',
+  'paeds': 'Paediatrics', 'comm dental': 'Paediatrics',
+  'cepod': 'General Surgery',
+  'endoscopy': 'General Surgery',
+  'cardioversions': 'Cardiothoracic'
+};
+
+/* ==================== STATE ==================== */
+
+var ROTA_DATA = null;
+var currentView = 'entry';
+var editingCaseId = null;
+var blockCounter = 0;
+
+/* ==================== INIT ==================== */
+
+(function init() {
+  // Theme
+  var theme = localStorage.getItem('ndanae-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+
+  // Mode
+  var mode = localStorage.getItem('ndanae-caselog-mode') || 'trainee';
+  applyMode(mode);
+
+  // Populate specialties dropdown
+  var sel = document.getElementById('f_specialty');
+  SPECIALTIES.forEach(function(s) {
+    var opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    sel.appendChild(opt);
+  });
+
+  // Default date to today
+  document.getElementById('f_date').value = todayStr();
+
+  // Default session from current time
+  var h = new Date().getHours();
+  var defaultSession = h < 12 ? 'Morning' : h < 17 ? 'Afternoon' : h < 20 ? 'Evening' : 'Night';
+  setToggleByValue('f_session', defaultSession);
+
+  // Load rota
+  fetchRota();
+
+  // Restore draft
+  restoreDraft();
+
+  // Auto-save
+  document.addEventListener('input', function(e) { if (e.target.closest('#entryView')) saveDraft(); });
+  document.addEventListener('change', function(e) { if (e.target.closest('#entryView')) saveDraft(); });
+
+  // Populate filter specialty dropdown
+  populateFilterSpecialties();
+})();
+
+function todayStr() {
+  var d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+/* ==================== THEME (listen for parent changes) ==================== */
+
+window.addEventListener('storage', function(e) {
+  if (e.key === 'ndanae-theme') {
+    document.documentElement.setAttribute('data-theme', e.newValue);
+  }
+});
+
+/* ==================== VIEW SWITCHING ==================== */
+
+function switchView(view) {
+  currentView = view;
+  document.getElementById('tab-entry').classList.toggle('active', view === 'entry');
+  document.getElementById('tab-list').classList.toggle('active', view === 'list');
+  document.getElementById('entryView').classList.toggle('hidden', view !== 'entry');
+  document.getElementById('listView').classList.toggle('hidden', view !== 'list');
+  document.getElementById('entryActions').classList.toggle('hidden', view !== 'entry');
+  document.getElementById('listActions').classList.toggle('hidden', view !== 'list');
+  if (view === 'list') {
+    renderCaseList();
+    populateFilterSpecialties();
+  }
+}
+
+/* ==================== MODE TOGGLE ==================== */
+
+function setMode(mode) {
+  localStorage.setItem('ndanae-caselog-mode', mode);
+  applyMode(mode);
+}
+
+function applyMode(mode) {
+  document.getElementById('mode-trainee').classList.toggle('active', mode === 'trainee');
+  document.getElementById('mode-independent').classList.toggle('active', mode === 'independent');
+  document.getElementById('supervisionSection').classList.toggle('hidden', mode === 'independent');
+}
+
+/* ==================== TOGGLE / CHECK HELPERS ==================== */
+
+function setToggleBtn(btn, fieldId) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  document.getElementById(fieldId).value = btn.getAttribute('data-val');
+  saveDraft();
+}
+
+function setToggleByValue(fieldId, val) {
+  var group = document.getElementById(fieldId + '_group') || document.getElementById(fieldId).parentElement;
+  var btns = group.querySelectorAll('.toggle-btn');
+  btns.forEach(function(b) {
+    b.classList.toggle('selected', b.getAttribute('data-val') === val);
+  });
+  document.getElementById(fieldId).value = val;
+}
+
+function toggleCheck(cb) {
+  cb.parentElement.classList.toggle('selected', cb.checked);
+  saveDraft();
+}
+
+function getCheckedValues(groupId) {
+  var vals = [];
+  document.getElementById(groupId).querySelectorAll('input[type="checkbox"]:checked').forEach(function(cb) {
+    vals.push(cb.value);
+  });
+  return vals;
+}
+
+function setCheckedValues(groupId, vals) {
+  document.getElementById(groupId).querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+    cb.checked = vals.indexOf(cb.value) >= 0;
+    cb.parentElement.classList.toggle('selected', cb.checked);
+  });
+}
+
+/* ==================== ROTA INTEGRATION ==================== */
+
+function fetchRota() {
+  fetch('daily-rota.json').then(function(r) { return r.json(); }).then(function(data) {
+    ROTA_DATA = data;
+    onDateChange();
+  }).catch(function() {
+    document.getElementById('rotaSection').classList.add('hidden');
+  });
+}
+
+function onDateChange() {
+  var dateVal = document.getElementById('f_date').value;
+  var isToday = ROTA_DATA && dateVal === ROTA_DATA.date;
+  document.getElementById('rotaSection').classList.toggle('hidden', !isToday);
+  if (isToday) renderTheatres();
+}
+
+function renderTheatres() {
+  if (!ROTA_DATA || !ROTA_DATA.theatres) return;
+  var grid = document.getElementById('theatreGrid');
+  grid.innerHTML = '';
+  document.getElementById('rotaBanner').textContent = 'Select a theatre to auto-fill specialty & session';
+
+  var session = document.getElementById('f_session').value;
+  var slot = (session === 'Morning' || session === '') ? 'am' : 'pm';
+
+  var keys = Object.keys(ROTA_DATA.theatres).sort();
+  keys.forEach(function(key) {
+    var th = ROTA_DATA.theatres[key];
+    var amData = th.am || {};
+    var pmData = th.pm || {};
+    var slotData = slot === 'am' ? amData : pmData;
+    var list = slotData.list || amData.list || '';
+    var primary = slotData.primary || '';
+    var cancelled = slotData.cancelled;
+    var isEmpty = !list && !primary;
+
+    if (isEmpty && !amData.list && !pmData.list) return; // skip empty theatres
+
+    var card = document.createElement('div');
+    card.className = 'theatre-card' + (cancelled ? ' cancelled' : '');
+    card.setAttribute('data-theatre', key);
+    card.innerHTML =
+      '<div class="theatre-num">' + th.label + ' <span style="color:var(--text3);font-weight:400">' + (th.type || '') + '</span></div>' +
+      '<div class="theatre-list">' + (list || 'No list') + '</div>' +
+      (primary ? '<div class="theatre-staff">' + primary + '</div>' : '');
+
+    if (!cancelled) {
+      card.onclick = function() { selectTheatre(key, this); };
+    }
+    grid.appendChild(card);
+  });
+}
+
+function selectTheatre(key, cardEl) {
+  // Visual selection
+  document.querySelectorAll('.theatre-card').forEach(function(c) { c.classList.remove('selected'); });
+  cardEl.classList.add('selected');
+
+  var th = ROTA_DATA.theatres[key];
+  var session = document.getElementById('f_session').value;
+  var slot = (session === 'Morning' || session === '') ? 'am' : 'pm';
+  var slotData = th[slot] || th.am || {};
+  var list = slotData.list || '';
+
+  // Parse specialty from list: "Surgeon / Specialty" → take last part
+  var specialty = '';
+  if (list) {
+    var parts = list.split('/');
+    var raw = parts[parts.length - 1].trim().toLowerCase();
+    // Try direct map
+    if (SPECIALTY_MAP[raw]) specialty = SPECIALTY_MAP[raw];
+    // Try theatre type
+    if (!specialty && th.type) {
+      var typeKey = th.type.toLowerCase();
+      if (SPECIALTY_MAP[typeKey]) specialty = SPECIALTY_MAP[typeKey];
+    }
+    // Partial match
+    if (!specialty) {
+      for (var k in SPECIALTY_MAP) {
+        if (raw.indexOf(k) >= 0) { specialty = SPECIALTY_MAP[k]; break; }
+      }
+    }
+  }
+
+  if (specialty) {
+    document.getElementById('f_specialty').value = specialty;
+    onSpecialtyChange();
+  }
+
+  saveDraft();
+}
+
+/* ==================== SPECIALTY → OPERATION SUGGESTIONS ==================== */
+
+function onSpecialtyChange() {
+  var spec = document.getElementById('f_specialty').value;
+  var dl = document.getElementById('opSuggestions');
+  dl.innerHTML = '';
+  var ops = OPERATION_SUGGESTIONS[spec] || [];
+  ops.forEach(function(op) {
+    var opt = document.createElement('option');
+    opt.value = op;
+    dl.appendChild(opt);
+  });
+  saveDraft();
+}
+
+/* ==================== REGIONAL BLOCKS ==================== */
+
+function addBlock(name, techniques) {
+  blockCounter++;
+  var id = 'block_' + blockCounter;
+  var row = document.createElement('div');
+  row.className = 'block-row';
+  row.id = id;
+
+  var select = '<select class="form-select" onchange="saveDraft()"><option value="">Select block...</option>';
+  BLOCKS.forEach(function(b) {
+    select += '<option' + (b === name ? ' selected' : '') + '>' + b + '</option>';
+  });
+  select += '</select>';
+
+  var techs = techniques || [];
+  var techHtml = '<div class="block-techniques">';
+  ['USS','Landmark'].forEach(function(t) {
+    var full = t === 'USS' ? 'Ultrasound' : 'Landmark';
+    var checked = techs.indexOf(full) >= 0 ? ' checked' : '';
+    techHtml += '<label class="check-item' + (checked ? ' selected' : '') + '"><input type="checkbox" value="' + full + '"' + checked + ' onchange="toggleCheck(this)">' + t + '</label>';
+  });
+  techHtml += '</div>';
+
+  row.innerHTML = select + techHtml + '<button class="block-remove" onclick="removeBlock(\'' + id + '\')">&times;</button>';
+  document.getElementById('blocksContainer').appendChild(row);
+  saveDraft();
+}
+
+function removeBlock(id) {
+  var el = document.getElementById(id);
+  if (el) el.remove();
+  saveDraft();
+}
+
+function getBlocks() {
+  var blocks = [];
+  document.querySelectorAll('.block-row').forEach(function(row) {
+    var name = row.querySelector('select').value;
+    if (!name) return;
+    var techs = [];
+    row.querySelectorAll('.block-techniques input:checked').forEach(function(cb) { techs.push(cb.value); });
+    blocks.push({ name: name, technique: techs });
+  });
+  return blocks;
+}
+
+function setBlocks(blocks) {
+  document.getElementById('blocksContainer').innerHTML = '';
+  blockCounter = 0;
+  (blocks || []).forEach(function(b) { addBlock(b.name, b.technique); });
+}
+
+/* ==================== COLLECT / RESTORE FORM ==================== */
+
+function collectForm() {
+  return {
+    date: document.getElementById('f_date').value,
+    session: document.getElementById('f_session').value,
+    age: document.getElementById('f_age').value,
+    ageUnits: document.getElementById('f_ageUnits').value,
+    asa: document.getElementById('f_asa').value,
+    specialty: document.getElementById('f_specialty').value,
+    operation: document.getElementById('f_operation').value,
+    priority: document.getElementById('f_priority').value,
+    destination: document.getElementById('f_destination').value,
+    anaesthesia: getCheckedValues('f_anaesthesia_group'),
+    supervision: document.getElementById('f_supervision').value,
+    supervisorType: document.getElementById('f_supervisorType').value,
+    teaching: document.getElementById('f_teaching').value,
+    blocks: getBlocks(),
+    procedures: getCheckedValues('f_procedures_group'),
+    incidents: document.getElementById('f_incidents').value,
+    notes: document.getElementById('f_notes').value
+  };
+}
+
+function restoreForm(data) {
+  if (!data) return;
+  document.getElementById('f_date').value = data.date || todayStr();
+  setToggleByValue('f_session', data.session || '');
+  document.getElementById('f_age').value = data.age || '';
+  setToggleByValue('f_ageUnits', data.ageUnits || 'Years');
+  setToggleByValue('f_asa', data.asa || '');
+  document.getElementById('f_specialty').value = data.specialty || '';
+  onSpecialtyChange();
+  document.getElementById('f_operation').value = data.operation || '';
+  setToggleByValue('f_priority', data.priority || '');
+  setToggleByValue('f_destination', data.destination || '');
+  setCheckedValues('f_anaesthesia_group', data.anaesthesia || []);
+  setToggleByValue('f_supervision', data.supervision || '');
+  setToggleByValue('f_supervisorType', data.supervisorType || '');
+  setToggleByValue('f_teaching', data.teaching || '');
+  setBlocks(data.blocks || []);
+  setCheckedValues('f_procedures_group', data.procedures || []);
+  document.getElementById('f_incidents').value = data.incidents || '';
+  document.getElementById('f_notes').value = data.notes || '';
+  onDateChange();
+}
+
+function clearForm() {
+  document.getElementById('f_date').value = todayStr();
+  var h = new Date().getHours();
+  var defaultSession = h < 12 ? 'Morning' : h < 17 ? 'Afternoon' : h < 20 ? 'Evening' : 'Night';
+  setToggleByValue('f_session', defaultSession);
+  document.getElementById('f_age').value = '';
+  setToggleByValue('f_ageUnits', 'Years');
+  setToggleByValue('f_asa', '');
+  document.getElementById('f_specialty').value = '';
+  document.getElementById('f_operation').value = '';
+  document.getElementById('opSuggestions').innerHTML = '';
+  setToggleByValue('f_priority', '');
+  setToggleByValue('f_destination', '');
+  setCheckedValues('f_anaesthesia_group', []);
+  setToggleByValue('f_supervision', '');
+  setToggleByValue('f_supervisorType', '');
+  setToggleByValue('f_teaching', '');
+  setBlocks([]);
+  setCheckedValues('f_procedures_group', []);
+  document.getElementById('f_incidents').value = '';
+  document.getElementById('f_notes').value = '';
+  editingCaseId = null;
+  document.querySelectorAll('.theatre-card').forEach(function(c) { c.classList.remove('selected'); });
+  onDateChange();
+  localStorage.removeItem('ndanae-caselog-draft');
+}
+
+/* ==================== DRAFT PERSISTENCE ==================== */
+
+function saveDraft() {
+  localStorage.setItem('ndanae-caselog-draft', JSON.stringify(collectForm()));
+}
+
+function restoreDraft() {
+  var raw = localStorage.getItem('ndanae-caselog-draft');
+  if (raw) {
+    try { restoreForm(JSON.parse(raw)); } catch(e) {}
+  }
+}
+
+/* ==================== CASE STORAGE ==================== */
+
+function getCases() {
+  try { return JSON.parse(localStorage.getItem('ndanae-caselog-cases') || '[]'); } catch(e) { return []; }
+}
+
+function saveCases(cases) {
+  localStorage.setItem('ndanae-caselog-cases', JSON.stringify(cases));
+}
+
+function saveCase() {
+  var data = collectForm();
+
+  // Validate minimum fields
+  if (!data.specialty && !data.operation) {
+    showToast('Enter at least a specialty or operation');
+    return;
+  }
+
+  var cases = getCases();
+
+  if (editingCaseId) {
+    // Update existing
+    for (var i = 0; i < cases.length; i++) {
+      if (cases[i].id === editingCaseId) {
+        data.id = editingCaseId;
+        data.savedAt = new Date().toISOString();
+        cases[i] = data;
+        break;
+      }
+    }
+    showToast('Case updated');
+  } else {
+    // New case
+    data.id = 'case_' + Date.now();
+    data.savedAt = new Date().toISOString();
+    cases.unshift(data);
+    showToast('Case saved');
+  }
+
+  saveCases(cases);
+  localStorage.setItem('ndanae-caselog-lastcase', JSON.stringify(data));
+  clearForm();
+}
+
+function deleteCase(id) {
+  var cases = getCases().filter(function(c) { return c.id !== id; });
+  saveCases(cases);
+  renderCaseList();
+  showToast('Case deleted');
+}
+
+function editCase(id) {
+  var cases = getCases();
+  var c = cases.find(function(x) { return x.id === id; });
+  if (!c) return;
+  editingCaseId = id;
+  restoreForm(c);
+  switchView('entry');
+  showToast('Editing case');
+}
+
+/* ==================== SAME AS LAST ==================== */
+
+function sameAsLast() {
+  var raw = localStorage.getItem('ndanae-caselog-lastcase');
+  if (!raw) { showToast('No previous case'); return; }
+  try {
+    var last = JSON.parse(raw);
+    // Keep today's date and current session, copy everything else
+    last.date = todayStr();
+    var h = new Date().getHours();
+    last.session = h < 12 ? 'Morning' : h < 17 ? 'Afternoon' : h < 20 ? 'Evening' : 'Night';
+    last.age = '';
+    last.asa = '';
+    last.operation = '';
+    last.incidents = '';
+    last.notes = '';
+    editingCaseId = null;
+    restoreForm(last);
+    showToast('Filled from last case');
+  } catch(e) { showToast('Error loading last case'); }
+}
+
+/* ==================== CASE LIST ==================== */
+
+function renderCaseList() {
+  var cases = getCases();
+  var search = (document.getElementById('filterSearch').value || '').toLowerCase();
+  var specFilter = document.getElementById('filterSpecialty').value;
+
+  var filtered = cases.filter(function(c) {
+    if (specFilter && c.specialty !== specFilter) return false;
+    if (search) {
+      var haystack = (c.operation + ' ' + c.specialty + ' ' + c.notes + ' ' + c.date).toLowerCase();
+      if (haystack.indexOf(search) < 0) return false;
+    }
+    return true;
+  });
+
+  // Stats
+  var statsBar = document.getElementById('statsBar');
+  statsBar.innerHTML =
+    '<div class="stat"><div class="stat-num">' + cases.length + '</div><div class="stat-label">Total</div></div>' +
+    '<div class="stat"><div class="stat-num">' + filtered.length + '</div><div class="stat-label">Shown</div></div>';
+
+  // List
+  var container = document.getElementById('caseListContainer');
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No cases recorded yet</div></div>';
+    return;
+  }
+
+  var html = '';
+  filtered.forEach(function(c) {
+    var dateDisplay = formatDateShort(c.date);
+    var tags = [];
+    if (c.session) tags.push(c.session);
+    (c.anaesthesia || []).forEach(function(a) { tags.push(a); });
+    (c.blocks || []).forEach(function(b) { tags.push(b.name); });
+
+    html += '<div class="case-card" onclick="editCase(\'' + c.id + '\')">';
+    html += '<div class="case-header"><span class="case-date">' + dateDisplay + '</span>';
+    if (c.asa) html += '<span class="case-asa">ASA ' + c.asa + '</span>';
+    html += '</div>';
+    html += '<div class="case-op">' + (c.operation || c.specialty || 'Unnamed case') + '</div>';
+    html += '<div class="case-detail">' + [c.specialty, c.priority].filter(Boolean).join(' \u00B7 ') + '</div>';
+    if (tags.length) {
+      html += '<div class="case-tags">';
+      tags.forEach(function(t) { html += '<span class="case-tag">' + t + '</span>'; });
+      html += '</div>';
+    }
+    html += '<div style="text-align:right;margin-top:4px"><button class="btn-small btn-danger" style="border:none;font-size:11px;padding:4px 10px;cursor:pointer;background:transparent;color:var(--danger)" onclick="event.stopPropagation();if(confirm(\'Delete this case?\'))deleteCase(\'' + c.id + '\')">Delete</button></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function formatDateShort(dateStr) {
+  if (!dateStr) return '';
+  var d = new Date(dateStr + 'T00:00:00');
+  var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()];
+}
+
+function populateFilterSpecialties() {
+  var cases = getCases();
+  var specs = {};
+  cases.forEach(function(c) { if (c.specialty) specs[c.specialty] = true; });
+  var sel = document.getElementById('filterSpecialty');
+  var current = sel.value;
+  sel.innerHTML = '<option value="">All specialties</option>';
+  Object.keys(specs).sort().forEach(function(s) {
+    sel.innerHTML += '<option' + (s === current ? ' selected' : '') + '>' + s + '</option>';
+  });
+}
+
+/* ==================== EXPORT ==================== */
+
+function openExportModal() {
+  var cases = getCases();
+  if (cases.length === 0) { showToast('No cases to export'); return; }
+  // Default date range: all cases
+  var dates = cases.map(function(c) { return c.date; }).filter(Boolean).sort();
+  document.getElementById('exportFrom').value = dates[0] || '';
+  document.getElementById('exportTo').value = dates[dates.length - 1] || '';
+  document.getElementById('exportModal').classList.add('active');
+}
+
+function closeExportModal() {
+  document.getElementById('exportModal').classList.remove('active');
+}
+
+function doExport() {
+  var from = document.getElementById('exportFrom').value;
+  var to = document.getElementById('exportTo').value;
+  var format = document.getElementById('exportFormat').value;
+
+  var cases = getCases().filter(function(c) {
+    if (from && c.date < from) return false;
+    if (to && c.date > to) return false;
+    return true;
+  });
+
+  if (cases.length === 0) { showToast('No cases in date range'); return; }
+
+  if (format === 'logbook') exportLogbook(cases);
+  else if (format === 'xlsx') exportXLSX(cases);
+  else if (format === 'csv') exportCSV(cases);
+  else if (format === 'pdf') exportPDF(cases);
+
+  closeExportModal();
+}
+
+function exportLogbook(cases) {
+  var logbook = cases.map(function(c) {
+    var obj = {
+      encounter: { date: c.date, session: c.session || '' },
+      details: {
+        type: 'anaesthetic',
+        speciality: c.specialty || '',
+        operation: c.operation || '',
+        priority: c.priority || '',
+        destination: c.destination || '',
+        anaesthesia: (c.anaesthesia || []).join(', ')
+      },
+      patient: {
+        age: parseInt(c.age) || 0,
+        age_units: c.ageUnits || 'Years',
+        asa: parseInt(c.asa) || 0
+      },
+      training: {
+        supervision: c.supervision || null,
+        supervisor: c.supervisorType || null,
+        teaching: c.teaching === 'Yes' ? true : c.teaching === 'No' ? false : null
+      },
+      regional: (c.blocks || []).map(function(b) { return { name: b.name, technique: b.technique }; }),
+      procedures: (c.procedures || []).map(function(p) { return { name: p }; }),
+      incidents: c.incidents ? [c.incidents] : [],
+      notes: c.notes || ''
+    };
+    return obj;
+  });
+
+  downloadFile(JSON.stringify(logbook, null, 2), 'anaesthetic-logbook.logbook', 'application/json');
+  showToast(cases.length + ' cases exported');
+}
+
+function exportXLSX(cases) {
+  var headers = ['Date','Session','Age','Age Units','ASA','Specialty','Operation','Priority','Destination','Anaesthesia','Supervision','Supervisor','Teaching','Regional Blocks','Procedures','Incidents','Notes'];
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var xml = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>';
+  xml += '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+  xml += '<Styles><Style ss:ID="hdr"><Font ss:Bold="1"/><Interior ss:Color="#D6E4F0" ss:Pattern="Solid"/></Style></Styles>';
+  xml += '<Worksheet ss:Name="Logbook"><Table>';
+  // Header row
+  xml += '<Row>';
+  headers.forEach(function(h) { xml += '<Cell ss:StyleID="hdr"><Data ss:Type="String">' + esc(h) + '</Data></Cell>'; });
+  xml += '</Row>';
+  // Data rows
+  cases.forEach(function(c) {
+    xml += '<Row>';
+    [c.date, c.session, c.age, c.ageUnits, c.asa, c.specialty, c.operation, c.priority, c.destination,
+     (c.anaesthesia||[]).join('; '), c.supervision, c.supervisorType, c.teaching,
+     (c.blocks||[]).map(function(b){return b.name+' ('+b.technique.join('/')+')';}).join('; '),
+     (c.procedures||[]).join('; '), c.incidents, c.notes
+    ].forEach(function(v) {
+      xml += '<Cell><Data ss:Type="String">' + esc(v) + '</Data></Cell>';
+    });
+    xml += '</Row>';
+  });
+  xml += '</Table></Worksheet></Workbook>';
+  downloadFile(xml, 'anaesthetic-logbook.xls', 'application/vnd.ms-excel');
+  showToast(cases.length + ' cases exported');
+}
+
+function exportCSV(cases) {
+  var headers = ['Date','Session','Age','Age Units','ASA','Specialty','Operation','Priority','Destination','Anaesthesia','Supervision','Supervisor','Teaching','Regional Blocks','Procedures','Incidents','Notes'];
+  var rows = [headers.join(',')];
+  cases.forEach(function(c) {
+    var row = [
+      c.date, c.session, c.age, c.ageUnits, c.asa, c.specialty, '"' + (c.operation || '').replace(/"/g,'""') + '"',
+      c.priority, c.destination, '"' + (c.anaesthesia || []).join('; ') + '"',
+      c.supervision, c.supervisorType, c.teaching,
+      '"' + (c.blocks || []).map(function(b) { return b.name + ' (' + b.technique.join('/') + ')'; }).join('; ') + '"',
+      '"' + (c.procedures || []).join('; ') + '"',
+      '"' + (c.incidents || '').replace(/"/g,'""') + '"',
+      '"' + (c.notes || '').replace(/"/g,'""') + '"'
+    ];
+    rows.push(row.join(','));
+  });
+
+  downloadFile(rows.join('\n'), 'anaesthetic-logbook.csv', 'text/csv');
+  showToast(cases.length + ' cases exported');
+}
+
+function exportPDF(cases) {
+  var html = '<html><head><title>Anaesthetic Logbook</title><style>';
+  html += 'body{font-family:Arial,sans-serif;font-size:11px;padding:20px}';
+  html += 'h1{font-size:16px;margin-bottom:10px}';
+  html += 'table{width:100%;border-collapse:collapse;margin-bottom:20px}';
+  html += 'th,td{border:1px solid #ccc;padding:4px 6px;text-align:left;font-size:10px}';
+  html += 'th{background:#f0f0f0;font-weight:bold}';
+  html += '@media print{body{padding:0}}';
+  html += '</style></head><body>';
+  html += '<h1>Anaesthetic Logbook \u2014 ' + (cases.length) + ' cases</h1>';
+  html += '<table><thead><tr><th>Date</th><th>Session</th><th>Age</th><th>ASA</th><th>Specialty</th><th>Operation</th><th>Priority</th><th>Anaesthesia</th><th>Regional</th><th>Supervision</th></tr></thead><tbody>';
+  cases.forEach(function(c) {
+    html += '<tr>';
+    html += '<td>' + (c.date || '') + '</td>';
+    html += '<td>' + (c.session || '') + '</td>';
+    html += '<td>' + (c.age || '') + ' ' + (c.ageUnits === 'Months' ? 'm' : 'y') + '</td>';
+    html += '<td>' + (c.asa || '') + '</td>';
+    html += '<td>' + (c.specialty || '') + '</td>';
+    html += '<td>' + (c.operation || '') + '</td>';
+    html += '<td>' + (c.priority || '') + '</td>';
+    html += '<td>' + (c.anaesthesia || []).join(', ') + '</td>';
+    html += '<td>' + (c.blocks || []).map(function(b) { return b.name; }).join(', ') + '</td>';
+    html += '<td>' + (c.supervision || '') + '</td>';
+    html += '</tr>';
+  });
+  html += '</tbody></table></body></html>';
+
+  var win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(function() { win.print(); }, 500);
+  showToast(cases.length + ' cases ready to print');
+}
+
+function downloadFile(content, filename, type) {
+  var blob = new Blob([content], { type: type });
+  // Try Web Share API first (mobile)
+  if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], filename)] })) {
+    navigator.share({
+      files: [new File([blob], filename, { type: type })],
+      title: 'Anaesthetic Logbook Export'
+    }).catch(function() { fallbackDownload(blob, filename); });
+  } else {
+    fallbackDownload(blob, filename);
+  }
+}
+
+function fallbackDownload(blob, filename) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ==================== TOAST ==================== */
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+</script>
+</body>
+</html>
