@@ -1041,15 +1041,27 @@ function doExport() {
 
   if (cases.length === 0) { showToast('No cases in date range'); return; }
 
-  if (format === 'logbook') exportLogbook(cases);
-  else if (format === 'xlsx') exportXLSX(cases);
-  else if (format === 'csv') exportCSV(cases);
-  else if (format === 'pdf') exportPDF(cases);
+  // Build filename with date range
+  var dates = cases.map(function(c){return c.date;}).filter(Boolean).sort();
+  var firstDate = formatDateFile(dates[0]);
+  var lastDate = formatDateFile(dates[dates.length - 1]);
+  var filePrefix = firstDate + '-' + lastDate + '-anaesthetic-logbook';
+
+  if (format === 'logbook') exportLogbook(cases, filePrefix);
+  else if (format === 'xlsx') exportXLSX(cases, filePrefix);
+  else if (format === 'csv') exportCSV(cases, filePrefix);
+  else if (format === 'pdf') exportPDF(cases, filePrefix);
 
   closeExportModal();
 }
 
-function exportLogbook(cases) {
+function formatDateFile(dateStr) {
+  if (!dateStr) return '000000';
+  var parts = dateStr.split('-'); // YYYY-MM-DD
+  return parts[2] + parts[1] + parts[0].slice(2); // DDMMYY
+}
+
+function exportLogbook(cases, filePrefix) {
   var logbook = cases.map(function(c) {
     var obj = {
       encounter: { date: c.date, session: c.session || '' },
@@ -1079,11 +1091,11 @@ function exportLogbook(cases) {
     return obj;
   });
 
-  downloadFile(JSON.stringify(logbook, null, 2), 'anaesthetic-logbook.logbook', 'application/json');
+  downloadFile(JSON.stringify(logbook, null, 2), filePrefix + '.logbook', 'application/json');
   showToast(cases.length + ' cases exported');
 }
 
-function exportXLSX(cases) {
+function exportXLSX(cases, filePrefix) {
   var headers = ['Date','Session','Age','Age Units','ASA','Specialty','Operation','Priority','Destination','Anaesthesia','Supervision','Supervisor','Teaching','Regional Blocks','Procedures','Incidents','Notes'];
   function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   var xml = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>';
@@ -1107,11 +1119,11 @@ function exportXLSX(cases) {
     xml += '</Row>';
   });
   xml += '</Table></Worksheet></Workbook>';
-  downloadFile(xml, 'anaesthetic-logbook.xls', 'application/vnd.ms-excel');
+  downloadFile(xml, filePrefix + '.xls', 'application/vnd.ms-excel');
   showToast(cases.length + ' cases exported');
 }
 
-function exportCSV(cases) {
+function exportCSV(cases, filePrefix) {
   var headers = ['Date','Session','Age','Age Units','ASA','Specialty','Operation','Priority','Destination','Anaesthesia','Supervision','Supervisor','Teaching','Regional Blocks','Procedures','Incidents','Notes'];
   var rows = [headers.join(',')];
   cases.forEach(function(c) {
@@ -1127,11 +1139,11 @@ function exportCSV(cases) {
     rows.push(row.join(','));
   });
 
-  downloadFile(rows.join('\n'), 'anaesthetic-logbook.csv', 'text/csv');
+  downloadFile(rows.join('\n'), filePrefix + '.csv', 'text/csv');
   showToast(cases.length + ' cases exported');
 }
 
-function exportPDF(cases) {
+function exportPDF(cases, filePrefix) {
   var html = '<html><head><title>Anaesthetic Logbook</title><style>';
   html += 'body{font-family:Arial,sans-serif;font-size:11px;padding:20px}';
   html += 'h1{font-size:16px;margin-bottom:10px}';
