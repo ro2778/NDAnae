@@ -117,6 +117,9 @@ h1 { font-size: 18px; color: var(--accent); }
 <div class="section-header">Theatres</div>
 <div class="theatre-grid" id="theatres"></div>
 
+<div class="section-header" id="activities-header" style="display:none">Activities</div>
+<div class="support-grid" id="activities"></div>
+
 <div class="section-header">Support</div>
 <div class="support-grid" id="support"></div>
 
@@ -344,9 +347,43 @@ function renderSupport() {
   container.innerHTML = html;
 }
 
+function renderActivities() {
+  var container = document.getElementById('activities');
+  var header = document.getElementById('activities-header');
+  var acts = DATA.activities;
+  if (!acts || Object.keys(acts).length === 0) {
+    container.innerHTML = '';
+    header.style.display = 'none';
+    return;
+  }
+  header.style.display = '';
+  var html = '';
+  var order = ['acute_pain', 'persistent_pain', 'preop', 'obs_preop', 'picc'];
+  for (var i = 0; i < order.length; i++) {
+    var entry = acts[order[i]];
+    if (!entry) continue;
+    var hasData = (entry.am && entry.am !== '—') || (entry.pm && entry.pm !== '—');
+    if (!hasData) continue;
+    html += '<div class="support-card">';
+    html += '<div class="support-card-label">' + entry.label + '</div>';
+    html += '<div class="support-card-slots">';
+    var slots = ['am', 'pm'];
+    for (var s = 0; s < slots.length; s++) {
+      var name = entry[slots[s]] || '—';
+      html += '<div class="support-slot">';
+      html += '<span class="support-slot-label">' + SLOT_LABELS[slots[s]] + '</span>';
+      html += '<span class="support-slot-name">' + name + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+  container.innerHTML = html;
+}
+
 function render() {
   renderOnCall();
   renderTheatres();
+  renderActivities();
   renderSupport();
 }
 

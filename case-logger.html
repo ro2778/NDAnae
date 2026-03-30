@@ -211,7 +211,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Transfer" onclick="selectNonTheatre(this)">Transfer</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="PICC Line" onclick="selectNonTheatre(this)">PICC Line</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Acute Pain" onclick="selectNonTheatre(this)">Acute Pain</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Chronic Pain" onclick="selectNonTheatre(this)">Chronic Pain</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Persistent Pain" onclick="selectNonTheatre(this)">Persistent Pain</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Pre-op Clinic" onclick="selectNonTheatre(this)">Pre-op Clinic</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Obs Pre-op" onclick="selectNonTheatre(this)">Obs Pre-op</button>
     </div>
   </div>
 
@@ -444,7 +446,8 @@ var SPECIALTIES = [
   'Orthopaedics','Trauma','General Surgery','Obstetrics','Gynaecology',
   'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
   'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain',
-  'Critical Care','Resus','Transfer','PICC Line','Acute Pain','Chronic Pain','Other'
+  'Critical Care','Resus','Transfer','PICC Line','Acute Pain','Persistent Pain',
+  'Pre-op Clinic','Obs Pre-op','Other'
 ];
 
 var OPERATION_SUGGESTIONS = {
@@ -468,7 +471,9 @@ var OPERATION_SUGGESTIONS = {
   'Transfer': ['ICU transfer','Inter-hospital transfer','CT transfer','Theatre transfer'],
   'PICC Line': ['PICC line insertion'],
   'Acute Pain': ['Epidural review','Nerve catheter review','PCA review','Pain ward round','Nerve block','Epidural insertion','Nerve catheter insertion'],
-  'Chronic Pain': ['Pain clinic review','Injection clinic','Spinal cord stimulator','Facet joint injection','Epidural injection','Trigger point injection','Nerve block']
+  'Persistent Pain': ['Pain clinic review','Injection clinic','Spinal cord stimulator','Facet joint injection','Epidural injection','Trigger point injection','Nerve block'],
+  'Pre-op Clinic': ['Pre-op assessment','Anaesthetic review','High-risk review'],
+  'Obs Pre-op': ['Obstetric anaesthetic review','Birth plan discussion','High-risk obstetric review']
 };
 
 var BLOCKS = [
