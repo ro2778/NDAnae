@@ -13,8 +13,8 @@ on:
     - cron: '0 12 * * 1-5'
     - cron: '0 16 * * 1-5'
     - cron: '0 19 * * 1-5'
-    # Sat-Sun: 1:30am (2:30am BST) already covered above, 5pm UTC (= 6pm BST)
-    - cron: '0 17 * * 0,6'
+    # Saturday only: 5pm UTC (= 6pm BST). Sunday evening removed — CLW rolls to next week's view by then
+    - cron: '0 17 * * 6'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
