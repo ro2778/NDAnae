@@ -366,6 +366,16 @@
       "am": "—",
       "pm": "—"
     },
+    "preop": {
+      "label": "Pre-op Clinic",
+      "am": "C. Cheesman",
+      "pm": "—"
+    },
+    "obs_preop": {
+      "label": "Obs Pre-op",
+      "am": "—",
+      "pm": "—"
+    },
     "acute_pain": {
       "label": "Acute Pain",
       "am": "Acute Pain / Acute Pain",
@@ -379,7 +389,7 @@
   },
   "date": "2026-03-30",
   "day": "Mon",
-  "scraped_at": "2026-03-30T13:58:40.238Z",
+  "scraped_at": "2026-03-30T14:01:43.557Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -732,6 +742,16 @@
       "picc": {
         "label": "PICC Lines",
         "am": "Z. Ozfirat, C. Wright (CT2)",
+        "pm": "—"
+      },
+      "preop": {
+        "label": "Pre-op Clinic",
+        "am": "S. Hebard, A. Koffman (ACCS Anaes)",
+        "pm": "S. Hebard, A. Koffman (ACCS Anaes)"
+      },
+      "obs_preop": {
+        "label": "Obs Pre-op",
+        "am": "—",
         "pm": "—"
       },
       "acute_pain": {
