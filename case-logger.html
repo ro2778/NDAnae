@@ -20,7 +20,7 @@
   --success: #1e8449; --danger: #c0392b;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); max-width: 600px; margin: 0 auto; padding: 0 12px 120px; padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); max-width: 600px; margin: 0 auto; padding: 0 12px 24px; padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
 
 /* Header */
 .header { text-align: center; padding: 12px 0 8px; }
@@ -384,6 +384,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     </div>
   </div>
 
+  <!-- Save buttons inline -->
+  <div style="display:flex;gap:8px;margin-bottom:24px">
+    <button class="btn btn-secondary" style="flex:1" onclick="sameAsLast()">Same as Last</button>
+    <button class="btn btn-primary" style="flex:1" onclick="saveCase()">Save Case</button>
+  </div>
+
 </div>
 
 <!-- ===== LIST VIEW ===== -->
@@ -436,11 +442,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   </div>
 </div>
 
-<!-- Action bar -->
-<div class="action-bar" id="entryActions">
-  <button class="btn btn-secondary" onclick="sameAsLast()">Same as Last</button>
-  <button class="btn btn-primary" onclick="saveCase()">Save Case</button>
-</div>
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
@@ -579,7 +580,6 @@ function switchView(view) {
   document.getElementById('tab-list').classList.toggle('active', view === 'list');
   document.getElementById('entryView').classList.toggle('hidden', view !== 'entry');
   document.getElementById('listView').classList.toggle('hidden', view !== 'list');
-  document.getElementById('entryActions').classList.toggle('hidden', view !== 'entry');
   if (view === 'list') {
     renderCaseList();
     populateFilterSpecialties();
