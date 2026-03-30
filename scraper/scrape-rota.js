@@ -360,6 +360,11 @@ function hasGlanso(raw) {
           result.activities.picc[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
         }
       }
+
+      // --- DEBUG: log unmatched locations ---
+      else {
+        console.log('UNMATCHED: "' + loc + '" | slot=' + slot + ' | raw="' + raw + '"');
+      }
     }
 
     // Auto-fill 822 AM/PM from Theatre 8 primary
