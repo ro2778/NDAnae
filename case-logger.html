@@ -132,6 +132,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 /* Filter bar */
 .filter-bar { display: flex; gap: 6px; margin-bottom: 10px; }
 .filter-bar .form-input, .filter-bar .form-select { min-height: 36px; padding: 6px 8px; font-size: 12px; }
+
+/* Warning banner */
+.warning-banner { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 11px; color: #856404; display: flex; align-items: flex-start; gap: 6px; }
+:root[data-theme="dark"] .warning-banner { background: #332b00; border-color: #665500; color: #ffd54f; }
+.warning-banner .warn-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.warning-banner .warn-dismiss { margin-left: auto; cursor: pointer; font-size: 14px; opacity: 0.6; flex-shrink: 0; }
+
+/* Export nudge */
+.nudge-banner { background: var(--bg3); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 11px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.nudge-banner .btn-small { flex-shrink: 0; }
+
+/* Import */
+.import-input { display: none; }
 </style>
 </head>
 <body>
@@ -148,6 +161,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   <button class="view-btn active" id="tab-entry" onclick="switchView('entry')">New Case</button>
   <button class="view-btn" id="tab-list" onclick="switchView('list')">Case Log</button>
 </div>
+
+<!-- Storage warning -->
+<div class="warning-banner" id="storageBanner">
+  <span class="warn-icon">&#9888;</span>
+  <span>Cases are stored on this device only. Export regularly to keep a backup. Clearing browser data will delete your cases.</span>
+  <span class="warn-dismiss" onclick="dismissWarning()">&times;</span>
+</div>
+
+<!-- Hidden file input for import -->
+<input type="file" class="import-input" id="importInput" accept=".logbook,.json,.csv" onchange="handleImport(this)">
 
 <!-- ===== ENTRY VIEW ===== -->
 <div id="entryView">
@@ -343,8 +366,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <!-- ===== LIST VIEW ===== -->
 <div id="listView" class="hidden">
   <div class="stats-bar" id="statsBar"></div>
-  <div style="display:flex;gap:8px;margin-bottom:10px">
+  <div id="exportNudge" class="nudge-banner hidden">
+    <span>You have unsaved cases since your last export.</span>
+    <button class="btn btn-primary btn-small" onclick="openExportModal()">Export Now</button>
+  </div>
+  <div style="display:flex;gap:6px;margin-bottom:10px">
     <button class="btn btn-secondary btn-small" style="flex:1" onclick="openExportModal()">Export</button>
+    <button class="btn btn-secondary btn-small" style="flex:1" onclick="document.getElementById('importInput').click()">Import</button>
     <button class="btn btn-primary btn-small" style="flex:1" onclick="switchView('entry')">+ New Case</button>
   </div>
   <div class="filter-bar">
@@ -520,6 +548,7 @@ function switchView(view) {
   if (view === 'list') {
     renderCaseList();
     populateFilterSpecialties();
+    checkExportNudge();
   }
 }
 
@@ -1160,6 +1189,207 @@ function fallbackDownload(blob, filename) {
 }
 
 /* ==================== TOAST ==================== */
+
+/* ==================== WARNING BANNER ==================== */
+
+function dismissWarning() {
+  document.getElementById('storageBanner').classList.add('hidden');
+  localStorage.setItem('ndanae-caselog-warn-dismissed', '1');
+}
+
+(function initWarning() {
+  if (localStorage.getItem('ndanae-caselog-warn-dismissed') === '1') {
+    document.getElementById('storageBanner').classList.add('hidden');
+  }
+})();
+
+/* ==================== EXPORT NUDGE ==================== */
+
+function checkExportNudge() {
+  var cases = getCases();
+  if (cases.length === 0) return;
+  var lastExport = localStorage.getItem('ndanae-caselog-last-export') || '';
+  // Count cases saved after last export
+  var unsaved = 0;
+  for (var i = 0; i < cases.length; i++) {
+    if (!lastExport || cases[i].savedAt > lastExport) unsaved++;
+  }
+  var nudge = document.getElementById('exportNudge');
+  if (unsaved >= 5) {
+    nudge.querySelector('span').textContent = unsaved + ' cases since your last export.';
+    nudge.classList.remove('hidden');
+  } else {
+    nudge.classList.add('hidden');
+  }
+}
+
+// Record export time when exporting
+var _origDoExport = doExport;
+doExport = function() {
+  _origDoExport();
+  localStorage.setItem('ndanae-caselog-last-export', new Date().toISOString());
+  document.getElementById('exportNudge').classList.add('hidden');
+};
+
+/* ==================== IMPORT ==================== */
+
+function handleImport(input) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var text = e.target.result;
+    var imported = [];
+    var filename = file.name.toLowerCase();
+
+    try {
+      if (filename.endsWith('.logbook') || filename.endsWith('.json')) {
+        imported = parseLogbookJSON(text);
+      } else if (filename.endsWith('.csv')) {
+        imported = parseCSV(text);
+      } else {
+        showToast('Unsupported file type');
+        return;
+      }
+    } catch(err) {
+      showToast('Error reading file: ' + err.message);
+      return;
+    }
+
+    if (imported.length === 0) {
+      showToast('No cases found in file');
+      return;
+    }
+
+    // Merge: add imported cases, skip duplicates by date+operation+age
+    var cases = getCases();
+    var existingKeys = {};
+    cases.forEach(function(c) {
+      existingKeys[c.date + '|' + c.operation + '|' + c.age] = true;
+    });
+
+    var added = 0;
+    imported.forEach(function(c) {
+      var key = c.date + '|' + c.operation + '|' + c.age;
+      if (!existingKeys[key]) {
+        if (!c.id) c.id = 'case_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
+        if (!c.savedAt) c.savedAt = new Date().toISOString();
+        cases.push(c);
+        existingKeys[key] = true;
+        added++;
+      }
+    });
+
+    // Sort all cases by date descending, then by savedAt descending
+    cases.sort(function(a, b) {
+      if (a.date !== b.date) return a.date > b.date ? -1 : 1;
+      return (a.savedAt || '') > (b.savedAt || '') ? -1 : 1;
+    });
+
+    saveCases(cases);
+    renderCaseList();
+    populateFilterSpecialties();
+    showToast(added + ' cases imported' + (imported.length - added > 0 ? ', ' + (imported.length - added) + ' duplicates skipped' : ''));
+  };
+  reader.readAsText(file);
+  input.value = ''; // reset so same file can be re-imported
+}
+
+function parseLogbookJSON(text) {
+  var data = JSON.parse(text);
+  if (!Array.isArray(data)) data = [data];
+  return data.map(function(item) {
+    // Handle both our native format and LLP .logbook format
+    if (item.encounter) {
+      // LLP format
+      return {
+        date: (item.encounter && item.encounter.date) || '',
+        session: (item.encounter && item.encounter.session) || '',
+        age: (item.patient && item.patient.age) || '',
+        ageUnits: (item.patient && item.patient.age_units) || 'Years',
+        asa: (item.patient && item.patient.asa) || '',
+        specialty: (item.details && item.details.speciality) || '',
+        operation: (item.details && item.details.operation) || '',
+        priority: (item.details && item.details.priority) || '',
+        destination: (item.details && item.details.destination) || '',
+        anaesthesia: (item.details && item.details.anaesthesia) ? item.details.anaesthesia.split(/[,;]\s*/) : [],
+        supervision: (item.training && item.training.supervision) || '',
+        supervisorType: (item.training && item.training.supervisor) || '',
+        teaching: item.training && item.training.teaching === true ? 'Yes' : item.training && item.training.teaching === false ? 'No' : '',
+        blocks: (item.regional || []).map(function(r) { return { name: r.name || '', technique: r.technique || [] }; }),
+        procedures: (item.procedures || []).map(function(p) { return p.name || p; }),
+        incidents: Array.isArray(item.incidents) ? item.incidents.join('; ') : (item.incidents || ''),
+        notes: item.notes || ''
+      };
+    } else {
+      // Our native format — return as-is
+      return item;
+    }
+  });
+}
+
+function parseCSV(text) {
+  var lines = text.split('\n').filter(function(l) { return l.trim(); });
+  if (lines.length < 2) return [];
+  // Parse header
+  var headers = parseCSVLine(lines[0]);
+  var hMap = {};
+  headers.forEach(function(h, i) { hMap[h.trim().toLowerCase()] = i; });
+
+  var cases = [];
+  for (var i = 1; i < lines.length; i++) {
+    var cols = parseCSVLine(lines[i]);
+    var c = {
+      date: cols[hMap['date']] || '',
+      session: cols[hMap['session']] || '',
+      age: cols[hMap['age']] || '',
+      ageUnits: cols[hMap['age units']] || 'Years',
+      asa: cols[hMap['asa']] || '',
+      specialty: cols[hMap['specialty']] || '',
+      operation: cols[hMap['operation']] || '',
+      priority: cols[hMap['priority']] || '',
+      destination: cols[hMap['destination']] || '',
+      anaesthesia: (cols[hMap['anaesthesia']] || '').split(/[;,]\s*/).filter(Boolean),
+      supervision: cols[hMap['supervision']] || '',
+      supervisorType: cols[hMap['supervisor']] || '',
+      teaching: cols[hMap['teaching']] || '',
+      blocks: parseBlocksString(cols[hMap['regional blocks']] || ''),
+      procedures: (cols[hMap['procedures']] || '').split(/[;,]\s*/).filter(Boolean),
+      incidents: cols[hMap['incidents']] || '',
+      notes: cols[hMap['notes']] || ''
+    };
+    if (c.date || c.operation || c.specialty) cases.push(c);
+  }
+  return cases;
+}
+
+function parseCSVLine(line) {
+  var result = [];
+  var current = '';
+  var inQuotes = false;
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (ch === '"') {
+      if (inQuotes && line[i+1] === '"') { current += '"'; i++; }
+      else inQuotes = !inQuotes;
+    } else if (ch === ',' && !inQuotes) {
+      result.push(current); current = '';
+    } else {
+      current += ch;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function parseBlocksString(str) {
+  if (!str) return [];
+  return str.split(/;\s*/).filter(Boolean).map(function(b) {
+    var match = b.match(/^(.+?)\s*\((.+)\)$/);
+    if (match) return { name: match[1].trim(), technique: match[2].split('/').map(function(t){return t.trim();}) };
+    return { name: b.trim(), technique: [] };
+  });
+}
 
 function showToast(msg) {
   var t = document.getElementById('toast');
