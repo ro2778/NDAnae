@@ -202,6 +202,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="theatre-grid" id="theatreGrid"></div>
   </div>
 
+  <!-- Non-theatre activity -->
+  <div class="section">
+    <div class="section-title">Non-theatre</div>
+    <div class="check-group" id="nonTheatreGroup">
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Critical Care" onclick="selectNonTheatre(this)">Critical Care</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Resus" onclick="selectNonTheatre(this)">Resus</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Transfer" onclick="selectNonTheatre(this)">Transfer</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="PICC Line" onclick="selectNonTheatre(this)">PICC Line</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Acute Pain" onclick="selectNonTheatre(this)">Acute Pain</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Chronic Pain" onclick="selectNonTheatre(this)">Chronic Pain</button>
+    </div>
+  </div>
+
   <!-- Patient -->
   <div class="section">
     <div class="section-title">Patient</div>
@@ -346,6 +359,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <label class="check-item"><input type="checkbox" value="Blood transfusion" onchange="toggleCheck(this)">Blood transfusion</label>
       <label class="check-item"><input type="checkbox" value="Nerve catheter" onchange="toggleCheck(this)">Nerve catheter</label>
       <label class="check-item"><input type="checkbox" value="Cell salvage" onchange="toggleCheck(this)">Cell salvage</label>
+      <label class="check-item"><input type="checkbox" value="PICC line" onchange="toggleCheck(this)">PICC line</label>
     </div>
   </div>
 
@@ -429,7 +443,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 var SPECIALTIES = [
   'Orthopaedics','Trauma','General Surgery','Obstetrics','Gynaecology',
   'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
-  'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain','Other'
+  'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain',
+  'Critical Care','Resus','Transfer','PICC Line','Acute Pain','Chronic Pain','Other'
 ];
 
 var OPERATION_SUGGESTIONS = {
@@ -447,7 +462,13 @@ var OPERATION_SUGGESTIONS = {
   'Cardiothoracic': ['CABG','Valve replacement','VATS','Chest drain insertion'],
   'Maxillofacial': ['Dental extractions','ORIF mandible','ORIF zygoma'],
   'Plastics': ['Skin graft','Flap','Tendon repair','Carpal tunnel'],
-  'Neurosurgery': ['Craniotomy','Burr hole','VP shunt','Spinal decompression']
+  'Neurosurgery': ['Craniotomy','Burr hole','VP shunt','Spinal decompression'],
+  'Critical Care': ['ICU admission','ICU review','Tracheostomy','Bronchoscopy','Chest drain','Central line','Arterial line','Intubation','Extubation','Prone positioning','Renal replacement therapy'],
+  'Resus': ['Cardiac arrest','Trauma call','Medical emergency','Rapid sequence induction','Difficult airway','Procedural sedation'],
+  'Transfer': ['ICU transfer','Inter-hospital transfer','CT transfer','Theatre transfer'],
+  'PICC Line': ['PICC line insertion'],
+  'Acute Pain': ['Epidural review','Nerve catheter review','PCA review','Pain ward round','Nerve block','Epidural insertion','Nerve catheter insertion'],
+  'Chronic Pain': ['Pain clinic review','Injection clinic','Spinal cord stimulator','Facet joint injection','Epidural injection','Trigger point injection','Nerve block']
 };
 
 var BLOCKS = [
@@ -664,6 +685,8 @@ function selectTheatre(key, cardEl) {
   // Visual selection
   document.querySelectorAll('.theatre-card').forEach(function(c) { c.classList.remove('selected'); });
   cardEl.classList.add('selected');
+  // Deselect non-theatre buttons
+  document.querySelectorAll('#nonTheatreGroup .toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
 
   var th = ROTA_DATA.theatres[key];
   var session = document.getElementById('f_session').value;
@@ -696,6 +719,29 @@ function selectTheatre(key, cardEl) {
     onSpecialtyChange();
   }
 
+  saveDraft();
+}
+
+/* ==================== NON-THEATRE ACTIVITY ==================== */
+
+function selectNonTheatre(btn) {
+  var group = document.getElementById('nonTheatreGroup');
+  var wasSelected = btn.classList.contains('selected');
+  // Deselect all
+  group.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('selected'); });
+  // Also deselect any theatre card
+  document.querySelectorAll('.theatre-card').forEach(function(c) { c.classList.remove('selected'); });
+
+  if (wasSelected) {
+    // Toggled off — clear specialty
+    document.getElementById('f_specialty').value = '';
+    onSpecialtyChange();
+  } else {
+    btn.classList.add('selected');
+    var val = btn.getAttribute('data-val');
+    document.getElementById('f_specialty').value = val;
+    onSpecialtyChange();
+  }
   saveDraft();
 }
 
