@@ -378,8 +378,8 @@
     },
     "acute_pain": {
       "label": "Acute Pain",
-      "am": "Acute Pain / Acute Pain",
-      "pm": "Acute Pain / Acute Pain"
+      "am": "—",
+      "pm": "—"
     },
     "persistent_pain": {
       "label": "Persistent Pain",
@@ -389,7 +389,7 @@
   },
   "date": "2026-03-30",
   "day": "Mon",
-  "scraped_at": "2026-03-30T14:01:43.557Z",
+  "scraped_at": "2026-03-30T14:04:24.169Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -756,8 +756,8 @@
       },
       "acute_pain": {
         "label": "Acute Pain",
-        "am": "Acute Pain / Acute Pain",
-        "pm": "Acute Pain / Acute Pain"
+        "am": "—",
+        "pm": "—"
       },
       "persistent_pain": {
         "label": "Persistent Pain",
