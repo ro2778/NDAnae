@@ -340,10 +340,12 @@ function extractActivityStaff(row) {
       // --- Non-theatre activities ---
       else if (loc.indexOf('Acute Pain') === 0) {
         if (!result.activities.acute_pain) result.activities.acute_pain = { label: 'Acute Pain', am: '—', pm: '—' };
+        console.log('ACTIVITY Acute Pain | slot=' + slot + ' | primary=' + JSON.stringify(row.primary) + ' | support=' + JSON.stringify(row.support) + ' | raw="' + raw + '" | session="' + row.session + '"');
         if (slot === 'am' || slot === 'pm') result.activities.acute_pain[slot] = extractActivityStaff(row);
       }
       else if (loc.indexOf('Persistent Pain') === 0) {
         if (!result.activities.persistent_pain) result.activities.persistent_pain = { label: 'Persistent Pain', am: '—', pm: '—' };
+        console.log('ACTIVITY Persistent Pain | slot=' + slot + ' | primary=' + JSON.stringify(row.primary) + ' | support=' + JSON.stringify(row.support) + ' | raw="' + raw + '" | session="' + row.session + '"');
         if (slot === 'am' || slot === 'pm') result.activities.persistent_pain[slot] = extractActivityStaff(row);
       }
       else if ((loc.indexOf('Pre-op') === 0 || loc.indexOf('Preop') === 0) && loc.indexOf('Obs') === -1) {
