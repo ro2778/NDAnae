@@ -336,7 +336,7 @@ function hasGlanso(raw) {
           result.activities.persistent_pain[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
         }
       }
-      else if (loc.indexOf('Pre-op') === 0 && loc.indexOf('Obs') === -1) {
+      else if ((loc.indexOf('Pre-op') === 0 || loc.indexOf('Preop') === 0) && loc.indexOf('Obs') === -1) {
         if (!result.activities.preop) result.activities.preop = { label: 'Pre-op Clinic', am: '—', pm: '—' };
         if (slot === 'am' || slot === 'pm') {
           var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
@@ -344,7 +344,7 @@ function hasGlanso(raw) {
           result.activities.preop[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
         }
       }
-      else if (loc.indexOf('Obs Pre-op') === 0 || loc.indexOf('Obs pre-op') === 0) {
+      else if (loc.indexOf('Obs Pre-op') === 0 || loc.indexOf('Obs pre-op') === 0 || loc.indexOf('Obs Preop') === 0) {
         if (!result.activities.obs_preop) result.activities.obs_preop = { label: 'Obs Pre-op', am: '—', pm: '—' };
         if (slot === 'am' || slot === 'pm') {
           var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
@@ -359,11 +359,6 @@ function hasGlanso(raw) {
           (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
           result.activities.picc[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
         }
-      }
-
-      // --- DEBUG: log unmatched locations ---
-      else {
-        console.log('UNMATCHED: "' + loc + '" | slot=' + slot + ' | raw="' + raw + '"');
       }
     }
 
