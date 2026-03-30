@@ -206,16 +206,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   <div class="section">
     <div class="section-title">Non-theatre</div>
     <div class="check-group" id="nonTheatreGroup">
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Critical Care" onclick="selectNonTheatre(this)">Critical Care</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Resus" onclick="selectNonTheatre(this)">Resus</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Transfer" onclick="selectNonTheatre(this)">Transfer</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="PICC Line" onclick="selectNonTheatre(this)">PICC Line</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Acute Pain" onclick="selectNonTheatre(this)">Acute Pain</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Chronic Pain" onclick="selectNonTheatre(this)">Persistent Pain</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Pre-op Clinic" onclick="selectNonTheatre(this)">Pre-op Clinic</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Obs Pre-op" onclick="selectNonTheatre(this)">Obs Pre-op</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="ECT" onclick="selectNonTheatre(this)">ECT</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="DCCV" onclick="selectNonTheatre(this)">DCCV</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Critical Care" onclick="selectNonTheatre(this)">Critical Care</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Resus" onclick="selectNonTheatre(this)">Resus</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Transfer" onclick="selectNonTheatre(this)">Transfer</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Acute Pain" onclick="selectNonTheatre(this)">Acute Pain</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Chronic Pain" onclick="selectNonTheatre(this)">Persistent Pain</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Pre-op Clinic" onclick="selectNonTheatre(this)">Pre-op Clinic</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Obstetrics" data-op="Obstetric anaesthetic review" onclick="selectNonTheatre(this)">Obs Pre-op</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Psychiatry" data-op="ECT" onclick="selectNonTheatre(this)">ECT</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Cardiology" data-op="DC cardioversion" onclick="selectNonTheatre(this)">DCCV</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="PICC line insertion" onclick="selectNonTheatre(this)">PICC Line</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Lumbar puncture" onclick="selectNonTheatre(this)">LP</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Central line insertion" onclick="selectNonTheatre(this)">CVC</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Pain" data-op="Nerve catheter insertion" onclick="selectNonTheatre(this)">Nerve Cath</button>
     </div>
   </div>
 
@@ -449,8 +452,8 @@ var SPECIALTIES = [
   'Orthopaedics','Trauma','General Surgery','Obstetrics','Gynaecology',
   'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
   'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain',
-  'Critical Care','Resus','Transfer','PICC Line','Acute Pain','Chronic Pain',
-  'Pre-op Clinic','Obs Pre-op','ECT','DCCV','Other'
+  'Critical Care','Resus','Transfer','Acute Pain','Chronic Pain',
+  'Pre-op Clinic','Medicine','Cardiology','Psychiatry','Other'
 ];
 
 var OPERATION_SUGGESTIONS = {
@@ -472,13 +475,13 @@ var OPERATION_SUGGESTIONS = {
   'Critical Care': ['ICU admission','ICU review','Tracheostomy','Bronchoscopy','Chest drain','Central line','Arterial line','Intubation','Extubation','Prone positioning','Renal replacement therapy'],
   'Resus': ['Cardiac arrest','Trauma call','Medical emergency','Rapid sequence induction','Difficult airway','Procedural sedation'],
   'Transfer': ['ICU transfer','Inter-hospital transfer','CT transfer','Theatre transfer'],
-  'PICC Line': ['PICC line insertion'],
   'Acute Pain': ['Epidural review','Nerve catheter review','PCA review','Pain ward round','Nerve block','Epidural insertion','Nerve catheter insertion'],
   'Chronic Pain': ['Pain clinic review','Injection clinic','Spinal cord stimulator','Facet joint injection','Epidural injection','Trigger point injection','Nerve block'],
   'Pre-op Clinic': ['Pre-op assessment','Anaesthetic review','High-risk review'],
-  'Obs Pre-op': ['Obstetric anaesthetic review','Birth plan discussion','High-risk obstetric review'],
-  'ECT': ['Electroconvulsive therapy'],
-  'DCCV': ['DC cardioversion']
+  'Medicine': ['PICC line insertion','Lumbar puncture','Central line insertion','Arterial line insertion'],
+  'Cardiology': ['DC cardioversion','Pacing wire insertion','TOE'],
+  'Psychiatry': ['Electroconvulsive therapy'],
+  'Pain': ['Nerve catheter insertion','Epidural insertion','Nerve block','Facet joint injection','Trigger point injection']
 };
 
 var BLOCKS = [
@@ -743,14 +746,17 @@ function selectNonTheatre(btn) {
   document.querySelectorAll('.theatre-card').forEach(function(c) { c.classList.remove('selected'); });
 
   if (wasSelected) {
-    // Toggled off — clear specialty
+    // Toggled off — clear specialty and operation
     document.getElementById('f_specialty').value = '';
+    document.getElementById('f_operation').value = '';
     onSpecialtyChange();
   } else {
     btn.classList.add('selected');
-    var val = btn.getAttribute('data-val');
-    document.getElementById('f_specialty').value = val;
+    var spec = btn.getAttribute('data-spec');
+    var op = btn.getAttribute('data-op') || '';
+    document.getElementById('f_specialty').value = spec;
     onSpecialtyChange();
+    if (op) document.getElementById('f_operation').value = op;
   }
   saveDraft();
 }
