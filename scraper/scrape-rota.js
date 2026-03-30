@@ -58,6 +58,24 @@ function hasGlanso(raw) {
   return /\[Glanso\]/i.test(raw || '');
 }
 
+function extractActivityStaff(row) {
+  // Try primary/support first
+  var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
+  (row.support || []).forEach(function(s) {
+    var p = splitNameGrade(s);
+    if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : ''));
+  });
+  if (people.length) return people.join(', ');
+  // Fallback: parse from raw text — strip session prefix like "PRE OP / Pre-op" or "Acute Pain /"
+  var raw = row.raw || '';
+  if (!raw) return '—';
+  var slashIdx = raw.lastIndexOf('/');
+  var namePart = slashIdx >= 0 ? raw.substring(slashIdx + 1).trim() : raw;
+  // Remove known prefixes
+  namePart = namePart.replace(/^(Pre-?op|Acute Pain|Persistent Pain|PICC|Obs Preop|Admin)\s*/i, '').trim();
+  return cleanName(namePart) || '—';
+}
+
 (async () => {
   console.log('Starting CLW scraper...');
 
@@ -322,43 +340,23 @@ function hasGlanso(raw) {
       // --- Non-theatre activities ---
       else if (loc.indexOf('Acute Pain') === 0) {
         if (!result.activities.acute_pain) result.activities.acute_pain = { label: 'Acute Pain', am: '—', pm: '—' };
-        if (slot === 'am' || slot === 'pm') {
-          var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
-          result.activities.acute_pain[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
-        }
+        if (slot === 'am' || slot === 'pm') result.activities.acute_pain[slot] = extractActivityStaff(row);
       }
       else if (loc.indexOf('Persistent Pain') === 0) {
         if (!result.activities.persistent_pain) result.activities.persistent_pain = { label: 'Persistent Pain', am: '—', pm: '—' };
-        if (slot === 'am' || slot === 'pm') {
-          var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
-          result.activities.persistent_pain[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
-        }
+        if (slot === 'am' || slot === 'pm') result.activities.persistent_pain[slot] = extractActivityStaff(row);
       }
       else if ((loc.indexOf('Pre-op') === 0 || loc.indexOf('Preop') === 0) && loc.indexOf('Obs') === -1) {
         if (!result.activities.preop) result.activities.preop = { label: 'Pre-op Clinic', am: '—', pm: '—' };
-        if (slot === 'am' || slot === 'pm') {
-          var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
-          result.activities.preop[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
-        }
+        if (slot === 'am' || slot === 'pm') result.activities.preop[slot] = extractActivityStaff(row);
       }
       else if (loc.indexOf('Obs Pre-op') === 0 || loc.indexOf('Obs pre-op') === 0 || loc.indexOf('Obs Preop') === 0) {
         if (!result.activities.obs_preop) result.activities.obs_preop = { label: 'Obs Pre-op', am: '—', pm: '—' };
-        if (slot === 'am' || slot === 'pm') {
-          var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
-          result.activities.obs_preop[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
-        }
+        if (slot === 'am' || slot === 'pm') result.activities.obs_preop[slot] = extractActivityStaff(row);
       }
       else if (loc.indexOf('PICC') === 0) {
         if (!result.activities.picc) result.activities.picc = { label: 'PICC Lines', am: '—', pm: '—' };
-        if (slot === 'am' || slot === 'pm') {
-          var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
-          (row.support || []).forEach(function(s) { var p = splitNameGrade(s); if (p.name) people.push(p.name + (p.grade ? ' (' + p.grade + ')' : '')); });
-          result.activities.picc[slot] = people.length ? people.join(', ') : cleanName(raw) || '—';
-        }
+        if (slot === 'am' || slot === 'pm') result.activities.picc[slot] = extractActivityStaff(row);
       }
     }
 
