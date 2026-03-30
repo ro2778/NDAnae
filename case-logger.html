@@ -214,6 +214,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Chronic Pain" onclick="selectNonTheatre(this)">Persistent Pain</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Pre-op Clinic" onclick="selectNonTheatre(this)">Pre-op Clinic</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="Obs Pre-op" onclick="selectNonTheatre(this)">Obs Pre-op</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="ECT" onclick="selectNonTheatre(this)">ECT</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-val="DCCV" onclick="selectNonTheatre(this)">DCCV</button>
     </div>
   </div>
 
@@ -362,6 +364,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <label class="check-item"><input type="checkbox" value="Nerve catheter" onchange="toggleCheck(this)">Nerve catheter</label>
       <label class="check-item"><input type="checkbox" value="Cell salvage" onchange="toggleCheck(this)">Cell salvage</label>
       <label class="check-item"><input type="checkbox" value="PICC line" onchange="toggleCheck(this)">PICC line</label>
+      <label class="check-item"><input type="checkbox" value="Lumbar puncture" onchange="toggleCheck(this)">LP</label>
     </div>
   </div>
 
@@ -447,7 +450,7 @@ var SPECIALTIES = [
   'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
   'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain',
   'Critical Care','Resus','Transfer','PICC Line','Acute Pain','Chronic Pain',
-  'Pre-op Clinic','Obs Pre-op','Other'
+  'Pre-op Clinic','Obs Pre-op','ECT','DCCV','Other'
 ];
 
 var OPERATION_SUGGESTIONS = {
@@ -473,7 +476,9 @@ var OPERATION_SUGGESTIONS = {
   'Acute Pain': ['Epidural review','Nerve catheter review','PCA review','Pain ward round','Nerve block','Epidural insertion','Nerve catheter insertion'],
   'Chronic Pain': ['Pain clinic review','Injection clinic','Spinal cord stimulator','Facet joint injection','Epidural injection','Trigger point injection','Nerve block'],
   'Pre-op Clinic': ['Pre-op assessment','Anaesthetic review','High-risk review'],
-  'Obs Pre-op': ['Obstetric anaesthetic review','Birth plan discussion','High-risk obstetric review']
+  'Obs Pre-op': ['Obstetric anaesthetic review','Birth plan discussion','High-risk obstetric review'],
+  'ECT': ['Electroconvulsive therapy'],
+  'DCCV': ['DC cardioversion']
 };
 
 var BLOCKS = [
