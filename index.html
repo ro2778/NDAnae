@@ -144,6 +144,31 @@ body {
 .drawer-footer { padding: 12px 20px; border-top: 1px solid var(--border); }
 .drawer-footer-text { font-size: 11px; color: var(--text3); }
 
+/* About page */
+.about-overlay {
+  display: none; position: fixed; inset: 0; background: var(--bg); z-index: 200;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.about-overlay.open { display: block; }
+.about-inner { max-width: 600px; margin: 0 auto; padding: 16px; padding-top: calc(16px + env(safe-area-inset-top, 0px)); }
+.about-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.about-back { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--accent); padding: 4px; }
+.about-title { font-size: 18px; font-weight: 700; color: var(--accent); }
+.about-logo { width: 80px; height: 80px; border-radius: 18px; display: block; margin: 0 auto 12px; }
+.about-app-name { text-align: center; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.about-app-ver { text-align: center; font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.about-section { font-size: 12px; font-weight: 700; color: var(--gold); margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+.about-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 8px; }
+.about-list { font-size: 13px; color: var(--text2); line-height: 1.8; padding-left: 20px; margin-bottom: 8px; }
+.about-list li { margin-bottom: 2px; }
+.about-feedback {
+  display: block; text-align: center; padding: 14px; margin: 20px 0;
+  background: var(--bg2); border: 1px solid var(--accent); border-radius: 12px;
+  color: var(--accent); font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.about-feedback:active { opacity: 0.7; }
+.about-credits { font-size: 11px; color: var(--text3); text-align: center; margin-top: 24px; line-height: 1.6; }
+
 @media (max-width: 360px) {
   .module-grid { grid-template-columns: 1fr; }
 }
@@ -257,8 +282,48 @@ body {
   <iframe id="module-iframe"></iframe>
 </div>
 
+<!-- About page -->
+<div class="about-overlay" id="about-overlay">
+  <div class="about-inner">
+    <div class="about-header">
+      <button class="about-back" id="about-back">&larr;</button>
+      <div class="about-title">About</div>
+    </div>
+    <img class="about-logo" id="about-logo" alt="ND Anaesthetics">
+    <div class="about-app-name">ND Anaesthetics</div>
+    <div class="about-app-ver" id="about-version"></div>
+
+    <div class="about-section">What's New in v1.1</div>
+    <ul class="about-list">
+      <li><b>Case Logger</b> &mdash; anaesthetic logbook with rota-integrated theatre picker, RCoA-compatible fields, and export to .logbook, Excel, CSV, and PDF</li>
+      <li><b>Activities on Daily Rota</b> &mdash; Acute Pain, Persistent Pain, Pre-op Clinic, Obs Pre-op, and PICC Lines now shown when staffed</li>
+      <li><b>iOS display fixes</b> &mdash; safe area padding for status bar and Dynamic Island</li>
+      <li><b>Splash screen polish</b> &mdash; theme switching no longer causes layout shift</li>
+    </ul>
+
+    <div class="about-section">v1.0</div>
+    <ul class="about-list">
+      <li><b>Daily Rota</b> &mdash; auto-scraped from CLW, theatres and on-call staffing</li>
+      <li><b>Useful Information</b> &mdash; bleeps, extensions, and door codes</li>
+      <li><b>WATCh Drug Calculator</b> &mdash; paediatric emergency drug doses</li>
+      <li><b>TEG6 Guideline</b> &mdash; quick-reference card for TEG-guided transfusion</li>
+      <li><b>TEG6 Audit</b> &mdash; data collection form with email submission</li>
+      <li><b>RA Atlas</b> &mdash; regional anaesthesia nerve block atlas</li>
+    </ul>
+
+    <div class="about-section">Feedback & Feature Requests</div>
+    <p class="about-text">Have an idea for a new feature, found a bug, or want to suggest an improvement? Get in touch:</p>
+    <a class="about-feedback" href="mailto:r.obyrne@nhs.net?subject=ND%20Anaesthetics%20App%20Feedback">r.obyrne@nhs.net</a>
+
+    <div class="about-section">About</div>
+    <p class="about-text">Built for the Department of Anaesthesia at North Devon District Hospital. Designed to make day-to-day information accessible, fast, and available offline as an installable app.</p>
+
+    <div class="about-credits">Made in North Devon</div>
+  </div>
+</div>
+
 <script>
-var APP_VERSION = '1.0.39';
+var APP_VERSION = '1.1';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -286,6 +351,9 @@ function updateThemeAssets() {
   if (dIcon) dIcon.textContent = isDark ? '☀️' : '🌙';
   var dLabel = document.getElementById('theme-label-drawer');
   if (dLabel) dLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+  /* About logo */
+  var aLogo = document.getElementById('about-logo');
+  if (aLogo) aLogo.src = 'icon-512-' + theme + '.png';
 }
 updateThemeAssets();
 
@@ -304,6 +372,7 @@ document.getElementById('theme-toggle-drawer').addEventListener('click', functio
 /* Version */
 document.getElementById('version-display').textContent = 'v' + APP_VERSION;
 document.getElementById('drawer-version').textContent = 'ND Anaesthetics v' + APP_VERSION;
+document.getElementById('about-version').textContent = 'Version ' + APP_VERSION;
 
 /* Drawer */
 function openDrawer() {
@@ -316,6 +385,15 @@ function closeDrawer() {
 }
 document.getElementById('hamburger-btn').addEventListener('click', openDrawer);
 document.getElementById('drawer-overlay').addEventListener('click', closeDrawer);
+
+/* About page */
+document.getElementById('drawer-info').addEventListener('click', function() {
+  closeDrawer();
+  document.getElementById('about-overlay').classList.add('open');
+});
+document.getElementById('about-back').addEventListener('click', function() {
+  document.getElementById('about-overlay').classList.remove('open');
+});
 
 /* Install prompt */
 var deferredPrompt = null;
