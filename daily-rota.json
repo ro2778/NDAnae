@@ -199,12 +199,7 @@
       "am": {
         "list": "Arunagiri / EGS",
         "primary": "N. Love",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -247,7 +242,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Eskander / Gynae",
-        "primary": "N. Nath, T. Cobby",
+        "primary": "T. Cobby, N. Nath",
         "support": [
           {
             "name": "E. Cobby",
@@ -375,7 +370,7 @@
   },
   "date": "2026-03-31",
   "day": "Tue",
-  "scraped_at": "2026-03-31T06:16:23.887Z",
+  "scraped_at": "2026-03-31T08:16:12.261Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -460,7 +455,7 @@
         "label": "ITU Consultant On Call",
         "bleep": "505",
         "am": "B. Ittzes",
-        "pm": "T. Oelofse ITU PMW. Gaunt",
+        "pm": "W. Gaunt ITU PMT. Oelofse",
         "eve": "T. Oelofse",
         "night": "T. Oelofse"
       }
@@ -500,23 +495,13 @@
         "am": {
           "list": "Trauma / Trauma",
           "primary": "B. Vidanapathirana",
-          "support": [
-            {
-              "name": "A. Khalid",
-              "grade": "ACCS Med"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Trauma / Trauma",
           "primary": "B. Vidanapathirana",
-          "support": [
-            {
-              "name": "A. Khalid",
-              "grade": "ACCS Med"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -580,7 +565,7 @@
         "type": "Day Case",
         "am": {
           "list": "Khatwa / ENT",
-          "primary": "R. Johnson, D. Sanders",
+          "primary": "D. Sanders, R. Johnson",
           "support": [],
           "cancelled": false
         },
@@ -767,8 +752,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "L. Miller, A. Bennett, S. Charoumzadeh Dashti",
-        "pm": "L. Miller, A. Bennett, S. Charoumzadeh Dashti"
+        "am": "A. Bennett, L. Miller, S. Charoumzadeh Dashti",
+        "pm": "A. Bennett, L. Miller, S. Charoumzadeh Dashti"
       }
     },
     "date": "2026-04-01",
