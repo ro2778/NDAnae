@@ -152,7 +152,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   <h1>Case Logger</h1>
   <div class="mode-toggle">
     <button class="mode-btn active" id="mode-trainee" onclick="setMode('trainee')">Trainee</button>
-    <button class="mode-btn" id="mode-independent" onclick="setMode('independent')">Senior 🧑‍🦯</button>
+    <button class="mode-btn" id="mode-independent" onclick="setMode('independent')">Senior</button>
   </div>
 </div>
 
@@ -185,10 +185,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <div class="form-group">
         <label class="form-label">Session</label>
         <div class="toggle-row" id="f_session_group">
-          <button class="toggle-btn" data-val="Morning" onclick="setToggleBtn(this,'f_session')">AM</button>
-          <button class="toggle-btn" data-val="Afternoon" onclick="setToggleBtn(this,'f_session')">PM</button>
-          <button class="toggle-btn" data-val="Evening" onclick="setToggleBtn(this,'f_session')">Eve</button>
-          <button class="toggle-btn" data-val="Night" onclick="setToggleBtn(this,'f_session')">Night</button>
+          <button class="toggle-btn" data-val="Morning" onclick="setToggleBtn(this,'f_session');renderTheatres()">AM</button>
+          <button class="toggle-btn" data-val="Afternoon" onclick="setToggleBtn(this,'f_session');renderTheatres()">PM</button>
+          <button class="toggle-btn" data-val="Evening" onclick="setToggleBtn(this,'f_session');renderTheatres()">Eve</button>
+          <button class="toggle-btn" data-val="Night" onclick="setToggleBtn(this,'f_session');renderTheatres()">Night</button>
         </div>
         <input type="hidden" id="f_session" value="">
       </div>
@@ -214,10 +214,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Obstetrics" data-op="Obstetric anaesthetic review" onclick="selectNonTheatre(this)">Obs Pre-op</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Psychiatry" data-op="ECT" onclick="selectNonTheatre(this)">ECT</button>
       <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Cardiology" data-op="DC cardioversion" onclick="selectNonTheatre(this)">DCCV</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="PICC line insertion" onclick="selectNonTheatre(this)">PICC Line</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Lumbar puncture" onclick="selectNonTheatre(this)">LP</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Central line insertion" onclick="selectNonTheatre(this)">CVC</button>
-      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Acute Pain" data-op="Nerve catheter insertion" onclick="selectNonTheatre(this)">Nerve Cath</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="PICC line insertion" data-proc="PICC line insertion" onclick="selectNonTheatre(this)">PICC Line</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Lumbar puncture" data-proc="Lumbar puncture" onclick="selectNonTheatre(this)">LP</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Medicine" data-op="Central line insertion" data-proc="Central line insertion" onclick="selectNonTheatre(this)">CVC</button>
+      <button class="toggle-btn" style="border-radius:8px;border:1px solid var(--border)" data-spec="Acute Pain" data-op="Nerve catheter insertion" data-proc="Nerve catheter insertion" onclick="selectNonTheatre(this)">Nerve Catheter</button>
     </div>
   </div>
 
@@ -303,6 +303,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <label class="check-item"><input type="checkbox" value="Local" onchange="toggleCheck(this)">Local</label>
       <label class="check-item"><input type="checkbox" value="TIVA" onchange="toggleCheck(this)">TIVA</label>
       <label class="check-item"><input type="checkbox" value="N2O" onchange="toggleCheck(this)">N2O</label>
+      <label class="check-item"><input type="checkbox" value="Gas Induction" onchange="toggleCheck(this)">Gas Induction</label>
+      <label class="check-item"><input type="checkbox" value="Epidural Top-up" onchange="toggleCheck(this)">Epidural Top-up</label>
     </div>
   </div>
 
@@ -357,16 +359,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <label class="check-item"><input type="checkbox" value="Arterial line" onchange="toggleCheck(this)">Arterial line</label>
       <label class="check-item"><input type="checkbox" value="Central line" onchange="toggleCheck(this)">Central line</label>
       <label class="check-item"><input type="checkbox" value="RSI" onchange="toggleCheck(this)">RSI</label>
-      <label class="check-item"><input type="checkbox" value="Fibreoptic intubation" onchange="toggleCheck(this)">Fibreoptic</label>
       <label class="check-item"><input type="checkbox" value="Videolaryngoscopy" onchange="toggleCheck(this)">Videolaryngoscopy</label>
-      <label class="check-item"><input type="checkbox" value="Chest drain" onchange="toggleCheck(this)">Chest drain</label>
-      <label class="check-item"><input type="checkbox" value="Cricothyroidotomy" onchange="toggleCheck(this)">Cricothyroidotomy</label>
-      <label class="check-item"><input type="checkbox" value="Awake intubation" onchange="toggleCheck(this)">Awake intubation</label>
       <label class="check-item"><input type="checkbox" value="Blood transfusion" onchange="toggleCheck(this)">Blood transfusion</label>
-      <label class="check-item"><input type="checkbox" value="Nerve catheter" onchange="toggleCheck(this)">Nerve catheter</label>
       <label class="check-item"><input type="checkbox" value="Cell salvage" onchange="toggleCheck(this)">Cell salvage</label>
-      <label class="check-item"><input type="checkbox" value="PICC line" onchange="toggleCheck(this)">PICC line</label>
-      <label class="check-item"><input type="checkbox" value="Lumbar puncture" onchange="toggleCheck(this)">LP</label>
+      <label class="check-item" style="border-color:var(--gold)"><input type="checkbox" value="Other" onchange="toggleOtherProcedure(this)">Other</label>
+    </div>
+    <div class="form-group hidden" id="otherProcedureWrap" style="margin-top:8px">
+      <input class="form-input" type="text" id="f_otherProcedure" placeholder="Describe procedure...">
     </div>
   </div>
 
@@ -449,11 +448,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 /* ==================== DATA ==================== */
 
 var SPECIALTIES = [
-  'Orthopaedics','Trauma','General Surgery','Obstetrics','Gynaecology',
-  'ENT','Ophthalmology','Urology','Breast','Vascular','Paediatrics',
-  'Cardiothoracic','Maxillofacial','Plastics','Neurosurgery','Pain',
-  'Critical Care','Resus','Transfer','Acute Pain','Chronic Pain',
-  'Pre-op Clinic','Medicine','Cardiology','Psychiatry','Other'
+  'Acute Pain','Breast','Cardiology','Cardiothoracic','Chronic Pain',
+  'Critical Care','ENT','General Surgery','Gynaecology','Maxillofacial',
+  'Medicine','Neurosurgery','Obstetrics','Ophthalmology','Orthopaedics',
+  'Paediatrics','Pain','Plastics','Pre-op Clinic','Psychiatry',
+  'Resus','Transfer','Trauma','Urology','Vascular','Other'
 ];
 
 var OPERATION_SUGGESTIONS = {
@@ -623,6 +622,19 @@ function toggleCheck(cb) {
   saveDraft();
 }
 
+function clearOtherProcedure() {
+  var otherCb = document.querySelector('#f_procedures_group input[value="Other"]');
+  if (otherCb) { otherCb.checked = false; otherCb.parentElement.classList.remove('selected'); }
+  document.getElementById('otherProcedureWrap').classList.add('hidden');
+  document.getElementById('f_otherProcedure').value = '';
+}
+
+function toggleOtherProcedure(cb) {
+  toggleCheck(cb);
+  document.getElementById('otherProcedureWrap').classList.toggle('hidden', !cb.checked);
+  if (!cb.checked) document.getElementById('f_otherProcedure').value = '';
+}
+
 function getCheckedValues(groupId) {
   var vals = [];
   document.getElementById(groupId).querySelectorAll('input[type="checkbox"]:checked').forEach(function(cb) {
@@ -749,6 +761,8 @@ function selectNonTheatre(btn) {
     document.getElementById('f_specialty').value = '';
     document.getElementById('f_operation').value = '';
     onSpecialtyChange();
+    // Clear auto-filled Other procedure
+    clearOtherProcedure();
   } else {
     btn.classList.add('selected');
     var spec = btn.getAttribute('data-spec');
@@ -756,6 +770,14 @@ function selectNonTheatre(btn) {
     document.getElementById('f_specialty').value = spec;
     onSpecialtyChange();
     if (op) document.getElementById('f_operation').value = op;
+    // Auto-fill Other procedure for procedure-type non-theatre activities
+    var procText = btn.getAttribute('data-proc') || '';
+    if (procText) {
+      var otherCb = document.querySelector('#f_procedures_group input[value="Other"]');
+      if (otherCb) { otherCb.checked = true; otherCb.parentElement.classList.add('selected'); }
+      document.getElementById('otherProcedureWrap').classList.remove('hidden');
+      document.getElementById('f_otherProcedure').value = procText;
+    }
   }
   saveDraft();
 }
@@ -847,6 +869,7 @@ function collectForm() {
     teaching: document.getElementById('f_teaching').value,
     blocks: getBlocks(),
     procedures: getCheckedValues('f_procedures_group'),
+    otherProcedure: document.getElementById('f_otherProcedure').value,
     incidents: document.getElementById('f_incidents').value,
     notes: document.getElementById('f_notes').value
   };
@@ -870,6 +893,9 @@ function restoreForm(data) {
   setToggleByValue('f_teaching', data.teaching || '');
   setBlocks(data.blocks || []);
   setCheckedValues('f_procedures_group', data.procedures || []);
+  document.getElementById('f_otherProcedure').value = data.otherProcedure || '';
+  var hasOther = (data.procedures || []).indexOf('Other') >= 0;
+  document.getElementById('otherProcedureWrap').classList.toggle('hidden', !hasOther);
   document.getElementById('f_incidents').value = data.incidents || '';
   document.getElementById('f_notes').value = data.notes || '';
   onDateChange();
@@ -894,6 +920,7 @@ function clearForm() {
   setToggleByValue('f_teaching', '');
   setBlocks([]);
   setCheckedValues('f_procedures_group', []);
+  clearOtherProcedure();
   document.getElementById('f_incidents').value = '';
   document.getElementById('f_notes').value = '';
   editingCaseId = null;
