@@ -359,7 +359,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.1.07';
+var APP_VERSION = '1.1.08';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -404,17 +404,10 @@ document.getElementById('version-display').textContent = 'v' + APP_VERSION;
 document.getElementById('drawer-version').textContent = 'ND Anaesthetics v' + APP_VERSION;
 document.getElementById('about-version').textContent = 'Version ' + APP_VERSION;
 
-/* Creative Corner glow — new content within 7 days */
+/* Creative Corner glow — always on */
 (function() {
-  var NEW_CONTENT_DATE = '2026-03-31';
-  var NEW_CONTENT_DAYS = 7;
-  var added = new Date(NEW_CONTENT_DATE + 'T00:00:00');
-  var now = new Date();
-  var diff = (now - added) / (1000 * 60 * 60 * 24);
-  if (diff >= 0 && diff <= NEW_CONTENT_DAYS) {
-    var banner = document.getElementById('creative-banner');
-    if (banner) banner.classList.add('has-new');
-  }
+  var banner = document.getElementById('creative-banner');
+  if (banner) banner.classList.add('has-new');
 })();
 
 /* Drawer */
