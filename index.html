@@ -98,6 +98,31 @@ body {
 .module-name { font-size: 14px; font-weight: 700; }
 .module-desc { font-size: 11px; color: var(--text3); line-height: 1.3; }
 .module-card.placeholder { opacity: 0.4; pointer-events: none; }
+
+/* Creative banner */
+.creative-banner {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
+  padding: 14px 16px; margin-bottom: 16px; cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: var(--text);
+  box-shadow: 0 1px 3px var(--shadow); transition: transform 0.15s;
+}
+.creative-banner:active { transform: scale(0.98); }
+.creative-banner-icon { font-size: 32px; flex-shrink: 0; }
+.creative-banner-text { flex: 1; }
+.creative-banner-title { font-size: 14px; font-weight: 700; }
+.creative-banner-desc { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.creative-banner-arrow { font-size: 18px; color: var(--text3); flex-shrink: 0; }
+
+/* New content glow */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 6px var(--gold), 0 1px 3px var(--shadow); }
+  50% { box-shadow: 0 0 16px var(--gold), 0 0 30px rgba(255,215,0,0.15); }
+}
+.creative-banner.has-new {
+  border-color: var(--gold);
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
 .module-card.placeholder .module-name::after { content: " (coming soon)"; font-weight: 400; font-style: italic; }
 
 /* Module frame — full screen with floating back arrow */
@@ -210,6 +235,11 @@ body {
       <span class="di-icon" id="theme-icon-drawer">🌙</span>
       <span id="theme-label-drawer">Dark mode</span>
     </div>
+    <div class="drawer-section">Creative</div>
+    <a class="drawer-item" href="mailto:r.obyrne@nhs.net?subject=Creative%20Corner%20Submission" style="text-decoration:none;color:var(--text)">
+      <span class="di-icon">&#127912;</span>
+      <span>Share your creation</span>
+    </a>
     <div class="drawer-section">About</div>
     <div class="drawer-item" id="drawer-info">
       <span class="di-icon">ℹ️</span>
@@ -231,6 +261,14 @@ body {
   </div>
 
   <div class="main" id="launcher">
+    <a class="creative-banner" id="creative-banner" data-module="creative">
+      <div class="creative-banner-icon">&#127912;</div>
+      <div class="creative-banner-text">
+        <div class="creative-banner-title">Creative Corner</div>
+        <div class="creative-banner-desc">Art, words & magic from the department</div>
+      </div>
+      <div class="creative-banner-arrow">&#8250;</div>
+    </a>
     <div class="cat-header">Organisation</div>
     <div class="module-grid">
       <a class="module-card" data-module="rota">
@@ -321,7 +359,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.1.06';
+var APP_VERSION = '1.1.07';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -365,6 +403,19 @@ document.getElementById('theme-toggle-drawer').addEventListener('click', functio
 document.getElementById('version-display').textContent = 'v' + APP_VERSION;
 document.getElementById('drawer-version').textContent = 'ND Anaesthetics v' + APP_VERSION;
 document.getElementById('about-version').textContent = 'Version ' + APP_VERSION;
+
+/* Creative Corner glow — new content within 7 days */
+(function() {
+  var NEW_CONTENT_DATE = '2026-03-31';
+  var NEW_CONTENT_DAYS = 7;
+  var added = new Date(NEW_CONTENT_DATE + 'T00:00:00');
+  var now = new Date();
+  var diff = (now - added) / (1000 * 60 * 60 * 24);
+  if (diff >= 0 && diff <= NEW_CONTENT_DAYS) {
+    var banner = document.getElementById('creative-banner');
+    if (banner) banner.classList.add('has-new');
+  }
+})();
 
 /* Drawer */
 function openDrawer() {
@@ -442,6 +493,7 @@ var MODULES = {
   guidelines: 'guidelines.html',
   audit: 'audit.html',
   'case-logger': 'case-logger.html',
+  creative: 'creative.html',
   atlas: 'https://ro2778.github.io/nerve-block-atlas/?from=ndanae'
 };
 
@@ -455,7 +507,7 @@ document.getElementById('open-btn').addEventListener('click', function() {
 });
 
 /* Module cards */
-document.querySelectorAll('.module-card[data-module]').forEach(function(card) {
+document.querySelectorAll('[data-module]').forEach(function(card) {
   card.addEventListener('click', function(e) {
     e.preventDefault();
     openModule(this.getAttribute('data-module'));

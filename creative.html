@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Creative Corner</title>
+<style>
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222;
+  --text: #e0e0e0; --text2: #aaa; --text3: #666;
+  --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --shadow: rgba(0,0,0,0.3);
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc;
+  --text: #1a1a2e; --text2: #555; --text3: #999;
+  --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --shadow: rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); max-width: 600px; margin: 0 auto; padding: 12px 12px 40px; }
+
+/* Header */
+.header { text-align: center; padding: 12px 0 4px; }
+.header h1 { font-size: 18px; color: var(--accent); font-weight: 700; }
+.header .subtitle { font-size: 12px; color: var(--text3); margin-top: 2px; font-style: italic; }
+
+/* Navigation tabs */
+.nav-tabs { display: flex; gap: 0; margin: 12px 0; }
+.nav-btn { flex: 1; padding: 8px 4px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.15s; }
+.nav-btn:first-child { border-radius: 8px 0 0 8px; }
+.nav-btn:last-child { border-radius: 0 8px 8px 0; }
+.nav-btn:not(:first-child) { border-left: none; }
+.nav-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.nav-btn.active + .nav-btn { border-left-color: var(--accent); }
+
+/* Section panels */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* === GALLERY === */
+.artist-header { text-align: center; margin: 16px 0 12px; }
+.artist-name { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: 1px; }
+.artist-mystery { font-size: 12px; color: var(--text3); font-style: italic; margin-top: 4px; }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gallery-item { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; aspect-ratio: 1; background: var(--bg2); border: 1px solid var(--border); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.gallery-item:active img { transform: scale(1.03); }
+.gallery-item .item-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; font-size: 11px; font-weight: 600; }
+
+/* Lightbox / glazing effect */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox-img { max-width: 92vw; max-height: 75vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 60px rgba(255,255,255,0.08), 0 0 120px rgba(255,255,255,0.03); }
+.lightbox-caption { color: #ccc; font-size: 13px; margin-top: 12px; text-align: center; padding: 0 20px; }
+.lightbox-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 8px; opacity: 0.7; }
+.lightbox-close:active { opacity: 1; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 36px; cursor: pointer; padding: 16px; opacity: 0.5; }
+.lightbox-nav:active { opacity: 1; }
+.lightbox-prev { left: 4px; }
+.lightbox-next { right: 4px; }
+.lightbox-counter { color: #666; font-size: 11px; margin-top: 8px; }
+
+/* === LITERARY === */
+.poem-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.poem-title { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.poem-author { font-size: 12px; color: var(--text3); margin-bottom: 16px; font-style: italic; }
+.poem-body { font-size: 14px; color: var(--text2); line-height: 1.8; white-space: pre-wrap; }
+.poem-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.haiku-section { text-align: center; margin-top: 16px; }
+.haiku-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.haiku-text { font-size: 16px; color: var(--text); line-height: 2; font-style: italic; }
+.haiku-author { font-size: 11px; color: var(--text3); margin-top: 8px; }
+
+/* === SIGHTINGS === */
+.sightings-intro { font-size: 13px; color: var(--text2); text-align: center; margin-bottom: 12px; line-height: 1.5; }
+.map-container { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.map-container img { width: 100%; display: block; }
+.map-pin { position: absolute; width: 28px; height: 28px; margin-left: -14px; margin-top: -28px; cursor: pointer; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4)); transition: transform 0.15s; z-index: 5; }
+.map-pin:active { transform: scale(1.2); }
+.map-pin svg { width: 100%; height: 100%; }
+.pin-count { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: #fff; pointer-events: none; }
+.map-tooltip { position: absolute; background: var(--bg2); border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: var(--text); box-shadow: 0 4px 12px var(--shadow); z-index: 10; max-width: 200px; display: none; }
+.map-tooltip.visible { display: block; }
+.map-tooltip-title { font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+.map-tooltip-desc { color: var(--text2); font-size: 11px; }
+.sightings-legend { margin-top: 12px; font-size: 12px; color: var(--text3); text-align: center; }
+
+/* === SUBMIT === */
+.submit-section { text-align: center; padding: 24px 16px; }
+.submit-icon { font-size: 48px; margin-bottom: 12px; }
+.submit-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.submit-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+.submit-btn { display: inline-block; padding: 14px 32px; background: var(--accent); color: #fff; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; }
+.submit-btn:active { opacity: 0.8; }
+.submit-types { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.submit-type { padding: 8px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; font-size: 12px; color: var(--text2); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text3); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Creative Corner</h1>
+  <div class="subtitle">Art, words & magic from the department</div>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-btn active" onclick="showPanel('gallery')">Gallery</button>
+  <button class="nav-btn" onclick="showPanel('literary')">Literary</button>
+  <button class="nav-btn" onclick="showPanel('sightings')">Sightings</button>
+  <button class="nav-btn" onclick="showPanel('submit')">Submit</button>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<div class="panel active" id="panel-gallery">
+  <div class="artist-header">
+    <div class="artist-name">Banksy of Barnstaple</div>
+    <div class="artist-mystery">Identity unknown. No witnesses. No CCTV. Only art.</div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</div>
+
+<!-- ===== LITERARY ===== -->
+<div class="panel" id="panel-literary">
+
+  <div class="poem-card">
+    <div class="poem-title">A Fly on the Wall</div>
+    <div class="poem-author">Anonymous Anaesthetist</div>
+    <div class="poem-body">The other day a fly flew into the operating theatre where the patient was under drapes, with their elbow stuck out and bent unnaturally, the tissue had been peeled back and the bones exposed. Two surgeons in full body "space suits" were operating on the elbow. The patient under the drapes wasn't moving, tubes and wires ran out from under the blue sheets and fed into a machine, humming and beeping in the corner. There were at least a dozen people in theatre, performing their various tasks.
+
+I watched the fly, it had landed on the canopy, which itself was actually a sophisticated ventilation system used to rapidly recycle air and keep the bugs out. The fly seemed to be looking down, wondering what these humans had created as the rolled magazine crushed its tiny mind.
+
+As its dead body dropped to the floor, I looked at the room differently and thought, yeah it's pretty cool what we can do when we work together and want to achieve something. I considered, if that fly entered my house and saw me lying in bed, then it could probably understand that, it probably sleeps as well; there lies another sleeping animal. But it flew into an operating theatre, that fly has witnessed something most other flies will never see, like those incinerated at liftoff, it witnessed the limits of human culture. That's special, perhaps even worth dying for.</div>
+    <hr class="poem-divider">
+    <div class="haiku-section">
+      <div class="haiku-label">TLDR;</div>
+      <div class="haiku-text">A fly on the wall,<br>Witness to the surgery,<br>Dies nonetheless. Gone.</div>
+      <div class="haiku-author">Anonymous Anaesthetist</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SIGHTINGS ===== -->
+<div class="panel" id="panel-sightings">
+  <div class="sightings-intro">Tracking departmental creative outbursts. Tap a pin for details.</div>
+  <div class="map-container" id="mapContainer">
+    <img src="creative/sightings map.png" alt="Department Map" id="sightingsMap">
+    <div class="map-tooltip" id="mapTooltip">
+      <div class="map-tooltip-title" id="tooltipTitle"></div>
+      <div class="map-tooltip-desc" id="tooltipDesc"></div>
+    </div>
+  </div>
+  <div class="sightings-legend" style="display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap">
+    <span><svg width="12" height="16" viewBox="0 0 24 36" style="vertical-align:middle"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="#c0392b"/></svg> Banksy</span>
+    <span><svg width="12" height="16" viewBox="0 0 24 36" style="vertical-align:middle"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="#2874a6"/></svg> Literary</span>
+  </div>
+</div>
+
+<!-- ===== SUBMIT ===== -->
+<div class="panel" id="panel-submit">
+  <div class="submit-section">
+    <div class="submit-icon">&#127912;</div>
+    <div class="submit-title">Share Your Creation</div>
+    <div class="submit-text">Got a drawing, poem, photo, haiku, or something else creative? The Creative Corner is a space for everyone in the department. Send in your work and showcase it on Creative Corner.</div>
+    <a class="submit-btn" href="mailto:r.obyrne@nhs.net?subject=Creative%20Corner%20Submission">Send Your Work</a>
+    <div class="submit-types">
+      <div class="submit-type">Art & Drawings</div>
+      <div class="submit-type">Poetry & Writing</div>
+      <div class="submit-type">Photography</div>
+      <div class="submit-type">Anything Creative</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+  <img class="lightbox-img" id="lightboxImg" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+/* Theme */
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+window.addEventListener('storage', function(e) {
+  if (e.key === 'ndanae-theme') document.documentElement.setAttribute('data-theme', e.newValue);
+});
+
+/* === CONFIG === */
+var ARTWORKS = [
+  { src: 'creative/Banksy/IMG-20260330-WA0003.jpg', title: 'The Alveolar Husky', desc: 'A husky contemplates the alveolar gas equation. PaO2 = PiO2 - PaCO2/R', location: 'whiteboard' },
+  { src: 'creative/Banksy/IMG-20260330-WA0004.jpg', title: 'Good Boy', desc: 'A border collie rendered in ink and colour. Hearts suggest unconditional love.', location: 'whiteboard' },
+  { src: 'creative/Banksy/IMG-20260330-WA0005.jpg', title: 'The Seagull & The Steeple', desc: 'A North Devon church watched over by a seagull. Classic Barnstaple.', location: 'whiteboard' },
+  { src: 'creative/Banksy/IMG-20260330-WA0006.jpg', title: 'The Fox', desc: 'An ink fox sits patiently. A+ grade and a heart — the artist approves.', location: 'side-room' },
+  { src: 'creative/Banksy/IMG-20260330-WA0007.jpg', title: 'The Crusader', desc: 'A knight in chainmail bearing the cross. Defending the department.', location: 'side-room' }
+];
+
+// Sighting locations on the map (percentage-based coordinates)
+var SIGHTING_PINS = [
+  { id: 'side-room', x: 29.0, y: 9.9, label: 'Side Room', desc: '2 Banksy artworks in the small room off the main office', count: 2, color: '#c0392b' },
+  { id: 'whiteboard', x: 28.7, y: 31.3, label: 'Office Whiteboard', desc: '3 Banksy artworks on the south wall whiteboard', count: 3, color: '#c0392b' },
+  { id: 'theatre1', x: 7.5, y: 88, label: 'Theatre 1', desc: 'A Fly on the Wall \u2014 poem composed during an elective ortho list', count: 1, color: '#2874a6' }
+];
+
+// New content config
+var NEW_CONTENT_DATE = '2026-03-31';
+var NEW_CONTENT_DAYS = 7;
+
+/* === PANELS === */
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('panel-' + name).classList.add('active');
+  // Find the button
+  var btns = document.querySelectorAll('.nav-btn');
+  var panels = ['gallery', 'literary', 'sightings', 'submit'];
+  for (var i = 0; i < panels.length; i++) {
+    if (panels[i] === name) btns[i].classList.add('active');
+  }
+}
+
+/* === GALLERY === */
+function renderGallery() {
+  var grid = document.getElementById('galleryGrid');
+  var html = '';
+  for (var i = 0; i < ARTWORKS.length; i++) {
+    var a = ARTWORKS[i];
+    html += '<div class="gallery-item" onclick="openLightbox(' + i + ')">';
+    html += '<img src="' + a.src + '" alt="' + a.title + '" loading="lazy">';
+    html += '<div class="item-label">' + a.title + '</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+renderGallery();
+
+/* === LIGHTBOX === */
+var currentLightbox = 0;
+
+function openLightbox(idx) {
+  currentLightbox = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navLightbox(dir) {
+  currentLightbox = (currentLightbox + dir + ARTWORKS.length) % ARTWORKS.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  var a = ARTWORKS[currentLightbox];
+  document.getElementById('lightboxImg').src = a.src;
+  document.getElementById('lightboxCaption').innerHTML = '<strong>' + a.title + '</strong><br>' + a.desc;
+  document.getElementById('lightboxCounter').textContent = (currentLightbox + 1) + ' / ' + ARTWORKS.length;
+}
+
+// Swipe support for lightbox
+(function() {
+  var lb = document.getElementById('lightbox');
+  var startX = 0;
+  lb.addEventListener('touchstart', function(e) {
+    if (e.target.closest('.lightbox-nav, .lightbox-close')) return;
+    startX = e.touches[0].clientX;
+  });
+  lb.addEventListener('touchend', function(e) {
+    if (e.target.closest('.lightbox-nav, .lightbox-close')) return;
+    var endX = e.changedTouches[0].clientX;
+    var diff = endX - startX;
+    if (Math.abs(diff) > 50) {
+      navLightbox(diff < 0 ? 1 : -1);
+    } else if (Math.abs(diff) < 10) {
+      closeLightbox();
+    }
+  });
+})();
+
+// Keyboard support
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+/* === SIGHTINGS MAP PINS === */
+function renderPins() {
+  var container = document.getElementById('mapContainer');
+  // Remove existing pins
+  container.querySelectorAll('.map-pin').forEach(function(p) { p.remove(); });
+
+  for (var i = 0; i < SIGHTING_PINS.length; i++) {
+    var pin = SIGHTING_PINS[i];
+    var el = document.createElement('div');
+    el.className = 'map-pin';
+    el.style.left = pin.x + '%';
+    el.style.top = pin.y + '%';
+    el.innerHTML = '<svg viewBox="0 0 24 36"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="' + (pin.color || '#c0392b') + '"/><circle cx="12" cy="12" r="6" fill="#fff"/></svg><span class="pin-count">' + pin.count + '</span>';
+    el.setAttribute('data-pin', i);
+    el.onclick = (function(idx) {
+      return function(e) {
+        e.stopPropagation();
+        showTooltip(idx, this);
+      };
+    })(i);
+    container.appendChild(el);
+  }
+}
+
+function showTooltip(idx, pinEl) {
+  var pin = SIGHTING_PINS[idx];
+  var tooltip = document.getElementById('mapTooltip');
+  document.getElementById('tooltipTitle').textContent = pin.label;
+  document.getElementById('tooltipDesc').textContent = pin.desc;
+
+  // Position near pin
+  var rect = pinEl.getBoundingClientRect();
+  var mapRect = document.getElementById('mapContainer').getBoundingClientRect();
+  tooltip.style.left = (pin.x + 3) + '%';
+  tooltip.style.top = Math.max(5, pin.y - 15) + '%';
+  tooltip.classList.add('visible');
+
+  // Hide on next tap anywhere
+  setTimeout(function() {
+    document.addEventListener('click', function hide() {
+      tooltip.classList.remove('visible');
+      document.removeEventListener('click', hide);
+    });
+  }, 10);
+}
+
+renderPins();
+
+</script>
+</body>
+</html>
