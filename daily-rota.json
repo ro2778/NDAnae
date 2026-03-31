@@ -370,7 +370,7 @@
   },
   "date": "2026-03-31",
   "day": "Tue",
-  "scraped_at": "2026-03-31T12:53:42.940Z",
+  "scraped_at": "2026-03-31T17:00:51.824Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -389,22 +389,16 @@
         "label": "ITU Resident",
         "bleep": "504",
         "am": {
-          "name": "E. Hosker",
-          "grade": "CT Anaes"
+          "name": "Kellermann",
+          "grade": "M CT1"
         },
         "pm": {
-          "name": "E. Hosker",
-          "grade": "CT Anaes"
+          "name": "Kellermann",
+          "grade": "M CT1"
         },
-        "eve": [
-          {
-            "name": "A. Koffman"
-          },
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "eve": {
+          "name": "A. Koffman"
+        },
         "night": {
           "name": "R. Mouadhen",
           "grade": "ACCS Med"
@@ -455,7 +449,7 @@
         "label": "ITU Consultant On Call",
         "bleep": "505",
         "am": "B. Ittzes",
-        "pm": "W. Gaunt ITU PMT. Oelofse",
+        "pm": "T. Oelofse ITU PMW. Gaunt",
         "eve": "T. Oelofse",
         "night": "T. Oelofse"
       }
@@ -565,7 +559,7 @@
         "type": "Day Case",
         "am": {
           "list": "Khatwa / ENT",
-          "primary": "D. Sanders, R. Johnson",
+          "primary": "R. Johnson, D. Sanders",
           "support": [],
           "cancelled": false
         },
@@ -708,10 +702,6 @@
           "name": "T. Western"
         },
         {
-          "name": "Kellermann",
-          "grade": "M CT1"
-        },
-        {
           "name": "S.Aziz",
           "grade": "FY1"
         }
@@ -752,8 +742,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "A. Bennett, L. Miller, S. Charoumzadeh Dashti",
-        "pm": "A. Bennett, L. Miller, S. Charoumzadeh Dashti"
+        "am": "S. Charoumzadeh Dashti, A. Bennett, L. Miller",
+        "pm": "A. Bennett, S. Charoumzadeh Dashti, L. Miller"
       }
     },
     "date": "2026-04-01",
