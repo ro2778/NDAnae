@@ -122,7 +122,12 @@
       "pm": {
         "list": "Trauma / Trauma",
         "primary": "B. Vidanapathirana",
-        "support": [],
+        "support": [
+          {
+            "name": "C. Wright",
+            "grade": "CT2"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -132,22 +137,22 @@
       "type": "CEPOD",
       "am": {
         "list": "Ong / Urology",
-        "primary": "K. Tipping",
+        "primary": "W. Gaunt",
         "support": [
           {
-            "name": "R. Child",
-            "grade": "Fellow"
+            "name": "B. Evliya Felek",
+            "grade": "ST3"
           }
         ],
         "cancelled": false
       },
       "pm": {
         "list": "Ong / Urology",
-        "primary": "K. Tipping",
+        "primary": "",
         "support": [
           {
-            "name": "R. Child",
-            "grade": "Fellow"
+            "name": "B. Evliya Felek",
+            "grade": "ST3"
           }
         ],
         "cancelled": false
@@ -171,12 +176,7 @@
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "N. Nath",
-        "support": [
-          {
-            "name": "C. Wright",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -186,7 +186,7 @@
       "type": "Day Case",
       "am": {
         "list": "Khatwa / ENT",
-        "primary": "R. Johnson, D. Sanders",
+        "primary": "D. Sanders, R. Johnson",
         "support": [],
         "cancelled": false
       },
@@ -262,10 +262,6 @@
           {
             "name": "P. Falkner",
             "grade": "Fellow"
-          },
-          {
-            "name": "B. Evliya Felek",
-            "grade": "ST3"
           }
         ],
         "cancelled": false
@@ -277,10 +273,6 @@
           {
             "name": "P. Falkner",
             "grade": "Fellow"
-          },
-          {
-            "name": "B. Evliya Felek",
-            "grade": "ST3"
           }
         ],
         "cancelled": false
@@ -369,13 +361,13 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "S. Charoumzadeh Dashti, A. Bennett, L. Miller",
-      "pm": "A. Bennett, S. Charoumzadeh Dashti, L. Miller"
+      "am": "S. Charoumzadeh Dashti, L. Miller, A. Bennett",
+      "pm": "S. Charoumzadeh Dashti, A. Bennett, L. Miller"
     }
   },
   "date": "2026-04-01",
   "day": "Wed",
-  "scraped_at": "2026-04-01T06:26:47.598Z",
+  "scraped_at": "2026-04-01T08:14:57.701Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -393,36 +385,18 @@
       "504": {
         "label": "ITU Resident",
         "bleep": "504",
-        "am": [
-          {
-            "name": "L Poulton",
-            "grade": "ACCP"
-          },
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
-        "pm": [
-          {
-            "name": "L Poulton",
-            "grade": "ACCP"
-          },
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
-        "eve": [
-          {
-            "name": "L Poulton",
-            "grade": "ACCP"
-          },
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "am": {
+          "name": "L Poulton",
+          "grade": "ACCP"
+        },
+        "pm": {
+          "name": "L Poulton",
+          "grade": "ACCP"
+        },
+        "eve": {
+          "name": "L Poulton",
+          "grade": "ACCP"
+        },
         "night": {
           "name": "R. Mouadhen",
           "grade": "ACCS Med"
@@ -778,7 +752,7 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "S. Charoumzadeh Dashti, A. Bennett",
+        "am": "A. Bennett, S. Charoumzadeh Dashti",
         "pm": "S. Charoumzadeh Dashti"
       }
     },
