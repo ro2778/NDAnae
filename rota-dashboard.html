@@ -173,7 +173,7 @@ function cleanName(name) {
 
 function formatPerson(entry) {
   if (!entry) return '—';
-  var name = cleanName(entry.name || entry);
+  var name = cleanName(typeof entry === 'string' ? entry : (entry.name || ''));
   if (!name) return '—';
   if (entry.grade) return name + ' <span class="grade-tag">' + entry.grade + '</span>';
   return name;
