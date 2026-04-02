@@ -7,10 +7,10 @@
     "300": {
       "label": "Anaesthetics On Call",
       "bleep": "300",
-      "am": "C. Smith",
-      "pm": "C. Smith",
-      "eve": "C. Smith",
-      "night": "C. Smith"
+      "am": "N. Love",
+      "pm": "C. Don",
+      "eve": "",
+      "night": ""
     },
     "504": {
       "label": "ITU Resident",
@@ -192,8 +192,12 @@
       "type": "Day Case",
       "am": {
         "list": "Elhowairis / Urology",
-        "primary": "N. Love",
+        "primary": "",
         "support": [
+          {
+            "name": "T. Western",
+            "grade": "Fellow"
+          },
           {
             "name": "A. Khalid",
             "grade": "ACCS Med"
@@ -382,13 +386,13 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "A. Bennett, S. Charoumzadeh Dashti",
+      "am": "S. Charoumzadeh Dashti, A. Bennett",
       "pm": "S. Charoumzadeh Dashti"
     }
   },
   "date": "2026-04-02",
   "day": "Thu",
-  "scraped_at": "2026-04-02T06:12:31.916Z",
+  "scraped_at": "2026-04-02T08:05:11.391Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
