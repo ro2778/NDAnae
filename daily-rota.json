@@ -7,10 +7,10 @@
     "300": {
       "label": "Anaesthetics On Call",
       "bleep": "300",
-      "am": "B. Vidanapathirana",
-      "pm": "B. Vidanapathirana",
-      "eve": "B. Vidanapathirana",
-      "night": "B. Vidanapathirana"
+      "am": "S. Hebard",
+      "pm": "S. Hebard",
+      "eve": "S. Hebard",
+      "night": "S. Hebard"
     },
     "504": {
       "label": "ITU Resident",
@@ -76,10 +76,10 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "B. Ittzes",
-      "pm": "B. Ittzes",
-      "eve": "B. Ittzes",
-      "night": "B. Ittzes"
+      "am": "W. Gaunt",
+      "pm": "W. Gaunt",
+      "eve": "W. Gaunt",
+      "night": "W. Gaunt"
     }
   },
   "theatres": {
@@ -88,14 +88,14 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "",
-        "primary": "",
+        "list": "Sims GLANSO / Ortho",
+        "primary": "N. Nath [Glanso]",
         "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "",
-        "primary": "",
+        "list": "Sims GLANSO / Ortho",
+        "primary": "N. Nath [Glanso]",
         "support": [],
         "cancelled": false
       }
@@ -122,15 +122,25 @@
       "ext": "3142",
       "type": "CEPOD",
       "am": {
-        "list": "",
-        "primary": "",
-        "support": [],
+        "list": "CEPOD / CEPOD",
+        "primary": "R. O'Byrne",
+        "support": [
+          {
+            "name": "C. Wright",
+            "grade": "CT2"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
-        "list": "",
-        "primary": "",
-        "support": [],
+        "list": "CEPOD / CEPOD",
+        "primary": "R. O'Byrne",
+        "support": [
+          {
+            "name": "C. Wright",
+            "grade": "CT2"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -139,16 +149,16 @@
       "ext": "3167",
       "type": "General/CEPOD",
       "am": {
-        "list": "CEPOD / CEPOD",
-        "primary": "",
+        "list": "Al-Abbasi GLANSO / UGI",
+        "primary": "Z. Ungvari [Glanso]",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       },
       "pm": {
-        "list": "CEPOD / CEPOD",
-        "primary": "",
+        "list": "Al-Abbasi GLANSO / UGI",
+        "primary": "Z. Ungvari [Glanso]",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th5": {
@@ -274,33 +284,33 @@
   "activities": {
     "picc": {
       "label": "PICC Lines",
-      "am": "Good Friday",
-      "pm": "Good Friday"
+      "am": "—",
+      "pm": "—"
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Good Friday",
-      "pm": "Good Friday"
+      "am": "—",
+      "pm": "—"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
-      "am": "Good Friday",
-      "pm": "Good Friday"
+      "am": "—",
+      "pm": "—"
     },
     "acute_pain": {
       "label": "Acute Pain",
-      "am": "Good Friday",
-      "pm": "Good Friday"
+      "am": "—",
+      "pm": "—"
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "Good Friday",
-      "pm": "Good Friday"
+      "am": "—",
+      "pm": "—"
     }
   },
-  "date": "2026-04-03",
-  "day": "Fri",
-  "scraped_at": "2026-04-03T19:40:27.083Z",
+  "date": "2026-04-04",
+  "day": "Sat",
+  "scraped_at": "2026-04-04T04:00:38.443Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -310,10 +320,10 @@
       "300": {
         "label": "Anaesthetics On Call",
         "bleep": "300",
-        "am": "S. Hebard",
-        "pm": "S. Hebard",
-        "eve": "S. Hebard",
-        "night": "S. Hebard"
+        "am": "B. Vidanapathirana",
+        "pm": "B. Vidanapathirana",
+        "eve": "B. Vidanapathirana",
+        "night": "B. Vidanapathirana"
       },
       "504": {
         "label": "ITU Resident",
@@ -379,10 +389,10 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "W. Gaunt",
-        "pm": "W. Gaunt",
-        "eve": "W. Gaunt",
-        "night": "W. Gaunt"
+        "am": "B. Ittzes",
+        "pm": "B. Ittzes",
+        "eve": "B. Ittzes",
+        "night": "B. Ittzes"
       }
     },
     "theatres": {
@@ -391,14 +401,14 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Sims GLANSO / Ortho",
-          "primary": "N. Nath [Glanso]",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "Sims GLANSO / Ortho",
-          "primary": "N. Nath [Glanso]",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         }
@@ -425,25 +435,15 @@
         "ext": "3142",
         "type": "CEPOD",
         "am": {
-          "list": "CEPOD / CEPOD",
-          "primary": "R. O'Byrne",
-          "support": [
-            {
-              "name": "C. Wright",
-              "grade": "CT2"
-            }
-          ],
+          "list": "",
+          "primary": "",
+          "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "CEPOD / CEPOD",
-          "primary": "R. O'Byrne",
-          "support": [
-            {
-              "name": "C. Wright",
-              "grade": "CT2"
-            }
-          ],
+          "list": "",
+          "primary": "",
+          "support": [],
           "cancelled": false
         }
       },
@@ -452,15 +452,25 @@
         "ext": "3167",
         "type": "General/CEPOD",
         "am": {
-          "list": "Al-Abbasi GLANSO / UGI",
-          "primary": "Z. Ungvari [Glanso]",
-          "support": [],
+          "list": "CEPOD / CEPOD",
+          "primary": "R. O'Byrne",
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
-          "list": "Al-Abbasi GLANSO / UGI",
-          "primary": "Z. Ungvari [Glanso]",
-          "support": [],
+          "list": "CEPOD / CEPOD",
+          "primary": "R. O'Byrne",
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -611,7 +621,7 @@
         "pm": "—"
       }
     },
-    "date": "2026-04-04",
-    "day": "Sat"
+    "date": "2026-04-05",
+    "day": "Sun"
   }
 }
