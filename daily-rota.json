@@ -73,8 +73,8 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "S.Rowe ITU AMN. Love",
-      "pm": "T. Cobby ITU PMS.Rowe",
+      "am": "N. Love ITU AMS.Rowe",
+      "pm": "S.Rowe ITU PMT. Cobby",
       "eve": "T. Cobby",
       "night": "T. Cobby"
     }
@@ -126,12 +126,7 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "N. Nath",
-        "support": [
-          {
-            "name": "P. Falkner",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -237,12 +232,7 @@
       "pm": {
         "list": "Obstetrics / Obstetrics",
         "primary": "J. Powell",
-        "support": [
-          {
-            "name": "P. Falkner",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -288,6 +278,10 @@
       {
         "name": "F. Francis",
         "grade": "ACCS Anaes"
+      },
+      {
+        "name": "Kellermann",
+        "grade": "M CT1"
       }
     ]
   },
@@ -332,7 +326,7 @@
   },
   "date": "2026-04-07",
   "day": "Tue",
-  "scraped_at": "2026-04-07T06:19:30.923Z",
+  "scraped_at": "2026-04-07T08:11:44.824Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -411,8 +405,8 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "N. Love ITU AMS.Rowe",
-        "pm": "N. Love ITU PMS.Rowe",
+        "am": "S.Rowe ITU AMN. Love",
+        "pm": "S.Rowe ITU PMN. Love",
         "eve": "N. Love",
         "night": "N. Love"
       }
