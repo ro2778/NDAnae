@@ -320,7 +320,7 @@
     "obs_preop": {
       "label": "Obs Pre-op",
       "am": "—",
-      "pm": "Obstetrics"
+      "pm": "—"
     },
     "acute_pain": {
       "label": "Acute Pain",
@@ -329,13 +329,13 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "Chronic Pain",
-      "pm": "Chronic Pain"
+      "am": "—",
+      "pm": "—"
     }
   },
   "date": "2026-04-08",
   "day": "Wed",
-  "scraped_at": "2026-04-08T20:00:07.746Z",
+  "scraped_at": "2026-04-08T22:19:24.070Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
