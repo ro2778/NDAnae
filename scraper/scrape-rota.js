@@ -58,6 +58,9 @@ function hasGlanso(raw) {
   return /\[Glanso\]/i.test(raw || '');
 }
 
+// Known session/specialty labels that are NOT person names
+var NOT_NAMES = /^(pre-?op|acute pain|persistent pain|chronic pain|picc|obs preop|obstetrics|admin|nddh|pain nurses?)$/i;
+
 function extractActivityStaff(row) {
   // Try primary/support first
   var people = (row.primary || []).map(function(p) { return cleanName(p); }).filter(Boolean);
@@ -73,6 +76,8 @@ function extractActivityStaff(row) {
   var namePart = slashIdx >= 0 ? raw.substring(slashIdx + 1).trim() : raw;
   // Remove known prefixes
   namePart = namePart.replace(/^(Pre-?op|Acute Pain|Persistent Pain|PICC|Obs Preop|Admin)\s*/i, '').trim();
+  // If what's left is a known specialty/label, it's not a person
+  if (!namePart || NOT_NAMES.test(namePart)) return '—';
   return cleanName(namePart) || '—';
 }
 
