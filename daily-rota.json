@@ -76,7 +76,7 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "S.Rowe ITU AMN. Love",
+      "am": "N. Love ITU AMS.Rowe",
       "pm": "N. Love ITU PMS.Rowe",
       "eve": "N. Love",
       "night": "N. Love"
@@ -335,7 +335,7 @@
   },
   "date": "2026-04-08",
   "day": "Wed",
-  "scraped_at": "2026-04-08T12:58:04.844Z",
+  "scraped_at": "2026-04-08T17:06:28.032Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -635,7 +635,12 @@
     "itu_day": {
       "label": "ITU Day Staff",
       "ext": "2707",
-      "day": []
+      "day": [
+        {
+          "name": "Kellermann",
+          "grade": "M CT1"
+        }
+      ]
     },
     "support": {
       "esa135": {
