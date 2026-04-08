@@ -76,7 +76,7 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Love ITU AMS.Rowe",
+      "am": "S.Rowe ITU AMN. Love",
       "pm": "N. Love ITU PMS.Rowe",
       "eve": "N. Love",
       "night": "N. Love"
@@ -146,13 +146,23 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "R. Johnson",
-        "support": [],
+        "support": [
+          {
+            "name": "A. Khalid",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "R. Johnson",
-        "support": [],
+        "support": [
+          {
+            "name": "A. Khalid",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -320,7 +330,7 @@
   },
   "date": "2026-04-08",
   "day": "Wed",
-  "scraped_at": "2026-04-08T06:21:36.734Z",
+  "scraped_at": "2026-04-08T08:12:21.531Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -519,7 +529,12 @@
         "pm": {
           "list": "Arunagiri / EGS",
           "primary": "R. O'Byrne",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Khalid",
+              "grade": "ACCS Med"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -530,7 +545,12 @@
         "am": {
           "list": "Honey / MaxFax",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Khalid",
+              "grade": "ACCS Med"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
