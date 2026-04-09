@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "—",
+    "am": "N. Nath",
     "pm": "—"
   },
   "on_call": {
@@ -211,14 +211,9 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Honey / MaxFax",
-        "primary": "N. Nath",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Eskandar / Gynae",
@@ -297,12 +292,7 @@
   "itu_day": {
     "label": "ITU Day Staff",
     "ext": "2707",
-    "day": [
-      {
-        "name": "Kellermann",
-        "grade": "M CT1"
-      }
-    ]
+    "day": []
   },
   "support": {
     "esa135": {
@@ -345,7 +335,7 @@
   },
   "date": "2026-04-09",
   "day": "Thu",
-  "scraped_at": "2026-04-09T06:21:38.751Z",
+  "scraped_at": "2026-04-09T08:25:51.712Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
