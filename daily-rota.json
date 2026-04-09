@@ -335,11 +335,11 @@
   },
   "date": "2026-04-09",
   "day": "Thu",
-  "scraped_at": "2026-04-09T09:04:52.642Z",
+  "scraped_at": "2026-04-09T12:59:18.367Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "—",
-      "pm": "—"
+      "am": "R. O'Byrne",
+      "pm": "R. O'Byrne"
     },
     "on_call": {
       "300": {
@@ -427,15 +427,15 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Van Heerden / Ortho",
-          "primary": "R. O'Byrne",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Van Heerden / Ortho",
-          "primary": "R. O'Byrne",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th2": {
@@ -630,8 +630,8 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "R. Chi",
-        "pm": "R. Chi"
+        "am": "R. O'Byrne",
+        "pm": "R. O'Byrne"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
