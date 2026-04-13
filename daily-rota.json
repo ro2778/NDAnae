@@ -113,8 +113,12 @@
       "type": "Trauma",
       "am": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "",
         "support": [
+          {
+            "name": "A. Koffman",
+            "grade": "ACCS Anaes"
+          },
           {
             "name": "A.Rees",
             "grade": "FY2"
@@ -124,8 +128,12 @@
       },
       "pm": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "",
         "support": [
+          {
+            "name": "A. Koffman",
+            "grade": "ACCS Anaes"
+          },
           {
             "name": "A.Rees",
             "grade": "FY2"
@@ -195,23 +203,13 @@
       "am": {
         "list": "Aird / Paeds Orth",
         "primary": "R. Conway",
-        "support": [
-          {
-            "name": "A. Koffman",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Evans / Urology",
         "primary": "K. Tipping",
-        "support": [
-          {
-            "name": "A. Koffman",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -333,8 +331,8 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "—",
-      "pm": "—"
+      "am": "B. Evliya Felek",
+      "pm": "B. Evliya Felek"
     }
   },
   "activities": {
@@ -366,7 +364,7 @@
   },
   "date": "2026-04-13",
   "day": "Mon",
-  "scraped_at": "2026-04-13T07:13:36.085Z",
+  "scraped_at": "2026-04-13T09:00:14.803Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -445,7 +443,7 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "",
+        "am": "T. Cobby",
         "pm": "J. Achenbach ITU PMT. Cobby",
         "eve": "J. Achenbach",
         "night": "J. Achenbach"
@@ -557,12 +555,7 @@
         "am": {
           "list": "Ong / Urology",
           "primary": "T. Oelofse",
-          "support": [
-            {
-              "name": "O. Ingham Clark",
-              "grade": "ACCS Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
@@ -705,7 +698,7 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "O. Ingham Clark",
+        "am": "—",
         "pm": "T. Cobby O. Ingham Clark"
       },
       "epidural234": {
@@ -717,7 +710,7 @@
     "activities": {
       "picc": {
         "label": "PICC Lines",
-        "am": "T. Cobby",
+        "am": "O. Ingham Clark (ACCS Anaes)",
         "pm": "—"
       },
       "preop": {
