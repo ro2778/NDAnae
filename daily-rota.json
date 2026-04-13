@@ -84,9 +84,9 @@
       "label": "ITU Consultant On Call",
       "bleep": "505",
       "am": "S.Rowe",
-      "pm": "W. Gaunt",
-      "eve": "W. Gaunt",
-      "night": "W. Gaunt"
+      "pm": "S.Rowe",
+      "eve": "S.Rowe",
+      "night": "S.Rowe"
     }
   },
   "theatres": {
@@ -266,23 +266,13 @@
       "am": {
         "list": "Obstetrics / Obstetrics",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Obstetrics / Obstetrics",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -343,8 +333,8 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "I. Talbot",
-      "pm": "I. Talbot"
+      "am": "—",
+      "pm": "—"
     }
   },
   "activities": {
@@ -376,7 +366,7 @@
   },
   "date": "2026-04-13",
   "day": "Mon",
-  "scraped_at": "2026-04-13T04:43:59.301Z",
+  "scraped_at": "2026-04-13T07:13:36.085Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -455,7 +445,7 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "S.Rowe",
+        "am": "",
         "pm": "J. Achenbach ITU PMT. Cobby",
         "eve": "J. Achenbach",
         "night": "J. Achenbach"
