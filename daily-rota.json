@@ -77,7 +77,7 @@
       "label": "ITU Consultant On Call",
       "bleep": "505",
       "am": "T. Cobby",
-      "pm": "T. Cobby ITU PMJ. Achenbach",
+      "pm": "J. Achenbach ITU PMT. Cobby",
       "eve": "J. Achenbach",
       "night": "J. Achenbach"
     }
@@ -364,11 +364,11 @@
   },
   "date": "2026-04-14",
   "day": "Tue",
-  "scraped_at": "2026-04-14T08:25:20.440Z",
+  "scraped_at": "2026-04-14T09:04:55.857Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "W. Gaunt",
-      "pm": "W. Gaunt"
+      "am": "—",
+      "pm": "—"
     },
     "on_call": {
       "300": {
@@ -418,13 +418,11 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "P. Falkner",
-          "grade": "Fellow",
+          "name": "M. Casemore",
           "role": "LD"
         },
         "pm": {
-          "name": "P. Falkner",
-          "grade": "Fellow",
+          "name": "M. Casemore",
           "role": "LD"
         },
         "eve": {
@@ -555,7 +553,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "P. Falkner",
+          "primary": "M. Casemore",
           "support": [
             {
               "name": "O. Ingham Clark",
@@ -566,7 +564,7 @@
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "P. Falkner",
+          "primary": "M. Casemore",
           "support": [
             {
               "name": "O. Ingham Clark",
@@ -582,7 +580,7 @@
         "type": "Day Case",
         "am": {
           "list": "Khatwa / ENT",
-          "primary": "Z. Ungvari",
+          "primary": "W. Gaunt",
           "support": [
             {
               "name": "Lavers S",
@@ -593,7 +591,7 @@
         },
         "pm": {
           "list": "Khatwa / ENT",
-          "primary": "Z. Ungvari",
+          "primary": "W. Gaunt",
           "support": [
             {
               "name": "Lavers S",
@@ -610,13 +608,23 @@
         "am": {
           "list": "Rybinski / EGS",
           "primary": "M. Paul",
-          "support": [],
+          "support": [
+            {
+              "name": "P. Falkner",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Rybinski / EGS",
           "primary": "M. Paul",
-          "support": [],
+          "support": [
+            {
+              "name": "P. Falkner",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -626,7 +634,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Conway / Breast",
-          "primary": "M. Casemore",
+          "primary": "Z. Ungvari",
           "support": [
             {
               "name": "C. Wright",
@@ -637,7 +645,7 @@
         },
         "pm": {
           "list": "Conway / Breast",
-          "primary": "M. Casemore",
+          "primary": "Z. Ungvari",
           "support": [
             {
               "name": "C. Wright",
@@ -714,11 +722,11 @@
       "ext": "2707",
       "day": [
         {
-          "name": "A. Khalid",
+          "name": "R. Mouadhen",
           "grade": "ACCS Med"
         },
         {
-          "name": "R. Mouadhen",
+          "name": "A. Khalid",
           "grade": "ACCS Med"
         },
         {
