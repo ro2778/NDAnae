@@ -9,8 +9,8 @@
       "bleep": "300",
       "am": "D. Sanders",
       "pm": "D. Sanders",
-      "eve": "S. Hebard",
-      "night": "S. Hebard"
+      "eve": "D. Sanders",
+      "night": "D. Sanders"
     },
     "504": {
       "label": "ITU Resident",
@@ -355,14 +355,6 @@
     "ext": "2707",
     "day": [
       {
-        "name": "R. Mouadhen",
-        "grade": "ACCS Med"
-      },
-      {
-        "name": "A. Khalid",
-        "grade": "ACCS Med"
-      },
-      {
         "name": "F. Francis",
         "grade": "ACCS Anaes"
       },
@@ -413,7 +405,7 @@
   },
   "date": "2026-04-15",
   "day": "Wed",
-  "scraped_at": "2026-04-15T06:54:15.805Z",
+  "scraped_at": "2026-04-15T08:26:59.358Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -431,6 +423,14 @@
       "504": {
         "label": "ITU Resident",
         "bleep": "504",
+        "am": {
+          "name": "S. Coates",
+          "grade": "ACCS Anaes"
+        },
+        "pm": {
+          "name": "S. Coates",
+          "grade": "ACCS Anaes"
+        },
         "eve": [
           {
             "name": "L Poulton",
@@ -771,10 +771,6 @@
       "label": "ITU Day Staff",
       "ext": "2707",
       "day": [
-        {
-          "name": "S. Coates",
-          "grade": "ACCS Anaes"
-        },
         {
           "name": "F. Francis",
           "grade": "ACCS Anaes"
