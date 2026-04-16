@@ -110,12 +110,7 @@
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "P. Falkner",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -264,12 +259,7 @@
       "am": {
         "list": "Kemp / Gynae",
         "primary": "R. Johnson",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -418,7 +408,7 @@
   },
   "date": "2026-04-16",
   "day": "Thu",
-  "scraped_at": "2026-04-16T09:17:04.561Z",
+  "scraped_at": "2026-04-16T13:05:28.527Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
