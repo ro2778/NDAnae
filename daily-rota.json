@@ -16,16 +16,15 @@
       "label": "ITU Resident",
       "bleep": "504",
       "am": {
-        "name": "L Poulton",
-        "grade": "ACCP"
+        "name": "F. Francis",
+        "grade": "ACCS Anaes"
       },
       "pm": {
-        "name": "L Poulton",
-        "grade": "ACCP"
+        "name": "F. Francis",
+        "grade": "ACCS Anaes"
       },
       "eve": {
-        "name": "L Poulton",
-        "grade": "ACCP"
+        "name": "F. Francis"
       },
       "night": {
         "name": "S. Docherty",
@@ -204,12 +203,7 @@
       "am": {
         "list": "Bain / Colorectal",
         "primary": "C. Don",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -242,12 +236,7 @@
       "pm": {
         "list": "Stenhouse / MaxFax",
         "primary": "Hockridge J",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -344,10 +333,6 @@
     "ext": "2707",
     "day": [
       {
-        "name": "F. Francis",
-        "grade": "ACCS Anaes"
-      },
-      {
         "name": "M. Cannings",
         "grade": "ACCS Anaes"
       },
@@ -398,7 +383,7 @@
   },
   "date": "2026-04-17",
   "day": "Fri",
-  "scraped_at": "2026-04-17T06:57:34.328Z",
+  "scraped_at": "2026-04-17T08:25:38.987Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
