@@ -372,7 +372,7 @@
   },
   "date": "2026-04-20",
   "day": "Mon",
-  "scraped_at": "2026-04-20T09:27:31.855Z",
+  "scraped_at": "2026-04-20T09:56:45.049Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -530,23 +530,6 @@
         "ext": "3142",
         "type": "CEPOD",
         "am": {
-          "list": "Cartmell / Colorectal",
-          "primary": "R. Clarke",
-          "support": [],
-          "cancelled": false
-        },
-        "pm": {
-          "list": "Cartmell / Colorectal",
-          "primary": "R. Clarke",
-          "support": [],
-          "cancelled": false
-        }
-      },
-      "th4": {
-        "label": "Theatre 4",
-        "ext": "3167",
-        "type": "General/CEPOD",
-        "am": {
           "list": "CEPOD / CEPOD",
           "primary": "M. Casemore",
           "support": [],
@@ -561,6 +544,23 @@
               "grade": "ACCS Anaes"
             }
           ],
+          "cancelled": false
+        }
+      },
+      "th4": {
+        "label": "Theatre 4",
+        "ext": "3167",
+        "type": "General/CEPOD",
+        "am": {
+          "list": "Al-Abbasi / UGI",
+          "primary": "R. Clarke",
+          "support": [],
+          "cancelled": false
+        },
+        "pm": {
+          "list": "Al-Abbasi / UGI",
+          "primary": "R. Clarke",
+          "support": [],
           "cancelled": false
         }
       },
