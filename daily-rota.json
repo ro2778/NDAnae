@@ -93,8 +93,8 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Hollister ITU AMN. Love",
-      "pm": "J. Achenbach ITU PMN. Hollister",
+      "am": "N. Love ITU AMN. Hollister",
+      "pm": "N. Hollister ITU PMJ. Achenbach",
       "eve": "J. Achenbach",
       "night": "J. Achenbach"
     }
@@ -377,7 +377,7 @@
   },
   "date": "2026-04-21",
   "day": "Tue",
-  "scraped_at": "2026-04-21T09:23:46.160Z",
+  "scraped_at": "2026-04-21T13:00:19.632Z",
   "tomorrow": {
     "available_consultants": {
       "am": "W. Gaunt",
@@ -512,23 +512,13 @@
         "am": {
           "list": "Evans / Urology",
           "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "T. Johnson",
-              "grade": "Fellow"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Evans / Urology",
           "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "T. Johnson",
-              "grade": "Fellow"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -647,7 +637,12 @@
         "am": {
           "list": "Obstetrics / Obstetrics",
           "primary": "C. Cheesman",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Johnson",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
@@ -670,7 +665,12 @@
         "pm": {
           "list": "Badr Additional GA Eye / Ophth GA",
           "primary": "C. Cheesman",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Johnson",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
