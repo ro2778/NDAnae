@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "R. Clarke",
-    "pm": "R. Clarke N. Nath"
+    "am": "—",
+    "pm": "N. Nath"
   },
   "on_call": {
     "300": {
@@ -93,8 +93,8 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Love",
-      "pm": "J. Achenbach",
+      "am": "N. Love ITU AMN. Hollister",
+      "pm": "N. Hollister ITU PMJ. Achenbach",
       "eve": "J. Achenbach",
       "night": "J. Achenbach"
     }
@@ -292,13 +292,13 @@
       "type": "Eyes",
       "am": {
         "list": "Whittaker- Additional GA Eyes / Ophth GA",
-        "primary": "N. Hollister",
+        "primary": "R. Clarke",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Nestel- Additional GA Eyes / Ophth GA",
-        "primary": "N. Hollister",
+        "primary": "R. Clarke",
         "support": [],
         "cancelled": false
       }
@@ -381,7 +381,7 @@
   },
   "date": "2026-04-21",
   "day": "Tue",
-  "scraped_at": "2026-04-21T04:34:11.105Z",
+  "scraped_at": "2026-04-21T06:58:28.739Z",
   "tomorrow": {
     "available_consultants": {
       "am": "W. Gaunt",
