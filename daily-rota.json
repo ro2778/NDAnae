@@ -45,8 +45,7 @@
         }
       ],
       "night": {
-        "name": "A. Edmonds",
-        "grade": "CT Anaes"
+        "name": "Kellermann M"
       }
     },
     "508": {
@@ -86,15 +85,16 @@
         "role": "LD"
       },
       "night": {
-        "name": "",
-        "role": ""
+        "name": "A. Edmonds",
+        "grade": "CT Anaes",
+        "role": "N"
       }
     },
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Love ITU AMN. Hollister",
-      "pm": "N. Hollister ITU PMJ. Achenbach",
+      "am": "N. Hollister ITU AMN. Love",
+      "pm": "J. Achenbach ITU PMN. Hollister",
       "eve": "J. Achenbach",
       "night": "J. Achenbach"
     }
@@ -181,10 +181,10 @@
       "ext": "3167",
       "type": "General/CEPOD",
       "am": {
-        "list": "Al-Abbasi / UGI",
-        "primary": "",
+        "list": "Misra / Urology",
+        "primary": "D. Sanders",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       },
       "pm": {
         "list": "Al-Abbasi / UGI",
@@ -215,7 +215,7 @@
       "ext": "2488",
       "type": "Day Case",
       "am": {
-        "list": "Al-Abbasi / UGI",
+        "list": "Cartmell / Colorectal",
         "primary": "N. Nath",
         "support": [
           {
@@ -333,17 +333,13 @@
       {
         "name": "F. Francis",
         "grade": "ACCS Anaes"
-      },
-      {
-        "name": "Kellermann",
-        "grade": "M CT1"
       }
     ]
   },
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "R. Clarke",
+      "am": "T. Johnson",
       "pm": "N. Nath"
     },
     "epidural234": {
@@ -381,7 +377,7 @@
   },
   "date": "2026-04-21",
   "day": "Tue",
-  "scraped_at": "2026-04-21T06:58:28.739Z",
+  "scraped_at": "2026-04-21T08:51:59.782Z",
   "tomorrow": {
     "available_consultants": {
       "am": "W. Gaunt",
@@ -703,10 +699,6 @@
         {
           "name": "M. Cannings",
           "grade": "ACCS Anaes"
-        },
-        {
-          "name": "Kellermann",
-          "grade": "M CT1"
         }
       ]
     },
