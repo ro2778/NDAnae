@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "B. Vidanapathirana",
-    "pm": "B. Vidanapathirana"
+    "am": "—",
+    "pm": "—"
   },
   "on_call": {
     "300": {
@@ -149,7 +149,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "Sanders / UGI",
-        "primary": "",
+        "primary": "B. Vidanapathirana",
         "support": [
           {
             "name": "O. Kirby",
@@ -160,7 +160,7 @@
       },
       "pm": {
         "list": "Sanders / UGI",
-        "primary": "",
+        "primary": "B. Vidanapathirana",
         "support": [
           {
             "name": "O. Kirby",
@@ -358,7 +358,7 @@
   },
   "date": "2026-04-23",
   "day": "Thu",
-  "scraped_at": "2026-04-23T08:51:30.434Z",
+  "scraped_at": "2026-04-23T09:13:14.783Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
