@@ -383,11 +383,11 @@
   },
   "date": "2026-04-27",
   "day": "Mon",
-  "scraped_at": "2026-04-27T10:12:36.850Z",
+  "scraped_at": "2026-04-27T13:17:28.039Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "T. Oelofse D. Beard R. Clarke S. Hebard J. Preece J. Achenbach R. Conway N. Hollister",
-      "pm": "D. Beard"
+      "am": "R. Clarke R. Conway T. Oelofse N. Hollister J. Achenbach J. Preece S. Hebard D. Beard",
+      "pm": "D. Beard N. Hollister"
     },
     "on_call": {
       "300": {
@@ -503,7 +503,12 @@
         "pm": {
           "list": "Trauma / Trauma",
           "primary": "T. Cobby",
-          "support": [],
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -568,14 +573,9 @@
         },
         "pm": {
           "list": "Eyers / Vascular",
-          "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "C. Wright",
-              "grade": "CT2"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         }
       },
       "th6": {
@@ -715,7 +715,7 @@
       "esa135": {
         "label": "ESA Bleep 135",
         "am": "—",
-        "pm": "D. Beard"
+        "pm": "D. Beard N. Hollister"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
