@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "N. Nath",
+    "am": "—",
     "pm": "—"
   },
   "on_call": {
@@ -115,7 +115,7 @@
       "type": "Trauma",
       "am": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "N. Nath",
         "support": [
           {
             "name": "S. Coates",
@@ -126,7 +126,7 @@
       },
       "pm": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "N. Nath",
         "support": [
           {
             "name": "S. Coates",
@@ -207,7 +207,7 @@
       },
       "pm": {
         "list": "Misra / Urology",
-        "primary": "N. Nath",
+        "primary": "",
         "support": [
           {
             "name": "A. Koffman",
@@ -367,8 +367,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "—",
-      "pm": "—"
+      "am": "S. Hebard",
+      "pm": "S. Hebard"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -382,16 +382,16 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "A. Bennett, L. Miller",
+      "am": "L. Miller, A. Bennett",
       "pm": "A. Bennett"
     }
   },
   "date": "2026-04-27",
   "day": "Mon",
-  "scraped_at": "2026-04-27T07:34:14.860Z",
+  "scraped_at": "2026-04-27T09:16:47.661Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "J. Achenbach T. Oelofse R. Conway D. Beard R. Clarke S. Hebard J. Preece N. Hollister",
+      "am": "R. Clarke R. Conway T. Oelofse N. Hollister J. Achenbach J. Preece S. Hebard D. Beard",
       "pm": "D. Beard"
     },
     "on_call": {
