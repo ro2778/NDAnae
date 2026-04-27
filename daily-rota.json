@@ -182,7 +182,7 @@
         "list": "Elsey / Colorectal",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th5": {
@@ -383,7 +383,7 @@
   },
   "date": "2026-04-27",
   "day": "Mon",
-  "scraped_at": "2026-04-27T09:40:21.792Z",
+  "scraped_at": "2026-04-27T10:12:36.850Z",
   "tomorrow": {
     "available_consultants": {
       "am": "T. Oelofse D. Beard R. Clarke S. Hebard J. Preece J. Achenbach R. Conway N. Hollister",
