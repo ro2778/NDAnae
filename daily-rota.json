@@ -367,8 +367,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "C. Cheesman",
-      "pm": "C. Cheesman"
+      "am": "—",
+      "pm": "—"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -382,16 +382,16 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "L. Miller, A. Bennett",
+      "am": "A. Bennett, L. Miller",
       "pm": "A. Bennett"
     }
   },
   "date": "2026-04-27",
   "day": "Mon",
-  "scraped_at": "2026-04-27T04:53:04.390Z",
+  "scraped_at": "2026-04-27T07:34:14.860Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "S. Hebard J. Achenbach R. Conway T. Oelofse N. Hollister D. Beard R. Clarke J. Preece",
+      "am": "J. Achenbach T. Oelofse R. Conway D. Beard R. Clarke S. Hebard J. Preece N. Hollister",
       "pm": "D. Beard"
     },
     "on_call": {
