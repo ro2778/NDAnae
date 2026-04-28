@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "J. Preece J. Achenbach T. Oelofse R. Conway N. Hollister D. Beard R. Clarke S. Hebard",
-    "pm": "D. Beard N. Hollister"
+    "am": "D. Beard R. Conway T. Oelofse N. Hollister J. Achenbach J. Preece S. Hebard R. Clarke",
+    "pm": "N. Hollister D. Beard"
   },
   "on_call": {
     "300": {
@@ -361,7 +361,7 @@
   },
   "date": "2026-04-28",
   "day": "Tue",
-  "scraped_at": "2026-04-28T07:31:15.654Z",
+  "scraped_at": "2026-04-28T09:18:38.982Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
