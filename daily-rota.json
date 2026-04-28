@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "J. Achenbach D. Beard R. Clarke S. Hebard J. Preece N. Hollister T. Oelofse R. Conway",
-    "pm": "N. Hollister D. Beard"
+    "am": "J. Preece J. Achenbach T. Oelofse R. Conway N. Hollister D. Beard R. Clarke S. Hebard",
+    "pm": "D. Beard N. Hollister"
   },
   "on_call": {
     "300": {
@@ -87,10 +87,27 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "",
-        "primary": "",
+        "list": "Trauma / Trauma",
+        "primary": "T. Cobby",
         "support": [],
         "cancelled": false
+      },
+      "pm": {
+        "list": "Trauma / Trauma",
+        "primary": "T. Cobby",
+        "support": [],
+        "cancelled": false
+      }
+    },
+    "th2": {
+      "label": "Theatre 2",
+      "ext": "3141",
+      "type": "Trauma",
+      "am": {
+        "list": "Trauma / Trauma",
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Cove / Ortho",
@@ -101,23 +118,6 @@
             "grade": "Fellow"
           }
         ],
-        "cancelled": false
-      }
-    },
-    "th2": {
-      "label": "Theatre 2",
-      "ext": "3141",
-      "type": "Trauma",
-      "am": {
-        "list": "Trauma / Trauma",
-        "primary": "T. Cobby",
-        "support": [],
-        "cancelled": false
-      },
-      "pm": {
-        "list": "Trauma / Trauma",
-        "primary": "T. Cobby",
-        "support": [],
         "cancelled": false
       }
     },
@@ -361,7 +361,7 @@
   },
   "date": "2026-04-28",
   "day": "Tue",
-  "scraped_at": "2026-04-28T04:59:48.772Z",
+  "scraped_at": "2026-04-28T07:31:15.654Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -732,8 +732,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "A. Bennett, L. Miller",
-        "pm": "A. Bennett, L. Miller"
+        "am": "L. Miller, A. Bennett",
+        "pm": "L. Miller, A. Bennett"
       }
     },
     "date": "2026-04-29",
