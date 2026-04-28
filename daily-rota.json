@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "D. Beard R. Conway T. Oelofse N. Hollister J. Achenbach J. Preece S. Hebard R. Clarke",
+    "am": "J. Preece T. Oelofse R. Conway S. Hebard R. Clarke D. Beard N. Hollister J. Achenbach",
     "pm": "N. Hollister D. Beard"
   },
   "on_call": {
@@ -361,7 +361,7 @@
   },
   "date": "2026-04-28",
   "day": "Tue",
-  "scraped_at": "2026-04-28T13:28:16.085Z",
+  "scraped_at": "2026-04-28T17:49:04.807Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -478,7 +478,7 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "R. Johnson",
+          "primary": "N. Hollister",
           "support": [
             {
               "name": "O. Kirby",
@@ -489,7 +489,7 @@
         },
         "pm": {
           "list": "Trauma / Trauma",
-          "primary": "R. Johnson",
+          "primary": "N. Hollister",
           "support": [
             {
               "name": "O. Kirby",
@@ -722,8 +722,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "N. Hollister",
-        "pm": "N. Hollister"
+        "am": "C. Smith",
+        "pm": "C. Smith"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
@@ -737,7 +737,7 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "A. Bennett, L. Miller",
+        "am": "L. Miller, A. Bennett",
         "pm": "L. Miller, A. Bennett"
       }
     },
