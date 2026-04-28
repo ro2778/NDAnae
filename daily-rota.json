@@ -361,7 +361,7 @@
   },
   "date": "2026-04-28",
   "day": "Tue",
-  "scraped_at": "2026-04-28T10:11:48.673Z",
+  "scraped_at": "2026-04-28T13:28:16.085Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -417,12 +417,12 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "C. Cheesman",
-          "role": "LD"
+          "name": "",
+          "role": ""
         },
         "pm": {
-          "name": "C. Cheesman",
-          "role": "LD"
+          "name": "",
+          "role": ""
         },
         "eve": {
           "name": "Lavers S",
@@ -594,7 +594,12 @@
         "am": {
           "list": "Conway / Breast",
           "primary": "B. Vidanapathirana",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Western",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
@@ -615,7 +620,7 @@
         "type": "Obstetrics",
         "am": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "C. Cheesman",
+          "primary": "",
           "support": [
             {
               "name": "S. Docherty",
@@ -630,7 +635,7 @@
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "C. Cheesman",
+          "primary": "",
           "support": [
             {
               "name": "S. Docherty",
@@ -732,7 +737,7 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "L. Miller, A. Bennett",
+        "am": "A. Bennett, L. Miller",
         "pm": "L. Miller, A. Bennett"
       }
     },
