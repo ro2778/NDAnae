@@ -381,7 +381,7 @@
   },
   "date": "2026-05-05",
   "day": "Tue",
-  "scraped_at": "2026-05-05T10:00:29.558Z",
+  "scraped_at": "2026-05-05T13:11:13.204Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -787,8 +787,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "A. Bennett, L. Miller, S. Charoumzadeh Dashti",
-        "pm": "L. Miller, A. Bennett, S. Charoumzadeh Dashti"
+        "am": "L. Miller, A. Bennett",
+        "pm": "L. Miller, A. Bennett"
       }
     },
     "date": "2026-05-06",
