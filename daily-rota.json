@@ -409,7 +409,7 @@
   },
   "date": "2026-05-06",
   "day": "Wed",
-  "scraped_at": "2026-05-06T04:58:05.927Z",
+  "scraped_at": "2026-05-06T07:35:02.506Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -428,12 +428,12 @@
         "label": "ITU Resident",
         "bleep": "504",
         "am": {
-          "name": "E. Hosker",
-          "grade": "CT Anaes"
+          "name": "S. Carter",
+          "grade": "Speciality"
         },
         "pm": {
-          "name": "E. Hosker",
-          "grade": "CT Anaes"
+          "name": "S. Carter",
+          "grade": "Speciality"
         },
         "eve": [
           {
@@ -661,13 +661,23 @@
         "am": {
           "list": "Honey / MaxFax",
           "primary": "B. Ittzes",
-          "support": [],
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Eskandar / Gynae",
           "primary": "D. Beard",
-          "support": [],
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -737,10 +747,6 @@
       "label": "ITU Day Staff",
       "ext": "2707",
       "day": [
-        {
-          "name": "S. Carter",
-          "grade": "Speciality"
-        },
         {
           "name": "connie.m IMT"
         },
