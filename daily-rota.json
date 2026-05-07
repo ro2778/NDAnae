@@ -276,12 +276,7 @@
       "am": {
         "list": "Obstetrics / Obstetrics",
         "primary": "M. Casemore",
-        "support": [
-          {
-            "name": "S. Docherty",
-            "grade": "ITU Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -385,7 +380,7 @@
   },
   "date": "2026-05-07",
   "day": "Thu",
-  "scraped_at": "2026-05-07T07:42:19.669Z",
+  "scraped_at": "2026-05-07T09:29:00.758Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
