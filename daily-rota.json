@@ -48,12 +48,13 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "I. Talbot",
-        "grade": "CT Anaes",
+        "name": "R. Child",
+        "grade": "Fellow",
         "role": "LD"
       },
       "pm": {
-        "name": "B. Bartos",
+        "name": "B. Bartos 508 LDR. Child",
+        "grade": "Fellow",
         "role": "LD"
       },
       "eve": {
@@ -158,13 +159,18 @@
       "type": "CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "I. Talbot",
-        "support": [],
+        "primary": "R. Child",
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
-        "primary": "B. Bartos",
+        "primary": "B. Bartos 508 LDR. Child",
         "support": [
           {
             "name": "I. Talbot",
@@ -376,7 +382,7 @@
   },
   "date": "2026-05-08",
   "day": "Fri",
-  "scraped_at": "2026-05-08T09:18:05.251Z",
+  "scraped_at": "2026-05-08T13:07:38.530Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
