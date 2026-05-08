@@ -35,16 +35,10 @@
           "grade": "ACCS Anaes"
         }
       ],
-      "eve": [
-        {
-          "name": "A. Khalid",
-          "grade": "ACCS Med"
-        },
-        {
-          "name": "I. Talbot",
-          "grade": "CT Anaes"
-        }
-      ],
+      "eve": {
+        "name": "A. Khalid",
+        "grade": "ACCS Med"
+      },
       "night": {
         "name": "Kellermann",
         "grade": "M CT1"
@@ -54,8 +48,8 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "R. Child",
-        "grade": "Fellow",
+        "name": "I. Talbot",
+        "grade": "CT Anaes",
         "role": "LD"
       },
       "pm": {
@@ -63,7 +57,8 @@
         "role": "LD"
       },
       "eve": {
-        "name": "B. Bartos",
+        "name": "B. Bartos 508 LDI. Talbot",
+        "grade": "CT Anaes",
         "role": "LD"
       },
       "night": {
@@ -163,13 +158,8 @@
       "type": "CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "R. Child",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "primary": "I. Talbot",
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -353,7 +343,7 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "I. Talbot",
+      "am": "—",
       "pm": "I. Talbot"
     }
   },
@@ -386,7 +376,7 @@
   },
   "date": "2026-05-08",
   "day": "Fri",
-  "scraped_at": "2026-05-08T06:51:49.734Z",
+  "scraped_at": "2026-05-08T08:20:19.687Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
