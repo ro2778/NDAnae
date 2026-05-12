@@ -165,7 +165,12 @@
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "E. Cope",
-        "support": [],
+        "support": [
+          {
+            "name": "A.Rees",
+            "grade": "FY2"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -373,7 +378,7 @@
   },
   "date": "2026-05-12",
   "day": "Tue",
-  "scraped_at": "2026-05-12T10:29:56.487Z",
+  "scraped_at": "2026-05-12T13:53:59.589Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -734,8 +739,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "S. Charoumzadeh Dashti, A. Bennett",
-        "pm": "A. Bennett, S. Charoumzadeh Dashti"
+        "am": "A. Bennett, S. Charoumzadeh Dashti",
+        "pm": "S. Charoumzadeh Dashti, A. Bennett"
       }
     },
     "date": "2026-05-13",
