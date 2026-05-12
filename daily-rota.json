@@ -127,13 +127,23 @@
       "am": {
         "list": "Trauma / Trauma",
         "primary": "D. Beard",
-        "support": [],
+        "support": [
+          {
+            "name": "F. Francis",
+            "grade": "ACCS Anaes"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "Trauma / Trauma",
         "primary": "D. Beard",
-        "support": [],
+        "support": [
+          {
+            "name": "F. Francis",
+            "grade": "ACCS Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -317,10 +327,6 @@
     "ext": "2707",
     "day": [
       {
-        "name": "F. Francis",
-        "grade": "ACCS Anaes"
-      },
-      {
         "name": "S.Aziz",
         "grade": "FY1"
       }
@@ -367,7 +373,7 @@
   },
   "date": "2026-05-12",
   "day": "Tue",
-  "scraped_at": "2026-05-12T05:06:20.045Z",
+  "scraped_at": "2026-05-12T07:42:12.798Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -728,8 +734,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "A. Bennett, S. Charoumzadeh Dashti",
-        "pm": "S. Charoumzadeh Dashti, A. Bennett"
+        "am": "S. Charoumzadeh Dashti, A. Bennett",
+        "pm": "A. Bennett, S. Charoumzadeh Dashti"
       }
     },
     "date": "2026-05-13",
