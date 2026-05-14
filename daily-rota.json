@@ -39,8 +39,8 @@
           "grade": "ACCS Med"
         },
         {
-          "name": "I. Talbot",
-          "grade": "CT Anaes"
+          "name": "F. Francis",
+          "grade": "ACCS Anaes"
         }
       ]
     },
@@ -324,10 +324,6 @@
     "ext": "2707",
     "day": [
       {
-        "name": "F. Francis",
-        "grade": "ACCS Anaes"
-      },
-      {
         "name": "M. Cannings",
         "grade": "ACCS Anaes"
       },
@@ -378,7 +374,7 @@
   },
   "date": "2026-05-14",
   "day": "Thu",
-  "scraped_at": "2026-05-14T05:10:52.659Z",
+  "scraped_at": "2026-05-14T07:41:21.768Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -618,23 +614,13 @@
         "am": {
           "list": "Mortimer / Gynae",
           "primary": "R. O'Byrne",
-          "support": [
-            {
-              "name": "F. Francis",
-              "grade": "ACCS Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Al-Abbasi / UGI",
           "primary": "R. O'Byrne",
-          "support": [
-            {
-              "name": "F. Francis",
-              "grade": "ACCS Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
