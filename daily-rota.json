@@ -176,7 +176,7 @@
       "type": "Day Case",
       "am": {
         "list": "Rattigan / Paeds Ophth",
-        "primary": "R. Conway, K. Pyatt",
+        "primary": "K. Pyatt, R. Conway",
         "support": [],
         "cancelled": false
       },
@@ -327,7 +327,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "N. Hollister, Hockridge J",
+      "am": "Hockridge J, N. Hollister",
       "pm": "Hockridge J"
     },
     "obs_preop": {
@@ -348,11 +348,11 @@
   },
   "date": "2026-05-19",
   "day": "Tue",
-  "scraped_at": "2026-05-19T11:15:01.233Z",
+  "scraped_at": "2026-05-19T14:35:14.365Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
-      "pm": "R. Johnson B. Vidanapathirana S. Charoumzadeh Dashti"
+      "pm": "S. Charoumzadeh Dashti B. Vidanapathirana R. Johnson"
     },
     "on_call": {
       "300": {
