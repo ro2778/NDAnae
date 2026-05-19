@@ -327,7 +327,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Hockridge J, N. Hollister",
+      "am": "N. Hollister, Hockridge J",
       "pm": "Hockridge J"
     },
     "obs_preop": {
@@ -348,11 +348,11 @@
   },
   "date": "2026-05-19",
   "day": "Tue",
-  "scraped_at": "2026-05-19T10:48:19.293Z",
+  "scraped_at": "2026-05-19T11:15:01.233Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
-      "pm": "B. Vidanapathirana S. Charoumzadeh Dashti B. Bartos R. Johnson"
+      "pm": "R. Johnson B. Vidanapathirana S. Charoumzadeh Dashti"
     },
     "on_call": {
       "300": {
@@ -443,7 +443,7 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Abed / Ortho",
+          "list": "Additional Trauma / Trauma",
           "primary": "B. Bartos",
           "support": [
             {
@@ -454,8 +454,8 @@
           "cancelled": false
         },
         "pm": {
-          "list": "",
-          "primary": "",
+          "list": "Additional Traima / Trauma",
+          "primary": "B. Bartos",
           "support": [],
           "cancelled": false
         }
