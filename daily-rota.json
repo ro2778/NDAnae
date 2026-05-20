@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "—",
-    "pm": "S. Charoumzadeh Dashti B. Vidanapathirana R. Johnson"
+    "am": "B. Vidanapathirana",
+    "pm": "R. Johnson S. Charoumzadeh Dashti B. Vidanapathirana"
   },
   "on_call": {
     "300": {
@@ -198,9 +198,9 @@
       "type": "Day Case",
       "am": {
         "list": "Sanders / UGI",
-        "primary": "E. Cope, B. Vidanapathirana",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "",
@@ -317,7 +317,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "R. Chi",
+      "am": "—",
       "pm": "R. Johnson"
     },
     "epidural234": {
@@ -355,7 +355,7 @@
   },
   "date": "2026-05-20",
   "day": "Wed",
-  "scraped_at": "2026-05-20T05:45:50.002Z",
+  "scraped_at": "2026-05-20T08:28:23.563Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -668,9 +668,6 @@
       "label": "ITU Day Staff",
       "ext": "2707",
       "day": [
-        {
-          "name": "connie.m IMT"
-        },
         {
           "name": "M. Cannings",
           "grade": "ACCS Anaes"
