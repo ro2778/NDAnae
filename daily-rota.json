@@ -1,7 +1,7 @@
 {
   "available_consultants": {
     "am": "—",
-    "pm": "—"
+    "pm": "J. Preece"
   },
   "on_call": {
     "300": {
@@ -208,13 +208,9 @@
       },
       "pm": {
         "list": "Pansell / Colorectal",
-        "primary": "J. Preece",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th7": {
@@ -361,7 +357,7 @@
   },
   "date": "2026-05-21",
   "day": "Thu",
-  "scraped_at": "2026-05-21T08:31:57.945Z",
+  "scraped_at": "2026-05-21T10:38:28.333Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -563,9 +559,9 @@
         },
         "pm": {
           "list": "Wafai / Ortho",
-          "primary": "C. Don",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th7": {
