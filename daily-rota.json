@@ -379,7 +379,7 @@
   },
   "date": "2026-05-27",
   "day": "Wed",
-  "scraped_at": "2026-05-27T11:36:10.620Z",
+  "scraped_at": "2026-05-27T14:57:07.085Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -465,7 +465,7 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "N. Love ITU AMB. Hylton",
+        "am": "B. Hylton ITU AMN. Love",
         "pm": "N. Love ITU PMB. Hylton",
         "eve": "N. Love ITU PMB. Hylton",
         "night": "N. Love ITU PMB. Hylton"
@@ -477,14 +477,14 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Kenaan / Ortho",
-          "primary": "N. Nath",
+          "list": "Additional Trauma / Trauma",
+          "primary": "O. Ingham Clark, N. Nath",
           "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "Kenaan / Ortho",
-          "primary": "N. Nath",
+          "list": "Additional Trauma / Trauma",
+          "primary": "O. Ingham Clark, N. Nath",
           "support": [],
           "cancelled": false
         }
@@ -578,24 +578,14 @@
         "type": "Day Case",
         "am": {
           "list": "Ong / Urology",
-          "primary": "Hockridge J",
-          "support": [
-            {
-              "name": "C. Wright",
-              "grade": "CT2"
-            }
-          ],
+          "primary": "M. Paul, Hockridge J",
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Ong / Urology",
-          "primary": "Hockridge J",
-          "support": [
-            {
-              "name": "C. Wright",
-              "grade": "CT2"
-            }
-          ],
+          "primary": "Hockridge J, M. Paul",
+          "support": [],
           "cancelled": false
         }
       },
@@ -605,15 +595,15 @@
         "type": "Day Case",
         "am": {
           "list": "Baldwick / Upper Limb Ortho",
-          "primary": "O. Ingham Clark, M. Paul",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Baldwick / Upper Limb Ortho",
-          "primary": "O. Ingham Clark, M. Paul",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th7": {
@@ -634,7 +624,12 @@
         "pm": {
           "list": "Al-Abbasi / UGI",
           "primary": "S. Charoumzadeh Dashti",
-          "support": [],
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -672,7 +667,12 @@
         "am": {
           "list": "Additional GA eye list - Razzaq / Ophth GA",
           "primary": "T. Mitchell",
-          "support": [],
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
@@ -709,11 +709,11 @@
           "grade": "ACCS Med"
         },
         {
-          "name": "F. Francis",
+          "name": "M. Cannings",
           "grade": "ACCS Anaes"
         },
         {
-          "name": "M. Cannings",
+          "name": "F. Francis",
           "grade": "ACCS Anaes"
         },
         {
