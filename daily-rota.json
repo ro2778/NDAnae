@@ -91,13 +91,13 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Brunton / Ortho",
+        "list": "Additional Trauma / Trauma",
         "primary": "Z. Ungvari",
         "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Brunton / Ortho",
+        "list": "Additional Trauma / Trauma",
         "primary": "Z. Ungvari",
         "support": [],
         "cancelled": false
@@ -352,12 +352,12 @@
     "persistent_pain": {
       "label": "Persistent Pain",
       "am": "S. Charoumzadeh Dashti, L. Miller",
-      "pm": "S. Charoumzadeh Dashti, A. Bennett, L. Miller"
+      "pm": "S. Charoumzadeh Dashti, L. Miller, A. Bennett"
     }
   },
   "date": "2026-06-01",
   "day": "Mon",
-  "scraped_at": "2026-06-01T06:30:18.770Z",
+  "scraped_at": "2026-06-01T10:17:51.707Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -648,9 +648,9 @@
         "type": "Eyes",
         "am": {
           "list": "Razzaq - Additional GA / Ophth GA",
-          "primary": "R. Conway",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "",
@@ -727,8 +727,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "N. Hollister, J. Preece",
-        "pm": "N. Hollister, J. Preece"
+        "am": "J. Preece, N. Hollister",
+        "pm": "J. Preece, N. Hollister"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
@@ -742,8 +742,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "L. Miller",
-        "pm": "L. Miller"
+        "am": "—",
+        "pm": "—"
       }
     },
     "date": "2026-06-02",
