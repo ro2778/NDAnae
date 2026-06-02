@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "—",
-    "pm": "—"
+    "am": "M. Abouelsaad",
+    "pm": "M. Abouelsaad"
   },
   "on_call": {
     "300": {
@@ -146,13 +146,21 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "T. Mitchell",
-        "support": [],
+        "support": [
+          {
+            "name": "D. McMenamin ED Staff grade"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "T. Mitchell",
-        "support": [],
+        "support": [
+          {
+            "name": "D. McMenamin ED Staff grade"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -211,23 +219,15 @@
       "type": "Day Case",
       "am": {
         "list": "Roberton / Ortho",
-        "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Roberton / Ortho",
-        "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th7": {
@@ -350,8 +350,8 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "A. Edmonds",
-      "pm": "N. Hollister A. Edmonds"
+      "am": "M. Abouelsaad",
+      "pm": "M. Abouelsaad N. Hollister"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
@@ -367,8 +367,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "J. Preece, N. Hollister",
-      "pm": "J. Preece, N. Hollister"
+      "am": "N. Hollister, J. Preece",
+      "pm": "N. Hollister, J. Preece"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -388,7 +388,7 @@
   },
   "date": "2026-06-02",
   "day": "Tue",
-  "scraped_at": "2026-06-02T06:15:52.781Z",
+  "scraped_at": "2026-06-02T09:05:33.135Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
