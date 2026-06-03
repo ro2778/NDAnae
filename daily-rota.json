@@ -308,11 +308,11 @@
     "ext": "2707",
     "day": [
       {
-        "name": "R. Mouadhen",
+        "name": "A. Khalid",
         "grade": "ACCS Med"
       },
       {
-        "name": "A. Khalid",
+        "name": "R. Mouadhen",
         "grade": "ACCS Med"
       }
     ]
@@ -352,13 +352,13 @@
     },
     "persistent_pain": {
       "label": "Persistent Pain",
-      "am": "L. Miller, A. Bennett",
+      "am": "A. Bennett, L. Miller",
       "pm": "L. Miller, A. Bennett"
     }
   },
   "date": "2026-06-03",
   "day": "Wed",
-  "scraped_at": "2026-06-03T12:40:01.192Z",
+  "scraped_at": "2026-06-03T16:16:10.395Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
