@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "—",
+    "am": "B. Ittzes",
     "pm": "—"
   },
   "on_call": {
@@ -211,13 +211,9 @@
       "type": "Day Case",
       "am": {
         "list": "Arunagiri / EGS",
-        "primary": "B. Ittzes",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Arunagiri / EGS",
@@ -237,23 +233,13 @@
       "am": {
         "list": "Kemp / Gynae",
         "primary": "M. Paul",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Honey / MaxFax",
         "primary": "M. Paul",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -350,7 +336,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "T. Johnson",
+      "am": "B. Ittzes",
       "pm": "T. Johnson"
     },
     "epidural234": {
@@ -367,7 +353,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Z. Ozfirat, J. Preece",
+      "am": "J. Preece, Z. Ozfirat",
       "pm": "Z. Ozfirat"
     },
     "obs_preop": {
@@ -388,7 +374,7 @@
   },
   "date": "2026-06-04",
   "day": "Thu",
-  "scraped_at": "2026-06-04T06:21:19.645Z",
+  "scraped_at": "2026-06-04T08:47:32.975Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
