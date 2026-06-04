@@ -374,7 +374,7 @@
   },
   "date": "2026-06-04",
   "day": "Thu",
-  "scraped_at": "2026-06-04T08:47:32.975Z",
+  "scraped_at": "2026-06-04T10:37:22.825Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -481,11 +481,7 @@
         "am": {
           "list": "CEPOD / CEPOD",
           "primary": "T. Johnson",
-          "support": [
-            {
-              "name": "D. McMenamin ED Staff grade"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
@@ -670,7 +666,11 @@
         "am": {
           "list": "Nestel - Additional list / Ophth GA",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "D. McMenamin ED Staff grade"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
