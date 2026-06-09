@@ -254,7 +254,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "May / Gynae",
-        "primary": "J. Achenbach, R. Johnson",
+        "primary": "R. Johnson, J. Achenbach",
         "support": [
           {
             "name": "A.Rees",
@@ -354,7 +354,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "R. Johnson Z. Ozfirat",
+      "am": "Z. Ozfirat",
       "pm": "B. Evliya Felek"
     },
     "epidural234": {
@@ -381,7 +381,7 @@
     },
     "acute_pain": {
       "label": "Acute Pain",
-      "am": "—",
+      "am": "S. Docherty (ITU Fellow)",
       "pm": "—"
     },
     "persistent_pain": {
@@ -392,7 +392,7 @@
   },
   "date": "2026-06-09",
   "day": "Tue",
-  "scraped_at": "2026-06-09T05:47:21.424Z",
+  "scraped_at": "2026-06-09T08:30:27.762Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
