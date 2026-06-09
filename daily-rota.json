@@ -254,7 +254,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "May / Gynae",
-        "primary": "R. Johnson, J. Achenbach",
+        "primary": "J. Achenbach, R. Johnson",
         "support": [
           {
             "name": "A.Rees",
@@ -392,7 +392,7 @@
   },
   "date": "2026-06-09",
   "day": "Tue",
-  "scraped_at": "2026-06-09T10:58:33.581Z",
+  "scraped_at": "2026-06-09T14:24:10.108Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
