@@ -89,23 +89,13 @@
       "am": {
         "list": "Abed / Ortho",
         "primary": "R. Johnson",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Abed / Ortho",
         "primary": "R. Johnson",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -140,13 +130,13 @@
       "type": "CEPOD",
       "am": {
         "list": "Ong / Urology",
-        "primary": "T. Johnson, K. Tipping",
+        "primary": "T. Johnson",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Ong / Urology",
-        "primary": "T. Johnson, K. Tipping",
+        "primary": "T. Johnson",
         "support": [],
         "cancelled": false
       }
@@ -365,7 +355,7 @@
   },
   "date": "2026-06-10",
   "day": "Wed",
-  "scraped_at": "2026-06-10T06:01:32.420Z",
+  "scraped_at": "2026-06-10T08:48:36.475Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -665,12 +655,7 @@
         "pm": {
           "list": "Ashdown / Ophth GA",
           "primary": "Hockridge J",
-          "support": [
-            {
-              "name": "P. Falkner",
-              "grade": "Fellow"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -708,8 +693,8 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "P. Falkner T. Johnson",
-        "pm": "P. Falkner"
+        "am": "T. Johnson",
+        "pm": "—"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
