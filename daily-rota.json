@@ -355,7 +355,7 @@
   },
   "date": "2026-06-10",
   "day": "Wed",
-  "scraped_at": "2026-06-10T08:48:36.475Z",
+  "scraped_at": "2026-06-10T10:53:57.828Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -413,7 +413,7 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "C. Don, E. Szelei",
+          "name": "E. Szelei, C. Don",
           "role": "LD"
         },
         "pm": {
@@ -621,7 +621,7 @@
         "type": "Obstetrics",
         "am": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "C. Don, E. Szelei",
+          "primary": "E. Szelei, C. Don",
           "support": [
             {
               "name": "Kellermann",
