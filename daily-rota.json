@@ -55,7 +55,7 @@
       "label": "Maternity Rota",
       "bleep": "822",
       "am": {
-        "name": "C. Don, E. Szelei",
+        "name": "E. Szelei, C. Don",
         "role": "LD"
       },
       "pm": {
@@ -243,7 +243,7 @@
       "type": "Obstetrics",
       "am": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "C. Don, E. Szelei",
+        "primary": "E. Szelei, C. Don",
         "support": [
           {
             "name": "Kellermann",
@@ -353,11 +353,11 @@
   },
   "date": "2026-06-11",
   "day": "Thu",
-  "scraped_at": "2026-06-11T12:08:02.090Z",
+  "scraped_at": "2026-06-11T15:33:55.508Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "—",
-      "pm": "—"
+      "am": "Hockridge J J. Powell",
+      "pm": "Hockridge J"
     },
     "on_call": {
       "300": {
@@ -566,15 +566,15 @@
         "type": "Day Case",
         "am": {
           "list": "Bain / Colorectal",
-          "primary": "J. Powell",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Bain / Colorectal",
-          "primary": "J. Powell",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th6": {
@@ -589,7 +589,7 @@
         },
         "pm": {
           "list": "Kale / Ortho",
-          "primary": "C. Don",
+          "primary": "J. Powell",
           "support": [],
           "cancelled": false
         }
@@ -700,7 +700,7 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "S. Docherty",
+        "am": "J. Powell",
         "pm": "S. Docherty"
       },
       "epidural234": {
