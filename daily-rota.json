@@ -55,7 +55,7 @@
       "label": "Maternity Rota",
       "bleep": "822",
       "am": {
-        "name": "E. Szelei, C. Don",
+        "name": "C. Don, E. Szelei",
         "role": "LD"
       },
       "pm": {
@@ -90,23 +90,13 @@
       "am": {
         "list": "Parkes (Additional Trauma Cases) / Trauma",
         "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Parkes (Additional Trauma Cases) / Trauma",
         "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -161,23 +151,13 @@
       "am": {
         "list": "Pansell / Colorectal",
         "primary": "J. Da-Fonseca",
-        "support": [
-          {
-            "name": "A.Rees",
-            "grade": "FY2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Pansell / Colorectal",
         "primary": "J. Da-Fonseca",
-        "support": [
-          {
-            "name": "A.Rees",
-            "grade": "FY2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -263,7 +243,7 @@
       "type": "Obstetrics",
       "am": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "E. Szelei, C. Don",
+        "primary": "C. Don, E. Szelei",
         "support": [
           {
             "name": "Kellermann",
@@ -373,7 +353,7 @@
   },
   "date": "2026-06-11",
   "day": "Thu",
-  "scraped_at": "2026-06-11T06:18:56.666Z",
+  "scraped_at": "2026-06-11T09:12:04.135Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
