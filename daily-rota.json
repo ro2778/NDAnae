@@ -1,14 +1,14 @@
 {
   "available_consultants": {
-    "am": "Hockridge J J. Powell",
-    "pm": "Hockridge J"
+    "am": "J. Powell",
+    "pm": "—"
   },
   "on_call": {
     "300": {
       "label": "Anaesthetics On Call",
       "bleep": "300",
-      "am": "C. Smith",
-      "pm": "C. Smith",
+      "am": "Hockridge J",
+      "pm": "Hockridge J",
       "eve": "C. Smith",
       "night": "C. Smith"
     },
@@ -361,8 +361,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "—",
-      "pm": "—"
+      "am": "C. Smith",
+      "pm": "C. Smith"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -382,7 +382,7 @@
   },
   "date": "2026-06-12",
   "day": "Fri",
-  "scraped_at": "2026-06-12T06:14:32.715Z",
+  "scraped_at": "2026-06-12T08:56:58.348Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
