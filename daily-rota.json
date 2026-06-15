@@ -44,16 +44,10 @@
           "grade": "ACCS Anaes"
         }
       ],
-      "night": [
-        {
-          "name": "F. Francis",
-          "grade": "ACCS Anaes"
-        },
-        {
-          "name": "Kellermann",
-          "grade": "M CT1"
-        }
-      ]
+      "night": {
+        "name": "Kellermann",
+        "grade": "M CT1"
+      }
     },
     "508": {
       "label": "Emergency Rota",
@@ -237,8 +231,13 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "May / Gynae",
-        "primary": "E. Cope",
-        "support": [],
+        "primary": "E. Cope, N. Love",
+        "support": [
+          {
+            "name": "T. Western",
+            "grade": "Fellow"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
@@ -285,14 +284,9 @@
       "type": "Eyes",
       "am": {
         "list": "Badr / Ophth GA",
-        "primary": "N. Love",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "",
@@ -373,7 +367,7 @@
   },
   "date": "2026-06-15",
   "day": "Mon",
-  "scraped_at": "2026-06-15T06:57:51.798Z",
+  "scraped_at": "2026-06-15T10:54:43.066Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -401,34 +395,18 @@
             "grade": "ACCS Anaes"
           }
         ],
-        "pm": [
-          {
-            "name": "S. Carter",
-            "grade": "Speciality"
-          },
-          {
-            "name": "S. Coates",
-            "grade": "ACCS Anaes"
-          }
-        ],
-        "eve": [
-          {
-            "name": "S. Carter"
-          },
-          {
-            "name": "S. Coates",
-            "grade": "ACCS Anaes"
-          }
-        ],
-        "night": [
-          {
-            "name": "F. Francis"
-          },
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ]
+        "pm": {
+          "name": "S. Coates",
+          "grade": "ACCS Anaes"
+        },
+        "eve": {
+          "name": "S. Coates",
+          "grade": "ACCS Anaes"
+        },
+        "night": {
+          "name": "Kellermann",
+          "grade": "M CT1"
+        }
       },
       "508": {
         "label": "Emergency Rota",
@@ -531,13 +509,23 @@
         "am": {
           "list": "CEPOD / CEPOD",
           "primary": "E. Cope",
-          "support": [],
+          "support": [
+            {
+              "name": "A.Rees",
+              "grade": "FY2"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "CEPOD / CEPOD",
           "primary": "E. Cope",
-          "support": [],
+          "support": [
+            {
+              "name": "A.Rees",
+              "grade": "FY2"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -626,13 +614,23 @@
         "am": {
           "list": "Obstetrics / Obstetrics",
           "primary": "B. Evliya Felek, J. Powell",
-          "support": [],
+          "support": [
+            {
+              "name": "S. Docherty",
+              "grade": "ITU Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
           "primary": "B. Evliya Felek, J. Powell",
-          "support": [],
+          "support": [
+            {
+              "name": "S. Docherty",
+              "grade": "ITU Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -676,8 +674,15 @@
       "ext": "2707",
       "day": [
         {
+          "name": "connie.m IMT"
+        },
+        {
           "name": "A. Edmonds",
           "grade": "CT Anaes"
+        },
+        {
+          "name": "S.Aziz",
+          "grade": "FY1"
         }
       ]
     },
