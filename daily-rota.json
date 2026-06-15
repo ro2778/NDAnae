@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "C. Cheesman",
-    "pm": "C. Cheesman"
+    "am": "—",
+    "pm": "—"
   },
   "on_call": {
     "300": {
@@ -367,7 +367,7 @@
   },
   "date": "2026-06-15",
   "day": "Mon",
-  "scraped_at": "2026-06-15T13:10:39.961Z",
+  "scraped_at": "2026-06-15T13:32:45.657Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
