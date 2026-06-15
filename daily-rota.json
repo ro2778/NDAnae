@@ -215,14 +215,9 @@
       },
       "pm": {
         "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "J. Achenbach",
-        "support": [
-          {
-            "name": "T. Johnson",
-            "grade": "Fellow"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th7": {
@@ -243,7 +238,12 @@
       "pm": {
         "list": "Glanville / Gynae",
         "primary": "E. Cope",
-        "support": [],
+        "support": [
+          {
+            "name": "T. Johnson",
+            "grade": "Fellow"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -330,12 +330,12 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "T. Johnson",
-      "pm": "T. Johnson"
+      "pm": "—"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
       "am": "T. Johnson",
-      "pm": "T. Johnson"
+      "pm": "—"
     }
   },
   "activities": {
@@ -367,7 +367,7 @@
   },
   "date": "2026-06-15",
   "day": "Mon",
-  "scraped_at": "2026-06-15T13:52:46.594Z",
+  "scraped_at": "2026-06-15T16:55:33.347Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -570,13 +570,23 @@
         "am": {
           "list": "Jagodzinski / Upper Limb Ortho",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Edmonds",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Jagodzinski / Upper Limb Ortho",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Edmonds",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -675,10 +685,6 @@
       "day": [
         {
           "name": "connie.m IMT"
-        },
-        {
-          "name": "A. Edmonds",
-          "grade": "CT Anaes"
         },
         {
           "name": "S.Aziz",
