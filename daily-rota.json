@@ -325,8 +325,8 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "E. Cope",
-      "pm": "E. Cope"
+      "am": "S. Docherty",
+      "pm": "S. Docherty"
     }
   },
   "activities": {
@@ -358,7 +358,7 @@
   },
   "date": "2026-06-17",
   "day": "Wed",
-  "scraped_at": "2026-06-17T06:39:20.825Z",
+  "scraped_at": "2026-06-17T09:28:55.266Z",
   "tomorrow": {
     "available_consultants": {
       "am": "Hockridge J",
