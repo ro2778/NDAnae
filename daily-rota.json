@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "Hockridge J",
+    "am": "B. Vidanapathirana",
     "pm": "—"
   },
   "on_call": {
@@ -27,15 +27,10 @@
         "name": "O. Kirby",
         "grade": "CT2"
       },
-      "night": [
-        {
-          "name": "S. Fairclough"
-        },
-        {
-          "name": "F. Francis",
-          "grade": "ACCS Anaes"
-        }
-      ]
+      "night": {
+        "name": "F. Francis",
+        "grade": "ACCS Anaes"
+      }
     },
     "508": {
       "label": "Emergency Rota",
@@ -95,13 +90,30 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "T. Mitchell",
-        "support": [],
+        "support": [
+          {
+            "name": "D. McMenamin ED Staff grade"
+          },
+          {
+            "name": "A. Edmonds",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "T. Mitchell",
-        "support": [],
+        "support": [
+          {
+            "name": "A. Edmonds",
+            "grade": "CT Anaes"
+          },
+          {
+            "name": "A.Rees",
+            "grade": "FY2"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -155,7 +167,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "Al-Abbasi / UGI",
-        "primary": "J. Achenbach",
+        "primary": "J. Preece",
         "support": [
           {
             "name": "E. Hosker",
@@ -166,7 +178,7 @@
       },
       "pm": {
         "list": "Al-Abbasi / UGI",
-        "primary": "J. Achenbach",
+        "primary": "J. Preece",
         "support": [
           {
             "name": "E. Hosker",
@@ -199,13 +211,9 @@
       "type": "Day Case",
       "am": {
         "list": "Pansell / Colorectal",
-        "primary": "B. Vidanapathirana",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Pansell / Colorectal",
@@ -230,18 +238,9 @@
       },
       "pm": {
         "list": "Eskandar / Gynae",
-        "primary": "J. Preece",
-        "support": [
-          {
-            "name": "A. Edmonds",
-            "grade": "CT Anaes"
-          },
-          {
-            "name": "A.Rees",
-            "grade": "FY2"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th8": {
@@ -278,12 +277,7 @@
       "am": {
         "list": "Riley / Ophth GA",
         "primary": "N. Nath",
-        "support": [
-          {
-            "name": "A. Edmonds",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -328,7 +322,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "Hockridge J E. Cope",
+      "am": "B. Vidanapathirana E. Cope",
       "pm": "E. Cope T. Western"
     },
     "epidural234": {
@@ -345,7 +339,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "J. Preece, Z. Ozfirat",
+      "am": "Hockridge J, Z. Ozfirat",
       "pm": "Z. Ozfirat"
     },
     "obs_preop": {
@@ -366,7 +360,7 @@
   },
   "date": "2026-06-18",
   "day": "Thu",
-  "scraped_at": "2026-06-18T06:22:38.070Z",
+  "scraped_at": "2026-06-18T09:12:51.582Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
