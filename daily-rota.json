@@ -339,7 +339,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Hockridge J, Z. Ozfirat",
+      "am": "Z. Ozfirat, Hockridge J",
       "pm": "Z. Ozfirat"
     },
     "obs_preop": {
@@ -360,7 +360,7 @@
   },
   "date": "2026-06-18",
   "day": "Thu",
-  "scraped_at": "2026-06-18T09:12:51.582Z",
+  "scraped_at": "2026-06-18T11:07:21.093Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -681,7 +681,7 @@
       "esa135": {
         "label": "ESA Bleep 135",
         "am": "T. Western",
-        "pm": "A. Edmonds I. Talbot"
+        "pm": "A. Edmonds"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
