@@ -360,7 +360,7 @@
   },
   "date": "2026-06-18",
   "day": "Thu",
-  "scraped_at": "2026-06-18T11:07:21.093Z",
+  "scraped_at": "2026-06-18T11:40:57.193Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -671,6 +671,10 @@
       "label": "ITU Day Staff",
       "ext": "2707",
       "day": [
+        {
+          "name": "S. Carter",
+          "grade": "Speciality"
+        },
         {
           "name": "A. Edmonds",
           "grade": "CT Anaes"
