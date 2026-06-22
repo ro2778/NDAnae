@@ -366,10 +366,10 @@
   },
   "date": "2026-06-22",
   "day": "Mon",
-  "scraped_at": "2026-06-22T07:00:23.658Z",
+  "scraped_at": "2026-06-22T10:37:04.762Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "M. Casemore",
+      "am": "—",
       "pm": "—"
     },
     "on_call": {
@@ -485,7 +485,7 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "D. Beard",
+          "primary": "M. Casemore, D. Beard",
           "support": [
             {
               "name": "O. Kirby",
