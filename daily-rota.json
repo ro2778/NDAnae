@@ -68,7 +68,7 @@
         "role": ""
       },
       "night": {
-        "name": "T. Johnson",
+        "name": "T. Western 822 NT. Johnson",
         "grade": "Fellow",
         "role": "N"
       }
@@ -116,7 +116,7 @@
       "type": "Trauma",
       "am": {
         "list": "Trauma / Trauma",
-        "primary": "M. Casemore, D. Beard",
+        "primary": "D. Beard, M. Casemore",
         "support": [
           {
             "name": "O. Kirby",
@@ -349,7 +349,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "R. Clarke, N. Hollister",
+      "am": "N. Hollister, R. Clarke",
       "pm": "R. Clarke"
     },
     "obs_preop": {
@@ -370,7 +370,7 @@
   },
   "date": "2026-06-23",
   "day": "Tue",
-  "scraped_at": "2026-06-23T10:47:28.251Z",
+  "scraped_at": "2026-06-23T11:14:04.302Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
