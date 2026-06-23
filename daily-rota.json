@@ -7,10 +7,10 @@
     "300": {
       "label": "Anaesthetics On Call",
       "bleep": "300",
-      "am": "B. Vidanapathirana",
-      "pm": "B. Vidanapathirana",
-      "eve": "B. Vidanapathirana",
-      "night": "B. Vidanapathirana"
+      "am": "Hockridge J",
+      "pm": "Hockridge J",
+      "eve": "Hockridge J",
+      "night": "Hockridge J"
     },
     "504": {
       "label": "ITU Resident",
@@ -40,8 +40,7 @@
         "role": "LD"
       },
       "pm": {
-        "name": "P. Falkner",
-        "grade": "Fellow",
+        "name": "R. Johnson",
         "role": "LD"
       },
       "eve": {
@@ -57,11 +56,11 @@
       "label": "Maternity Rota",
       "bleep": "822",
       "am": {
-        "name": "M. Paul",
+        "name": "J. Powell",
         "role": "LD"
       },
       "pm": {
-        "name": "M. Paul",
+        "name": "J. Powell",
         "role": "LD"
       },
       "eve": {
@@ -77,10 +76,10 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "W. Gaunt",
-      "pm": "W. Gaunt",
-      "eve": "W. Gaunt",
-      "night": "W. Gaunt"
+      "am": "B. Ittzes",
+      "pm": "G. Moncaster",
+      "eve": "G. Moncaster",
+      "night": "G. Moncaster"
     }
   },
   "theatres": {
@@ -89,23 +88,23 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "Z. Ungvari",
+        "list": "Roberton / Ortho",
+        "primary": "S. Hebard",
         "support": [
           {
-            "name": "O. Kirby",
-            "grade": "CT2"
+            "name": "A. Khalid",
+            "grade": "ACCS Med"
           }
         ],
         "cancelled": false
       },
       "pm": {
-        "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "Z. Ungvari",
+        "list": "Roberton / Ortho",
+        "primary": "S. Hebard",
         "support": [
           {
-            "name": "O. Kirby",
-            "grade": "CT2"
+            "name": "A. Khalid",
+            "grade": "ACCS Med"
           }
         ],
         "cancelled": false
@@ -117,22 +116,22 @@
       "type": "Trauma",
       "am": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "M. Casemore, D. Beard",
         "support": [
           {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
+            "name": "O. Kirby",
+            "grade": "CT2"
           }
         ],
         "cancelled": false
       },
       "pm": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "N. Hollister",
         "support": [
           {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
+            "name": "O. Kirby",
+            "grade": "CT2"
           }
         ],
         "cancelled": false
@@ -143,23 +142,23 @@
       "ext": "3142",
       "type": "CEPOD",
       "am": {
-        "list": "Cartmell / Colorectal",
-        "primary": "M. Casemore",
+        "list": "CEPOD / CEPOD",
+        "primary": "R. Johnson",
         "support": [
           {
-            "name": "C. Wright",
-            "grade": "CT2"
+            "name": "A. Edmonds",
+            "grade": "CT Anaes"
           }
         ],
         "cancelled": false
       },
       "pm": {
-        "list": "Cartmell / Colorectal",
-        "primary": "M. Casemore",
+        "list": "CEPOD / CEPOD",
+        "primary": "R. Johnson",
         "support": [
           {
-            "name": "C. Wright",
-            "grade": "CT2"
+            "name": "A. Edmonds",
+            "grade": "CT Anaes"
           }
         ],
         "cancelled": false
@@ -170,8 +169,8 @@
       "ext": "3167",
       "type": "General/CEPOD",
       "am": {
-        "list": "CEPOD / CEPOD",
-        "primary": "R. Johnson",
+        "list": "Beaton / Colorectal",
+        "primary": "J. Preece",
         "support": [
           {
             "name": "O. Ingham Clark",
@@ -181,8 +180,8 @@
         "cancelled": false
       },
       "pm": {
-        "list": "CEPOD / CEPOD",
-        "primary": "P. Falkner",
+        "list": "Beaton / Colorectal",
+        "primary": "J. Preece",
         "support": [
           {
             "name": "O. Ingham Clark",
@@ -197,16 +196,16 @@
       "ext": "3247",
       "type": "Day Case",
       "am": {
-        "list": "Al-Abbasi / UGI",
-        "primary": "R. Conway",
+        "list": "Urology / Urology",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
-        "list": "Evans / Urology",
-        "primary": "R. Johnson",
+        "list": "Chinai / Vascular",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th6": {
@@ -214,23 +213,23 @@
       "ext": "2488",
       "type": "Day Case",
       "am": {
-        "list": "Findlay / UGI",
-        "primary": "K. Pyatt",
+        "list": "Cove / Ortho",
+        "primary": "J. Achenbach",
         "support": [
           {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
+            "name": "A. Koffman",
+            "grade": "ACCS Anaes"
           }
         ],
         "cancelled": false
       },
       "pm": {
-        "list": "Findlay / UGI",
-        "primary": "K. Pyatt",
+        "list": "Cove / Ortho",
+        "primary": "J. Achenbach",
         "support": [
           {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
+            "name": "A. Koffman",
+            "grade": "ACCS Anaes"
           }
         ],
         "cancelled": false
@@ -241,22 +240,22 @@
       "ext": "3709",
       "type": "Gynae/Breast",
       "am": {
-        "list": "Sharma / Breast",
-        "primary": "D. Sanders",
+        "list": "Shaikh / Gynae",
+        "primary": "Z. Ozfirat",
         "support": [
           {
-            "name": "T. Western",
+            "name": "P. Falkner",
             "grade": "Fellow"
           }
         ],
         "cancelled": false
       },
       "pm": {
-        "list": "Sharma / Breast",
-        "primary": "D. Sanders",
+        "list": "Mortimer / Gynae",
+        "primary": "M. Paul",
         "support": [
           {
-            "name": "T. Western",
+            "name": "P. Falkner",
             "grade": "Fellow"
           }
         ],
@@ -269,19 +268,24 @@
       "type": "Obstetrics",
       "am": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "M. Paul",
+        "primary": "J. Powell",
         "support": [
           {
-            "name": "P. Falkner",
-            "grade": "Fellow"
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
           }
         ],
         "cancelled": false
       },
       "pm": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "M. Paul",
-        "support": [],
+        "primary": "J. Powell",
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -290,16 +294,16 @@
       "ext": "",
       "type": "Eyes",
       "am": {
-        "list": "Badr / Ophth GA",
+        "list": "Whittaker Additional GA / Ophth GA",
         "primary": "",
         "support": [],
         "cancelled": true
       },
       "pm": {
-        "list": "Potential DCCV / Cardioversions",
-        "primary": "",
+        "list": "Nestel - Additional GA / Ophth GA",
+        "primary": "M. Casemore",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th10": {
@@ -307,10 +311,10 @@
       "ext": "5963",
       "type": "Endoscopy",
       "am": {
-        "list": "",
+        "list": "Endoscopy / Endoscopy",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "",
@@ -328,25 +332,25 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "O. Ingham Clark",
-      "pm": "O. Ingham Clark"
+      "am": "M. Casemore",
+      "pm": "P. Falkner"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "T. Western",
-      "pm": "T. Western"
+      "am": "I. Talbot",
+      "pm": "I. Talbot"
     }
   },
   "activities": {
     "picc": {
       "label": "PICC Lines",
-      "am": "—",
+      "am": "S. Carter (Speciality)",
       "pm": "—"
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "R. Clarke",
-      "pm": "—"
+      "am": "R. Clarke, N. Hollister",
+      "pm": "R. Clarke"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -356,17 +360,17 @@
     "acute_pain": {
       "label": "Acute Pain",
       "am": "—",
-      "pm": "—"
+      "pm": "D. Beard"
     },
     "persistent_pain": {
       "label": "Persistent Pain",
       "am": "—",
-      "pm": "L. Miller"
+      "pm": "—"
     }
   },
-  "date": "2026-06-22",
-  "day": "Mon",
-  "scraped_at": "2026-06-22T21:32:23.007Z",
+  "date": "2026-06-23",
+  "day": "Tue",
+  "scraped_at": "2026-06-23T05:45:09.617Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -376,48 +380,50 @@
       "300": {
         "label": "Anaesthetics On Call",
         "bleep": "300",
-        "am": "Hockridge J",
-        "pm": "Hockridge J",
-        "eve": "Hockridge J",
-        "night": "Hockridge J"
+        "am": "D. Sanders",
+        "pm": "D. Sanders",
+        "eve": "Z. Ungvari",
+        "night": "Z. Ungvari"
       },
       "504": {
         "label": "ITU Resident",
         "bleep": "504",
         "am": {
-          "name": "F. Francis",
-          "grade": "ACCS Anaes"
+          "name": "S. Docherty",
+          "grade": "ITU Fellow"
         },
         "pm": {
-          "name": "F. Francis",
-          "grade": "ACCS Anaes"
+          "name": "S. Docherty",
+          "grade": "ITU Fellow"
         },
         "eve": {
-          "name": "O. Kirby",
-          "grade": "CT2"
+          "name": "S. Docherty",
+          "grade": "ITU Fellow"
         },
         "night": {
-          "name": "R. Mouadhen",
-          "grade": "ACCS Med"
+          "name": "Kellermann",
+          "grade": "M CT1"
         }
       },
       "508": {
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "R. Johnson",
+          "name": "A. Edmonds",
+          "grade": "CT Anaes",
           "role": "LD"
         },
         "pm": {
-          "name": "R. Johnson",
+          "name": "A. Edmonds",
+          "grade": "CT Anaes",
           "role": "LD"
         },
         "eve": {
-          "name": "R. Johnson",
+          "name": "M. Casemore",
           "role": "LD"
         },
         "night": {
-          "name": "E. Martinez-Estrada",
+          "name": "N. Nath",
           "role": "N"
         }
       },
@@ -425,19 +431,19 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "J. Powell",
+          "name": "T. Mitchell",
           "role": "LD"
         },
         "pm": {
-          "name": "J. Powell",
+          "name": "T. Mitchell",
           "role": "LD"
         },
         "eve": {
-          "name": "M. Paul",
-          "role": ""
+          "name": "E. Cope",
+          "role": "LD"
         },
         "night": {
-          "name": "T. Johnson",
+          "name": "T. Western",
           "grade": "Fellow",
           "role": "N"
         }
@@ -446,9 +452,9 @@
         "label": "ITU Consultant On Call",
         "bleep": "505",
         "am": "B. Ittzes",
-        "pm": "G. Moncaster",
-        "eve": "G. Moncaster",
-        "night": "G. Moncaster"
+        "pm": "N. Hollister",
+        "eve": "N. Hollister",
+        "night": "N. Hollister"
       }
     },
     "theatres": {
@@ -457,23 +463,21 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Roberton / Ortho",
-          "primary": "S. Hebard",
+          "list": "Abed / Ortho",
+          "primary": "N. Hollister",
           "support": [
             {
-              "name": "A. Khalid",
-              "grade": "ACCS Med"
+              "name": "D. McMenamin ED Staff grade"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Roberton / Ortho",
-          "primary": "S. Hebard",
+          "list": "Abed / Ortho",
+          "primary": "J. Powell",
           "support": [
             {
-              "name": "A. Khalid",
-              "grade": "ACCS Med"
+              "name": "D. McMenamin ED Staff grade"
             }
           ],
           "cancelled": false
@@ -485,24 +489,14 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "M. Casemore, D. Beard",
-          "support": [
-            {
-              "name": "O. Kirby",
-              "grade": "CT2"
-            }
-          ],
+          "primary": "J. Achenbach, E. Cope",
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Trauma / Trauma",
-          "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "O. Kirby",
-              "grade": "CT2"
-            }
-          ],
+          "primary": "J. Achenbach, E. Cope",
+          "support": [],
           "cancelled": false
         }
       },
@@ -512,22 +506,22 @@
         "type": "CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "R. Johnson",
+          "primary": "A. Edmonds",
           "support": [
             {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
+              "name": "A. Khalid",
+              "grade": "ACCS Med"
             }
           ],
           "cancelled": false
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "R. Johnson",
+          "primary": "A. Edmonds",
           "support": [
             {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
+              "name": "A. Khalid",
+              "grade": "ACCS Med"
             }
           ],
           "cancelled": false
@@ -538,23 +532,23 @@
         "ext": "3167",
         "type": "General/CEPOD",
         "am": {
-          "list": "Beaton / Colorectal",
-          "primary": "J. Preece",
+          "list": "Findlay / UGI",
+          "primary": "M. Casemore",
           "support": [
             {
-              "name": "O. Ingham Clark",
-              "grade": "ACCS Anaes"
+              "name": "R. Child",
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Beaton / Colorectal",
-          "primary": "J. Preece",
+          "list": "Findlay / UGI",
+          "primary": "M. Casemore",
           "support": [
             {
-              "name": "O. Ingham Clark",
-              "grade": "ACCS Anaes"
+              "name": "R. Child",
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
@@ -565,16 +559,26 @@
         "ext": "3247",
         "type": "Day Case",
         "am": {
-          "list": "Urology / Urology",
-          "primary": "",
-          "support": [],
-          "cancelled": true
+          "list": "Evans / Donaldson / Urology",
+          "primary": "N. Love",
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
+          "cancelled": false
         },
         "pm": {
-          "list": "Chinai / Vascular",
-          "primary": "",
-          "support": [],
-          "cancelled": true
+          "list": "Evans / Donaldson / Urology",
+          "primary": "N. Love",
+          "support": [
+            {
+              "name": "C. Wright",
+              "grade": "CT2"
+            }
+          ],
+          "cancelled": false
         }
       },
       "th6": {
@@ -582,8 +586,8 @@
         "ext": "2488",
         "type": "Day Case",
         "am": {
-          "list": "Cove / Ortho",
-          "primary": "J. Achenbach",
+          "list": "Khatwa / ENT",
+          "primary": "W. Gaunt",
           "support": [
             {
               "name": "A. Koffman",
@@ -593,8 +597,8 @@
           "cancelled": false
         },
         "pm": {
-          "list": "Cove / Ortho",
-          "primary": "J. Achenbach",
+          "list": "Khatwa / ENT",
+          "primary": "W. Gaunt",
           "support": [
             {
               "name": "A. Koffman",
@@ -609,23 +613,23 @@
         "ext": "3709",
         "type": "Gynae/Breast",
         "am": {
-          "list": "Shaikh / Gynae",
-          "primary": "Z. Ozfirat",
+          "list": "Banks / Breast",
+          "primary": "Z. Ungvari",
           "support": [
             {
-              "name": "P. Falkner",
-              "grade": "Fellow"
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Mortimer / Gynae",
-          "primary": "M. Paul",
+          "list": "Banks / Breast",
+          "primary": "Z. Ungvari",
           "support": [
             {
-              "name": "P. Falkner",
-              "grade": "Fellow"
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -637,7 +641,7 @@
         "type": "Obstetrics",
         "am": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "J. Powell",
+          "primary": "T. Mitchell",
           "support": [
             {
               "name": "I. Talbot",
@@ -648,7 +652,7 @@
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "J. Powell",
+          "primary": "T. Mitchell",
           "support": [
             {
               "name": "I. Talbot",
@@ -663,14 +667,14 @@
         "ext": "",
         "type": "Eyes",
         "am": {
-          "list": "Whittaker Additional GA / Ophth GA",
+          "list": "Dixit / Ophth GA",
           "primary": "",
           "support": [],
           "cancelled": true
         },
         "pm": {
-          "list": "Nestel - Additional GA / Ophth GA",
-          "primary": "M. Casemore",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         }
@@ -680,10 +684,10 @@
         "ext": "5963",
         "type": "Endoscopy",
         "am": {
-          "list": "Endoscopy / Endoscopy",
+          "list": "",
           "primary": "",
           "support": [],
-          "cancelled": true
+          "cancelled": false
         },
         "pm": {
           "list": "",
@@ -696,13 +700,21 @@
     "itu_day": {
       "label": "ITU Day Staff",
       "ext": "2707",
-      "day": []
+      "day": [
+        {
+          "name": "connie.m IMT"
+        },
+        {
+          "name": "S.Aziz",
+          "grade": "FY1"
+        }
+      ]
     },
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "M. Casemore",
-        "pm": "P. Falkner"
+        "am": "R. Chi",
+        "pm": "R. Chi"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
@@ -713,13 +725,13 @@
     "activities": {
       "picc": {
         "label": "PICC Lines",
-        "am": "S. Carter (Speciality)",
+        "am": "—",
         "pm": "—"
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "R. Clarke, N. Hollister",
-        "pm": "R. Clarke"
+        "am": "S. Hebard",
+        "pm": "S. Hebard"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
@@ -729,15 +741,15 @@
       "acute_pain": {
         "label": "Acute Pain",
         "am": "—",
-        "pm": "D. Beard"
+        "pm": "—"
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "—",
-        "pm": "—"
+        "am": "A. Bennett",
+        "pm": "A. Bennett, L. Miller"
       }
     },
-    "date": "2026-06-23",
-    "day": "Tue"
+    "date": "2026-06-24",
+    "day": "Wed"
   }
 }
