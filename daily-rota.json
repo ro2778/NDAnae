@@ -91,23 +91,15 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Abed / Ortho",
-        "primary": "N. Hollister",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Abed / Ortho",
-        "primary": "J. Powell",
-        "support": [
-          {
-            "name": "D. McMenamin ED Staff grade"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th2": {
@@ -253,12 +245,7 @@
       "pm": {
         "list": "Banks / Breast",
         "primary": "Z. Ungvari",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -378,10 +365,10 @@
   },
   "date": "2026-06-24",
   "day": "Wed",
-  "scraped_at": "2026-06-24T10:46:32.859Z",
+  "scraped_at": "2026-06-24T14:05:45.165Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "M. Paul N. Love B. Vidanapathirana",
+      "am": "N. Love M. Paul B. Vidanapathirana",
       "pm": "—"
     },
     "on_call": {
