@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "N. Love B. Vidanapathirana M. Paul",
+    "am": "B. Vidanapathirana N. Love M. Paul",
     "pm": "—"
   },
   "on_call": {
@@ -228,12 +228,7 @@
       "pm": {
         "list": "Eskandar / Gynae",
         "primary": "M. Paul",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -354,7 +349,7 @@
   },
   "date": "2026-06-25",
   "day": "Thu",
-  "scraped_at": "2026-06-25T05:44:49.039Z",
+  "scraped_at": "2026-06-25T08:22:29.851Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
