@@ -326,7 +326,7 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "—",
+      "am": "A. Koffman",
       "pm": "A. Koffman"
     }
   },
@@ -359,7 +359,7 @@
   },
   "date": "2026-06-26",
   "day": "Fri",
-  "scraped_at": "2026-06-26T08:29:11.180Z",
+  "scraped_at": "2026-06-26T10:21:35.044Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
