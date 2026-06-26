@@ -216,7 +216,12 @@
       "pm": {
         "list": "Stenhouse - Paeds / MaxFax",
         "primary": "Z. Ungvari",
-        "support": [],
+        "support": [
+          {
+            "name": "A. Koffman",
+            "grade": "ACCS Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -255,12 +260,7 @@
       "pm": {
         "list": "Obstetrics / Obstetrics",
         "primary": "B. Vidanapathirana",
-        "support": [
-          {
-            "name": "A. Koffman",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -322,12 +322,12 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "A. Koffman",
-      "pm": "A. Koffman"
+      "pm": "—"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
       "am": "A. Koffman",
-      "pm": "A. Koffman"
+      "pm": "—"
     }
   },
   "activities": {
@@ -359,7 +359,7 @@
   },
   "date": "2026-06-26",
   "day": "Fri",
-  "scraped_at": "2026-06-26T10:48:48.370Z",
+  "scraped_at": "2026-06-26T14:02:05.191Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
