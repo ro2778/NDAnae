@@ -388,7 +388,7 @@
   },
   "date": "2026-06-29",
   "day": "Mon",
-  "scraped_at": "2026-06-29T12:28:57.502Z",
+  "scraped_at": "2026-06-29T15:29:38.872Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -442,8 +442,9 @@
           "role": "LD"
         },
         "eve": {
-          "name": "",
-          "role": ""
+          "name": "A. Edmonds",
+          "grade": "CT Anaes",
+          "role": "LD"
         },
         "night": {
           "name": "T. Mitchell",
@@ -462,8 +463,8 @@
           "role": "LD"
         },
         "eve": {
-          "name": "A. Edmonds",
-          "grade": "CT Anaes",
+          "name": "A. Koffman",
+          "grade": "ACCS Anaes",
           "role": "LD"
         },
         "night": {
@@ -549,13 +550,13 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Sanders / UGI",
-          "primary": "J. Preece",
+          "primary": "J. Da-Fonseca",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Sanders / UGI",
-          "primary": "J. Preece",
+          "primary": "J. Da-Fonseca",
           "support": [],
           "cancelled": false
         }
@@ -567,13 +568,23 @@
         "am": {
           "list": "Crundwell / Urology",
           "primary": "D. Sanders",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Koffman",
+              "grade": "ACCS Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Crundwell / Urology",
           "primary": "D. Sanders",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Koffman",
+              "grade": "ACCS Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -605,13 +616,13 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Eskandar / Gynae",
-          "primary": "R. Clarke",
+          "primary": "J. Preece",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Eskandar / Gynae",
-          "primary": "R. Clarke",
+          "primary": "J. Preece",
           "support": [],
           "cancelled": false
         }
