@@ -209,7 +209,7 @@
       },
       "pm": {
         "list": "Kedjanyi / ENT",
-        "primary": "W. Gaunt",
+        "primary": "R. Conway",
         "support": [
           {
             "name": "A. Koffman",
@@ -306,7 +306,7 @@
       },
       "pm": {
         "list": "Riley Additional GA / Ophth GA",
-        "primary": "R. Conway",
+        "primary": "W. Gaunt",
         "support": [],
         "cancelled": false
       }
@@ -334,11 +334,11 @@
     "ext": "2707",
     "day": [
       {
-        "name": "M. Cannings",
+        "name": "S. Coates",
         "grade": "ACCS Anaes"
       },
       {
-        "name": "S. Coates",
+        "name": "M. Cannings",
         "grade": "ACCS Anaes"
       },
       {
@@ -388,7 +388,7 @@
   },
   "date": "2026-06-29",
   "day": "Mon",
-  "scraped_at": "2026-06-29T09:25:42.339Z",
+  "scraped_at": "2026-06-29T11:56:33.273Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
