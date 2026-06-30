@@ -99,12 +99,7 @@
       "am": {
         "list": "Roberton / Ortho",
         "primary": "N. Hollister",
-        "support": [
-          {
-            "name": "R. Child",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -112,8 +107,8 @@
         "primary": "R. Conway",
         "support": [
           {
-            "name": "R. Child",
-            "grade": "Fellow"
+            "name": "A. Edmonds",
+            "grade": "CT Anaes"
           }
         ],
         "cancelled": false
@@ -210,12 +205,7 @@
       "pm": {
         "list": "Cove / Kale / Ortho",
         "primary": "T. Cobby",
-        "support": [
-          {
-            "name": "A. Edmonds",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -319,8 +309,8 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "R. Chi",
-      "pm": "R. Chi"
+      "am": "—",
+      "pm": "—"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
@@ -357,7 +347,7 @@
   },
   "date": "2026-06-30",
   "day": "Tue",
-  "scraped_at": "2026-06-30T05:47:44.329Z",
+  "scraped_at": "2026-06-30T08:29:35.359Z",
   "tomorrow": {
     "available_consultants": {
       "am": "C. Cheesman",
@@ -429,9 +419,8 @@
           "role": "LD"
         },
         "night": {
-          "name": "R. Child",
-          "grade": "Fellow",
-          "role": "N"
+          "name": "",
+          "role": ""
         }
       },
       "itu_consultant": {
