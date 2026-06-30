@@ -347,11 +347,11 @@
   },
   "date": "2026-06-30",
   "day": "Tue",
-  "scraped_at": "2026-06-30T10:54:47.910Z",
+  "scraped_at": "2026-06-30T13:54:30.197Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "C. Cheesman",
-      "pm": "C. Cheesman"
+      "am": "—",
+      "pm": "—"
     },
     "on_call": {
       "300": {
