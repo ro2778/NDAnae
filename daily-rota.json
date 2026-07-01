@@ -69,8 +69,8 @@
         "role": "LD"
       },
       "night": {
-        "name": "",
-        "role": ""
+        "name": "B. Evliya Felek",
+        "role": "N"
       }
     },
     "itu_consultant": {
@@ -353,7 +353,7 @@
   },
   "date": "2026-07-01",
   "day": "Wed",
-  "scraped_at": "2026-07-01T06:06:53.313Z",
+  "scraped_at": "2026-07-01T08:48:56.518Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
