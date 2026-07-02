@@ -216,23 +216,13 @@
       "am": {
         "list": "Yeadon / Colorectal",
         "primary": "J. Preece",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Yeadon / Colorectal",
         "primary": "J. Preece",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -383,7 +373,7 @@
   },
   "date": "2026-07-02",
   "day": "Thu",
-  "scraped_at": "2026-07-02T05:34:32.566Z",
+  "scraped_at": "2026-07-02T08:10:56.317Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -437,8 +427,7 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "T. Western",
-          "grade": "Fellow",
+          "name": "R. O'Byrne",
           "role": "LD"
         },
         "pm": {
@@ -534,7 +523,7 @@
         "type": "CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "T. Western",
+          "primary": "R. O'Byrne",
           "support": [
             {
               "name": "A. Khalid",
@@ -606,7 +595,12 @@
         "am": {
           "list": "Parth Patel Paeds / Comm Dental",
           "primary": "Z. Ungvari",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Western",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
@@ -681,9 +675,9 @@
         "type": "Eyes",
         "am": {
           "list": "Nestel Additional GA / Ophth GA",
-          "primary": "R. O'Byrne",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "",
