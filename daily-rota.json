@@ -373,7 +373,7 @@
   },
   "date": "2026-07-02",
   "day": "Thu",
-  "scraped_at": "2026-07-02T13:28:37.366Z",
+  "scraped_at": "2026-07-02T17:50:15.236Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -498,7 +498,7 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "D. Beard",
+          "primary": "M. Abouelsaad",
           "support": [
             {
               "name": "D. McMenamin ED Staff grade"
@@ -508,7 +508,7 @@
         },
         "pm": {
           "list": "Trauma / Trauma",
-          "primary": "D. Beard",
+          "primary": "M. Abouelsaad",
           "support": [
             {
               "name": "D. McMenamin ED Staff grade"
@@ -621,7 +621,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Mortimer / Gynae",
-          "primary": "M. Abouelsaad",
+          "primary": "T. Oelofse",
           "support": [
             {
               "name": "O. Kirby",
@@ -632,7 +632,7 @@
         },
         "pm": {
           "list": "Eckford / Gynae",
-          "primary": "M. Abouelsaad",
+          "primary": "T. Oelofse",
           "support": [
             {
               "name": "O. Kirby",
