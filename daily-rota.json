@@ -387,7 +387,7 @@
   },
   "date": "2026-07-03",
   "day": "Fri",
-  "scraped_at": "2026-07-03T13:41:20.747Z",
+  "scraped_at": "2026-07-03T17:27:38.786Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -441,12 +441,12 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "",
-          "role": ""
+          "name": "N. Love [TOIL]",
+          "role": "LD"
         },
         "pm": {
-          "name": "",
-          "role": ""
+          "name": "N. Love [TOIL]",
+          "role": "LD"
         },
         "eve": {
           "name": "",
@@ -531,7 +531,7 @@
         "type": "CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "",
+          "primary": "N. Love [TOIL]",
           "support": [
             {
               "name": "E. Hosker",
@@ -542,7 +542,7 @@
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "",
+          "primary": "N. Love [TOIL]",
           "support": [
             {
               "name": "E. Hosker",
