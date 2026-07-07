@@ -277,23 +277,13 @@
       "am": {
         "list": "Obstetrics / Obstetrics",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Obstetrics / Obstetrics",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -354,8 +344,8 @@
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
-      "am": "Kellermann M",
-      "pm": "Kellermann M"
+      "am": "I. Talbot",
+      "pm": "I. Talbot"
     }
   },
   "activities": {
@@ -387,7 +377,7 @@
   },
   "date": "2026-07-07",
   "day": "Tue",
-  "scraped_at": "2026-07-07T05:43:41.667Z",
+  "scraped_at": "2026-07-07T08:22:54.079Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -640,23 +630,13 @@
         "am": {
           "list": "Conway / Breast",
           "primary": "Z. Ungvari",
-          "support": [
-            {
-              "name": "Kellermann",
-              "grade": "M CT1"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Conway / Breast",
           "primary": "Z. Ungvari",
-          "support": [
-            {
-              "name": "Kellermann",
-              "grade": "M CT1"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
