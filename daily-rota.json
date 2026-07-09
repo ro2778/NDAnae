@@ -286,9 +286,9 @@
       },
       "pm": {
         "list": "Badr / Ophth GA",
-        "primary": "Z. Ungvari",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th10": {
@@ -364,7 +364,7 @@
   },
   "date": "2026-07-09",
   "day": "Thu",
-  "scraped_at": "2026-07-09T10:42:59.095Z",
+  "scraped_at": "2026-07-09T14:29:36.151Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
