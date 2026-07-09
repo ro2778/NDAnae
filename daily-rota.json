@@ -364,7 +364,7 @@
   },
   "date": "2026-07-09",
   "day": "Thu",
-  "scraped_at": "2026-07-09T05:43:51.316Z",
+  "scraped_at": "2026-07-09T08:31:13.286Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -747,8 +747,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "S. Charoumzadeh Dashti",
-        "pm": "S. Charoumzadeh Dashti"
+        "am": "—",
+        "pm": "—"
       }
     },
     "date": "2026-07-10",
