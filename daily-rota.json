@@ -111,7 +111,12 @@
       "am": {
         "list": "Cove / Ortho",
         "primary": "M. Casemore",
-        "support": [],
+        "support": [
+          {
+            "name": "B. Evliya Felek",
+            "grade": "ST3"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
@@ -188,14 +193,9 @@
       "type": "Day Case",
       "am": {
         "list": "Kedjanyi PAEDS / ENT",
-        "primary": "R. Conway",
-        "support": [
-          {
-            "name": "B. Evliya Felek",
-            "grade": "ST3"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Misra / Urology",
@@ -294,7 +294,7 @@
       "type": "Eyes",
       "am": {
         "list": "Badr GA Eye / Ophth GA",
-        "primary": "",
+        "primary": "R. Conway",
         "support": [],
         "cancelled": false
       },
@@ -374,7 +374,7 @@
   },
   "date": "2026-07-13",
   "day": "Mon",
-  "scraped_at": "2026-07-13T05:02:24.066Z",
+  "scraped_at": "2026-07-13T08:16:12.022Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
