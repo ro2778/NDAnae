@@ -358,7 +358,7 @@
   },
   "date": "2026-07-15",
   "day": "Wed",
-  "scraped_at": "2026-07-15T13:10:19.693Z",
+  "scraped_at": "2026-07-15T17:19:22.073Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -404,13 +404,11 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "T. Western",
-          "grade": "Fellow",
+          "name": "E. Martinez-Estrada",
           "role": "LD"
         },
         "pm": {
-          "name": "T. Western",
-          "grade": "Fellow",
+          "name": "E. Martinez-Estrada",
           "role": "LD"
         },
         "eve": {
@@ -459,23 +457,23 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Temple / Ortho",
+          "list": "CEPOD / CEPOD",
           "primary": "E. Martinez-Estrada",
           "support": [
             {
-              "name": "S. Docherty",
-              "grade": "ITU Fellow"
+              "name": "O. Kirby",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Temple / Ortho",
+          "list": "CEPOD / CEPOD",
           "primary": "E. Martinez-Estrada",
           "support": [
             {
-              "name": "S. Docherty",
-              "grade": "ITU Fellow"
+              "name": "O. Kirby",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
@@ -499,7 +497,12 @@
         "pm": {
           "list": "Trauma / Trauma",
           "primary": "A. Walder",
-          "support": [],
+          "support": [
+            {
+              "name": "A. Edmonds",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -508,23 +511,23 @@
         "ext": "3142",
         "type": "CEPOD",
         "am": {
-          "list": "CEPOD / CEPOD",
-          "primary": "T. Western",
+          "list": "Pansell / Colorectal",
+          "primary": "Z. Ozfirat, E. Szelei",
           "support": [
             {
-              "name": "O. Kirby",
-              "grade": "CT2"
+              "name": "S. Docherty",
+              "grade": "ITU Fellow"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "CEPOD / CEPOD",
-          "primary": "T. Western",
+          "list": "Pansell / Colorectal",
+          "primary": "Z. Ozfirat",
           "support": [
             {
-              "name": "O. Kirby",
-              "grade": "CT2"
+              "name": "S. Docherty",
+              "grade": "ITU Fellow"
             }
           ],
           "cancelled": false
@@ -574,12 +577,8 @@
         },
         "pm": {
           "list": "Ong / Urology",
-          "primary": "",
+          "primary": "B. Vidanapathirana",
           "support": [
-            {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
-            },
             {
               "name": "C. Wright",
               "grade": "CT2"
@@ -594,20 +593,15 @@
         "type": "Day Case",
         "am": {
           "list": "Pansell / Colorectal",
-          "primary": "Z. Ozfirat, E. Szelei",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Pansell / Colorectal",
-          "primary": "Z. Ozfirat",
-          "support": [
-            {
-              "name": "B. Evliya Felek",
-              "grade": "ST3"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         }
       },
       "th7": {
@@ -627,14 +621,9 @@
         },
         "pm": {
           "list": "Eskandar / Gynae",
-          "primary": "B. Vidanapathirana",
-          "support": [
-            {
-              "name": "Kellermann",
-              "grade": "M CT1"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         }
       },
       "th8": {
@@ -655,7 +644,12 @@
         "pm": {
           "list": "Obstetrics / Obstetrics",
           "primary": "M. Casemore",
-          "support": [],
+          "support": [
+            {
+              "name": "Kellermann",
+              "grade": "M CT1"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -672,7 +666,12 @@
         "pm": {
           "list": "Razzaq - Additional GA / Ophth GA",
           "primary": "E. Szelei",
-          "support": [],
+          "support": [
+            {
+              "name": "B. Evliya Felek",
+              "grade": "ST3"
+            }
+          ],
           "cancelled": false
         }
       },
