@@ -151,7 +151,7 @@
       "type": "CEPOD",
       "am": {
         "list": "Pansell / Colorectal",
-        "primary": "Z. Ozfirat, E. Szelei",
+        "primary": "Z. Ozfirat",
         "support": [
           {
             "name": "S. Docherty",
@@ -383,7 +383,7 @@
   },
   "date": "2026-07-16",
   "day": "Thu",
-  "scraped_at": "2026-07-16T07:22:10.449Z",
+  "scraped_at": "2026-07-16T09:10:24.970Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
