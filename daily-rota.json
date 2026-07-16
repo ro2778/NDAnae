@@ -383,11 +383,11 @@
   },
   "date": "2026-07-16",
   "day": "Thu",
-  "scraped_at": "2026-07-16T10:06:14.895Z",
+  "scraped_at": "2026-07-16T13:18:33.575Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
-      "pm": "S. Charoumzadeh Dashti T. Oelofse J. Da-Fonseca Hockridge J C. Don"
+      "pm": "B. Vidanapathirana S. Charoumzadeh Dashti Hockridge J J. Da-Fonseca T. Oelofse"
     },
     "on_call": {
       "300": {
@@ -528,8 +528,8 @@
           "cancelled": false
         },
         "pm": {
-          "list": "",
-          "primary": "",
+          "list": "CEPOD / CEPOD",
+          "primary": "B. Bartos",
           "support": [],
           "cancelled": false
         }
@@ -634,7 +634,7 @@
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
-          "primary": "B. Vidanapathirana",
+          "primary": "C. Don",
           "support": [
             {
               "name": "S. Docherty",
