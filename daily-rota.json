@@ -383,12 +383,12 @@
     "persistent_pain": {
       "label": "Persistent Pain",
       "am": "L. Miller",
-      "pm": "A. Bennett, S. Charoumzadeh Dashti, L. Miller"
+      "pm": "S. Charoumzadeh Dashti, A. Bennett, L. Miller"
     }
   },
   "date": "2026-07-20",
   "day": "Mon",
-  "scraped_at": "2026-07-20T07:57:47.317Z",
+  "scraped_at": "2026-07-20T09:56:44.064Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -442,11 +442,13 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "B. Bartos",
+          "name": "A. Edmonds",
+          "grade": "CT Anaes",
           "role": "LD"
         },
         "pm": {
-          "name": "B. Bartos",
+          "name": "A. Edmonds",
+          "grade": "CT Anaes",
           "role": "LD"
         },
         "eve": {
@@ -550,7 +552,7 @@
         "type": "CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "B. Bartos",
+          "primary": "A. Edmonds",
           "support": [
             {
               "name": "A.Rees",
@@ -561,7 +563,7 @@
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "B. Bartos",
+          "primary": "A. Edmonds",
           "support": [
             {
               "name": "A.Rees",
@@ -577,13 +579,13 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "R. Clarke",
+          "primary": "B. Bartos",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Bunting / UGI",
-          "primary": "R. Clarke",
+          "primary": "B. Bartos",
           "support": [],
           "cancelled": false
         }
@@ -639,23 +641,13 @@
         "am": {
           "list": "Eckford / Gynae",
           "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Eckford / Gynae",
           "primary": "N. Hollister",
-          "support": [
-            {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -734,7 +726,7 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "A. Edmonds",
+        "am": "—",
         "pm": "B. Ittzes"
       },
       "epidural234": {
