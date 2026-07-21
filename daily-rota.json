@@ -373,7 +373,7 @@
   },
   "date": "2026-07-21",
   "day": "Tue",
-  "scraped_at": "2026-07-21T10:22:54.312Z",
+  "scraped_at": "2026-07-21T13:16:18.998Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -472,23 +472,23 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Baldwick / Upper Limb Ortho",
-          "primary": "B. Ittzes",
+          "list": "CEPOD / CEPOD",
+          "primary": "R. Child",
           "support": [
             {
-              "name": "C. Wright",
-              "grade": "CT2"
+              "name": "A.Rees",
+              "grade": "FY2"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Baldwick / Upper Limb Ortho",
-          "primary": "B. Ittzes",
+          "list": "CEPOD / CEPOD",
+          "primary": "R. Child",
           "support": [
             {
-              "name": "C. Wright",
-              "grade": "CT2"
+              "name": "A.Rees",
+              "grade": "FY2"
             }
           ],
           "cancelled": false
@@ -543,23 +543,23 @@
         "ext": "3167",
         "type": "General/CEPOD",
         "am": {
-          "list": "CEPOD / CEPOD",
-          "primary": "R. Child",
+          "list": "Beaton / Colorectal",
+          "primary": "B. Ittzes",
           "support": [
             {
-              "name": "A.Rees",
-              "grade": "FY2"
+              "name": "C. Wright",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "CEPOD / CEPOD",
-          "primary": "R. Child",
+          "list": "Beaton / Colorectal",
+          "primary": "B. Ittzes",
           "support": [
             {
-              "name": "A.Rees",
-              "grade": "FY2"
+              "name": "C. Wright",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
