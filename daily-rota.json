@@ -343,7 +343,7 @@
   },
   "date": "2026-07-27",
   "day": "Mon",
-  "scraped_at": "2026-07-27T10:38:55.049Z",
+  "scraped_at": "2026-07-27T10:54:51.357Z",
   "tomorrow": {
     "available_consultants": {
       "am": "Z. Ozfirat",
@@ -443,7 +443,7 @@
         },
         "pm": {
           "list": "Roberton / Ortho",
-          "primary": "K. Pyatt, N. Hollister",
+          "primary": "N. Hollister, K. Pyatt",
           "support": [],
           "cancelled": false
         }
