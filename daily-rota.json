@@ -337,7 +337,7 @@
   },
   "date": "2026-07-28",
   "day": "Tue",
-  "scraped_at": "2026-07-28T10:10:26.537Z",
+  "scraped_at": "2026-07-28T10:31:14.705Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -492,12 +492,7 @@
         "pm": {
           "list": "Evans / Urology",
           "primary": "K. Tipping",
-          "support": [
-            {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -562,12 +557,7 @@
         "am": {
           "list": "Wafai / Ortho",
           "primary": "C. Don",
-          "support": [
-            {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
@@ -611,13 +601,23 @@
         "am": {
           "list": "Obstetrics / Obstetrics",
           "primary": "K. Pyatt",
-          "support": [],
+          "support": [
+            {
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Obstetrics / Obstetrics",
           "primary": "K. Pyatt",
-          "support": [],
+          "support": [
+            {
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
