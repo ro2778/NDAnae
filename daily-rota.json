@@ -236,10 +236,10 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Orthopaedics / Ortho",
-        "primary": "",
+        "list": "Rybinski / EGS",
+        "primary": "T. Oelofse",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th7": {
@@ -384,7 +384,7 @@
   },
   "date": "2026-07-31",
   "day": "Fri",
-  "scraped_at": "2026-07-31T10:35:42.241Z",
+  "scraped_at": "2026-07-31T13:30:18.589Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
