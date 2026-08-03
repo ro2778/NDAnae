@@ -35,9 +35,8 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "A. Edmonds",
-        "grade": "CT Anaes",
-        "role": "LD"
+        "name": "",
+        "role": ""
       },
       "pm": {
         "name": "A. Edmonds",
@@ -91,7 +90,7 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "T. Cobby, T. Mitchell",
+        "primary": "T. Mitchell, T. Cobby",
         "support": [],
         "cancelled": false
       },
@@ -125,7 +124,7 @@
       "type": "CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "A. Edmonds",
+        "primary": "",
         "support": [],
         "cancelled": false
       },
@@ -301,7 +300,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "T. Cobby",
+      "am": "—",
       "pm": "T. Johnson"
     },
     "epidural234": {
@@ -339,7 +338,7 @@
   },
   "date": "2026-08-03",
   "day": "Mon",
-  "scraped_at": "2026-08-03T08:27:27.885Z",
+  "scraped_at": "2026-08-03T10:39:02.259Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
