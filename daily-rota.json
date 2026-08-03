@@ -91,7 +91,7 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "T. Mitchell, T. Cobby",
+        "primary": "T. Cobby, T. Mitchell",
         "support": [],
         "cancelled": false
       },
@@ -339,7 +339,7 @@
   },
   "date": "2026-08-03",
   "day": "Mon",
-  "scraped_at": "2026-08-03T05:06:51.145Z",
+  "scraped_at": "2026-08-03T08:27:27.885Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -501,7 +501,7 @@
         "type": "Day Case",
         "am": {
           "list": "Elhowairis / Urology",
-          "primary": "T. Mitchell, Z. Ozfirat",
+          "primary": "Z. Ozfirat, T. Mitchell",
           "support": [],
           "cancelled": false
         },
