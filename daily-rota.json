@@ -159,7 +159,7 @@
       "type": "Day Case",
       "am": {
         "list": "Elhowairis / Urology",
-        "primary": "Z. Ozfirat, T. Mitchell",
+        "primary": "T. Mitchell, Z. Ozfirat",
         "support": [],
         "cancelled": false
       },
@@ -324,7 +324,7 @@
   },
   "date": "2026-08-04",
   "day": "Tue",
-  "scraped_at": "2026-08-04T07:38:33.575Z",
+  "scraped_at": "2026-08-04T09:36:48.714Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -468,7 +468,7 @@
         "type": "CEPOD",
         "am": {
           "list": "Ong / Urology",
-          "primary": "K. Tipping",
+          "primary": "",
           "support": [
             {
               "name": "T. Johnson",
@@ -479,7 +479,7 @@
         },
         "pm": {
           "list": "Ong / Urology",
-          "primary": "K. Tipping",
+          "primary": "",
           "support": [
             {
               "name": "T. Johnson",
@@ -690,8 +690,8 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "T. Johnson",
-        "pm": "T. Johnson"
+        "am": "I. Talbot",
+        "pm": "I. Talbot"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
