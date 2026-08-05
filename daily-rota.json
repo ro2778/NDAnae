@@ -401,7 +401,7 @@
   },
   "date": "2026-08-05",
   "day": "Wed",
-  "scraped_at": "2026-08-05T07:37:25.768Z",
+  "scraped_at": "2026-08-05T09:34:03.407Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -554,23 +554,23 @@
         "ext": "3142",
         "type": "CEPOD",
         "am": {
-          "list": "Cartmell / Colorectal",
-          "primary": "J. Da-Fonseca",
+          "list": "CEPOD / CEPOD",
+          "primary": "T. Mitchell",
           "support": [
             {
-              "name": "L. Flain",
-              "grade": "ACCS Med"
+              "name": "C. Wright",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Cartmell / Colorectal",
-          "primary": "J. Da-Fonseca",
+          "list": "CEPOD / CEPOD",
+          "primary": "T. Mitchell",
           "support": [
             {
-              "name": "L. Flain",
-              "grade": "ACCS Med"
+              "name": "C. Wright",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
@@ -581,23 +581,23 @@
         "ext": "3167",
         "type": "General/CEPOD",
         "am": {
-          "list": "CEPOD / CEPOD",
-          "primary": "T. Mitchell",
+          "list": "Al-Abbasi / UGI",
+          "primary": "R. Clarke",
           "support": [
             {
-              "name": "C. Wright",
-              "grade": "CT2"
+              "name": "M. Cannings",
+              "grade": "ACCS Anaes"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "CEPOD / CEPOD",
-          "primary": "T. Mitchell",
+          "list": "Al-Abbasi / UGI",
+          "primary": "R. Clarke",
           "support": [
             {
-              "name": "C. Wright",
-              "grade": "CT2"
+              "name": "M. Cannings",
+              "grade": "ACCS Anaes"
             }
           ],
           "cancelled": false
@@ -639,23 +639,23 @@
         "ext": "2488",
         "type": "Day Case",
         "am": {
-          "list": "Al-Abbasi / UGI",
-          "primary": "R. Clarke",
+          "list": "Cartmell / Colorectal",
+          "primary": "J. Da-Fonseca",
           "support": [
             {
-              "name": "M. Cannings",
-              "grade": "ACCS Anaes"
+              "name": "L. Flain",
+              "grade": "ACCS Med"
             }
           ],
           "cancelled": false
         },
         "pm": {
-          "list": "Al-Abbasi / UGI",
-          "primary": "R. Clarke",
+          "list": "Cartmell / Colorectal",
+          "primary": "J. Da-Fonseca",
           "support": [
             {
-              "name": "M. Cannings",
-              "grade": "ACCS Anaes"
+              "name": "L. Flain",
+              "grade": "ACCS Med"
             }
           ],
           "cancelled": false
@@ -786,8 +786,8 @@
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
-        "am": "M. Cannings",
-        "pm": "M. Cannings"
+        "am": "—",
+        "pm": "—"
       }
     },
     "activities": {
