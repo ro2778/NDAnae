@@ -246,10 +246,6 @@
           {
             "name": "I. Talbot",
             "grade": "CT Anaes"
-          },
-          {
-            "name": "C.Nuttall",
-            "grade": "CT1"
           }
         ],
         "cancelled": false
@@ -401,7 +397,7 @@
   },
   "date": "2026-08-05",
   "day": "Wed",
-  "scraped_at": "2026-08-05T09:34:03.407Z",
+  "scraped_at": "2026-08-05T10:10:21.887Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
