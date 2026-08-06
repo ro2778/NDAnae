@@ -279,10 +279,6 @@
         "primary": "C. Don",
         "support": [
           {
-            "name": "D.Siriwardana",
-            "grade": "Speciality"
-          },
-          {
             "name": "I. Talbot",
             "grade": "CT Anaes"
           }
@@ -293,10 +289,6 @@
         "list": "Obstetrics / Obstetrics",
         "primary": "M. Paul",
         "support": [
-          {
-            "name": "D.Siriwardana",
-            "grade": "Speciality"
-          },
           {
             "name": "I. Talbot",
             "grade": "CT Anaes"
@@ -402,7 +394,7 @@
   },
   "date": "2026-08-06",
   "day": "Thu",
-  "scraped_at": "2026-08-06T07:38:05.678Z",
+  "scraped_at": "2026-08-06T09:37:15.627Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -497,23 +489,13 @@
         "am": {
           "list": "Griffiths-Jones / Roberton / Ortho",
           "primary": "C. Don",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Speciality"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Griffiths-Jones / Roberton / Ortho",
           "primary": "C. Don",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Speciality"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
