@@ -358,11 +358,6 @@
       "label": "ESA Bleep 135",
       "am": "—",
       "pm": "C. Don"
-    },
-    "epidural234": {
-      "label": "Epidural Bleep 234",
-      "am": "—",
-      "pm": "—"
     }
   },
   "activities": {
@@ -394,7 +389,7 @@
   },
   "date": "2026-08-06",
   "day": "Thu",
-  "scraped_at": "2026-08-06T09:37:15.627Z",
+  "scraped_at": "2026-08-06T10:12:31.638Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -745,11 +740,6 @@
         "label": "ESA Bleep 135",
         "am": "I. Talbot",
         "pm": "—"
-      },
-      "epidural234": {
-        "label": "Epidural Bleep 234",
-        "am": "Kellermann M",
-        "pm": "Kellermann M"
       }
     },
     "activities": {
