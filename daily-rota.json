@@ -219,10 +219,6 @@
         "primary": "C. Don",
         "support": [
           {
-            "name": "P. Falkner",
-            "grade": "Fellow"
-          },
-          {
             "name": "T. Hussain",
             "grade": "ACCS Med"
           }
@@ -264,12 +260,7 @@
       "am": {
         "list": "Sharma / Breast",
         "primary": "M. Casemore",
-        "support": [
-          {
-            "name": "P. Falkner",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -357,10 +348,6 @@
         "name": "K. Sandar Win IMT"
       },
       {
-        "name": "A. Khalid",
-        "grade": "ACCS Med"
-      },
-      {
         "name": "F. Francis",
         "grade": "ACCS Anaes"
       },
@@ -378,7 +365,7 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "—",
-      "pm": "C. Don P. Falkner"
+      "pm": "C. Don"
     },
     "epidural234": {
       "label": "Epidural Bleep 234",
@@ -415,7 +402,7 @@
   },
   "date": "2026-08-06",
   "day": "Thu",
-  "scraped_at": "2026-08-06T04:45:52.325Z",
+  "scraped_at": "2026-08-06T07:38:05.678Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -537,12 +524,7 @@
         "am": {
           "list": "Trauma / Trauma",
           "primary": "D. Beard",
-          "support": [
-            {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
@@ -550,8 +532,8 @@
           "primary": "D. Beard",
           "support": [
             {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
+              "name": "F. Francis",
+              "grade": "ACCS Anaes"
             }
           ],
           "cancelled": false
@@ -644,11 +626,15 @@
         "type": "Day Case",
         "am": {
           "list": "Parth Patel / Comm Dental",
-          "primary": "T. Western, Z. Ungvari",
+          "primary": "Z. Ungvari",
           "support": [
             {
               "name": "T. Hussain",
               "grade": "ACCS Med"
+            },
+            {
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -658,12 +644,8 @@
           "primary": "J. Powell",
           "support": [
             {
-              "name": "T. Western",
-              "grade": "Fellow"
-            },
-            {
-              "name": "F. Francis",
-              "grade": "ACCS Anaes"
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -780,7 +762,7 @@
       "esa135": {
         "label": "ESA Bleep 135",
         "am": "I. Talbot",
-        "pm": "T. Western"
+        "pm": "—"
       },
       "epidural234": {
         "label": "Epidural Bleep 234",
