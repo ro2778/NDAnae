@@ -71,12 +71,12 @@
       "label": "Maternity Rota",
       "bleep": "822",
       "am": {
-        "name": "J. Powell",
-        "role": "LD"
+        "name": "",
+        "role": ""
       },
       "pm": {
-        "name": "J. Powell",
-        "role": "LD"
+        "name": "",
+        "role": ""
       },
       "eve": {
         "name": "T. Johnson",
@@ -141,23 +141,13 @@
       "am": {
         "list": "Trauma / Trauma",
         "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Trauma / Trauma",
         "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -194,7 +184,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "Al-Abbasi / UGI",
-        "primary": "J. Preece",
+        "primary": "J. Powell",
         "support": [
           {
             "name": "C.Nuttall",
@@ -205,7 +195,7 @@
       },
       "pm": {
         "list": "Al-Abbasi / UGI",
-        "primary": "J. Preece",
+        "primary": "J. Powell",
         "support": [
           {
             "name": "C.Nuttall",
@@ -221,7 +211,7 @@
       "type": "Day Case",
       "am": {
         "list": "Crundwell / Urology",
-        "primary": "R. Clarke",
+        "primary": "",
         "support": [
           {
             "name": "T. Johnson",
@@ -234,10 +224,6 @@
         "list": "Misra / Urology",
         "primary": "R. Clarke",
         "support": [
-          {
-            "name": "T. Johnson",
-            "grade": "Fellow"
-          },
           {
             "name": "Y. Johnson",
             "grade": "ACCS Anaes"
@@ -258,8 +244,12 @@
       },
       "pm": {
         "list": "Dovell / Vascular",
-        "primary": "M. Abouelsaad",
+        "primary": "",
         "support": [
+          {
+            "name": "T. Johnson",
+            "grade": "Fellow"
+          },
           {
             "name": "L. Flain",
             "grade": "ACCS Med"
@@ -301,14 +291,24 @@
       "type": "Obstetrics",
       "am": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "J. Powell",
-        "support": [],
+        "primary": "",
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "Obstetrics / Obstetrics",
-        "primary": "J. Powell",
-        "support": [],
+        "primary": "",
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -318,7 +318,7 @@
       "type": "Eyes",
       "am": {
         "list": "Rattigan / Ophth GA",
-        "primary": "M. Abouelsaad",
+        "primary": "R. Clarke",
         "support": [
           {
             "name": "L. Flain",
@@ -413,7 +413,7 @@
   },
   "date": "2026-08-11",
   "day": "Tue",
-  "scraped_at": "2026-08-11T05:53:02.011Z",
+  "scraped_at": "2026-08-11T08:07:10.933Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
