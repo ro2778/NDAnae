@@ -63,8 +63,8 @@
         "role": ""
       },
       "eve": {
-        "name": "",
-        "role": ""
+        "name": "E. Cope",
+        "role": "LD"
       },
       "night": {
         "name": "E. Cope",
@@ -252,7 +252,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Banks / Breast",
-        "primary": "K. Pyatt, Z. Ungvari",
+        "primary": "Z. Ungvari, K. Pyatt",
         "support": [
           {
             "name": "E. Hosker",
@@ -383,7 +383,7 @@
   },
   "date": "2026-08-12",
   "day": "Wed",
-  "scraped_at": "2026-08-12T09:08:19.594Z",
+  "scraped_at": "2026-08-12T12:42:53.888Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -474,7 +474,7 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Kenaan / Ortho",
-          "primary": "B. Vidanapathirana, K. Pyatt",
+          "primary": "K. Pyatt, B. Vidanapathirana",
           "support": [
             {
               "name": "T. Hussain",
@@ -485,7 +485,7 @@
         },
         "pm": {
           "list": "Kenaan / Ortho",
-          "primary": "B. Vidanapathirana, K. Pyatt",
+          "primary": "K. Pyatt, B. Vidanapathirana",
           "support": [
             {
               "name": "T. Hussain",
@@ -749,8 +749,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "Hockridge J, R. Clarke",
-        "pm": "Hockridge J, R. Clarke"
+        "am": "R. Clarke, Hockridge J",
+        "pm": "R. Clarke, Hockridge J"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
