@@ -63,9 +63,8 @@
         "role": ""
       },
       "eve": {
-        "name": "P. Falkner",
-        "grade": "Fellow",
-        "role": "LD"
+        "name": "",
+        "role": ""
       },
       "night": {
         "name": "E. Cope",
@@ -177,7 +176,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "P. Falkner",
+        "primary": "M. Abouelsaad",
         "support": [
           {
             "name": "C.Nuttall",
@@ -190,10 +189,6 @@
         "list": "CEPOD / CEPOD",
         "primary": "M. Abouelsaad",
         "support": [
-          {
-            "name": "P. Falkner",
-            "grade": "Fellow"
-          },
           {
             "name": "C.Nuttall",
             "grade": "CT1"
@@ -257,7 +252,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Banks / Breast",
-        "primary": "Z. Ungvari, K. Pyatt",
+        "primary": "K. Pyatt, Z. Ungvari",
         "support": [
           {
             "name": "E. Hosker",
@@ -388,7 +383,7 @@
   },
   "date": "2026-08-12",
   "day": "Wed",
-  "scraped_at": "2026-08-12T06:13:05.953Z",
+  "scraped_at": "2026-08-12T08:13:46.379Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -490,7 +485,7 @@
         },
         "pm": {
           "list": "Kenaan / Ortho",
-          "primary": "K. Pyatt, B. Vidanapathirana",
+          "primary": "B. Vidanapathirana, K. Pyatt",
           "support": [
             {
               "name": "T. Hussain",
@@ -754,8 +749,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "R. Clarke, Hockridge J",
-        "pm": "R. Clarke, Hockridge J"
+        "am": "Hockridge J, R. Clarke",
+        "pm": "Hockridge J, R. Clarke"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
