@@ -204,23 +204,13 @@
       "am": {
         "list": "Baliulyte Adult List / MaxFax",
         "primary": "C. Don",
-        "support": [
-          {
-            "name": "D.Siriwardana",
-            "grade": "Speciality"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Baniulyte Adult List / Comm Dental",
         "primary": "J. Powell",
-        "support": [
-          {
-            "name": "D.Siriwardana",
-            "grade": "Speciality"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -252,7 +242,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Banks / Breast",
-        "primary": "Z. Ungvari, K. Pyatt",
+        "primary": "K. Pyatt, Z. Ungvari",
         "support": [
           {
             "name": "E. Hosker",
@@ -383,7 +373,7 @@
   },
   "date": "2026-08-12",
   "day": "Wed",
-  "scraped_at": "2026-08-12T12:42:53.888Z",
+  "scraped_at": "2026-08-12T16:58:16.268Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -474,7 +464,7 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Kenaan / Ortho",
-          "primary": "K. Pyatt, B. Vidanapathirana",
+          "primary": "B. Vidanapathirana, K. Pyatt",
           "support": [
             {
               "name": "T. Hussain",
@@ -641,22 +631,13 @@
         "am": {
           "list": "Honey / MaxFax",
           "primary": "J. Achenbach",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Speciality"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Eskandar / Gynae",
           "primary": "J. Achenbach",
           "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Speciality"
-            },
             {
               "name": "L. Flain",
               "grade": "ACCS Med"
