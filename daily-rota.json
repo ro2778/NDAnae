@@ -99,7 +99,7 @@
       },
       "pm": {
         "list": "Kenaan / Ortho",
-        "primary": "K. Pyatt, B. Vidanapathirana",
+        "primary": "B. Vidanapathirana, K. Pyatt",
         "support": [
           {
             "name": "T. Hussain",
@@ -375,7 +375,7 @@
   },
   "date": "2026-08-13",
   "day": "Thu",
-  "scraped_at": "2026-08-13T12:43:53.006Z",
+  "scraped_at": "2026-08-13T16:57:14.466Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -648,7 +648,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "R. Chi, C. Don",
+          "primary": "R. Chi",
           "support": [
             {
               "name": "G. Goldsmith",
@@ -659,7 +659,7 @@
         },
         "pm": {
           "list": "Eckford / Gynae",
-          "primary": "R. Chi, C. Don",
+          "primary": "R. Chi",
           "support": [
             {
               "name": "G. Goldsmith",
