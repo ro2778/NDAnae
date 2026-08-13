@@ -88,7 +88,7 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Kenaan / Ortho",
-        "primary": "B. Vidanapathirana, K. Pyatt",
+        "primary": "K. Pyatt, B. Vidanapathirana",
         "support": [
           {
             "name": "T. Hussain",
@@ -355,7 +355,7 @@
     "preop": {
       "label": "Pre-op Clinic",
       "am": "R. Clarke, Hockridge J",
-      "pm": "R. Clarke, Hockridge J"
+      "pm": "Hockridge J, R. Clarke"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -375,7 +375,7 @@
   },
   "date": "2026-08-13",
   "day": "Thu",
-  "scraped_at": "2026-08-13T06:15:06.698Z",
+  "scraped_at": "2026-08-13T08:17:22.122Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
