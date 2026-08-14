@@ -108,7 +108,7 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Kale / Ortho",
-        "primary": "",
+        "primary": "J. Powell",
         "support": [
           {
             "name": "C.Nuttall",
@@ -119,7 +119,7 @@
       },
       "pm": {
         "list": "Kale / Ortho",
-        "primary": "",
+        "primary": "J. Powell",
         "support": [
           {
             "name": "C.Nuttall",
@@ -216,8 +216,12 @@
       "type": "Day Case",
       "am": {
         "list": "Wiggans / EGS",
-        "primary": "J. Powell",
+        "primary": "",
         "support": [
+          {
+            "name": "T. Western",
+            "grade": "Fellow"
+          },
           {
             "name": "L. Flain",
             "grade": "ACCS Med"
@@ -227,8 +231,12 @@
       },
       "pm": {
         "list": "Wiggans / EGS",
-        "primary": "J. Powell",
+        "primary": "",
         "support": [
+          {
+            "name": "T. Western",
+            "grade": "Fellow"
+          },
           {
             "name": "L. Flain",
             "grade": "ACCS Med"
@@ -244,23 +252,13 @@
       "am": {
         "list": "Parth Patel / Comm Dental",
         "primary": "B. Vidanapathirana",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Banks / Breast",
         "primary": "B. Vidanapathirana",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -396,7 +394,7 @@
   },
   "date": "2026-08-14",
   "day": "Fri",
-  "scraped_at": "2026-08-14T08:12:08.323Z",
+  "scraped_at": "2026-08-14T08:46:07.351Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
