@@ -108,7 +108,7 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Kale / Ortho",
-        "primary": "E. Szelei",
+        "primary": "",
         "support": [
           {
             "name": "C.Nuttall",
@@ -119,7 +119,7 @@
       },
       "pm": {
         "list": "Kale / Ortho",
-        "primary": "E. Szelei",
+        "primary": "",
         "support": [
           {
             "name": "C.Nuttall",
@@ -396,7 +396,7 @@
   },
   "date": "2026-08-14",
   "day": "Fri",
-  "scraped_at": "2026-08-14T06:12:33.899Z",
+  "scraped_at": "2026-08-14T08:12:08.323Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
