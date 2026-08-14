@@ -236,10 +236,6 @@
           {
             "name": "T. Western",
             "grade": "Fellow"
-          },
-          {
-            "name": "L. Flain",
-            "grade": "ACCS Med"
           }
         ],
         "cancelled": false
@@ -258,7 +254,12 @@
       "pm": {
         "list": "Banks / Breast",
         "primary": "B. Vidanapathirana",
-        "support": [],
+        "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -394,7 +395,7 @@
   },
   "date": "2026-08-14",
   "day": "Fri",
-  "scraped_at": "2026-08-14T09:04:17.194Z",
+  "scraped_at": "2026-08-14T12:40:13.907Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
