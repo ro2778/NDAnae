@@ -369,7 +369,7 @@
   },
   "date": "2026-08-17",
   "day": "Mon",
-  "scraped_at": "2026-08-17T08:38:46.729Z",
+  "scraped_at": "2026-08-17T12:21:17.060Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -703,8 +703,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "S. Hebard, R. Clarke",
-        "pm": "R. Clarke, S. Hebard"
+        "am": "R. Clarke, S. Hebard",
+        "pm": "S. Hebard, R. Clarke"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
