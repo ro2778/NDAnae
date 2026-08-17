@@ -227,24 +227,14 @@
       "am": {
         "list": "Wafai / Ortho",
         "primary": "",
-        "support": [
-          {
-            "name": "L. Flain",
-            "grade": "ACCS Med"
-          }
-        ],
-        "cancelled": false
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Wafai / Ortho",
         "primary": "",
-        "support": [
-          {
-            "name": "L. Flain",
-            "grade": "ACCS Med"
-          }
-        ],
-        "cancelled": false
+        "support": [],
+        "cancelled": true
       }
     },
     "th7": {
@@ -255,6 +245,10 @@
         "list": "Sharma / Breast",
         "primary": "M. Abouelsaad",
         "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          },
           {
             "name": "M. Cannings",
             "grade": "ACCS Anaes"
@@ -375,7 +369,7 @@
   },
   "date": "2026-08-17",
   "day": "Mon",
-  "scraped_at": "2026-08-17T05:33:49.869Z",
+  "scraped_at": "2026-08-17T07:49:07.891Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -709,8 +703,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "R. Clarke, S. Hebard",
-        "pm": "S. Hebard, R. Clarke"
+        "am": "S. Hebard, R. Clarke",
+        "pm": "R. Clarke, S. Hebard"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
