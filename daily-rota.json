@@ -274,9 +274,9 @@
       "type": "Eyes",
       "am": {
         "list": "Riley Additional GA / Ophth",
-        "primary": "T. Oelofse",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "Misra GA Eye (Additional GA) / Ophth GA",
@@ -352,7 +352,7 @@
   },
   "date": "2026-08-18",
   "day": "Tue",
-  "scraped_at": "2026-08-18T07:34:46.071Z",
+  "scraped_at": "2026-08-18T08:04:33.023Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
