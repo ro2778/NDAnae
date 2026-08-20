@@ -386,7 +386,7 @@
   },
   "date": "2026-08-20",
   "day": "Thu",
-  "scraped_at": "2026-08-20T12:24:39.150Z",
+  "scraped_at": "2026-08-20T16:36:37.308Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -743,8 +743,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "J. Preece, B. Vidanapathirana, S. Coates (ACCS Anaes)",
-        "pm": "J. Preece, B. Vidanapathirana, S. Coates (ACCS Anaes)"
+        "am": "J. Preece, S. Coates (ACCS Anaes)",
+        "pm": "J. Preece, S. Coates (ACCS Anaes)"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
