@@ -166,13 +166,23 @@
       "am": {
         "list": "Elsey / Colorectal",
         "primary": "C. Smith",
-        "support": [],
+        "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "Elsey / Colorectal",
         "primary": "C. Smith",
-        "support": [],
+        "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -226,7 +236,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "May / Gynae",
-        "primary": "T. Cobby, M. Paul",
+        "primary": "M. Paul, T. Cobby",
         "support": [
           {
             "name": "S. Coates",
@@ -352,7 +362,7 @@
   },
   "date": "2026-08-24",
   "day": "Mon",
-  "scraped_at": "2026-08-24T12:25:25.046Z",
+  "scraped_at": "2026-08-24T16:38:35.225Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -504,7 +514,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "R. Clarke, N. Hollister",
+          "primary": "N. Hollister, R. Clarke",
           "support": [
             {
               "name": "G. Goldsmith",
