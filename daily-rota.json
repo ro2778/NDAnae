@@ -226,7 +226,7 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "May / Gynae",
-        "primary": "M. Paul, T. Cobby",
+        "primary": "T. Cobby, M. Paul",
         "support": [
           {
             "name": "S. Coates",
@@ -352,7 +352,7 @@
   },
   "date": "2026-08-24",
   "day": "Mon",
-  "scraped_at": "2026-08-24T05:36:48.293Z",
+  "scraped_at": "2026-08-24T07:54:47.326Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -504,7 +504,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "N. Hollister, R. Clarke",
+          "primary": "R. Clarke, N. Hollister",
           "support": [
             {
               "name": "G. Goldsmith",
