@@ -370,7 +370,7 @@
   },
   "date": "2026-08-26",
   "day": "Wed",
-  "scraped_at": "2026-08-26T08:39:11.756Z",
+  "scraped_at": "2026-08-26T12:28:43.808Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Nath",
@@ -581,8 +581,8 @@
           "primary": "Hockridge J",
           "support": [
             {
-              "name": "S. Docherty",
-              "grade": "ST3"
+              "name": "C.Nuttall",
+              "grade": "CT1"
             }
           ],
           "cancelled": false
@@ -592,8 +592,8 @@
           "primary": "Hockridge J",
           "support": [
             {
-              "name": "S. Docherty",
-              "grade": "ST3"
+              "name": "C.Nuttall",
+              "grade": "CT1"
             }
           ],
           "cancelled": false
@@ -745,8 +745,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "B. Vidanapathirana, R. Clarke, C.Nuttall (CT1)",
-        "pm": "B. Vidanapathirana, R. Clarke, C.Nuttall (CT1)"
+        "am": "B. Vidanapathirana, R. Clarke",
+        "pm": "B. Vidanapathirana, R. Clarke"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
