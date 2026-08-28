@@ -204,11 +204,11 @@
         "primary": "",
         "support": [
           {
-            "name": "T. Western",
+            "name": "T. Johnson",
             "grade": "Fellow"
           },
           {
-            "name": "T. Johnson",
+            "name": "T. Western",
             "grade": "Fellow"
           },
           {
@@ -316,10 +316,6 @@
     "day": [
       {
         "name": "D. McMenamin ED Staff grade"
-      },
-      {
-        "name": "A. Khalid",
-        "grade": "ACCS Med"
       }
     ]
   },
@@ -359,7 +355,7 @@
   },
   "date": "2026-08-28",
   "day": "Fri",
-  "scraped_at": "2026-08-28T02:26:49.579Z",
+  "scraped_at": "2026-08-28T13:17:24.651Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -418,16 +414,16 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "",
-          "role": ""
+          "name": "T. Mitchell",
+          "role": "LD"
         },
         "pm": {
-          "name": "",
-          "role": ""
+          "name": "T. Mitchell",
+          "role": "LD"
         },
         "eve": {
-          "name": "",
-          "role": ""
+          "name": "T. Mitchell",
+          "role": "LD"
         },
         "night": {
           "name": "E. Cope",
