@@ -341,7 +341,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "R. Clarke, S. Hebard",
+      "am": "S. Hebard, R. Clarke",
       "pm": "S. Hebard"
     },
     "obs_preop": {
@@ -362,7 +362,7 @@
   },
   "date": "2026-09-01",
   "day": "Tue",
-  "scraped_at": "2026-09-01T09:45:35.095Z",
+  "scraped_at": "2026-09-01T12:19:21.863Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
