@@ -382,7 +382,7 @@
   },
   "date": "2026-09-02",
   "day": "Wed",
-  "scraped_at": "2026-09-02T06:17:50.150Z",
+  "scraped_at": "2026-09-02T09:19:14.216Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -547,23 +547,13 @@
         "am": {
           "list": "Elsey / Colorectal",
           "primary": "B. Vidanapathirana",
-          "support": [
-            {
-              "name": "R. Child",
-              "grade": "Fellow"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Elsey / Colorectal",
           "primary": "B. Vidanapathirana",
-          "support": [
-            {
-              "name": "R. Child",
-              "grade": "Fellow"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
@@ -601,12 +591,7 @@
         "am": {
           "list": "Rybinski / EGS",
           "primary": "R. Clarke",
-          "support": [
-            {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
@@ -614,8 +599,8 @@
           "primary": "R. Clarke",
           "support": [
             {
-              "name": "I. Talbot",
-              "grade": "CT Anaes"
+              "name": "G. Goldsmith",
+              "grade": "FY2"
             }
           ],
           "cancelled": false
@@ -627,22 +612,22 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "May / Gynae",
-          "primary": "M. Paul",
+          "primary": "",
           "support": [
             {
-              "name": "C.Nuttall",
-              "grade": "CT1"
+              "name": "R. Child",
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
         },
         "pm": {
           "list": "May / Gynae",
-          "primary": "M. Paul",
+          "primary": "",
           "support": [
             {
-              "name": "C.Nuttall",
-              "grade": "CT1"
+              "name": "R. Child",
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
@@ -672,7 +657,12 @@
         "am": {
           "list": "Whittaker- Additional GA Eyes / Ophth GA",
           "primary": "J. Achenbach",
-          "support": [],
+          "support": [
+            {
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
@@ -680,8 +670,8 @@
           "primary": "D. Beard",
           "support": [
             {
-              "name": "G. Goldsmith",
-              "grade": "FY2"
+              "name": "I. Talbot",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -716,10 +706,6 @@
         {
           "name": "A. Khalid",
           "grade": "ACCS Med"
-        },
-        {
-          "name": "C. Wright",
-          "grade": "CT2"
         }
       ]
     },
