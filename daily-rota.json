@@ -232,6 +232,10 @@
           {
             "name": "R. Child",
             "grade": "Fellow"
+          },
+          {
+            "name": "C.Nuttall",
+            "grade": "CT1"
           }
         ],
         "cancelled": false
@@ -243,6 +247,10 @@
           {
             "name": "R. Child",
             "grade": "Fellow"
+          },
+          {
+            "name": "C.Nuttall",
+            "grade": "CT1"
           }
         ],
         "cancelled": false
@@ -360,7 +368,7 @@
   },
   "date": "2026-09-03",
   "day": "Thu",
-  "scraped_at": "2026-09-03T06:20:34.684Z",
+  "scraped_at": "2026-09-03T09:28:10.287Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
