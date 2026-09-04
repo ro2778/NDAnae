@@ -239,12 +239,7 @@
       "am": {
         "list": "Idowu / Gynae",
         "primary": "B. Vidanapathirana",
-        "support": [
-          {
-            "name": "E. Cope",
-            "grade": "ST4"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -370,7 +365,7 @@
   },
   "date": "2026-09-04",
   "day": "Fri",
-  "scraped_at": "2026-09-04T06:27:35.494Z",
+  "scraped_at": "2026-09-04T09:21:30.258Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
