@@ -130,7 +130,7 @@
       },
       "pm": {
         "list": "Trauma / Trauma",
-        "primary": "S. Hebard",
+        "primary": "",
         "support": [],
         "cancelled": false
       }
@@ -337,7 +337,7 @@
     "preop": {
       "label": "Pre-op Clinic",
       "am": "S. Hebard",
-      "pm": "—"
+      "pm": "S. Hebard"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -357,7 +357,7 @@
   },
   "date": "2026-09-07",
   "day": "Mon",
-  "scraped_at": "2026-09-07T09:57:46.449Z",
+  "scraped_at": "2026-09-07T13:14:57.749Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -702,8 +702,8 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "J. Preece, R. Clarke",
-        "pm": "J. Preece, R. Clarke"
+        "am": "R. Clarke, J. Preece",
+        "pm": "R. Clarke, J. Preece"
       },
       "obs_preop": {
         "label": "Obs Pre-op",
