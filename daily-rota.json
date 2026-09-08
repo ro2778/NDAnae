@@ -107,14 +107,9 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Cove / Ortho",
+        "list": "Cove (PP Cases) / Ortho",
         "primary": "N. Hollister",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -363,7 +358,7 @@
   },
   "date": "2026-09-08",
   "day": "Tue",
-  "scraped_at": "2026-09-08T06:25:30.292Z",
+  "scraped_at": "2026-09-08T09:22:57.113Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Hollister",
