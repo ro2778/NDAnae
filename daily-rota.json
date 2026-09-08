@@ -337,7 +337,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "R. Clarke, J. Preece",
+      "am": "J. Preece, R. Clarke",
       "pm": "R. Clarke, J. Preece"
     },
     "obs_preop": {
@@ -358,7 +358,7 @@
   },
   "date": "2026-09-08",
   "day": "Tue",
-  "scraped_at": "2026-09-08T09:22:57.113Z",
+  "scraped_at": "2026-09-08T11:57:28.727Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Hollister",
@@ -537,23 +537,13 @@
         "am": {
           "list": "Al-Abbasi / UGI",
           "primary": "M. Abouelsaad",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Al-Abbasi / UGI",
           "primary": "M. Abouelsaad",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
