@@ -345,7 +345,7 @@
   },
   "date": "2026-09-09",
   "day": "Wed",
-  "scraped_at": "2026-09-09T12:43:00.891Z",
+  "scraped_at": "2026-09-09T15:31:45.108Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -443,23 +443,13 @@
         "am": {
           "list": "Temple/Brunton / Ortho",
           "primary": "J. Achenbach",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Temple/Brunton / Ortho",
           "primary": "J. Achenbach",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
