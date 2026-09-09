@@ -149,23 +149,13 @@
       "am": {
         "list": "Evans / Urology",
         "primary": "N. Nath",
-        "support": [
-          {
-            "name": "T. Hussain",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Evans / Urology",
         "primary": "N. Nath",
-        "support": [
-          {
-            "name": "T. Hussain",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -355,11 +345,11 @@
   },
   "date": "2026-09-09",
   "day": "Wed",
-  "scraped_at": "2026-09-09T06:31:36.231Z",
+  "scraped_at": "2026-09-09T09:24:27.800Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "S. Charoumzadeh Dashti",
-      "pm": "N. Nath S. Charoumzadeh Dashti"
+      "am": "—",
+      "pm": "N. Nath"
     },
     "on_call": {
       "300": {
@@ -577,7 +567,7 @@
         "type": "Day Case",
         "am": {
           "list": "Beaton / Colorectal",
-          "primary": "J. Preece",
+          "primary": "S. Charoumzadeh Dashti",
           "support": [
             {
               "name": "Y. Johnson",
@@ -588,7 +578,7 @@
         },
         "pm": {
           "list": "Beaton / Colorectal",
-          "primary": "J. Preece",
+          "primary": "S. Charoumzadeh Dashti",
           "support": [
             {
               "name": "Y. Johnson",
