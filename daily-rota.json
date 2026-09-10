@@ -139,23 +139,13 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "K. Pyatt",
-        "support": [
-          {
-            "name": "T. Hussain",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "K. Pyatt",
-        "support": [
-          {
-            "name": "T. Hussain",
-            "grade": "ACCS Med"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -355,7 +345,7 @@
   },
   "date": "2026-09-10",
   "day": "Thu",
-  "scraped_at": "2026-09-10T06:31:05.327Z",
+  "scraped_at": "2026-09-10T09:23:45.335Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Nath",
@@ -698,7 +688,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "—",
+        "am": "C. Cheesman",
         "pm": "—"
       },
       "obs_preop": {
