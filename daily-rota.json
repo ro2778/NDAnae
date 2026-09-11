@@ -40,8 +40,8 @@
         "role": "LD"
       },
       "pm": {
-        "name": "T. Johnson",
-        "grade": "Fellow",
+        "name": "A. Edmonds",
+        "grade": "CT Anaes",
         "role": "LD"
       },
       "eve": {
@@ -145,13 +145,8 @@
       },
       "pm": {
         "list": "CEPOD / CEPOD",
-        "primary": "T. Johnson",
-        "support": [
-          {
-            "name": "A. Edmonds",
-            "grade": "CT Anaes"
-          }
-        ],
+        "primary": "A. Edmonds",
+        "support": [],
         "cancelled": false
       }
     },
@@ -243,8 +238,12 @@
       },
       "pm": {
         "list": "Sharma / Breast",
-        "primary": "N. Nath",
+        "primary": "",
         "support": [
+          {
+            "name": "T. Johnson",
+            "grade": "Fellow"
+          },
           {
             "name": "C.Nuttall",
             "grade": "CT1"
@@ -319,7 +318,7 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "N. Nath T. Johnson",
-      "pm": "A. Edmonds"
+      "pm": "—"
     }
   },
   "activities": {
@@ -351,7 +350,7 @@
   },
   "date": "2026-09-11",
   "day": "Fri",
-  "scraped_at": "2026-09-11T09:22:08.383Z",
+  "scraped_at": "2026-09-11T12:00:33.756Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
