@@ -91,23 +91,13 @@
       "am": {
         "list": "Van Heerden / Kale / Ortho",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Van Heerden / Kale / Ortho",
         "primary": "T. Mitchell",
-        "support": [
-          {
-            "name": "E. Hosker",
-            "grade": "CT Anaes"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -361,7 +351,7 @@
   },
   "date": "2026-09-11",
   "day": "Fri",
-  "scraped_at": "2026-09-11T06:32:06.574Z",
+  "scraped_at": "2026-09-11T09:22:08.383Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
