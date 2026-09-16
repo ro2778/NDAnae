@@ -325,7 +325,7 @@
     "preop": {
       "label": "Pre-op Clinic",
       "am": "C. Smith, B. Vidanapathirana",
-      "pm": "B. Vidanapathirana, C. Smith"
+      "pm": "C. Smith, B. Vidanapathirana"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -345,7 +345,7 @@
   },
   "date": "2026-09-16",
   "day": "Wed",
-  "scraped_at": "2026-09-16T06:33:12.394Z",
+  "scraped_at": "2026-09-16T09:41:52.026Z",
   "tomorrow": {
     "available_consultants": {
       "am": "S. Charoumzadeh Dashti",
