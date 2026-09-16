@@ -324,7 +324,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "C. Smith, B. Vidanapathirana",
+      "am": "B. Vidanapathirana, C. Smith",
       "pm": "C. Smith, B. Vidanapathirana"
     },
     "obs_preop": {
@@ -345,11 +345,11 @@
   },
   "date": "2026-09-16",
   "day": "Wed",
-  "scraped_at": "2026-09-16T13:05:31.266Z",
+  "scraped_at": "2026-09-16T15:44:52.884Z",
   "tomorrow": {
     "available_consultants": {
       "am": "S. Charoumzadeh Dashti",
-      "pm": "M. Paul"
+      "pm": "—"
     },
     "on_call": {
       "300": {
@@ -559,9 +559,9 @@
         },
         "pm": {
           "list": "Jagodzinski / Upper Limb Ortho",
-          "primary": "",
+          "primary": "M. Paul",
           "support": [],
-          "cancelled": true
+          "cancelled": false
         }
       },
       "th7": {
@@ -660,7 +660,7 @@
       "esa135": {
         "label": "ESA Bleep 135",
         "am": "N. Nath A. Edmonds E. Cope",
-        "pm": "M. Paul"
+        "pm": "E. Cope"
       }
     },
     "activities": {
@@ -671,7 +671,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "J. Preece, C. Cheesman",
+        "am": "C. Cheesman, J. Preece",
         "pm": "J. Preece"
       },
       "obs_preop": {
