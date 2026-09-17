@@ -91,23 +91,13 @@
       "am": {
         "list": "Abed / Kenaan / Ortho",
         "primary": "T. Cobby",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Abed / Kenaan / Ortho",
         "primary": "T. Cobby",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -301,10 +291,6 @@
     "day": [
       {
         "name": "D. McMenamin ED Staff grade"
-      },
-      {
-        "name": "A. Khalid",
-        "grade": "ACCS Med"
       }
     ]
   },
@@ -344,7 +330,7 @@
   },
   "date": "2026-09-17",
   "day": "Thu",
-  "scraped_at": "2026-09-17T06:32:30.869Z",
+  "scraped_at": "2026-09-17T09:49:48.072Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
