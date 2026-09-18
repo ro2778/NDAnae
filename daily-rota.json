@@ -313,10 +313,6 @@
     "ext": "2707",
     "day": [
       {
-        "name": "A. Khalid",
-        "grade": "ACCS Med"
-      },
-      {
         "name": "E. Hosker",
         "grade": "CT Anaes"
       },
@@ -362,7 +358,7 @@
   },
   "date": "2026-09-18",
   "day": "Fri",
-  "scraped_at": "2026-09-18T06:27:33.529Z",
+  "scraped_at": "2026-09-18T09:23:32.285Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
