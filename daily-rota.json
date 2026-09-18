@@ -338,7 +338,7 @@
     "preop": {
       "label": "Pre-op Clinic",
       "am": "C. Smith",
-      "pm": "C. Smith"
+      "pm": "—"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -358,7 +358,7 @@
   },
   "date": "2026-09-18",
   "day": "Fri",
-  "scraped_at": "2026-09-18T09:23:32.285Z",
+  "scraped_at": "2026-09-18T12:03:07.730Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
