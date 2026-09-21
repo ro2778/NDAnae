@@ -44,7 +44,11 @@
           "name": "C. Wright",
           "grade": "CT2"
         }
-      ]
+      ],
+      "night": {
+        "name": "I. Talbot",
+        "grade": "CT Anaes"
+      }
     },
     "508": {
       "label": "Emergency Rota",
@@ -248,7 +252,7 @@
       },
       "pm": {
         "list": "Glanville / Gynae",
-        "primary": "C. Cheesman, Z. Ungvari",
+        "primary": "Z. Ungvari, C. Cheesman",
         "support": [],
         "cancelled": false
       }
@@ -359,7 +363,7 @@
   },
   "date": "2026-09-21",
   "day": "Mon",
-  "scraped_at": "2026-09-21T06:55:36.850Z",
+  "scraped_at": "2026-09-21T10:24:57.107Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Hollister",
@@ -406,7 +410,11 @@
             "name": "C. Wright",
             "grade": "CT2"
           }
-        ]
+        ],
+        "night": {
+          "name": "I. Talbot",
+          "grade": "CT Anaes"
+        }
       },
       "508": {
         "label": "Emergency Rota",
@@ -452,7 +460,7 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "T. Oelofse ITU AMN. Love",
+        "am": "N. Love ITU AMT. Oelofse",
         "pm": "T. Cobby",
         "eve": "T. Cobby",
         "night": "T. Cobby"
