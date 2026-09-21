@@ -96,7 +96,7 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Love ITU AMT. Oelofse",
+      "am": "T. Oelofse ITU AMN. Love",
       "pm": "B. Ittzes",
       "eve": "B. Ittzes",
       "night": "B. Ittzes"
@@ -363,7 +363,7 @@
   },
   "date": "2026-09-21",
   "day": "Mon",
-  "scraped_at": "2026-09-21T14:49:31.399Z",
+  "scraped_at": "2026-09-21T17:23:11.310Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Hollister",
