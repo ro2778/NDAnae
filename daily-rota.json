@@ -357,7 +357,7 @@
   },
   "date": "2026-09-22",
   "day": "Tue",
-  "scraped_at": "2026-09-22T09:38:18.155Z",
+  "scraped_at": "2026-09-22T12:19:24.927Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -383,10 +383,6 @@
         },
         "eve": {
           "name": "M. Ruiz"
-        },
-        "night": {
-          "name": "M. Cannings",
-          "grade": "ACCS Anaes"
         }
       },
       "508": {
@@ -679,7 +675,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "C. Cheesman, N. Hollister",
+        "am": "N. Hollister, C. Cheesman",
         "pm": "—"
       },
       "obs_preop": {
