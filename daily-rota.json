@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "N. Hollister",
+    "am": "—",
     "pm": "—"
   },
   "on_call": {
@@ -94,7 +94,7 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Love ITU AMT. Oelofse",
+      "am": "N. Love",
       "pm": "T. Cobby",
       "eve": "T. Cobby",
       "night": "T. Cobby"
@@ -336,8 +336,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Hockridge J",
-      "pm": "Hockridge J"
+      "am": "N. Hollister",
+      "pm": "—"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -357,7 +357,7 @@
   },
   "date": "2026-09-22",
   "day": "Tue",
-  "scraped_at": "2026-09-22T06:40:50.741Z",
+  "scraped_at": "2026-09-22T09:38:18.155Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -432,7 +432,7 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "N. Love ITU AMT. Oelofse",
+        "am": "N. Love",
         "pm": "N. Hollister",
         "eve": "N. Hollister",
         "night": "N. Hollister"
