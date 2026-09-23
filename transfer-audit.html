@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2631">
+<title>Transfers Audit — ND Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --white: #fff; --shadow: rgba(0,0,0,0.3); --green: #2e7d32;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --white: #1a1a2e; --shadow: rgba(0,0,0,0.08); --green: #1e8449;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text);
+  padding: 12px; max-width: 640px; margin: 0 auto;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+}
+
+.header { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 4px; padding: 8px 44px 4px 44px; }
+h1 { font-size: 17px; color: var(--accent); text-align: center; }
+.theme-toggle { position: absolute; right: 0; top: 4px; background: none; border: none; font-size: 20px; cursor: pointer; }
+.intro { font-size: 12px; color: var(--text2); text-align: center; line-height: 1.5; margin-bottom: 14px; }
+
+/* Section */
+.section { margin-bottom: 18px; }
+.section-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 10px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 5px; }
+.form-label .req { color: var(--accent); }
+.form-label .opt { color: var(--text3); font-weight: 400; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg2); color: var(--text); font-size: 15px; font-family: inherit;
+  outline: none; min-height: 44px;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-textarea { min-height: 70px; resize: vertical; }
+.hint { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+/* Option pills (single or multi select) */
+.pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  padding: 9px 14px; border: 1px solid var(--border); border-radius: 20px;
+  background: var(--bg2); color: var(--text2); font-size: 13px; font-weight: 600;
+  cursor: pointer; min-height: 40px; display: inline-flex; align-items: center;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.pill.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+.pill.multi.selected::before { content: '✓ '; }
+
+/* Conditional reveal */
+.hidden { display: none !important; }
+
+/* Confidential banner */
+.confidential {
+  font-size: 11px; color: var(--text2); background: var(--bg3);
+  border: 1px dashed var(--border); border-radius: 8px; padding: 8px 10px; margin-bottom: 12px;
+}
+
+/* Inline pair */
+.inline-pair { display: flex; gap: 10px; }
+.inline-pair .form-group { flex: 1; }
+
+/* Buttons */
+.actions { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 40px; }
+.btn { padding: 14px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; min-height: 48px; font-family: inherit; }
+.btn.email { background: var(--green); color: #fff; }
+.btn.copy { background: var(--gold); color: #1a1a1a; }
+.btn.reset { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); font-weight: 600; }
+.savebar { display: flex; gap: 10px; margin-bottom: 14px; }
+.savebar .btn { flex: 1; font-size: 13px; padding: 10px; min-height: 42px; background: var(--bg2); color: var(--text); border: 1px solid var(--border); }
+.draft-note { font-size: 11px; color: var(--text3); text-align: center; margin-top: -4px; margin-bottom: 10px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  background: var(--accent); color: #fff; padding: 12px 20px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px var(--shadow);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 100;
+  max-width: 90%; text-align: center;
+}
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Anaesthetic Transfers Audit</h1>
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+</div>
+<div class="intro">
+  Please complete one entry per inter-hospital transfer involving anaesthetics.
+  Takes about a minute. Fields marked <span style="color:var(--accent)">*</span> are the key ones.
+</div>
+
+<!-- Save / new bar -->
+<div class="savebar">
+  <button class="btn" onclick="saveDraft(true)">💾 Save draft</button>
+  <button class="btn" onclick="newEntry()">＋ New entry</button>
+</div>
+<div class="draft-note" id="draftNote"></div>
+
+<form id="form" autocomplete="off">
+
+  <!-- A. Transfer details -->
+  <div class="section">
+    <div class="section-title">Transfer details</div>
+
+    <div class="form-group">
+      <label class="form-label">Date &amp; time of transfer <span class="req">*</span></label>
+      <input class="form-input" type="datetime-local" id="f_datetime">
+    </div>
+
+    <div class="form-group" data-field="level">
+      <label class="form-label">Transfer level <span class="req">*</span></label>
+      <div class="pill-group" data-single="level"></div>
+      <div class="hint">Level 1 = awake / minimal support · Level 2 = higher dependency · Level 3 = intubated &amp; ventilated</div>
+    </div>
+
+    <div class="form-group" data-field="status">
+      <label class="form-label">Patient status during transfer <span class="req">*</span></label>
+      <div class="pill-group" data-single="status"></div>
+    </div>
+
+    <div class="form-group" data-field="support">
+      <label class="form-label">Support / interventions during transfer <span class="opt">(select all that apply)</span></label>
+      <div class="pill-group" data-multi="support"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_supportOther">
+      <label class="form-label">Other support / intervention</label>
+      <input class="form-input" type="text" id="f_supportOther">
+    </div>
+  </div>
+
+  <!-- B. Clinical -->
+  <div class="section">
+    <div class="section-title">Clinical</div>
+
+    <div class="form-group" data-field="indication">
+      <label class="form-label">Reason for transfer / category <span class="req">*</span></label>
+      <div class="pill-group" data-single="indication"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_indicationDetail">
+      <label class="form-label">Details (specific reason)</label>
+      <input class="form-input" type="text" id="f_indicationDetail" placeholder="e.g. complete heart block for pacing; ruptured AAA">
+    </div>
+
+    <div class="form-group" data-field="purpose">
+      <label class="form-label">Purpose of transfer <span class="req">*</span></label>
+      <div class="pill-group" data-single="purpose"></div>
+      <div class="hint">Was it for an intervention needed now, or to be in the right place should intervention be needed later?</div>
+    </div>
+    <div class="form-group hidden" id="wrap_purposeOther">
+      <label class="form-label">Specify purpose</label>
+      <input class="form-input" type="text" id="f_purposeOther">
+    </div>
+
+    <div class="form-group" data-field="arrival">
+      <label class="form-label">Intervention received on arrival? <span class="opt">(if known — may be follow-up)</span></label>
+      <div class="pill-group" data-single="arrival"></div>
+    </div>
+
+    <div class="form-group" data-field="referral">
+      <label class="form-label">Where was the patient referred from?</label>
+      <div class="pill-group" data-single="referral"></div>
+    </div>
+
+    <div class="form-group" data-field="destination">
+      <label class="form-label">Destination hospital <span class="req">*</span></label>
+      <div class="pill-group" data-single="destination"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_destinationOther">
+      <label class="form-label">Specify destination</label>
+      <input class="form-input" type="text" id="f_destinationOther">
+    </div>
+
+    <div class="form-group" data-field="receiving">
+      <label class="form-label">Receiving location</label>
+      <div class="pill-group" data-single="receiving"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_receivingOther">
+      <label class="form-label">Specify receiving location</label>
+      <input class="form-input" type="text" id="f_receivingOther">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Specialty / service needed at destination</label>
+      <input class="form-input" type="text" id="f_specialty" placeholder="e.g. cardiology / PCI, neurosurgery, ECMO">
+    </div>
+  </div>
+
+  <!-- C. Logistics & resourcing -->
+  <div class="section">
+    <div class="section-title">Logistics &amp; resourcing</div>
+
+    <div class="form-group" data-field="grade">
+      <label class="form-label">Grade (or equivalent) of escorting anaesthetist <span class="req">*</span></label>
+      <div class="pill-group" data-single="grade"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_gradeOther">
+      <label class="form-label">Specify grade</label>
+      <input class="form-input" type="text" id="f_gradeOther">
+    </div>
+
+    <div class="form-group" data-field="team">
+      <label class="form-label">Transfer team / crew (who with?)</label>
+      <div class="pill-group" data-single="team"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_teamOther">
+      <label class="form-label">Specify team / crew</label>
+      <input class="form-input" type="text" id="f_teamOther">
+    </div>
+
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Approx. time away from base (hrs)</label>
+        <input class="form-input" type="number" inputmode="decimal" step="0.5" id="f_hoursAway" placeholder="e.g. 4">
+      </div>
+      <div class="form-group" data-field="secondEscort">
+        <label class="form-label">2nd escort needed? (ODP/nurse)</label>
+        <div class="pill-group" data-single="secondEscort"></div>
+      </div>
+    </div>
+
+    <div class="form-group" data-field="displaced">
+      <label class="form-label">Did this displace other clinical work?</label>
+      <div class="pill-group" data-single="displaced"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_displacedWhat">
+      <label class="form-label">What was affected?</label>
+      <input class="form-input" type="text" id="f_displacedWhat" placeholder="e.g. elective list cancelled, on-call cover gap">
+    </div>
+  </div>
+
+  <!-- D. Safety -->
+  <div class="section">
+    <div class="section-title">Safety</div>
+
+    <div class="form-group" data-field="interventionDuring">
+      <label class="form-label">Any intervention required <b>during</b> the transfer?</label>
+      <div class="pill-group" data-single="interventionDuring"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_interventionDuringNotes">
+      <label class="form-label">What was done?</label>
+      <input class="form-input" type="text" id="f_interventionDuringNotes" placeholder="e.g. fluid bolus, vasopressor started, cardioversion">
+    </div>
+
+    <div class="form-group" data-field="incident">
+      <label class="form-label">Any critical incident / deterioration / equipment issue?</label>
+      <div class="pill-group" data-single="incident"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_incidentNotes">
+      <label class="form-label">Incident details</label>
+      <textarea class="form-textarea" id="f_incidentNotes"></textarea>
+    </div>
+  </div>
+
+  <!-- E. Patient (confidential) -->
+  <div class="section">
+    <div class="section-title">Patient</div>
+    <div class="confidential">
+      🔒 Kept confidential — this entry is sent directly by email to the project leads and is <b>not</b> stored online or shared. NHS number lets us follow up outcomes later.
+    </div>
+    <div class="form-group">
+      <label class="form-label">NHS number</label>
+      <input class="form-input" type="text" id="f_nhsNo" inputmode="numeric" placeholder="10 digits">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Hospital number</label>
+      <input class="form-input" type="text" id="f_hospNo" inputmode="numeric">
+    </div>
+    <div class="inline-pair">
+      <div class="form-group">
+        <label class="form-label">Age</label>
+        <input class="form-input" type="text" id="f_age" placeholder="e.g. 72 or 6mo">
+      </div>
+      <div class="form-group" data-field="sex">
+        <label class="form-label">Sex</label>
+        <div class="pill-group" data-single="sex"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F. Submitter -->
+  <div class="section">
+    <div class="section-title">Your details &amp; notes</div>
+    <div class="form-group">
+      <label class="form-label">Your name</label>
+      <input class="form-input" type="text" id="f_submitter">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Anything else worth noting?</label>
+      <textarea class="form-textarea" id="f_notes"></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn email" onclick="submitEmail()">✉️ Submit by email</button>
+    <button type="button" class="btn copy" onclick="submitCopy()">📋 Copy entry to clipboard</button>
+    <button type="button" class="btn reset" onclick="resetForm()">Clear form</button>
+  </div>
+</form>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================================
+   CONFIG — edit these to change what the audit collects.
+   SINGLE-SELECT groups: OPTIONS (tap one).
+   MULTI-SELECT groups:  MULTI_OPTIONS (tap several).
+   SUBMIT_EMAIL: comma-separated list of who entries are emailed to.
+   ========================================================================= */
+var SUBMIT_EMAIL = 'r.obyrne@nhs.net,a.edmonds1@nhs.net';   // project leads
+var AUDIT_TITLE  = 'Anaesthetic Transfers Audit';
+
+var OPTIONS = {
+  level:        ['Level 1', 'Level 2', 'Level 3'],
+  status:       ['Awake', 'Sedated', 'Intubated & ventilated'],
+  indication:   ['Cardiac', 'Neuro', 'Trauma', 'Vascular', 'Surgery', 'Urology',
+                 'MaxFax / ENT', 'Medicine', 'Obstetric', 'Paediatric', 'Other'],
+  purpose:      ['Immediate intervention', 'Precautionary (right place if needed)',
+                 'Ongoing critical care / bed', 'Other'],
+  arrival:      ['Yes — promptly', 'Delayed (>24h)', 'No intervention', 'Unknown / to follow up', 'N/A'],
+  referral:     ['ED / Resus', 'ITU / HDU', 'Ward', 'Theatre / Recovery', 'Maternity', 'Other'],
+  destination:  ['RD&E Exeter', 'Derriford (Plymouth)', 'Bristol', 'Musgrove (Taunton)', 'Other'],
+  receiving:    ['Resus', 'ED', 'IR (Interventional Radiology)', 'Cath Lab', 'Theatre', 'Recovery',
+                 'ITU / HDU', 'CCU', 'Ward', 'Other'],
+  grade:        ['Consultant', 'SAS / Specialty Dr', 'CT3-ST4', 'CT1-2', 'Other'],
+  team:         ['SWAST', 'Retrieve', 'Other'],
+  secondEscort: ['Yes', 'No'],
+  displaced:    ['Yes', 'No'],
+  interventionDuring: ['Yes', 'No'],
+  incident:     ['Yes', 'No'],
+  sex:          ['M', 'F', 'Other']
+};
+
+var MULTI_OPTIONS = {
+  support:      ['Ventilated', 'Non-invasive ventilation', 'Vasopressor / inotrope',
+                 'Blood products', 'IV sedation / analgesia', 'Antiarrhythmic / pacing',
+                 'None', 'Other']
+};
+
+/* Conditional reveals.
+   value:'Other' (or 'Yes') → show wrap when that value is chosen.
+   any:true               → show wrap whenever the field has any selection.
+   multi:true             → the field is a multi-select; match value within its array. */
+var CONDITIONALS = [
+  { field: 'support',            value: 'Other', multi: true, wrap: 'wrap_supportOther' },
+  { field: 'indication',         any: true,      wrap: 'wrap_indicationDetail' },
+  { field: 'purpose',            value: 'Other', wrap: 'wrap_purposeOther' },
+  { field: 'destination',        value: 'Other', wrap: 'wrap_destinationOther' },
+  { field: 'receiving',          value: 'Other', wrap: 'wrap_receivingOther' },
+  { field: 'grade',              value: 'Other', wrap: 'wrap_gradeOther' },
+  { field: 'team',               value: 'Other', wrap: 'wrap_teamOther' },
+  { field: 'displaced',          value: 'Yes',   wrap: 'wrap_displacedWhat' },
+  { field: 'interventionDuring', value: 'Yes',   wrap: 'wrap_interventionDuringNotes' },
+  { field: 'incident',           value: 'Yes',   wrap: 'wrap_incidentNotes' }
+];
+
+/* Single-select fields that fold an "Other" free-text into the summary */
+var OTHER_TEXT = {
+  purpose: 'purposeOther', destination: 'destinationOther',
+  receiving: 'receivingOther', grade: 'gradeOther', team: 'teamOther'
+};
+
+/* Which fields are required before submit */
+var REQUIRED = ['datetime', 'level', 'status', 'indication', 'purpose', 'destination', 'grade'];
+
+/* Text inputs / textareas we persist & include (id without the f_ prefix) */
+var TEXT_FIELDS = ['datetime','supportOther','indicationDetail','purposeOther','destinationOther',
+                   'receivingOther','gradeOther','teamOther',
+                   'specialty','hoursAway','displacedWhat','interventionDuringNotes','incidentNotes',
+                   'nhsNo','hospNo','age','notes','submitter'];
+
+/* Human-readable labels for the summary output */
+var LABELS = {
+  datetime:'Date/time', level:'Transfer level', status:'Patient status',
+  support:'Support / interventions during transfer', supportOther:'Support (other)',
+  indication:'Reason / category', indicationDetail:'Reason detail',
+  purpose:'Purpose of transfer', purposeOther:'Purpose (other)',
+  arrival:'Intervention on arrival',
+  referral:'Referred from', destination:'Destination', destinationOther:'Destination (other)',
+  receiving:'Receiving location', receivingOther:'Receiving location (other)',
+  specialty:'Specialty needed', grade:'Escort grade', gradeOther:'Grade (other)',
+  team:'Transfer team / crew', teamOther:'Team (other)',
+  hoursAway:'Time away from base (hrs)', secondEscort:'2nd escort needed',
+  displaced:'Displaced other work', displacedWhat:'What was affected',
+  interventionDuring:'Intervention during transfer', interventionDuringNotes:'What was done',
+  incident:'Critical incident', incidentNotes:'Incident details',
+  nhsNo:'NHS number', hospNo:'Hospital number', age:'Age', sex:'Sex',
+  submitter:'Submitted by', notes:'Notes'
+};
+
+/* ========================================================================= */
+
+var STORAGE_KEY = 'ndanae-transfer-draft';
+var pillState = {};    // single-select: field -> value
+var multiState = {};   // multi-select:  field -> [values]
+
+/* Theme: inherit from app if present, else default light */
+var theme = localStorage.getItem('ndanae-theme') || 'light';
+document.documentElement.setAttribute('data-theme', theme);
+function applyThemeIcon(){ document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙'; }
+applyThemeIcon();
+document.getElementById('themeToggle').addEventListener('click', function(){
+  theme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('ndanae-theme', theme);
+  applyThemeIcon();
+});
+
+/* Build single-select pill groups */
+Object.keys(OPTIONS).forEach(function(field){
+  var container = document.querySelector('.pill-group[data-single="' + field + '"]');
+  if (!container) return;
+  OPTIONS[field].forEach(function(opt){
+    var pill = document.createElement('span');
+    pill.className = 'pill';
+    pill.textContent = opt;
+    pill.setAttribute('data-value', opt);
+    pill.addEventListener('click', function(){ selectPill(field, opt, container); });
+    container.appendChild(pill);
+  });
+});
+
+/* Build multi-select pill groups */
+Object.keys(MULTI_OPTIONS).forEach(function(field){
+  multiState[field] = [];
+  var container = document.querySelector('.pill-group[data-multi="' + field + '"]');
+  if (!container) return;
+  MULTI_OPTIONS[field].forEach(function(opt){
+    var pill = document.createElement('span');
+    pill.className = 'pill multi';
+    pill.textContent = opt;
+    pill.setAttribute('data-value', opt);
+    pill.addEventListener('click', function(){ toggleMulti(field, opt, container); });
+    container.appendChild(pill);
+  });
+});
+
+function selectPill(field, value, container){
+  if (pillState[field] === value) { pillState[field] = ''; }   // tap again to deselect
+  else { pillState[field] = value; }
+  container.querySelectorAll('.pill').forEach(function(p){
+    p.classList.toggle('selected', p.getAttribute('data-value') === pillState[field]);
+  });
+  applyConditionals();
+  saveDraft(false);
+}
+
+function toggleMulti(field, value, container){
+  var arr = multiState[field] || (multiState[field] = []);
+  var i = arr.indexOf(value);
+  if (i >= 0) arr.splice(i, 1); else arr.push(value);
+  container.querySelectorAll('.pill').forEach(function(p){
+    p.classList.toggle('selected', arr.indexOf(p.getAttribute('data-value')) >= 0);
+  });
+  applyConditionals();
+  saveDraft(false);
+}
+
+function applyConditionals(){
+  CONDITIONALS.forEach(function(c){
+    var show;
+    if (c.multi) show = (multiState[c.field] || []).indexOf(c.value) >= 0;
+    else if (c.any) show = !!pillState[c.field];
+    else show = pillState[c.field] === c.value;
+    var wrap = document.getElementById(c.wrap);
+    if (wrap) wrap.classList.toggle('hidden', !show);
+  });
+}
+
+/* Default datetime = now (rounded to minute, local) */
+function nowLocal(){
+  var d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0,16);
+}
+
+/* ---- Persistence (single working draft) ---- */
+function collect(){
+  var data = { pills: {}, multi: {}, text: {} };
+  Object.keys(OPTIONS).forEach(function(f){ data.pills[f] = pillState[f] || ''; });
+  Object.keys(MULTI_OPTIONS).forEach(function(f){ data.multi[f] = (multiState[f] || []).slice(); });
+  TEXT_FIELDS.forEach(function(f){
+    var el = document.getElementById('f_' + f);
+    if (el) data.text[f] = el.value;
+  });
+  return data;
+}
+
+function restore(data){
+  if (!data) return;
+  Object.keys(OPTIONS).forEach(function(f){
+    var val = (data.pills && data.pills[f]) || '';
+    pillState[f] = val;
+    var container = document.querySelector('.pill-group[data-single="' + f + '"]');
+    if (container) container.querySelectorAll('.pill').forEach(function(p){
+      p.classList.toggle('selected', p.getAttribute('data-value') === val);
+    });
+  });
+  Object.keys(MULTI_OPTIONS).forEach(function(f){
+    var arr = (data.multi && data.multi[f]) || [];
+    multiState[f] = arr.slice();
+    var container = document.querySelector('.pill-group[data-multi="' + f + '"]');
+    if (container) container.querySelectorAll('.pill').forEach(function(p){
+      p.classList.toggle('selected', arr.indexOf(p.getAttribute('data-value')) >= 0);
+    });
+  });
+  TEXT_FIELDS.forEach(function(f){
+    var el = document.getElementById('f_' + f);
+    if (el && data.text && data.text[f] !== undefined) el.value = data.text[f];
+  });
+  applyConditionals();
+}
+
+function saveDraft(showToast){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); } catch(e){}
+  updateDraftNote();
+  if (showToast) toast('Draft saved on this device');
+}
+
+function updateDraftNote(){
+  var el = document.getElementById('draftNote');
+  var raw = localStorage.getItem(STORAGE_KEY);
+  el.textContent = raw ? 'A draft is saved on this device.' : '';
+}
+
+function newEntry(){ resetForm(); toast('Started a new entry'); }
+
+function resetForm(){
+  Object.keys(pillState).forEach(function(k){ pillState[k] = ''; });
+  Object.keys(multiState).forEach(function(k){ multiState[k] = []; });
+  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('selected'); });
+  TEXT_FIELDS.forEach(function(f){ var el = document.getElementById('f_' + f); if (el) el.value = ''; });
+  document.getElementById('f_datetime').value = nowLocal();
+  applyConditionals();
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+  updateDraftNote();
+  window.scrollTo(0, 0);
+}
+
+/* ---- Build submission text ---- */
+function txt(f){ var el = document.getElementById('f_' + f); return el ? (el.value || '') : ''; }
+
+function val(field){
+  if (MULTI_OPTIONS[field] !== undefined) {
+    var arr = (multiState[field] || []).map(function(v){
+      return (v === 'Other' && field === 'support' && txt('supportOther')) ? 'Other: ' + txt('supportOther') : v;
+    });
+    return arr.join(', ');
+  }
+  if (OPTIONS[field] !== undefined) {
+    var v = pillState[field] || '';
+    if (v === 'Other' && OTHER_TEXT[field]) v = 'Other: ' + txt(OTHER_TEXT[field]);
+    return v;
+  }
+  return txt(field);
+}
+
+function prettyDateTime(v){
+  if (!v) return '';
+  var d = new Date(v);
+  if (isNaN(d)) return v;
+  return d.toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+function line(labelKey, value){ return LABELS[labelKey] + ': ' + value; }
+
+function buildText(){
+  var L = [];
+  L.push('=== ' + AUDIT_TITLE + ' ===');
+  L.push('');
+  L.push('Date/time: ' + prettyDateTime(txt('datetime')));
+  L.push(line('level', val('level')));
+  L.push(line('status', val('status')));
+  if (val('support')) L.push(line('support', val('support')));
+  L.push('');
+  L.push('-- Clinical --');
+  L.push(line('indication', val('indication') + (txt('indicationDetail') ? ' — ' + txt('indicationDetail') : '')));
+  L.push(line('purpose', val('purpose')));
+  L.push(line('arrival', val('arrival')));
+  L.push(line('referral', val('referral')));
+  L.push(line('destination', val('destination')));
+  if (val('receiving')) L.push(line('receiving', val('receiving')));
+  if (txt('specialty')) L.push(line('specialty', txt('specialty')));
+  L.push('');
+  L.push('-- Logistics --');
+  L.push(line('grade', val('grade')));
+  L.push(line('team', val('team')));
+  if (txt('hoursAway')) L.push(line('hoursAway', txt('hoursAway')));
+  L.push(line('secondEscort', val('secondEscort')));
+  L.push(line('displaced', val('displaced') + (pillState.displaced === 'Yes' && txt('displacedWhat') ? ' (' + txt('displacedWhat') + ')' : '')));
+  L.push('');
+  L.push('-- Safety --');
+  L.push(line('interventionDuring', val('interventionDuring') + (pillState.interventionDuring === 'Yes' && txt('interventionDuringNotes') ? ' — ' + txt('interventionDuringNotes') : '')));
+  L.push(line('incident', val('incident') + (pillState.incident === 'Yes' && txt('incidentNotes') ? ' — ' + txt('incidentNotes') : '')));
+  L.push('');
+  L.push('-- Patient (confidential) --');
+  L.push(line('nhsNo', txt('nhsNo')));
+  L.push(line('hospNo', txt('hospNo')));
+  L.push(line('age', txt('age')));
+  L.push(line('sex', val('sex')));
+  L.push('');
+  L.push('Submitted by: ' + txt('submitter'));
+  if (txt('notes')) L.push(line('notes', txt('notes')));
+  return L.join('\n');
+}
+
+function missingRequired(){
+  var missing = [];
+  REQUIRED.forEach(function(f){
+    var filled;
+    if (MULTI_OPTIONS[f] !== undefined) filled = (multiState[f] || []).length > 0;
+    else if (OPTIONS[f] !== undefined) filled = !!pillState[f];
+    else filled = !!txt(f);
+    if (!filled) missing.push(LABELS[f] || f);
+  });
+  return missing;
+}
+
+var emailSending = false;
+function submitEmail(){
+  var miss = missingRequired();
+  if (miss.length) { toast('Please complete: ' + miss.join(', ')); return; }
+  if (emailSending) return;
+  emailSending = true;
+  saveDraft(false);
+  var body = buildText();
+  var subj = AUDIT_TITLE + ' — ' + (val('level') || 'entry') + ' to ' + (pillState.destination || '?') +
+             ' — ' + prettyDateTime(txt('datetime'));
+  window.location.href = 'mailto:' + SUBMIT_EMAIL + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  setTimeout(function(){ emailSending = false; }, 3000);
+}
+
+function submitCopy(){
+  var miss = missingRequired();
+  if (miss.length) { toast('Please complete: ' + miss.join(', ')); return; }
+  var text = buildText();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ toast('Entry copied — paste into an email to the project leads'); })
+      .catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast('Entry copied to clipboard'); }
+  catch(e){ toast('Copy failed — please select and copy manually'); }
+  document.body.removeChild(ta);
+}
+
+var toastTimer = null;
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+/* Autosave text inputs */
+document.getElementById('form').addEventListener('input', function(){ saveDraft(false); });
+
+/* Init */
+(function init(){
+  var raw = null;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch(e){}
+  if (raw) { try { restore(JSON.parse(raw)); } catch(e){} }
+  if (!txt('datetime')) document.getElementById('f_datetime').value = nowLocal();
+  applyConditionals();
+  updateDraftNote();
+})();
+
+/* Inherit live theme changes when embedded in the app */
+window.addEventListener('storage', function(e){
+  if (e.key === 'ndanae-theme' && e.newValue) {
+    theme = e.newValue;
+    document.documentElement.setAttribute('data-theme', theme);
+    applyThemeIcon();
+  }
+});
+</script>
+</body>
+</html>

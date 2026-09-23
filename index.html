@@ -331,7 +331,12 @@ body {
     <div class="about-app-name">ND Anaesthetics</div>
     <div class="about-app-ver" id="about-version"></div>
 
-    <div class="about-section">What's New in v1.2</div>
+    <div class="about-section">What's New in v1.3</div>
+    <ul class="about-list">
+      <li><b>Anaesthetic Transfers Audit</b> &mdash; a new Audit / QI project capturing inter-hospital transfers (level, support needed, purpose, destination &amp; receiving location). Also reachable directly via QR code for quick entry at the point of care</li>
+    </ul>
+
+    <div class="about-section">v1.2</div>
     <ul class="about-list">
       <li><b>Creative Corner</b> &mdash; a space for departmental art, poetry, and mystery. Featuring the Banksy of Barnstaple gallery, sightings map, and literary works</li>
     </ul>
@@ -364,7 +369,7 @@ body {
 </div>
 
 <script>
-var APP_VERSION = '1.2.03';
+var APP_VERSION = '1.3.00';
 
 /* Theme */
 var theme = localStorage.getItem('ndanae-theme') || 'light';
@@ -490,6 +495,7 @@ var MODULES = {
   'drug-calc': 'drug-calc.html',
   guidelines: 'guidelines.html',
   audit: 'audit.html',
+  transfers: 'transfer-audit.html',
   'case-logger': 'case-logger.html',
   creative: 'creative.html',
   atlas: 'https://ro2778.github.io/nerve-block-atlas/?from=ndanae'

@@ -425,6 +425,7 @@ var currentStep = 1;
 var currentProjectId = null;
 
 var PROJECTS = [
+  { id: 'transfers', name: 'Anaesthetic Transfers Audit', lead: 'Dr R O\'Byrne', letter: 'A', module: 'transfers' },
   { id: 'teg6s', name: 'TEG6 Audit', lead: 'Dr James Powell', letter: 'T' }
 ];
 
@@ -561,8 +562,18 @@ function renderList(filter) {
 }
 
 function openProject(id) {
-  currentProjectId = id;
   var project = PROJECTS.find(function(p) { return p.id === id; });
+  if (!project) return;
+  // Projects backed by their own page open as a separate module (or navigate standalone)
+  if (project.module) {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ openModule: project.module }, '*');
+    } else {
+      window.location.href = project.module === 'transfers' ? 'transfer-audit.html' : (project.module + '.html');
+    }
+    return;
+  }
+  currentProjectId = id;
   document.getElementById('formTitle').textContent = project.name;
   document.getElementById('listView').style.display = 'none';
   document.getElementById('formView').classList.add('active');
