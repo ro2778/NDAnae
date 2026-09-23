@@ -334,7 +334,7 @@
   },
   "date": "2026-09-23",
   "day": "Wed",
-  "scraped_at": "2026-09-23T13:20:11.721Z",
+  "scraped_at": "2026-09-23T15:45:12.934Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -370,13 +370,11 @@
         "label": "Emergency Rota",
         "bleep": "508",
         "am": {
-          "name": "R. Child",
-          "grade": "Fellow",
+          "name": "E. Martinez-Estrada",
           "role": "LD"
         },
         "pm": {
-          "name": "R. Child",
-          "grade": "Fellow",
+          "name": "E. Martinez-Estrada",
           "role": "LD"
         },
         "eve": {
@@ -424,25 +422,15 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Sims / Ortho",
-          "primary": "S. Charoumzadeh Dashti",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         },
         "pm": {
           "list": "Sims / Ortho",
-          "primary": "S. Charoumzadeh Dashti",
-          "support": [
-            {
-              "name": "E. Hosker",
-              "grade": "CT Anaes"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         }
       },
       "th2": {
@@ -451,14 +439,24 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "E. Martinez-Estrada",
-          "support": [],
+          "primary": "S. Charoumzadeh Dashti",
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Trauma / Trauma",
-          "primary": "E. Martinez-Estrada",
-          "support": [],
+          "primary": "S. Charoumzadeh Dashti",
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -468,7 +466,7 @@
         "type": "CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "R. Child",
+          "primary": "E. Martinez-Estrada",
           "support": [
             {
               "name": "F. Francis",
@@ -479,7 +477,7 @@
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "R. Child",
+          "primary": "E. Martinez-Estrada",
           "support": [
             {
               "name": "F. Francis",
@@ -540,13 +538,23 @@
         "am": {
           "list": "Arunagiri / EGS",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "R. Child",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Arunagiri / EGS",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "R. Child",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
