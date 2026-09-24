@@ -358,12 +358,12 @@
     "persistent_pain": {
       "label": "Persistent Pain",
       "am": "A. Bennett",
-      "pm": "S. Coates (ACCS Anaes)"
+      "pm": "—"
     }
   },
   "date": "2026-09-24",
   "day": "Thu",
-  "scraped_at": "2026-09-24T09:43:03.442Z",
+  "scraped_at": "2026-09-24T12:30:54.444Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -507,13 +507,23 @@
         "am": {
           "list": "CEPOD / CEPOD",
           "primary": "R. Child",
-          "support": [],
+          "support": [
+            {
+              "name": "S. Coates",
+              "grade": "ACCS Anaes"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "CEPOD / CEPOD",
           "primary": "R. Child",
-          "support": [],
+          "support": [
+            {
+              "name": "S. Coates",
+              "grade": "ACCS Anaes"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -523,7 +533,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "J. Preece, M. Casemore",
+          "primary": "M. Casemore, J. Preece",
           "support": [],
           "cancelled": false
         },
@@ -699,8 +709,8 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "S. Coates (ACCS Anaes)",
-        "pm": "S. Coates (ACCS Anaes)"
+        "am": "—",
+        "pm": "—"
       }
     },
     "date": "2026-09-25",
