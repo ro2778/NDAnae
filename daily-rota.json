@@ -363,7 +363,7 @@
   },
   "date": "2026-09-24",
   "day": "Thu",
-  "scraped_at": "2026-09-24T06:36:31.226Z",
+  "scraped_at": "2026-09-24T09:43:03.442Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -523,7 +523,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Bunting / UGI",
-          "primary": "M. Casemore, J. Preece",
+          "primary": "J. Preece, M. Casemore",
           "support": [],
           "cancelled": false
         },
@@ -578,7 +578,7 @@
         },
         "pm": {
           "list": "Parkes / Upper Limb Ortho",
-          "primary": "B. Vidanapathirana",
+          "primary": "E. Cope, B. Vidanapathirana",
           "support": [],
           "cancelled": false
         }
@@ -595,7 +595,7 @@
         },
         "pm": {
           "list": "Eckford / Gynae",
-          "primary": "E. Cope",
+          "primary": "S. Charoumzadeh Dashti",
           "support": [],
           "cancelled": false
         }
@@ -629,9 +629,9 @@
         },
         "pm": {
           "list": "Riley Additional GA / Ophth GA",
-          "primary": "S. Charoumzadeh Dashti",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th10": {
