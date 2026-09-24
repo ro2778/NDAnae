@@ -232,6 +232,11 @@ h1 { font-size: 17px; color: var(--accent); text-align: center; }
       </div>
     </div>
 
+    <div class="form-group" data-field="returnedAfterShift">
+      <label class="form-label">Returned to base after shift had ended?</label>
+      <div class="pill-group" data-single="returnedAfterShift"></div>
+    </div>
+
     <div class="form-group" data-field="displaced">
       <label class="form-label">Did this displace other clinical work?</label>
       <div class="pill-group" data-single="displaced"></div>
@@ -338,6 +343,7 @@ var OPTIONS = {
   grade:        ['Consultant', 'SAS / Specialty Dr', 'CT3-ST4', 'CT1-2', 'Other'],
   team:         ['SWAST', 'Retrieve', 'Other'],
   secondEscort: ['Yes', 'No'],
+  returnedAfterShift: ['Yes', 'No'],
   displaced:    ['Yes', 'No'],
   interventionDuring: ['Yes', 'No'],
   incident:     ['Yes', 'No'],
@@ -394,6 +400,7 @@ var LABELS = {
   specialty:'Specialty needed', grade:'Escort grade', gradeOther:'Grade (other)',
   team:'Transfer team / crew', teamOther:'Team (other)',
   hoursAway:'Time away from base (hrs)', secondEscort:'2nd escort needed',
+  returnedAfterShift:'Returned after shift ended',
   displaced:'Displaced other work', displacedWhat:'What was affected',
   interventionDuring:'Intervention during transfer', interventionDuringNotes:'What was done',
   incident:'Critical incident', incidentNotes:'Incident details',
@@ -600,6 +607,7 @@ function buildText(){
   L.push(line('team', val('team')));
   if (txt('hoursAway')) L.push(line('hoursAway', txt('hoursAway')));
   L.push(line('secondEscort', val('secondEscort')));
+  L.push(line('returnedAfterShift', val('returnedAfterShift')));
   L.push(line('displaced', val('displaced') + (pillState.displaced === 'Yes' && txt('displacedWhat') ? ' (' + txt('displacedWhat') + ')' : '')));
   L.push('');
   L.push('-- Safety --');
