@@ -167,7 +167,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "Bunting / UGI",
-        "primary": "M. Casemore, J. Preece",
+        "primary": "J. Preece, M. Casemore",
         "support": [],
         "cancelled": false
       },
@@ -304,10 +304,6 @@
         "name": "K. Sandar Win IMT"
       },
       {
-        "name": "F. Francis",
-        "grade": "ACCS Anaes"
-      },
-      {
         "name": "J.Evenden",
         "grade": "FY1"
       }
@@ -349,7 +345,7 @@
   },
   "date": "2026-09-25",
   "day": "Fri",
-  "scraped_at": "2026-09-25T06:29:51.364Z",
+  "scraped_at": "2026-09-25T10:00:16.315Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
