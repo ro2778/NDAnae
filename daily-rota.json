@@ -48,16 +48,16 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "",
-        "role": ""
+        "name": "N. Nath",
+        "role": "LD"
       },
       "pm": {
-        "name": "",
-        "role": ""
+        "name": "N. Nath",
+        "role": "LD"
       },
       "eve": {
-        "name": "",
-        "role": ""
+        "name": "N. Nath",
+        "role": "LD"
       },
       "night": {
         "name": "M. Casemore",
@@ -76,8 +76,8 @@
         "role": ""
       },
       "eve": {
-        "name": "N. Nath",
-        "role": "LD"
+        "name": "",
+        "role": ""
       },
       "night": {
         "name": "T. Mitchell",
@@ -154,7 +154,7 @@
       "type": "CEPOD",
       "am": {
         "list": "Evans / Urology",
-        "primary": "N. Nath",
+        "primary": "",
         "support": [
           {
             "name": "E. Cope",
@@ -165,7 +165,7 @@
       },
       "pm": {
         "list": "Evans / Urology",
-        "primary": "N. Nath",
+        "primary": "",
         "support": [
           {
             "name": "E. Cope",
@@ -181,7 +181,7 @@
       "type": "General/CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "",
+        "primary": "N. Nath",
         "support": [
           {
             "name": "T. Hussain",
@@ -192,7 +192,7 @@
       },
       "pm": {
         "list": "CEPOD / CEPOD",
-        "primary": "",
+        "primary": "N. Nath",
         "support": [
           {
             "name": "T. Hussain",
@@ -351,8 +351,8 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "—",
-      "pm": "—"
+      "am": "I. Talbot",
+      "pm": "I. Talbot"
     }
   },
   "activities": {
@@ -363,8 +363,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "S. Hebard, B. Vidanapathirana, C. Cheesman",
-      "pm": "S. Hebard, B. Vidanapathirana"
+      "am": "B. Vidanapathirana, C. Cheesman, S. Hebard",
+      "pm": "B. Vidanapathirana, S. Hebard"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -384,7 +384,7 @@
   },
   "date": "2026-09-30",
   "day": "Wed",
-  "scraped_at": "2026-09-30T07:13:42.841Z",
+  "scraped_at": "2026-09-30T10:54:44.541Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -445,8 +445,8 @@
           "role": "LD"
         },
         "eve": {
-          "name": "",
-          "role": ""
+          "name": "N. Nath",
+          "role": "LD"
         },
         "night": {
           "name": "M. Casemore",
@@ -465,8 +465,8 @@
           "role": ""
         },
         "eve": {
-          "name": "N. Nath",
-          "role": "LD"
+          "name": "",
+          "role": ""
         },
         "night": {
           "name": "T. Mitchell",
@@ -560,7 +560,7 @@
         "type": "General/CEPOD",
         "am": {
           "list": "Beaton / Colorectal",
-          "primary": "",
+          "primary": "R. O'Byrne",
           "support": [
             {
               "name": "S. Coates",
@@ -575,7 +575,7 @@
         },
         "pm": {
           "list": "Beaton / Colorectal",
-          "primary": "",
+          "primary": "R. O'Byrne",
           "support": [
             {
               "name": "S. Coates",
@@ -595,7 +595,7 @@
         "type": "Day Case",
         "am": {
           "list": "Misra / Urology",
-          "primary": "N. Love",
+          "primary": "K. Tipping",
           "support": [
             {
               "name": "A. Edmonds",
@@ -649,7 +649,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Kemp / Gynae",
-          "primary": "R. O'Byrne",
+          "primary": "N. Love",
           "support": [
             {
               "name": "D.Siriwardana",
@@ -660,7 +660,7 @@
         },
         "pm": {
           "list": "Eckford / Gynae",
-          "primary": "R. O'Byrne",
+          "primary": "",
           "support": [
             {
               "name": "D.Siriwardana",
