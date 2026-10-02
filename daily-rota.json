@@ -362,7 +362,7 @@
   },
   "date": "2026-10-02",
   "day": "Fri",
-  "scraped_at": "2026-10-02T07:25:06.103Z",
+  "scraped_at": "2026-10-02T10:53:42.483Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -381,16 +381,13 @@
         "label": "ITU Resident",
         "bleep": "504",
         "am": {
-          "name": "R. Child",
-          "grade": "Fellow"
+          "name": "N. Love [TOIL]"
         },
         "pm": {
-          "name": "R. Child",
-          "grade": "Fellow"
+          "name": "N. Love [TOIL]"
         },
         "eve": {
-          "name": "R. Child",
-          "grade": "Fellow"
+          "name": "N. Love [TOIL]"
         },
         "night": {
           "name": "C. Wright",
@@ -421,16 +418,19 @@
         "label": "Maternity Rota",
         "bleep": "822",
         "am": {
-          "name": "",
-          "role": ""
+          "name": "R. Child",
+          "grade": "Fellow",
+          "role": "LD"
         },
         "pm": {
-          "name": "",
-          "role": ""
+          "name": "R. Child",
+          "grade": "Fellow",
+          "role": "LD"
         },
         "eve": {
-          "name": "",
-          "role": ""
+          "name": "R. Child",
+          "grade": "Fellow",
+          "role": "LD"
         },
         "night": {
           "name": "T. Johnson",
