@@ -109,9 +109,9 @@
       },
       "pm": {
         "list": "Cove (PP Cases) / PP",
-        "primary": "J. Achenbach",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th2": {
@@ -127,12 +127,7 @@
       "pm": {
         "list": "Trauma / Trauma",
         "primary": "B. Bartos",
-        "support": [
-          {
-            "name": "Kellermann",
-            "grade": "M CT1"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -207,7 +202,7 @@
       },
       "pm": {
         "list": "Evans / Urology",
-        "primary": "Hockridge J",
+        "primary": "K. Pyatt",
         "support": [
           {
             "name": "T. Western",
@@ -233,9 +228,14 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Steinlechner / Upper Limb Ortho",
-        "primary": "K. Pyatt, Z. Ungvari",
-        "support": [],
+        "list": "Additional Trauma 1x Case / Upper Limb Ortho",
+        "primary": "Z. Ungvari",
+        "support": [
+          {
+            "name": "Kellermann",
+            "grade": "M CT1"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -256,7 +256,7 @@
       },
       "pm": {
         "list": "Glanville / Gynae",
-        "primary": "R. Conway",
+        "primary": "Hockridge J",
         "support": [
           {
             "name": "C.Nuttall",
@@ -340,7 +340,7 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "T. Western",
-      "pm": "K. Pyatt T. Western"
+      "pm": "J. Achenbach K. Pyatt T. Western"
     }
   },
   "activities": {
@@ -372,7 +372,7 @@
   },
   "date": "2026-10-05",
   "day": "Mon",
-  "scraped_at": "2026-10-05T07:34:29.920Z",
+  "scraped_at": "2026-10-05T12:03:15.509Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -476,7 +476,7 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Cove / Ortho",
-          "primary": "J. Achenbach, K. Pyatt",
+          "primary": "K. Pyatt, J. Achenbach",
           "support": [
             {
               "name": "T. Hussain",
@@ -498,7 +498,7 @@
         "type": "Trauma",
         "am": {
           "list": "Trauma / Trauma",
-          "primary": "S.Rowe, R. Conway",
+          "primary": "R. Conway",
           "support": [
             {
               "name": "Kellermann",
