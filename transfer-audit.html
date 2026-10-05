@@ -170,9 +170,28 @@ h1 { font-size: 17px; color: var(--accent); text-align: center; }
       <div class="pill-group" data-single="arrival"></div>
     </div>
 
+    <div class="form-group">
+      <label class="form-label">Procedure at receiving hospital</label>
+      <input class="form-input" type="text" id="f_arrivalProcedure" placeholder="e.g. PCI, craniotomy, EVAR, pacing wire">
+    </div>
+
+    <div class="form-group" data-field="timeToProcedure">
+      <label class="form-label">Time from arrival to procedure</label>
+      <div class="pill-group" data-single="timeToProcedure"></div>
+    </div>
+
     <div class="form-group" data-field="referral">
       <label class="form-label">Where was the patient referred from?</label>
       <div class="pill-group" data-single="referral"></div>
+    </div>
+
+    <div class="form-group" data-field="referringTeam">
+      <label class="form-label">Referring team</label>
+      <div class="pill-group" data-single="referringTeam"></div>
+    </div>
+    <div class="form-group hidden" id="wrap_referringTeamOther">
+      <label class="form-label">Specify referring team</label>
+      <input class="form-input" type="text" id="f_referringTeamOther">
     </div>
 
     <div class="form-group" data-field="destination">
@@ -237,13 +256,36 @@ h1 { font-size: 17px; color: var(--accent); text-align: center; }
       <div class="pill-group" data-single="returnedAfterShift"></div>
     </div>
 
+  </div>
+
+  <!-- C2. Impact on North Devon -->
+  <div class="section">
+    <div class="section-title">Impact on North Devon</div>
+
+    <div class="form-group" data-field="coverLeft">
+      <label class="form-label">Anaesthetic cover left on site</label>
+      <div class="pill-group" data-single="coverLeft"></div>
+      <div class="hint">Who remained at NDDH while the escort was away?</div>
+    </div>
+
+    <div class="form-group" data-field="calledIn">
+      <label class="form-label">Was anyone called in to cover?</label>
+      <div class="pill-group" data-single="calledIn"></div>
+    </div>
+
     <div class="form-group" data-field="displaced">
       <label class="form-label">Did this displace other clinical work?</label>
       <div class="pill-group" data-single="displaced"></div>
     </div>
     <div class="form-group hidden" id="wrap_displacedWhat">
-      <label class="form-label">What was affected?</label>
-      <input class="form-input" type="text" id="f_displacedWhat" placeholder="e.g. elective list cancelled, on-call cover gap">
+      <label class="form-label">What was affected? <span class="opt">(select all that apply)</span></label>
+      <div class="pill-group" data-multi="impacts"></div>
+      <input class="form-input" type="text" id="f_displacedWhat" placeholder="Details, e.g. 2 cases cancelled from list 3" style="margin-top:8px">
+    </div>
+
+    <div class="form-group" data-field="riskND">
+      <label class="form-label">Overall risk to North Devon while the escort was away</label>
+      <div class="pill-group" data-single="riskND"></div>
     </div>
   </div>
 
@@ -337,6 +379,8 @@ var OPTIONS = {
                  'Ongoing critical care / bed', 'Other'],
   arrival:      ['Yes — promptly', 'Delayed (>24h)', 'No intervention', 'Unknown / to follow up', 'N/A'],
   referral:     ['ED / Resus', 'ITU / HDU', 'Ward', 'Theatre / Recovery', 'Maternity', 'Other'],
+  referringTeam:['ED', 'General surgery', 'Medicine', 'Orthopaedics', 'Obstetrics', 'Paediatrics', 'ITU', 'Other'],
+  timeToProcedure: ['< 1 h', '1–4 h', '4–24 h', '> 24 h', 'No procedure', 'Unknown'],
   destination:  ['RD&E Exeter', 'Derriford (Plymouth)', 'Bristol', 'Musgrove (Taunton)', 'Other'],
   receiving:    ['Resus', 'ED', 'IR (Interventional Radiology)', 'Cath Lab', 'Theatre', 'Recovery',
                  'ITU / HDU', 'CCU', 'Ward', 'Other'],
@@ -344,7 +388,10 @@ var OPTIONS = {
   team:         ['SWAST', 'Retrieve', 'Other'],
   secondEscort: ['Yes', 'No'],
   returnedAfterShift: ['Yes', 'No'],
+  coverLeft:    ['1 resident', '1 consultant', 'Consultant + 1 resident', '2 residents'],
+  calledIn:     ['Yes', 'No'],
   displaced:    ['Yes', 'No'],
+  riskND:       ['Low', 'Moderate', 'High'],
   interventionDuring: ['Yes', 'No'],
   incident:     ['Yes', 'No'],
   sex:          ['M', 'F', 'Other']
@@ -353,7 +400,9 @@ var OPTIONS = {
 var MULTI_OPTIONS = {
   support:      ['Ventilated', 'Non-invasive ventilation', 'Vasopressor / inotrope',
                  'Blood products', 'IV sedation / analgesia', 'Antiarrhythmic / pacing',
-                 'None', 'Other']
+                 'None', 'Other'],
+  impacts:      ['Theatre list delayed', 'Theatre list cancelled', 'Emergency case delayed',
+                 'Obstetric cover reduced', 'ITU cover reduced', 'Other']
 };
 
 /* Conditional reveals.
@@ -366,6 +415,7 @@ var CONDITIONALS = [
   { field: 'purpose',            value: 'Other', wrap: 'wrap_purposeOther' },
   { field: 'destination',        value: 'Other', wrap: 'wrap_destinationOther' },
   { field: 'receiving',          value: 'Other', wrap: 'wrap_receivingOther' },
+  { field: 'referringTeam',      value: 'Other', wrap: 'wrap_referringTeamOther' },
   { field: 'grade',              value: 'Other', wrap: 'wrap_gradeOther' },
   { field: 'team',               value: 'Other', wrap: 'wrap_teamOther' },
   { field: 'displaced',          value: 'Yes',   wrap: 'wrap_displacedWhat' },
@@ -375,7 +425,7 @@ var CONDITIONALS = [
 
 /* Single-select fields that fold an "Other" free-text into the summary */
 var OTHER_TEXT = {
-  purpose: 'purposeOther', destination: 'destinationOther',
+  purpose: 'purposeOther', referringTeam: 'referringTeamOther', destination: 'destinationOther',
   receiving: 'receivingOther', grade: 'gradeOther', team: 'teamOther'
 };
 
@@ -385,6 +435,7 @@ var REQUIRED = ['datetime', 'level', 'status', 'indication', 'purpose', 'destina
 /* Text inputs / textareas we persist & include (id without the f_ prefix) */
 var TEXT_FIELDS = ['datetime','supportOther','indicationDetail','purposeOther','destinationOther',
                    'receivingOther','gradeOther','teamOther',
+                   'referringTeamOther','arrivalProcedure',
                    'specialty','hoursAway','displacedWhat','interventionDuringNotes','incidentNotes',
                    'nhsNo','hospNo','age','notes','submitter'];
 
@@ -395,7 +446,10 @@ var LABELS = {
   indication:'Reason / category', indicationDetail:'Reason detail',
   purpose:'Purpose of transfer', purposeOther:'Purpose (other)',
   arrival:'Intervention on arrival',
-  referral:'Referred from', destination:'Destination', destinationOther:'Destination (other)',
+  referral:'Referred from', referringTeam:'Referring team', referringTeamOther:'Referring team (other)',
+  arrivalProcedure:'Procedure at receiving hospital', timeToProcedure:'Arrival to procedure',
+  coverLeft:'Anaesthetic cover left on site', calledIn:'Someone called in to cover',
+  impacts:'Work affected', riskND:'Risk to North Devon', destination:'Destination', destinationOther:'Destination (other)',
   receiving:'Receiving location', receivingOther:'Receiving location (other)',
   specialty:'Specialty needed', grade:'Escort grade', gradeOther:'Grade (other)',
   team:'Transfer team / crew', teamOther:'Team (other)',
@@ -597,7 +651,10 @@ function buildText(){
   L.push(line('indication', val('indication') + (txt('indicationDetail') ? ' — ' + txt('indicationDetail') : '')));
   L.push(line('purpose', val('purpose')));
   L.push(line('arrival', val('arrival')));
+  if (txt('arrivalProcedure')) L.push(line('arrivalProcedure', txt('arrivalProcedure')));
+  L.push(line('timeToProcedure', val('timeToProcedure')));
   L.push(line('referral', val('referral')));
+  L.push(line('referringTeam', val('referringTeam')));
   L.push(line('destination', val('destination')));
   if (val('receiving')) L.push(line('receiving', val('receiving')));
   if (txt('specialty')) L.push(line('specialty', txt('specialty')));
@@ -608,7 +665,16 @@ function buildText(){
   if (txt('hoursAway')) L.push(line('hoursAway', txt('hoursAway')));
   L.push(line('secondEscort', val('secondEscort')));
   L.push(line('returnedAfterShift', val('returnedAfterShift')));
-  L.push(line('displaced', val('displaced') + (pillState.displaced === 'Yes' && txt('displacedWhat') ? ' (' + txt('displacedWhat') + ')' : '')));
+  L.push('');
+  L.push('-- Impact on North Devon --');
+  L.push(line('coverLeft', val('coverLeft')));
+  L.push(line('calledIn', val('calledIn')));
+  L.push(line('displaced', val('displaced')));
+  if (pillState.displaced === 'Yes') {
+    if (val('impacts')) L.push(line('impacts', val('impacts')));
+    if (txt('displacedWhat')) L.push(line('displacedWhat', txt('displacedWhat')));
+  }
+  L.push(line('riskND', val('riskND')));
   L.push('');
   L.push('-- Safety --');
   L.push(line('interventionDuring', val('interventionDuring') + (pillState.interventionDuring === 'Yes' && txt('interventionDuringNotes') ? ' — ' + txt('interventionDuringNotes') : '')));
