@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "—",
+    "am": "M. Abouelsaad",
     "pm": "—"
   },
   "on_call": {
@@ -209,6 +209,10 @@
           {
             "name": "I. Talbot",
             "grade": "CT Anaes"
+          },
+          {
+            "name": "G. Goldsmith",
+            "grade": "FY2"
           }
         ],
         "cancelled": false
@@ -231,18 +235,9 @@
       "type": "Day Case",
       "am": {
         "list": "Arunagiri / UGI",
-        "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "E. Cope",
-            "grade": "ST4"
-          },
-          {
-            "name": "G. Goldsmith",
-            "grade": "FY2"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Plastics LA Only / Plastics",
@@ -384,7 +379,7 @@
   },
   "date": "2026-10-06",
   "day": "Tue",
-  "scraped_at": "2026-10-06T00:39:23.735Z",
+  "scraped_at": "2026-10-06T08:00:15.272Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -488,7 +483,7 @@
         },
         "pm": {
           "list": "Temple / Ortho",
-          "primary": "J. Powell, K. Pyatt",
+          "primary": "K. Pyatt, J. Powell",
           "support": [
             {
               "name": "E. Hosker",
