@@ -309,7 +309,7 @@
     "day": [
       {
         "name": "D.Siriwardana",
-        "grade": "Speciality"
+        "grade": "Fellow"
       },
       {
         "name": "A. Khalid",
@@ -357,7 +357,7 @@
   },
   "date": "2026-10-07",
   "day": "Wed",
-  "scraped_at": "2026-10-07T14:10:50.730Z",
+  "scraped_at": "2026-10-07T14:42:18.081Z",
   "tomorrow": {
     "available_consultants": {
       "am": "B. Bartos",
