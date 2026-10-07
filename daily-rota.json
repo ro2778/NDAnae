@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "K. Pyatt",
-    "pm": "Z. Ungvari J. Powell"
+    "am": "—",
+    "pm": "Z. Ungvari"
   },
   "on_call": {
     "300": {
@@ -96,7 +96,7 @@
       },
       "pm": {
         "list": "Temple / Ortho",
-        "primary": "K. Pyatt",
+        "primary": "J. Powell",
         "support": [
           {
             "name": "C.Nuttall",
@@ -240,13 +240,13 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Banks / Breast",
-        "primary": "B. Bartos",
+        "primary": "B. Bartos, K. Pyatt",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Banks / Breast",
-        "primary": "B. Bartos",
+        "primary": "B. Bartos, K. Pyatt",
         "support": [],
         "cancelled": false
       }
@@ -352,12 +352,12 @@
     "persistent_pain": {
       "label": "Persistent Pain",
       "am": "A. Bennett",
-      "pm": "L. Miller"
+      "pm": "A. Bennett"
     }
   },
   "date": "2026-10-07",
   "day": "Wed",
-  "scraped_at": "2026-10-07T07:38:19.089Z",
+  "scraped_at": "2026-10-07T11:31:51.412Z",
   "tomorrow": {
     "available_consultants": {
       "am": "B. Bartos",
