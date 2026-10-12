@@ -384,7 +384,7 @@
   },
   "date": "2026-10-12",
   "day": "Mon",
-  "scraped_at": "2026-10-12T07:52:10.566Z",
+  "scraped_at": "2026-10-12T12:46:02.718Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -479,7 +479,7 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Sims / Ortho",
-          "primary": "N. Hollister, E. Szelei",
+          "primary": "E. Szelei, N. Hollister",
           "support": [],
           "cancelled": false
         },
@@ -722,7 +722,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "S. Hebard, C. Cheesman",
+        "am": "C. Cheesman, S. Hebard",
         "pm": "S. Hebard"
       },
       "obs_preop": {
