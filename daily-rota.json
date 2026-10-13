@@ -335,7 +335,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "C. Cheesman, S. Hebard",
+      "am": "S. Hebard, C. Cheesman",
       "pm": "S. Hebard"
     },
     "obs_preop": {
@@ -356,7 +356,7 @@
   },
   "date": "2026-10-13",
   "day": "Tue",
-  "scraped_at": "2026-10-13T08:17:12.792Z",
+  "scraped_at": "2026-10-13T12:28:37.380Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
