@@ -356,7 +356,7 @@
   },
   "date": "2026-10-13",
   "day": "Tue",
-  "scraped_at": "2026-10-13T01:08:55.768Z",
+  "scraped_at": "2026-10-13T08:17:12.792Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -502,7 +502,7 @@
         "type": "CEPOD",
         "am": {
           "list": "Evans / Urology",
-          "primary": "K. Tipping",
+          "primary": "M. Casemore",
           "support": [
             {
               "name": "A. Edmonds",
@@ -513,7 +513,7 @@
         },
         "pm": {
           "list": "Evans / Urology",
-          "primary": "K. Tipping",
+          "primary": "M. Casemore",
           "support": [
             {
               "name": "A. Edmonds",
@@ -529,13 +529,13 @@
         "type": "General/CEPOD",
         "am": {
           "list": "CEPOD / CEPOD",
-          "primary": "M. Casemore",
+          "primary": "E. Cope",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "CEPOD / CEPOD",
-          "primary": "M. Casemore",
+          "primary": "E. Cope",
           "support": [],
           "cancelled": false
         }
