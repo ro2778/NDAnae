@@ -368,7 +368,7 @@
   },
   "date": "2026-10-15",
   "day": "Thu",
-  "scraped_at": "2026-10-15T09:37:41.147Z",
+  "scraped_at": "2026-10-15T12:25:44.623Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -702,7 +702,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "C. Cheesman, Hockridge J",
+        "am": "Hockridge J, C. Cheesman",
         "pm": "Hockridge J"
       },
       "obs_preop": {
