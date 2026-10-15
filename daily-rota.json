@@ -348,7 +348,7 @@
     "preop": {
       "label": "Pre-op Clinic",
       "am": "R. Clarke, B. Vidanapathirana",
-      "pm": "R. Clarke, B. Vidanapathirana"
+      "pm": "B. Vidanapathirana, R. Clarke"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -368,7 +368,7 @@
   },
   "date": "2026-10-15",
   "day": "Thu",
-  "scraped_at": "2026-10-15T06:18:37.020Z",
+  "scraped_at": "2026-10-15T09:37:41.147Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -702,7 +702,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "Hockridge J, C. Cheesman",
+        "am": "C. Cheesman, Hockridge J",
         "pm": "Hockridge J"
       },
       "obs_preop": {
