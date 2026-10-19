@@ -356,11 +356,11 @@
   },
   "date": "2026-10-19",
   "day": "Mon",
-  "scraped_at": "2026-10-19T10:31:17.513Z",
+  "scraped_at": "2026-10-19T14:18:04.678Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "N. Hollister J. Achenbach",
-      "pm": "J. Powell B. Vidanapathirana M. Abouelsaad T. Cobby R. Conway Hockridge J N. Hollister T. Oelofse"
+      "am": "J. Achenbach N. Hollister",
+      "pm": "M. Abouelsaad B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J R. Conway T. Cobby"
     },
     "on_call": {
       "300": {
