@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "J. Achenbach N. Hollister",
-    "pm": "M. Abouelsaad B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J R. Conway T. Cobby"
+    "am": "N. Hollister J. Achenbach",
+    "pm": "T. Cobby M. Abouelsaad R. Conway Hockridge J T. Oelofse N. Hollister J. Powell B. Vidanapathirana"
   },
   "on_call": {
     "300": {
@@ -125,12 +125,7 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "A. Edmonds",
-        "support": [
-          {
-            "name": "G. Goldsmith",
-            "grade": "FY2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
@@ -317,7 +312,7 @@
   },
   "date": "2026-10-20",
   "day": "Tue",
-  "scraped_at": "2026-10-20T06:25:54.110Z",
+  "scraped_at": "2026-10-20T09:48:58.904Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -556,7 +551,7 @@
         },
         "pm": {
           "list": "Sharma / Breast",
-          "primary": "Z. Ungvari, C. Cheesman",
+          "primary": "C. Cheesman, Z. Ungvari",
           "support": [
             {
               "name": "T. Hussain",
@@ -646,7 +641,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "B. Vidanapathirana, N. Hollister",
+        "am": "N. Hollister, B. Vidanapathirana",
         "pm": "B. Vidanapathirana"
       },
       "obs_preop": {
