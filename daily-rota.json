@@ -1,7 +1,7 @@
 {
   "available_consultants": {
     "am": "N. Hollister J. Achenbach",
-    "pm": "R. Conway T. Cobby M. Abouelsaad B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J"
+    "pm": "T. Cobby M. Abouelsaad N. Hollister T. Oelofse B. Vidanapathirana J. Powell R. Conway Hockridge J"
   },
   "on_call": {
     "300": {
@@ -312,11 +312,11 @@
   },
   "date": "2026-10-20",
   "day": "Tue",
-  "scraped_at": "2026-10-20T13:18:14.465Z",
+  "scraped_at": "2026-10-20T15:59:52.712Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
-      "pm": "—"
+      "pm": "E. Szelei"
     },
     "on_call": {
       "300": {
@@ -407,14 +407,14 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Griffiths-Jones / Ortho",
-          "primary": "B. Ittzes, M. Paul",
+          "list": "Potential Additional Trauma / Trauma",
+          "primary": "M. Paul",
           "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "Griffiths-Jones / Ortho",
-          "primary": "B. Ittzes, M. Paul",
+          "list": "Potential Extra Trauma / Trauma",
+          "primary": "M. Paul",
           "support": [],
           "cancelled": false
         }
@@ -442,7 +442,7 @@
         "type": "CEPOD",
         "am": {
           "list": "Elhowairis / Urology",
-          "primary": "K. Tipping",
+          "primary": "B. Ittzes",
           "support": [
             {
               "name": "O. Kirby",
@@ -453,7 +453,7 @@
         },
         "pm": {
           "list": "Elhowairis / Urology",
-          "primary": "E. Szelei",
+          "primary": "B. Ittzes",
           "support": [
             {
               "name": "O. Kirby",
@@ -523,13 +523,13 @@
         "type": "Day Case",
         "am": {
           "list": "Jagodzinski / Parkes / Upper Limb Ortho",
-          "primary": "S. Hebard, K. Pyatt",
+          "primary": "K. Pyatt, S. Hebard",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Jagodzinski / Parkes / Upper Limb Ortho",
-          "primary": "S. Hebard, K. Pyatt",
+          "primary": "K. Pyatt, S. Hebard",
           "support": [],
           "cancelled": false
         }
@@ -551,7 +551,7 @@
         },
         "pm": {
           "list": "Sharma / Breast",
-          "primary": "Z. Ungvari, C. Cheesman",
+          "primary": "C. Cheesman, Z. Ungvari",
           "support": [
             {
               "name": "T. Hussain",
@@ -629,8 +629,8 @@
     "support": {
       "esa135": {
         "label": "ESA Bleep 135",
-        "am": "M. Paul N. Hollister",
-        "pm": "M. Paul"
+        "am": "M. Paul",
+        "pm": "E. Szelei M. Paul"
       }
     },
     "activities": {
@@ -641,7 +641,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "B. Vidanapathirana, N. Hollister",
+        "am": "N. Hollister, B. Vidanapathirana",
         "pm": "B. Vidanapathirana"
       },
       "obs_preop": {
