@@ -1,7 +1,7 @@
 {
   "available_consultants": {
     "am": "N. Hollister J. Achenbach",
-    "pm": "B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J R. Conway T. Cobby M. Abouelsaad"
+    "pm": "R. Conway T. Cobby M. Abouelsaad B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J"
   },
   "on_call": {
     "300": {
@@ -312,7 +312,7 @@
   },
   "date": "2026-10-20",
   "day": "Tue",
-  "scraped_at": "2026-10-20T12:30:30.027Z",
+  "scraped_at": "2026-10-20T12:54:39.439Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -540,7 +540,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Sharma / Breast",
-          "primary": "Z. Ungvari, C. Cheesman",
+          "primary": "C. Cheesman, Z. Ungvari",
           "support": [
             {
               "name": "T. Hussain",
