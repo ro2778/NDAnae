@@ -1,7 +1,7 @@
 {
   "available_consultants": {
     "am": "N. Hollister J. Achenbach",
-    "pm": "T. Cobby M. Abouelsaad R. Conway Hockridge J T. Oelofse N. Hollister J. Powell B. Vidanapathirana"
+    "pm": "B. Vidanapathirana J. Powell T. Oelofse N. Hollister Hockridge J R. Conway T. Cobby M. Abouelsaad"
   },
   "on_call": {
     "300": {
@@ -312,11 +312,11 @@
   },
   "date": "2026-10-20",
   "day": "Tue",
-  "scraped_at": "2026-10-20T09:48:58.904Z",
+  "scraped_at": "2026-10-20T12:30:30.027Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
-      "pm": "E. Szelei"
+      "pm": "—"
     },
     "on_call": {
       "300": {
@@ -445,19 +445,19 @@
           "primary": "K. Tipping",
           "support": [
             {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
+              "name": "O. Kirby",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
         },
         "pm": {
           "list": "Elhowairis / Urology",
-          "primary": "K. Tipping",
+          "primary": "E. Szelei",
           "support": [
             {
-              "name": "A. Edmonds",
-              "grade": "CT Anaes"
+              "name": "O. Kirby",
+              "grade": "CT2"
             }
           ],
           "cancelled": false
@@ -499,8 +499,8 @@
           "primary": "D. Sanders",
           "support": [
             {
-              "name": "O. Kirby",
-              "grade": "CT2"
+              "name": "A. Edmonds",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -510,8 +510,8 @@
           "primary": "D. Sanders",
           "support": [
             {
-              "name": "O. Kirby",
-              "grade": "CT2"
+              "name": "A. Edmonds",
+              "grade": "CT Anaes"
             }
           ],
           "cancelled": false
@@ -540,7 +540,7 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Sharma / Breast",
-          "primary": "C. Cheesman, Z. Ungvari",
+          "primary": "Z. Ungvari, C. Cheesman",
           "support": [
             {
               "name": "T. Hussain",
@@ -551,7 +551,7 @@
         },
         "pm": {
           "list": "Sharma / Breast",
-          "primary": "C. Cheesman, Z. Ungvari",
+          "primary": "Z. Ungvari, C. Cheesman",
           "support": [
             {
               "name": "T. Hussain",
@@ -641,7 +641,7 @@
       },
       "preop": {
         "label": "Pre-op Clinic",
-        "am": "N. Hollister, B. Vidanapathirana",
+        "am": "B. Vidanapathirana, N. Hollister",
         "pm": "B. Vidanapathirana"
       },
       "obs_preop": {
