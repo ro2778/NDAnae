@@ -351,8 +351,8 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "Z. Ozfirat",
-      "pm": "Z. Ozfirat"
+      "am": "—",
+      "pm": "—"
     },
     "obs_preop": {
       "label": "Obs Pre-op",
@@ -372,7 +372,7 @@
   },
   "date": "2026-10-22",
   "day": "Thu",
-  "scraped_at": "2026-10-22T06:29:17.258Z",
+  "scraped_at": "2026-10-22T09:50:50.274Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
