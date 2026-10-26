@@ -346,7 +346,7 @@
   },
   "date": "2026-10-26",
   "day": "Mon",
-  "scraped_at": "2026-10-26T06:48:58.922Z",
+  "scraped_at": "2026-10-26T10:57:25.821Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -448,7 +448,12 @@
         "pm": {
           "list": "Baldwick / Upper Limb Ortho",
           "primary": "M. Abouelsaad",
-          "support": [],
+          "support": [
+            {
+              "name": "D.Siriwardana",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -615,7 +620,12 @@
         "am": {
           "list": "Endoscopy / Endoscopy",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "D.Siriwardana",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
