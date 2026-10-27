@@ -1,7 +1,7 @@
 {
   "available_consultants": {
     "am": "—",
-    "pm": "—"
+    "pm": "N. Nath"
   },
   "on_call": {
     "300": {
@@ -91,13 +91,13 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Extra Trauma / Trauma",
+        "list": "CEPOD / CEPOD",
         "primary": "M. Abouelsaad",
         "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Extra Trauma / Trauma",
+        "list": "CEPOD / CEPOD",
         "primary": "M. Abouelsaad",
         "support": [
           {
@@ -114,14 +114,19 @@
       "type": "Trauma",
       "am": {
         "list": "Trauma / Trauma",
-        "primary": "E. Szelei, J. Powell",
+        "primary": "J. Powell",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Trauma / Trauma",
-        "primary": "E. Szelei, J. Powell",
-        "support": [],
+        "primary": "J. Powell",
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -131,9 +136,9 @@
       "type": "CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "T. Johnson",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "CEPOD / CEPOD",
@@ -196,16 +201,16 @@
       "ext": "2488",
       "type": "Day Case",
       "am": {
-        "list": "Roberton / Ortho",
-        "primary": "",
+        "list": "Additional Trauma / Trauma",
+        "primary": "E. Szelei",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       },
       "pm": {
-        "list": "Roberton / Ortho",
-        "primary": "",
+        "list": "Additional Trauma / Trauma",
+        "primary": "E. Szelei",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th7": {
@@ -220,14 +225,9 @@
       },
       "pm": {
         "list": "Eckford / Gynae",
-        "primary": "N. Nath",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th8": {
@@ -304,7 +304,7 @@
     "esa135": {
       "label": "ESA Bleep 135",
       "am": "I. Talbot",
-      "pm": "R. Johnson I. Talbot"
+      "pm": "R. Johnson"
     }
   },
   "activities": {
@@ -336,7 +336,7 @@
   },
   "date": "2026-10-27",
   "day": "Tue",
-  "scraped_at": "2026-10-27T06:42:22.810Z",
+  "scraped_at": "2026-10-27T10:22:11.105Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
