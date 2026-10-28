@@ -85,7 +85,7 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Temple / Ortho",
+        "list": "Potential Extra Trauma? / Trauma",
         "primary": "S. Charoumzadeh Dashti",
         "support": [
           {
@@ -96,7 +96,7 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Temple / Ortho",
+        "list": "Potential Extra Trauma? / Trauma",
         "primary": "S. Charoumzadeh Dashti",
         "support": [
           {
@@ -154,7 +154,12 @@
       "pm": {
         "list": "Al-Abbasi / UGI",
         "primary": "R. Johnson",
-        "support": [],
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -202,14 +207,9 @@
       },
       "pm": {
         "list": "Edmond- (Adult List) / ENT",
-        "primary": "S. Hebard",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th7": {
@@ -338,7 +338,7 @@
   },
   "date": "2026-10-28",
   "day": "Wed",
-  "scraped_at": "2026-10-28T07:14:25.712Z",
+  "scraped_at": "2026-10-28T10:59:14.048Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
