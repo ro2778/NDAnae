@@ -148,7 +148,7 @@
       },
       "pm": {
         "list": "Cartmell / Colorectal",
-        "primary": "J. Preece",
+        "primary": "M. Paul, J. Preece",
         "support": [],
         "cancelled": false
       }
@@ -270,9 +270,9 @@
       },
       "pm": {
         "list": "Worokowicz / Ophth GA",
-        "primary": "M. Paul",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th10": {
@@ -347,7 +347,7 @@
   },
   "date": "2026-10-29",
   "day": "Thu",
-  "scraped_at": "2026-10-29T07:35:18.489Z",
+  "scraped_at": "2026-10-29T11:18:40.639Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
