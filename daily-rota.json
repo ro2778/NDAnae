@@ -99,7 +99,12 @@
       "pm": {
         "list": "Brunton / Ortho",
         "primary": "R. Johnson",
-        "support": [],
+        "support": [
+          {
+            "name": "E. Cope",
+            "grade": "ST4"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -143,7 +148,12 @@
       "pm": {
         "list": "Yeadon / Colorectal",
         "primary": "B. Vidanapathirana",
-        "support": [],
+        "support": [
+          {
+            "name": "I. Talbot",
+            "grade": "CT Anaes"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -243,13 +253,13 @@
         "list": "Obstetrics / Obstetrics",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "Obstetrics / Obstetrics",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th9": {
@@ -265,17 +275,8 @@
       "pm": {
         "list": "DCCV / Cardioversions",
         "primary": "",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          },
-          {
-            "name": "E. Cope",
-            "grade": "ST4"
-          }
-        ],
-        "cancelled": false
+        "support": [],
+        "cancelled": true
       }
     },
     "th10": {
@@ -346,7 +347,7 @@
   },
   "date": "2026-10-30",
   "day": "Fri",
-  "scraped_at": "2026-10-30T07:38:56.313Z",
+  "scraped_at": "2026-10-30T11:11:24.649Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -441,15 +442,15 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Brunton GLANSO / Ortho",
-          "primary": "T. Oelofse [Glanso]",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Brunton GLANSO / Ortho",
-          "primary": "T. Oelofse [Glanso]",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th2": {
