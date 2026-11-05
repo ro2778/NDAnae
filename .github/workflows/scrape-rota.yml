@@ -22,7 +22,9 @@ permissions:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moved to 26.04 on 31 Oct 2026, which Playwright
+    # cannot install Chromium on yet. Move back once Playwright supports it.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4

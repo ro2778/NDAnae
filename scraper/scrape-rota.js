@@ -88,19 +88,54 @@ function extractActivityStaff(row) {
   const page = await browser.newPage();
 
   // Login
+  // If CLW changes its layout, log where we ended up and which of the
+  // selectors we rely on are still present. Structure only, no page text:
+  // the repo is public, so Actions logs are too.
+  async function failWithDiagnostics(stage, err) {
+    console.error(`FAILED at ${stage}: ${err.message.split('\n')[0]}`);
+    try {
+      console.error('URL: ' + page.url().split('?')[0]);
+      console.error('Title: ' + await page.title());
+      const counts = await page.evaluate(() => {
+        const sel = ['#username', '#password', 'button[type="submit"]', 'form',
+          'table', 'table.rota', '.rslot', '.slot', 'div.sp', 'iframe'];
+        const out = {};
+        sel.forEach(s => { out[s] = document.querySelectorAll(s).length; });
+        out.tableClasses = Array.from(document.querySelectorAll('table'))
+          .slice(0, 10).map(t => t.className || '(none)');
+        out.inputs = Array.from(document.querySelectorAll('input'))
+          .slice(0, 10).map(i => (i.type || '') + '#' + (i.id || '') + '[' + (i.name || '') + ']');
+        return out;
+      });
+      console.error('Selectors: ' + JSON.stringify(counts));
+    } catch (e) {
+      console.error('Could not collect diagnostics: ' + e.message);
+    }
+    await browser.close();
+    process.exit(1);
+  }
+
   console.log('Logging in...');
-  await page.goto(CLW_URL, { waitUntil: 'networkidle' });
-  await page.fill('#username', USER);
-  await page.fill('#password', PASS);
-  await Promise.all([
-    page.waitForURL('**/rota_master/**', { timeout: 15000 }),
-    page.click('button[type="submit"]')
-  ]);
+  try {
+    await page.goto(CLW_URL, { waitUntil: 'networkidle' });
+    await page.fill('#username', USER);
+    await page.fill('#password', PASS);
+    await Promise.all([
+      page.waitForURL('**/rota_master/**', { timeout: 15000 }),
+      page.click('button[type="submit"]')
+    ]);
+  } catch (e) {
+    await failWithDiagnostics('login', e);
+  }
   console.log('Logged in. Navigating to rota...');
 
   // Navigate to weekly rota
-  await page.goto(ROTA_URL, { waitUntil: 'networkidle' });
-  await page.waitForSelector('table.rota', { timeout: 10000 });
+  try {
+    await page.goto(ROTA_URL, { waitUntil: 'networkidle' });
+    await page.waitForSelector('table.rota', { timeout: 10000 });
+  } catch (e) {
+    await failWithDiagnostics('rota page', e);
+  }
   console.log('Rota page loaded.');
 
   // Determine today's and tomorrow's columns
@@ -201,6 +236,10 @@ function extractActivityStaff(row) {
   // Extract today
   const rawData = await extractColumn(todayCol);
   console.log(`Today: extracted ${rawData.length} rows.`);
+  if (rawData.length === 0) {
+    // Don't overwrite the published rota with an empty one
+    await failWithDiagnostics('extract', new Error('no rota rows found in table.rota'));
+  }
 
   // Extract tomorrow (Mon-Sat only)
   var rawTomorrow = [];
