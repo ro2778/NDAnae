@@ -385,7 +385,7 @@
   },
   "date": "2026-11-05",
   "day": "Thu",
-  "scraped_at": "2026-11-05T11:44:57.710Z",
+  "scraped_at": "2026-11-05T12:56:24.148Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -396,7 +396,7 @@
         "label": "Anaesthetics On Call",
         "bleep": "300",
         "am": "D. Sanders",
-        "pm": "D. Sanders OCC. Don",
+        "pm": "C. Don OCD. Sanders",
         "eve": "D. Sanders",
         "night": "D. Sanders"
       },
