@@ -7,10 +7,10 @@
     "300": {
       "label": "Anaesthetics On Call",
       "bleep": "300",
-      "am": "D. Sanders",
-      "pm": "C. Don OCD. Sanders",
-      "eve": "D. Sanders",
-      "night": "D. Sanders"
+      "am": "Z. Ungvari",
+      "pm": "Z. Ungvari",
+      "eve": "Z. Ungvari",
+      "night": "Z. Ungvari"
     },
     "504": {
       "label": "ITU Resident",
@@ -36,13 +36,11 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "E. Cope",
-        "grade": "ST4",
+        "name": "E. Szelei",
         "role": "LD"
       },
       "pm": {
-        "name": "E. Cope",
-        "grade": "ST4",
+        "name": "E. Szelei",
         "role": "LD"
       },
       "eve": {
@@ -58,16 +56,15 @@
       "label": "Maternity Rota",
       "bleep": "822",
       "am": {
-        "name": "",
-        "role": ""
+        "name": "M. Paul",
+        "role": "LD"
       },
       "pm": {
-        "name": "",
-        "role": ""
+        "name": "M. Paul",
+        "role": "LD"
       },
       "eve": {
-        "name": "M. Paul 822 LDD.Siriwardana",
-        "grade": "Fellow",
+        "name": "M. Paul",
         "role": "LD"
       },
       "night": {
@@ -79,10 +76,10 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "K. Tipping",
-      "pm": "K. Tipping",
-      "eve": "K. Tipping",
-      "night": "K. Tipping"
+      "am": "S.Rowe",
+      "pm": "S.Rowe",
+      "eve": "S.Rowe",
+      "night": "S.Rowe"
     }
   },
   "theatres": {
@@ -91,14 +88,14 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Van Heerden / Kale / Ortho",
-        "primary": "D.Siriwardana, J. Powell",
+        "list": "Cove GLANSO / Ortho",
+        "primary": "T. Oelofse [Glanso]",
         "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Van Heerden / Kale / Ortho",
-        "primary": "D.Siriwardana, J. Powell",
+        "list": "Cove GLANSO / Ortho",
+        "primary": "T. Oelofse [Glanso]",
         "support": [],
         "cancelled": false
       }
@@ -108,25 +105,15 @@
       "ext": "3141",
       "type": "Trauma",
       "am": {
-        "list": "Trauma / Trauma",
-        "primary": "D. Beard",
-        "support": [
-          {
-            "name": "M. Cannings",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Trauma / Trauma",
-        "primary": "D. Beard",
-        "support": [
-          {
-            "name": "M. Cannings",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       }
     },
@@ -135,25 +122,15 @@
       "ext": "3142",
       "type": "CEPOD",
       "am": {
-        "list": "Cartmell / Colorectal",
-        "primary": "M. Casemore",
-        "support": [
-          {
-            "name": "C.Nuttall",
-            "grade": "CT1"
-          }
-        ],
+        "list": "CEPOD / CEPOD",
+        "primary": "E. Szelei",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Cartmell / Colorectal",
-        "primary": "M. Casemore",
-        "support": [
-          {
-            "name": "C.Nuttall",
-            "grade": "CT1"
-          }
-        ],
+        "list": "CEPOD / CEPOD",
+        "primary": "E. Szelei",
+        "support": [],
         "cancelled": false
       }
     },
@@ -162,21 +139,16 @@
       "ext": "3167",
       "type": "General/CEPOD",
       "am": {
-        "list": "CEPOD / CEPOD",
-        "primary": "E. Cope",
+        "list": "Al-Alabbasi GLANSO / UGI",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
-        "list": "CEPOD / CEPOD",
-        "primary": "E. Cope",
-        "support": [
-          {
-            "name": "S. Coates",
-            "grade": "ACCS Anaes"
-          }
-        ],
-        "cancelled": false
+        "list": "Al-Alabbasi GLANSO / UGI",
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th5": {
@@ -184,25 +156,15 @@
       "ext": "3247",
       "type": "Day Case",
       "am": {
-        "list": "Bain / Colorectal",
-        "primary": "Hockridge J",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Bain / Colorectal",
-        "primary": "Hockridge J",
-        "support": [
-          {
-            "name": "A. Khalid",
-            "grade": "ACCS Med"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       }
     },
@@ -211,25 +173,15 @@
       "ext": "2488",
       "type": "Day Case",
       "am": {
-        "list": "Knibb / Comm Dental",
-        "primary": "Z. Ungvari",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Bunting / UGI",
-        "primary": "M. Paul",
-        "support": [
-          {
-            "name": "I. Talbot",
-            "grade": "CT Anaes"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       }
     },
@@ -238,25 +190,15 @@
       "ext": "3709",
       "type": "Gynae/Breast",
       "am": {
-        "list": "May / Gynae",
-        "primary": "R. O'Byrne",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Eckford / Gynae",
-        "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "T. Western",
-            "grade": "Fellow"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       }
     },
@@ -265,16 +207,16 @@
       "ext": "3868",
       "type": "Obstetrics",
       "am": {
-        "list": "Obstetrics / Obstetrics",
+        "list": "",
         "primary": "",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       },
       "pm": {
-        "list": "Obstetrics / Obstetrics",
+        "list": "",
         "primary": "",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th9": {
@@ -282,21 +224,16 @@
       "ext": "",
       "type": "Eyes",
       "am": {
-        "list": "Dixit Additional GA / Ophth GA",
-        "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "S. Coates",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "list": "",
+        "primary": "",
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Riley Additional GA / Ophth GA",
+        "list": "",
         "primary": "",
         "support": [],
-        "cancelled": true
+        "cancelled": false
       }
     },
     "th10": {
@@ -320,22 +257,13 @@
   "itu_day": {
     "label": "ITU Day Staff",
     "ext": "2707",
-    "day": [
-      {
-        "name": "A. Edmonds",
-        "grade": "CT Anaes"
-      },
-      {
-        "name": "J.Evenden",
-        "grade": "FY1"
-      }
-    ]
+    "day": []
   },
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "D.Siriwardana I. Talbot T. Western",
-      "pm": "D.Siriwardana I. Talbot T. Western"
+      "am": "—",
+      "pm": "—"
     }
   },
   "activities": {
@@ -346,7 +274,7 @@
     },
     "preop": {
       "label": "Pre-op Clinic",
-      "am": "C. Cheesman",
+      "am": "—",
       "pm": "—"
     },
     "obs_preop": {
@@ -365,9 +293,9 @@
       "pm": "—"
     }
   },
-  "date": "2026-11-06",
-  "day": "Fri",
-  "scraped_at": "2026-11-06T23:40:25.998Z",
+  "date": "2026-11-07",
+  "day": "Sat",
+  "scraped_at": "2026-11-07T07:40:30.607Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -377,10 +305,10 @@
       "300": {
         "label": "Anaesthetics On Call",
         "bleep": "300",
-        "am": "Z. Ungvari",
-        "pm": "Z. Ungvari",
-        "eve": "Z. Ungvari",
-        "night": "Z. Ungvari"
+        "am": "B. Vidanapathirana",
+        "pm": "B. Vidanapathirana",
+        "eve": "B. Vidanapathirana",
+        "night": "B. Vidanapathirana"
       },
       "504": {
         "label": "ITU Resident",
@@ -446,10 +374,10 @@
       "itu_consultant": {
         "label": "ITU Consultant On Call",
         "bleep": "505",
-        "am": "S.Rowe",
-        "pm": "S.Rowe",
-        "eve": "S.Rowe",
-        "night": "S.Rowe"
+        "am": "K. Tipping",
+        "pm": "K. Tipping",
+        "eve": "K. Tipping",
+        "night": "K. Tipping"
       }
     },
     "theatres": {
@@ -458,14 +386,14 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Cove GLANSO / Ortho",
-          "primary": "T. Oelofse [Glanso]",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "Cove GLANSO / Ortho",
-          "primary": "T. Oelofse [Glanso]",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         }
@@ -492,14 +420,14 @@
         "ext": "3142",
         "type": "CEPOD",
         "am": {
-          "list": "CEPOD / CEPOD",
-          "primary": "E. Szelei",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         },
         "pm": {
-          "list": "CEPOD / CEPOD",
-          "primary": "E. Szelei",
+          "list": "",
+          "primary": "",
           "support": [],
           "cancelled": false
         }
@@ -509,16 +437,26 @@
         "ext": "3167",
         "type": "General/CEPOD",
         "am": {
-          "list": "Al-Alabbasi GLANSO / UGI",
-          "primary": "",
-          "support": [],
-          "cancelled": true
+          "list": "CEPOD / CEPOD",
+          "primary": "E. Szelei",
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
+          "cancelled": false
         },
         "pm": {
-          "list": "Al-Alabbasi GLANSO / UGI",
-          "primary": "",
-          "support": [],
-          "cancelled": true
+          "list": "CEPOD / CEPOD",
+          "primary": "E. Szelei",
+          "support": [
+            {
+              "name": "E. Hosker",
+              "grade": "CT Anaes"
+            }
+          ],
+          "cancelled": false
         }
       },
       "th5": {
@@ -663,7 +601,7 @@
         "pm": "—"
       }
     },
-    "date": "2026-11-07",
-    "day": "Sat"
+    "date": "2026-11-08",
+    "day": "Sun"
   }
 }
