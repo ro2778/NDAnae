@@ -23,10 +23,6 @@
       },
       "eve": {
         "name": "I. Talbot"
-      },
-      "night": {
-        "name": "M. Cannings",
-        "grade": "ACCS Anaes"
       }
     },
     "508": {
@@ -342,10 +338,10 @@
   },
   "date": "2026-11-09",
   "day": "Mon",
-  "scraped_at": "2026-11-09T13:38:00.362Z",
+  "scraped_at": "2026-11-09T17:06:25.408Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "Z. Ozfirat T. Cobby",
+      "am": "T. Cobby Z. Ozfirat",
       "pm": "T. Cobby"
     },
     "on_call": {
@@ -368,10 +364,6 @@
         },
         "eve": {
           "name": "M. Ruiz"
-        },
-        "night": {
-          "name": "M. Cannings",
-          "grade": "ACCS Anaes"
         }
       },
       "508": {
