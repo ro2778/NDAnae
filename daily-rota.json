@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "T. Cobby Z. Ozfirat",
+    "am": "Z. Ozfirat T. Cobby",
     "pm": "T. Cobby"
   },
   "on_call": {
@@ -80,7 +80,7 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Cove / Ortho",
+        "list": "Extra trauma list / Trauma",
         "primary": "B. Ittzes, T. Mitchell",
         "support": [
           {
@@ -91,7 +91,7 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Cove / Ortho",
+        "list": "Extra trauma list / Trauma",
         "primary": "B. Ittzes, T. Mitchell",
         "support": [
           {
@@ -196,7 +196,7 @@
       "ext": "3247",
       "type": "Day Case",
       "am": {
-        "list": "Ong / Urology",
+        "list": "Extra CEPOD / CEPOD",
         "primary": "Hockridge J",
         "support": [
           {
@@ -358,7 +358,7 @@
   },
   "date": "2026-11-10",
   "day": "Tue",
-  "scraped_at": "2026-11-10T01:54:33.366Z",
+  "scraped_at": "2026-11-10T08:45:20.737Z",
   "tomorrow": {
     "available_consultants": {
       "am": "N. Hollister",
@@ -614,7 +614,7 @@
         },
         "pm": {
           "list": "Banks / Breast",
-          "primary": "C. Cheesman, Z. Ungvari",
+          "primary": "Z. Ungvari, C. Cheesman",
           "support": [],
           "cancelled": false
         }
@@ -676,11 +676,11 @@
       "ext": "2707",
       "day": [
         {
-          "name": "A. Edmonds",
+          "name": "E. Hosker",
           "grade": "CT Anaes"
         },
         {
-          "name": "E. Hosker",
+          "name": "A. Edmonds",
           "grade": "CT Anaes"
         },
         {
