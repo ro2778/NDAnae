@@ -252,7 +252,7 @@
       },
       "pm": {
         "list": "Banks / Breast",
-        "primary": "C. Cheesman, Z. Ungvari",
+        "primary": "Z. Ungvari, C. Cheesman",
         "support": [],
         "cancelled": false
       }
@@ -359,7 +359,7 @@
   },
   "date": "2026-11-11",
   "day": "Wed",
-  "scraped_at": "2026-11-11T12:26:45.846Z",
+  "scraped_at": "2026-11-11T18:59:14.018Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -597,23 +597,13 @@
         "am": {
           "list": "Kemp / Gynae",
           "primary": "B. Ittzes",
-          "support": [
-            {
-              "name": "Kellermann",
-              "grade": "M CT1"
-            }
-          ],
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Rao / Gynae",
           "primary": "D. Beard",
-          "support": [
-            {
-              "name": "Kellermann",
-              "grade": "M CT1"
-            }
-          ],
+          "support": [],
           "cancelled": false
         }
       },
