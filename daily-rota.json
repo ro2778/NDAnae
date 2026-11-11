@@ -252,7 +252,7 @@
       },
       "pm": {
         "list": "Banks / Breast",
-        "primary": "Z. Ungvari, C. Cheesman",
+        "primary": "C. Cheesman, Z. Ungvari",
         "support": [],
         "cancelled": false
       }
@@ -359,7 +359,7 @@
   },
   "date": "2026-11-11",
   "day": "Wed",
-  "scraped_at": "2026-11-11T08:11:16.710Z",
+  "scraped_at": "2026-11-11T12:26:45.846Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
