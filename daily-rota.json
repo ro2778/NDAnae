@@ -357,7 +357,7 @@
   },
   "date": "2026-11-12",
   "day": "Thu",
-  "scraped_at": "2026-11-12T13:31:51.967Z",
+  "scraped_at": "2026-11-12T15:44:39.604Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -549,7 +549,7 @@
           "primary": "J. Preece",
           "support": [
             {
-              "name": "M. Cannings",
+              "name": "Y. Johnson",
               "grade": "ACCS Anaes"
             }
           ],
@@ -608,10 +608,10 @@
         },
         "pm": {
           "list": "Nicholson / Gynae",
-          "primary": "",
+          "primary": "T. Oelofse",
           "support": [
             {
-              "name": "Y. Johnson",
+              "name": "M. Cannings",
               "grade": "ACCS Anaes"
             }
           ],
