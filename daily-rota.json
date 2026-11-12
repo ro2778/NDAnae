@@ -357,7 +357,7 @@
   },
   "date": "2026-11-12",
   "day": "Thu",
-  "scraped_at": "2026-11-12T08:45:02.553Z",
+  "scraped_at": "2026-11-12T13:31:51.967Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -607,8 +607,8 @@
           "cancelled": false
         },
         "pm": {
-          "list": "Nicholson / UGI",
-          "primary": "K. Pyatt",
+          "list": "Nicholson / Gynae",
+          "primary": "",
           "support": [
             {
               "name": "Y. Johnson",
