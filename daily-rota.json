@@ -35,11 +35,13 @@
       "label": "Emergency Rota",
       "bleep": "508",
       "am": {
-        "name": "E. Martinez-Estrada",
+        "name": "M. Cannings",
+        "grade": "ACCS Anaes",
         "role": "LD"
       },
       "pm": {
-        "name": "E. Martinez-Estrada",
+        "name": "M. Cannings",
+        "grade": "ACCS Anaes",
         "role": "LD"
       },
       "eve": {
@@ -131,13 +133,13 @@
       "type": "CEPOD",
       "am": {
         "list": "CEPOD / CEPOD",
-        "primary": "E. Martinez-Estrada",
+        "primary": "M. Cannings",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
-        "primary": "E. Martinez-Estrada",
+        "primary": "M. Cannings",
         "support": [],
         "cancelled": false
       }
@@ -237,24 +239,14 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Nicholson / Gynae",
-        "primary": "T. Oelofse",
-        "support": [
-          {
-            "name": "M. Cannings",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "primary": "E. Martinez-Estrada",
+        "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Nicholson / Gynae",
-        "primary": "T. Oelofse",
-        "support": [
-          {
-            "name": "M. Cannings",
-            "grade": "ACCS Anaes"
-          }
-        ],
+        "primary": "E. Martinez-Estrada",
+        "support": [],
         "cancelled": false
       }
     },
@@ -360,7 +352,7 @@
   },
   "date": "2026-11-13",
   "day": "Fri",
-  "scraped_at": "2026-11-13T08:37:37.201Z",
+  "scraped_at": "2026-11-13T12:52:07.468Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
