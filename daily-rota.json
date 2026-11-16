@@ -96,7 +96,7 @@
       },
       "pm": {
         "list": "Extra Trauma / Trauma",
-        "primary": "K. Pyatt, S. Charoumzadeh Dashti",
+        "primary": "S. Charoumzadeh Dashti, K. Pyatt",
         "support": [],
         "cancelled": false
       }
@@ -336,7 +336,7 @@
   },
   "date": "2026-11-16",
   "day": "Mon",
-  "scraped_at": "2026-11-16T13:23:31.295Z",
+  "scraped_at": "2026-11-16T16:43:01.441Z",
   "tomorrow": {
     "available_consultants": {
       "am": "T. Cobby",
@@ -551,24 +551,14 @@
         "type": "Day Case",
         "am": {
           "list": "Cove / Ortho",
-          "primary": "S. Charoumzadeh Dashti",
-          "support": [
-            {
-              "name": "T. Johnson",
-              "grade": "Fellow"
-            }
-          ],
+          "primary": "",
+          "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Cove / Ortho",
-          "primary": "S. Charoumzadeh Dashti",
-          "support": [
-            {
-              "name": "T. Johnson",
-              "grade": "Fellow"
-            }
-          ],
+          "primary": "",
+          "support": [],
           "cancelled": false
         }
       },
@@ -579,13 +569,23 @@
         "am": {
           "list": "Eskandar / Gynae",
           "primary": "Z. Ozfirat",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Johnson",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Eskandar / Gynae",
           "primary": "N. Nath",
-          "support": [],
+          "support": [
+            {
+              "name": "T. Johnson",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -690,7 +690,7 @@
       },
       "persistent_pain": {
         "label": "Persistent Pain",
-        "am": "—",
+        "am": "S. Charoumzadeh Dashti",
         "pm": "—"
       }
     },
