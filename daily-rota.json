@@ -214,13 +214,13 @@
         "list": "Cove / Ortho",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "Cove / Ortho",
         "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th7": {
@@ -357,7 +357,7 @@
   },
   "date": "2026-11-17",
   "day": "Tue",
-  "scraped_at": "2026-11-17T02:21:40.893Z",
+  "scraped_at": "2026-11-17T09:40:15.046Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
