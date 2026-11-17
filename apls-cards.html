@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>APLS Flip Cards — ND Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700;
+  --red: #e74c3c; --green: #27ae60; --shadow: rgba(0,0,0,0.4);
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b;
+  --red: #c0392b; --green: #1e8449; --shadow: rgba(0,0,0,0.08);
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100dvh;
+}
+.container { max-width: 600px; margin: 0 auto; padding: 12px 12px 32px; }
+.header { display: flex; align-items: center; justify-content: center; position: relative; padding: 8px 44px 4px; }
+h1 { font-size: 18px; color: var(--accent); }
+.back-link {
+  position: absolute; left: 4px; top: 50%; transform: translateY(-50%);
+  font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 6px;
+}
+.sub { text-align: center; font-size: 11px; color: var(--text3); margin-bottom: 12px; }
+
+/* Deck chips */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip {
+  padding: 7px 12px; border-radius: 16px; border: 1px solid var(--border);
+  background: var(--bg2); color: var(--text2); font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip .n { opacity: 0.7; font-weight: 400; margin-left: 3px; }
+
+/* Progress */
+.progress-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+.bar { height: 6px; border-radius: 3px; background: var(--bg3); border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px; }
+.bar-fill { height: 100%; width: 0; background: var(--green); transition: width 0.3s; }
+
+/* Card */
+.card { cursor: pointer; user-select: none; -webkit-user-select: none; }
+.face {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: 0 4px 14px var(--shadow); padding: 20px 18px; min-height: 260px;
+  display: flex; flex-direction: column; justify-content: center; text-align: center;
+  transition: transform 0.16s ease-in;
+}
+.face.back { border-color: var(--accent); }
+.face.squash { transform: scaleX(0); }
+.deck-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gold); margin-bottom: 14px; }
+.q { font-size: 20px; font-weight: 700; line-height: 1.35; }
+.a { font-size: 17px; line-height: 1.55; color: var(--text); }
+.a b { color: var(--accent); }
+.a small { color: var(--text2); font-size: 13px; }
+.a table { margin: 0 auto; border-collapse: collapse; font-size: 15px; text-align: left; }
+.a td { padding: 3px 8px; border-bottom: 1px solid var(--border); }
+.a td:first-child { color: var(--text2); font-weight: 600; }
+.a td:last-child { font-family: 'SF Mono', Menlo, monospace; color: var(--accent); font-weight: 700; }
+.hint { font-size: 11px; color: var(--text3); margin-top: 16px; }
+
+/* Buttons */
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.btn {
+  padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg2);
+  font-size: 15px; font-weight: 700; cursor: pointer; color: var(--text);
+}
+.btn.again { color: var(--red); border-color: var(--red); }
+.btn.got { color: #fff; background: var(--green); border-color: var(--green); }
+.btn:disabled { opacity: 0.35; }
+.tools { display: flex; justify-content: center; gap: 18px; margin-top: 16px; }
+.link { background: none; border: none; color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; padding: 6px; }
+.toggle-row { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--text2); margin-top: 10px; }
+.toggle-row input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+.done { text-align: center; padding: 40px 16px; }
+.done h2 { color: var(--green); font-size: 20px; margin-bottom: 8px; }
+.done p { color: var(--text2); font-size: 14px; margin-bottom: 18px; }
+.footer { text-align: center; font-size: 10px; color: var(--text3); line-height: 1.5; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <a class="back-link" href="drug-calc.html">&#8249; Calculator</a>
+  <h1>APLS Flip Cards</h1>
+</div>
+<div class="container">
+  <div class="sub">Tap the card to flip it, then mark whether you knew it. Cards you miss come back.</div>
+  <div class="chips" id="chips"></div>
+
+  <div class="progress-row"><span id="progText"></span><span id="knownText"></span></div>
+  <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+
+  <div id="stage"></div>
+
+  <div class="actions" id="actions">
+    <button class="btn again" id="againBtn" disabled>Again</button>
+    <button class="btn got" id="gotBtn" disabled>Got it</button>
+  </div>
+  <div class="toggle-row">
+    <input type="checkbox" id="hideKnown"><label for="hideKnown">Skip cards I already know</label>
+  </div>
+  <div class="tools">
+    <button class="link" id="shuffleBtn">Shuffle &amp; restart</button>
+    <button class="link" id="resetBtn">Reset progress</button>
+  </div>
+
+  <div class="footer">
+    Based on APLS 7th edition and RCUK 2025 Paediatric Life Support.<br>
+    For revision only. Check your course manual and local guidelines.
+  </div>
+</div>
+
+<script>
+// APLS flip cards. Sources: APLS 7th edition aide memoire, RCUK 2025 Paediatric Life Support.
+// Each card: [deck, front, back]
+const CARDS = [
+  // ---------- NUMBERS ----------
+  ["Numbers", "Weight formula: 0–12 months", "(0.5 × age in months) + 4"],
+  ["Numbers", "Weight formula: 1–5 years", "(2 × age) + 8"],
+  ["Numbers", "Weight formula: 6–12 years", "(3 × age) + 7"],
+  ["Numbers", "What does WETFLAG stand for?", "Weight · Energy · Tube · Fluid · Lorazepam · Adrenaline · Glucose"],
+  ["Numbers", "E: defibrillation energy", "4 J/kg (not above the adult dose, 120–200 J by device).<br>After 5 shocks in refractory VF/pVT: step up to a max of 8 J/kg"],
+  ["Numbers", "T: cuffed ET tube internal diameter", "Age/4 + 3.5<br><small>(uncuffed: age/4 + 4)</small>"],
+  ["Numbers", "T: oral and nasal ET tube length", "Oral: age/2 + 12 cm<br>Nasal: age/2 + 15 cm"],
+  ["Numbers", "F: fluid bolus", "10 ml/kg balanced crystalloid, reassess after each.<br>Max 500 ml per bolus age 14+"],
+  ["Numbers", "L: lorazepam dose", "0.1 mg/kg IV/IO, max 4 mg"],
+  ["Numbers", "A: adrenaline dose in arrest", "10 mcg/kg IV/IO = 0.1 ml/kg of 1:10,000<br>Max 1 mg (10 ml)"],
+  ["Numbers", "G: glucose for hypoglycaemia", "10% glucose 3 ml/kg (APLS)<br><small>EPALS uses 2 ml/kg</small>"],
+  ["Numbers", "Amiodarone dose in arrest", "5 mg/kg IV/IO<br>Max 300 mg first dose, 150 mg second"],
+  ["Numbers", "Atropine dose", "20 mcg/kg (vagal bradycardia, pre-RSI)"],
+  ["Numbers", "Circulating blood volume", "About 80 ml/kg (infants up to 90 ml/kg)"],
+  ["Numbers", "Maintenance fluid (Holliday–Segar)", "100 / 50 / 20 ml/kg/day for the 1st 10 kg / 2nd 10 kg / each kg above 20<br>= 4 / 2 / 1 ml/kg/h"],
+  ["Numbers", "Target urine output", "Child 1 ml/kg/h<br>Infant 2 ml/kg/h"],
+  ["Numbers", "Drug dosing in an overweight child", "Use ideal body weight for most resus drugs. Never exceed the adult dose"],
+  ["Numbers", "WETFLAG for a 4-year-old", "16 kg · 64 J (round to the device) · 4.5 cuffed, 14 cm oral · 160 ml fluid · lorazepam 1.6 mg · adrenaline 160 mcg (1.6 ml of 1:10,000) · 48 ml 10% glucose"],
+
+  // ---------- NORMAL VALUES ----------
+  ["Normals", "Normal RR and HR: birth–3 months", "RR 25–50<br>HR 115–170<br>SBP 5th centile 65–75"],
+  ["Normals", "Normal RR and HR: 6–12 months", "RR 20–40<br>HR 110–160<br>SBP 5th centile 65–75"],
+  ["Normals", "Normal RR and HR: 2–4 years", "RR 20–30<br>HR 80–150<br>SBP 5th centile 70–90"],
+  ["Normals", "Normal RR and HR: 5–7 years", "RR 20–30<br>HR 80–135<br>SBP 5th centile 80–90"],
+  ["Normals", "Normal RR and HR: 8–11 years", "RR 15–25<br>HR 70–120<br>SBP 5th centile 80–90"],
+  ["Normals", "Normal RR and HR: 12 years+", "RR 12–24<br>HR 60–115<br>SBP 5th centile 90–105"],
+  ["Normals", "Rule-of-thumb lower limit of systolic BP", "70 + (2 × age in years) mmHg"],
+  ["Normals", "Abnormal capillary refill", "Central CRT over 2 seconds"],
+  ["Normals", "SpO2 target", "94–98%. If you can't measure it, give high-flow O2"],
+  ["Normals", "Which vital sign change is late and which is pre-terminal?", "Hypotension is late.<br>Bradycardia is pre-terminal.<br>Tachycardia and tachypnoea come early"],
+  ["Normals", "AVPU 'P' roughly equals which GCS?", "GCS 8 or less. Protect the airway"],
+
+  // ---------- ABCDE ----------
+  ["ABCDE", "The 4 phases of the APLS structured approach", "1. Primary assessment and resuscitation<br>2. Secondary assessment and key emergency treatment<br>3. Emergency treatment<br>4. Stabilisation and transfer"],
+  ["ABCDE", "What do you do BEFORE the child arrives?", "Age and weight → WETFLAG out loud, give out roles, prepare kit and drugs, call seniors or PICU if needed"],
+  ["ABCDE", "SAFE approach", "Shout for help · Approach with care · Free from danger · Evaluate ABC"],
+  ["ABCDE", "A: assess", "Talking or crying? Stridor, gurgling, snoring? Look, listen, feel"],
+  ["ABCDE", "A: interventions", "Infant: neutral position. Child: sniffing position. Jaw thrust, suction, adjuncts. Call an anaesthetist and ENT early for upper airway obstruction"],
+  ["ABCDE", "B: the three Es", "<b>Effort</b>: RR, recession, accessory muscles, grunting, flaring, head bobbing<br><b>Efficacy</b>: chest movement, air entry, SpO2<br><b>Effects</b>: HR, colour, mental state"],
+  ["ABCDE", "3 reasons for respiratory failure WITHOUT increased effort", "Exhaustion · CNS depression · Neuromuscular disease"],
+  ["ABCDE", "B: first intervention", "High-flow O2 at 15 L via non-rebreather. Bag-mask if breathing is inadequate"],
+  ["ABCDE", "C: assess", "HR, central and peripheral pulse volume, central CRT, BP, skin temperature.<br>Effects: fast breathing without extra effort, mental state, urine output"],
+  ["ABCDE", "Signs of heart failure in a child", "Enlarged liver edge, gallop rhythm, murmur, crackles, raised JVP"],
+  ["ABCDE", "C: interventions", "IV or IO early (IO after 2 failed IV attempts). Bloods: glucose, gas, FBC, U&E, culture, crossmatch. 10 ml/kg bolus then reassess"],
+  ["ABCDE", "D: assess", "AVPU, pupils, posture, glucose, seizures, signs of raised ICP"],
+  ["ABCDE", "DEFG", "Don't Ever Forget Glucose"],
+  ["ABCDE", "E: assess", "Temperature, rash (purpura?), injuries and NAI, full exposure then keep warm. AMPLE history"],
+  ["ABCDE", "After ABCDE, what next?", "Reassess from A, summarise to the team, secondary assessment, plan definitive care or transfer"],
+
+  // ---------- ARREST ----------
+  ["Arrest", "How many rescue breaths in paediatric BLS?", "5"],
+  ["Arrest", "Compression to ventilation ratio", "15:2"],
+  ["Arrest", "Compression rate and depth", "100–120/min, at least a third of the AP chest depth<br>(about 4 cm infant, 5 cm child)"],
+  ["Arrest", "Infant compression technique (RCUK 2025)", "Two-thumb encircling for all rescuers (replaces two fingers)"],
+  ["Arrest", "Pad position (RCUK 2025)", "Anteroposterior if under 25 kg<br>Anterolateral if larger"],
+  ["Arrest", "When do you start CPR in bradycardia?", "HR under 60 with poor perfusion despite adequate oxygenation and ventilation"],
+  ["Arrest", "Non-shockable: adrenaline timing", "10 mcg/kg as soon as possible, then every 3–5 min (every other cycle)"],
+  ["Arrest", "Shockable: when are the first adrenaline and amiodarone given?", "After the 3rd shock: adrenaline 10 mcg/kg + amiodarone 5 mg/kg"],
+  ["Arrest", "Shockable: when is the 2nd amiodarone given?", "After the 5th shock (5 mg/kg, max 150 mg)"],
+  ["Arrest", "Monitored arrest with 3 stacked shocks: drug timing (RCUK 2025)", "Adrenaline + amiodarone after the 5th shock; 2nd amiodarone after the 7th"],
+  ["Arrest", "Ventilation rate during CPR with an advanced airway", "Infant 25 · 1–8 years 20 · 8–12 years 15 · over 12 years 10 per min, with continuous compressions"],
+  ["Arrest", "Intubation attempt limits (RCUK 2025)", "30–60 s per attempt, max 4 attempts, then focus on oxygenation (mask or SGA)"],
+  ["Arrest", "The 4 Hs", "Hypoxia · Hypovolaemia · Hypo/hyperkalaemia and metabolic causes · Hypo/hyperthermia"],
+  ["Arrest", "The 4 Ts", "Tension pneumothorax · Tamponade · Toxins · Thrombosis"],
+  ["Arrest", "Target diastolic BP during CPR (arterial line)", "Over 25 mmHg infant<br>Over 30 mmHg child"],
+  ["Arrest", "Post-ROSC targets", "SpO2 94–98%, normocapnia, BP above 5th centile, normal glucose, avoid fever, 12-lead ECG, PICU"],
+  ["Arrest", "Most common paediatric arrest rhythm and cause", "Non-shockable (asystole or PEA), usually from hypoxia"],
+
+  // ---------- ARRHYTHMIA ----------
+  ["Arrhythmia", "Bradycardia: first treatment", "Oxygenation and ventilation"],
+  ["Arrhythmia", "Bradycardia drug doses (RCUK 2025)", "Adrenaline 1–2 mcg/kg IV bolus or infusion.<br>Atropine 20 mcg/kg only for vagal causes"],
+  ["Arrhythmia", "SVT: first-line for a stable child", "Vagal manoeuvres: ice to the face in infants, blowing into a syringe for older children"],
+  ["Arrhythmia", "Adenosine dosing (APLS/CATS)", "150 mcg/kg rapid push with a flush, increasing by 50–100 mcg/kg each time, up to 500 mcg/kg (300 under 1 month), max 12 mg"],
+  ["Arrhythmia", "SVT with shock: treatment", "Synchronised DC cardioversion at 1 J/kg, then 2 J/kg, under sedation or anaesthesia"],
+  ["Arrhythmia", "Broad complex tachycardia: assume what?", "VT. Pulseless → arrest algorithm. With a pulse but unstable → synchronised shock"],
+
+  // ---------- MEDICAL ----------
+  ["Medical", "IM adrenaline 1:1000 in anaphylaxis: under 6 months", "100–150 mcg (0.1–0.15 ml)"],
+  ["Medical", "IM adrenaline 1:1000 in anaphylaxis: 6 months–6 years", "150 mcg (0.15 ml)"],
+  ["Medical", "IM adrenaline 1:1000 in anaphylaxis: 6–12 years", "300 mcg (0.3 ml)"],
+  ["Medical", "IM adrenaline 1:1000 in anaphylaxis: over 12 years", "500 mcg (0.5 ml)"],
+  ["Medical", "Refractory anaphylaxis", "After 2 IM doses: low-dose IV adrenaline infusion with expert help. Fluid 10 ml/kg. Antihistamines and steroids are not first-line"],
+  ["Medical", "Croup: drugs", "Dexamethasone 0.15 mg/kg PO.<br>Severe: nebulised adrenaline 1:1000 at 0.4 ml/kg (max 5 ml) + O2"],
+  ["Medical", "Suspected epiglottitis: management", "Keep calm, no cannula, don't examine the throat. Senior anaesthetist and ENT, gas induction in theatre"],
+  ["Medical", "Choking: conscious with an ineffective cough", "5 back blows, then 5 chest thrusts (infant) or abdominal thrusts (child), repeat"],
+  ["Medical", "Life-threatening asthma features", "SpO2 under 92%, silent chest, poor effort, confusion, exhaustion, hypotension"],
+  ["Medical", "Nebulised salbutamol dose", "2.5 mg under 5 years<br>5 mg for 5 years and over<br>+ ipratropium 250 mcg every 20 min in the first hour"],
+  ["Medical", "IV magnesium in asthma", "40 mg/kg (max 2 g) over 20 min"],
+  ["Medical", "IV salbutamol bolus in asthma", "15 mcg/kg (max 250 mcg) over 10 min, then an infusion"],
+  ["Medical", "Aminophylline loading dose", "5 mg/kg over 20 min (skip the load if already on theophylline)"],
+  ["Medical", "Ventilated asthmatic crashes: first action", "Disconnect from the ventilator and squeeze the chest. Think tension pneumothorax"],
+  ["Medical", "Septic shock: fluid strategy", "10 ml/kg boluses, reassess after each, up to 40–60 ml/kg in the first hour. Stop if signs of overload"],
+  ["Medical", "Signs of fluid overload", "Enlarging liver, crackles, more work of breathing"],
+  ["Medical", "First-line vasopressor and inotrope (RCUK 2025)", "Vasopressor: noradrenaline<br>Inotrope: adrenaline<br>(peripheral or IO is fine)"],
+  ["Medical", "Hydrocortisone in refractory septic shock", "1–2 mg/kg IV (max 100 mg)"],
+  ["Medical", "Antibiotic timing in sepsis", "Within 1 hour (e.g. ceftriaxone 80 mg/kg)"],
+  ["Medical", "Shocked neonate in the first 2 weeks: think…", "Duct-dependent congenital heart disease → prostaglandin. Watch for apnoea"],
+  ["Medical", "Status epilepticus: step 1 (at 5 min)", "Lorazepam 0.1 mg/kg IV/IO (max 4 mg), or buccal midazolam 0.3 mg/kg (max 10 mg) if no access. Check glucose"],
+  ["Medical", "Status epilepticus: max benzodiazepine doses", "2, counting any pre-hospital dose"],
+  ["Medical", "Status epilepticus: second line", "Levetiracetam 40 mg/kg over 5 min (max 3 g), or phenytoin 20 mg/kg over 20 min"],
+  ["Medical", "Status epilepticus: still fitting after second line", "Give the other second-line drug, then RSI (ketamine 1–2 mg/kg or thiopental) and ventilate"],
+  ["Medical", "DKA: shocked child, fluid", "10 ml/kg 0.9% saline bolus and reassess"],
+  ["Medical", "DKA: deficit assumption (BSPED)", "5% if pH 7.1 or higher<br>10% if pH under 7.1<br>Replace over 48 h + maintenance"],
+  ["Medical", "DKA: insulin", "0.05–0.1 units/kg/h starting 1–2 h after fluids. No bolus, no bicarbonate"],
+  ["Medical", "DKA cerebral oedema: treatment", "Hypertonic saline (2.7% or 3%) 3–5 ml/kg or mannitol 0.5–1 g/kg, restrict fluid, head up, PICU"],
+  ["Medical", "Neuroprotective targets", "Head up 20–30° and midline, PaCO2 4.5–5.3 kPa, SpO2 94–98%, normothermia, normal glucose, Na 140–145, MAP at the 50th centile or above"],
+  ["Medical", "Raised ICP with herniation signs", "3% saline 3 ml/kg or mannitol 0.25–0.5 g/kg"],
+  ["Medical", "Hyperkalaemia: insulin-glucose", "Insulin 0.1 units/kg (max 10 units) in 10% glucose 5 ml/kg (max 250 ml) over 30 min. Plus salbutamol"],
+  ["Medical", "Bronchiolitis management", "Supportive: O2 if SpO2 under 90% (92% if under 6 weeks or comorbid), HFNC or CPAP, NG or IV fluids. No bronchodilators or steroids"],
+
+  // ---------- TRAUMA ----------
+  ["Trauma", "Trauma primary survey order", "‹C›ABCDE: catastrophic haemorrhage first, then airway with C-spine"],
+  ["Trauma", "ATMISTER", "Age · Time · Mechanism · Injuries · Signs · Treatment · ETA · Requirements"],
+  ["Trauma", "ATOMFC: life-threatening chest injuries", "Airway obstruction · Tension pneumothorax · Open pneumothorax · Massive haemothorax · Flail chest · Cardiac tamponade"],
+  ["Trauma", "Where can a child bleed? ('on the floor and four more')", "External · Chest · Abdomen · Pelvis · Long bones"],
+  ["Trauma", "Haemorrhagic shock: crystalloid limit", "Max 20 ml/kg, then blood in 10 ml/kg boluses (red cells:FFP 1:1)"],
+  ["Trauma", "Tranexamic acid dose", "15–20 mg/kg IV (max 1 g) within 3 h, then 2 mg/kg/h (max 1 g over 8 h)"],
+  ["Trauma", "Traumatic cardiac arrest: HOTT", "Hypovolaemia · Oxygenation · Tension pneumothorax · Tamponade. Treat these at the same time as, and ahead of, compressions"],
+  ["Trauma", "Tension pneumothorax in a ventilated child", "Finger thoracostomy (bilateral in traumatic arrest)"],
+  ["Trauma", "C-spine immobilisation", "Manual in-line stabilisation, then blocks and tape. Jaw thrust, not head tilt"],
+  ["Trauma", "TBI BP target", "MAP at the 50th centile for age or above. 0.9% saline preferred"],
+  ["Trauma", "Burn first aid", "Cool running water for 20 min (worthwhile up to 3 h), then cling film"],
+  ["Trauma", "Estimating burn %TBSA in children", "Child's palm with fingers ≈ 1%. Use a Lund and Browder chart (not the rule of nines)"],
+  ["Trauma", "Burns: when to give resuscitation fluid?", "10% TBSA or more. Use a local formula (e.g. Parkland 3–4 ml/kg/%TBSA over 24 h, half in the first 8 h from the burn) PLUS maintenance"],
+  ["Trauma", "Signs of an airway burn", "Stridor, soot, facial burns, hoarse voice → early senior intubation with an uncut tube"],
+  ["Trauma", "Intranasal fentanyl dose", "1.5 mcg/kg"],
+
+  // ---------- LEADING / TIPS ----------
+  ["Leading", "The anaesthetist's biggest trap as team leader", "Going to the airway. Stay at the foot of the bed, hands off, and delegate"],
+  ["Leading", "When should you reassess?", "After every intervention. Go back to A"],
+  ["Leading", "What should a summary contain?", "Age, weight, problem, what's been done, what's next. Repeat every few minutes and when someone arrives"],
+  ["Leading", "Closed-loop communication example", "'Anna, please give 160 ml Hartmann's over 5 min and tell me when it's in'"],
+  ["Leading", "Things you must not forget in every scenario", "Glucose · calling for help (senior, PICU, retrieval) · the parents · reassessment"],
+  ["Leading", "Why do children desaturate fast?", "Small FRC and high O2 consumption"],
+  ["Leading", "Why is bradycardia so dangerous in infants?", "Cardiac output depends on heart rate"],
+  ["Leading", "Infant airway positioning", "Neutral position, with a roll under the shoulders because of the large occiput"],
+];
+
+
+// ---------- Theme (shared with the launcher) ----------
+var theme = 'light';
+try { theme = localStorage.getItem('ndanae-theme') || 'light'; } catch (e) {}
+document.documentElement.setAttribute('data-theme', theme);
+window.addEventListener('message', function (e) {
+  if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme);
+});
+window.addEventListener('storage', function (e) {
+  if (e.key === 'ndanae-theme') document.documentElement.setAttribute('data-theme', e.newValue);
+});
+
+// ---------- Storage helpers ----------
+var KEY = 'ndanae-apls-known';
+function loadKnown() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+function saveKnown() { try { localStorage.setItem(KEY, JSON.stringify(known)); } catch (e) {} }
+var known = loadKnown();
+
+// ---------- WETFLAG drill (generated cards) ----------
+var DRILL_AGES = [
+  {label: '3 months', m: 3}, {label: '6 months', m: 6}, {label: '9 months', m: 9},
+  {label: '1 year', y: 1}, {label: '2 years', y: 2}, {label: '3 years', y: 3}, {label: '4 years', y: 4},
+  {label: '5 years', y: 5}, {label: '6 years', y: 6}, {label: '7 years', y: 7}, {label: '8 years', y: 8},
+  {label: '9 years', y: 9}, {label: '10 years', y: 10}, {label: '11 years', y: 11}, {label: '12 years', y: 12}
+];
+function r1(v) { return Math.round(v * 10) / 10; }
+function wetflag(a) {
+  var w, tube, len;
+  if (a.m !== undefined) {
+    w = 0.5 * a.m + 4;
+    tube = a.m < 6 ? '3.0 cuffed' : '3.5 cuffed';
+    len = a.m < 6 ? '10 cm' : '12 cm';
+  } else {
+    w = a.y <= 5 ? 2 * a.y + 8 : 3 * a.y + 7;
+    var t = Math.round((a.y / 4 + 3.5) * 2) / 2;
+    tube = t.toFixed(1) + ' cuffed';
+    len = r1(a.y / 2 + 12) + ' cm oral';
+  }
+  var j = Math.round(4 * w);
+  var fluid = Math.min(10 * w, 500);
+  var lor = Math.min(r1(0.1 * w), 4);
+  var adr = Math.min(10 * w, 1000);
+  var adrMl = Math.min(r1(0.1 * w), 10);
+  var glu = Math.round(3 * w);
+  var formula = a.m !== undefined ? '(0.5 × ' + a.m + ') + 4' : (a.y <= 5 ? '(2 × ' + a.y + ') + 8' : '(3 × ' + a.y + ') + 7');
+  return '<table>' +
+    '<tr><td>W</td><td>' + r1(w) + ' kg</td></tr>' +
+    '<tr><td>E</td><td>' + j + ' J</td></tr>' +
+    '<tr><td>T</td><td>' + tube + ', ' + len + '</td></tr>' +
+    '<tr><td>F</td><td>' + Math.round(fluid) + ' ml</td></tr>' +
+    '<tr><td>L</td><td>' + lor + ' mg</td></tr>' +
+    '<tr><td>A</td><td>' + Math.round(adr) + ' mcg (' + adrMl + ' ml 1:10,000)</td></tr>' +
+    '<tr><td>G</td><td>' + glu + ' ml 10%</td></tr>' +
+    '</table><small>Weight = ' + formula + '. Round energy to the nearest setting on your defibrillator.</small>';
+}
+
+// ---------- Build the full card list ----------
+var ALL = CARDS.map(function (c, i) { return {id: 'c' + i, deck: c[0], q: c[1], a: c[2]}; });
+DRILL_AGES.forEach(function (a, i) {
+  ALL.push({id: 'w' + i, deck: 'WETFLAG drill', q: 'WETFLAG for a child aged<br><span style="font-size:30px;color:var(--accent)">' + a.label + '</span>', a: wetflag(a)});
+});
+
+var DECKS = ['All'];
+ALL.forEach(function (c) { if (DECKS.indexOf(c.deck) < 0) DECKS.push(c.deck); });
+
+var currentDeck = 'All';
+var queue = [], total = 0, doneCount = 0, flipped = false;
+
+function shuffle(arr) {
+  for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; }
+  return arr;
+}
+
+function deckCards(deck) { return ALL.filter(function (c) { return deck === 'All' || c.deck === deck; }); }
+
+function renderChips() {
+  var h = '';
+  DECKS.forEach(function (d) {
+    var cards = deckCards(d);
+    var k = cards.filter(function (c) { return known[c.id]; }).length;
+    h += '<button class="chip' + (d === currentDeck ? ' active' : '') + '" data-deck="' + d + '">' + d +
+      '<span class="n">' + k + '/' + cards.length + '</span></button>';
+  });
+  var el = document.getElementById('chips');
+  el.innerHTML = h;
+  el.querySelectorAll('.chip').forEach(function (b) {
+    b.onclick = function () { currentDeck = this.getAttribute('data-deck'); start(); };
+  });
+}
+
+function start() {
+  var cards = deckCards(currentDeck);
+  if (document.getElementById('hideKnown').checked) cards = cards.filter(function (c) { return !known[c.id]; });
+  queue = shuffle(cards.slice());
+  total = queue.length; doneCount = 0;
+  renderChips(); show();
+}
+
+function show() {
+  flipped = false;
+  var stage = document.getElementById('stage');
+  var againBtn = document.getElementById('againBtn'), gotBtn = document.getElementById('gotBtn');
+  againBtn.disabled = gotBtn.disabled = true;
+  updateProgress();
+  if (!queue.length) {
+    document.getElementById('actions').style.display = 'none';
+    stage.innerHTML = '<div class="done"><h2>Deck complete</h2><p>' +
+      (total ? 'You got through all ' + total + ' cards.' : 'No cards left to review in this deck.') +
+      '</p><button class="btn got" id="againDeck" style="padding:12px 24px">Go again</button></div>';
+    document.getElementById('againDeck').onclick = start;
+    return;
+  }
+  document.getElementById('actions').style.display = 'grid';
+  var c = queue[0];
+  var frontHtml = '<div class="deck-tag">' + c.deck + (known[c.id] ? ' · known' : '') + '</div><div class="q">' + c.q + '</div><div class="hint">Tap to reveal</div>';
+  var backHtml = '<div class="deck-tag">' + c.deck + '</div><div class="a">' + c.a + '</div><div class="hint">Tap to see the question</div>';
+  stage.innerHTML = '<div class="card" id="card"><div class="face front" id="face">' + frontHtml + '</div></div>';
+  var face = document.getElementById('face'), busy = false;
+  document.getElementById('card').onclick = function () {
+    if (busy) return; busy = true;
+    face.classList.add('squash');
+    setTimeout(function () {
+      flipped = !flipped;
+      face.innerHTML = flipped ? backHtml : frontHtml;
+      face.classList.toggle('back', flipped);
+      face.classList.toggle('front', !flipped);
+      face.classList.remove('squash');
+      againBtn.disabled = gotBtn.disabled = false;
+      busy = false;
+    }, 160);
+  };
+}
+
+function updateProgress() {
+  var pct = total ? Math.round(doneCount / total * 100) : 100;
+  document.getElementById('barFill').style.width = pct + '%';
+  document.getElementById('progText').textContent = total ? (doneCount + ' of ' + total + ' done') : '';
+  var all = deckCards(currentDeck);
+  var k = all.filter(function (c) { return known[c.id]; }).length;
+  document.getElementById('knownText').textContent = k + ' of ' + all.length + ' known';
+}
+
+document.getElementById('gotBtn').onclick = function () {
+  var c = queue.shift();
+  known[c.id] = 1; saveKnown(); doneCount++;
+  renderChips(); show();
+};
+document.getElementById('againBtn').onclick = function () {
+  var c = queue.shift();
+  delete known[c.id]; saveKnown();
+  var pos = Math.min(queue.length, 3 + Math.floor(Math.random() * 3));
+  queue.splice(pos, 0, c);
+  renderChips(); show();
+};
+document.getElementById('shuffleBtn').onclick = start;
+var resetArmed = false;
+document.getElementById('resetBtn').onclick = function () {
+  if (!resetArmed) { resetArmed = true; this.textContent = 'Tap again to reset'; var b = this; setTimeout(function () { resetArmed = false; b.textContent = 'Reset progress'; }, 3000); return; }
+  resetArmed = false; this.textContent = 'Reset progress';
+  known = {}; saveKnown(); start();
+};
+document.getElementById('hideKnown').onchange = start;
+
+start();
+</script>
+</body>
+</html>
