@@ -1,4 +1,4 @@
-var CACHE = 'ndanae-v1.3.04';
+var CACHE = 'ndanae-v1.3.05';
 var ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ var ASSETS = [
   './useful-info.html',
   './drug-calc.html',
   './apls-cards.html',
+  './gcs.html',
   './guidelines.html',
   './audit.html',
   './case-logger.html',

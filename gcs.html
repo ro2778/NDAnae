@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GCS Checker — ND Anaesthetics</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --bg2: #1a1a1a; --bg3: #222; --text: #e0e0e0; --text2: #aaa;
+  --text3: #666; --border: #333; --accent: #7ab5e8; --gold: #ffd700; --red: #e74c3c; --green: #27ae60; --amber: #f0a030;
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f5; --bg2: #ffffff; --bg3: #f8fafc; --text: #1a1a2e; --text2: #555;
+  --text3: #999; --border: #ddd; --accent: #2b6cb0; --gold: #b8860b; --red: #c0392b; --green: #1e8449; --amber: #b9770e;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100dvh; }
+.container { max-width: 600px; margin: 0 auto; padding: 12px 12px 120px; }
+.header { display: flex; align-items: center; justify-content: center; position: relative; padding: 8px 44px 4px; }
+h1 { font-size: 18px; color: var(--accent); }
+.back-link { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 6px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--accent); border-radius: 10px; overflow: hidden; margin: 10px 0 14px; }
+.seg button { padding: 10px; border: none; background: var(--bg2); color: var(--accent); font-size: 14px; font-weight: 700; cursor: pointer; }
+.seg button.on { background: var(--accent); color: #fff; }
+.group { margin-bottom: 14px; }
+.group-title { font-size: 13px; font-weight: 700; color: var(--gold); margin: 0 2px 6px; display: flex; justify-content: space-between; }
+.opt {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 11px 12px; margin-bottom: 6px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg2); color: var(--text); font-size: 14px; cursor: pointer;
+}
+.opt .s { min-width: 28px; height: 28px; border-radius: 14px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--accent); }
+.opt.on { border-color: var(--accent); background: var(--accent); color: #fff; }
+.opt.on .s { background: #fff; color: var(--accent); border-color: #fff; }
+.total {
+  position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: var(--bg2); border-top: 1px solid var(--border); box-shadow: 0 -4px 14px rgba(0,0,0,0.1);
+}
+.total-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.score { font-size: 30px; font-weight: 800; color: var(--accent); font-family: 'SF Mono', Menlo, monospace; }
+.breakdown { font-size: 12px; color: var(--text2); }
+.flag { font-size: 13px; font-weight: 700; text-align: right; }
+.reset { background: none; border: none; color: var(--accent); font-weight: 600; font-size: 13px; cursor: pointer; padding: 4px; }
+.note { font-size: 11px; color: var(--text3); line-height: 1.5; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <a class="back-link" href="drug-calc.html">&#8249; Calculator</a>
+  <h1>GCS Checker</h1>
+</div>
+<div class="container">
+  <div class="seg">
+    <button id="ageOld" class="on">4 years and older</button>
+    <button id="ageYoung">Under 4 (children's GCS)</button>
+  </div>
+  <div id="groups"></div>
+  <button class="reset" id="resetBtn">Clear</button>
+  <div class="note">
+    Children's GCS as used in UK paediatric practice (APLS uses it under 4 years; some local tools use under 5).
+    Score the <b>best</b> response. Use a central stimulus (supraorbital or trapezius) to test localising, and nailbed pressure for withdrawal.
+    In a preverbal or intubated child, the motor score matters most. AVPU: A ≈ 15, V ≈ 13, P ≈ 8, U ≈ 3.
+  </div>
+</div>
+<div class="total">
+  <div class="total-inner">
+    <div><div class="score" id="score">–</div><div class="breakdown" id="breakdown">Select E, V and M</div></div>
+    <div class="flag" id="flag"></div>
+  </div>
+</div>
+<script>
+var theme = 'light';
+try { theme = localStorage.getItem('ndanae-theme') || 'light'; } catch (e) {}
+document.documentElement.setAttribute('data-theme', theme);
+window.addEventListener('message', function (e) { if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme); });
+window.addEventListener('storage', function (e) { if (e.key === 'ndanae-theme') document.documentElement.setAttribute('data-theme', e.newValue); });
+
+var SCALES = {
+  old: {
+    E: [[4, 'Opens spontaneously'], [3, 'Opens to voice'], [2, 'Opens to pain'], [1, 'No eye opening']],
+    V: [[5, 'Orientated'], [4, 'Confused'], [3, 'Inappropriate words'], [2, 'Incomprehensible sounds'], [1, 'No verbal response']],
+    M: [[6, 'Obeys commands'], [5, 'Localises to pain'], [4, 'Withdraws from pain'], [3, 'Abnormal flexion (decorticate)'], [2, 'Extension (decerebrate)'], [1, 'No motor response']]
+  },
+  young: {
+    E: [[4, 'Opens spontaneously'], [3, 'Opens to voice'], [2, 'Opens to pain'], [1, 'No eye opening']],
+    V: [[5, 'Alert, babbles, coos, words or sentences to usual ability'], [4, 'Less than usual ability, irritable cry'], [3, 'Cries inappropriately'], [2, 'Occasionally whimpers or moans'], [1, 'No vocal response']],
+    M: [[6, 'Normal spontaneous movements (or obeys commands)'], [5, 'Localises to pain, or withdraws to touch'], [4, 'Withdraws from pain'], [3, 'Abnormal flexion (decorticate)'], [2, 'Extension (decerebrate)'], [1, 'No motor response']]
+  }
+};
+var NAMES = {E: 'Eye opening', V: 'Verbal response', M: 'Motor response'};
+var age = 'old', sel = {};
+
+function render() {
+  var h = '';
+  ['E', 'V', 'M'].forEach(function (k) {
+    h += '<div class="group"><div class="group-title"><span>' + NAMES[k] + '</span><span>' + (sel[k] ? k + sel[k] : '') + '</span></div>';
+    SCALES[age][k].forEach(function (o) {
+      h += '<button class="opt' + (sel[k] === o[0] ? ' on' : '') + '" data-k="' + k + '" data-v="' + o[0] + '"><span class="s">' + o[0] + '</span><span>' + o[1] + '</span></button>';
+    });
+    h += '</div>';
+  });
+  document.getElementById('groups').innerHTML = h;
+  document.querySelectorAll('.opt').forEach(function (b) {
+    b.onclick = function () { sel[this.getAttribute('data-k')] = +this.getAttribute('data-v'); render(); };
+  });
+  var scoreEl = document.getElementById('score'), bd = document.getElementById('breakdown'), flag = document.getElementById('flag');
+  if (sel.E && sel.V && sel.M) {
+    var t = sel.E + sel.V + sel.M;
+    scoreEl.textContent = t + '/15';
+    bd.textContent = 'E' + sel.E + ' V' + sel.V + ' M' + sel.M;
+    if (t <= 8) { flag.style.color = 'var(--red)'; flag.innerHTML = 'Severe (≤8)<br>Protect the airway'; }
+    else if (t <= 12) { flag.style.color = 'var(--amber)'; flag.innerHTML = 'Moderate (9–12)'; }
+    else if (t <= 14) { flag.style.color = 'var(--amber)'; flag.innerHTML = 'Mild (13–15)'; }
+    else { flag.style.color = 'var(--green)'; flag.innerHTML = 'Normal'; }
+  } else {
+    scoreEl.textContent = '–';
+    bd.textContent = ['E', 'V', 'M'].map(function (k) { return sel[k] ? k + sel[k] : k + '?'; }).join(' ');
+    flag.textContent = '';
+  }
+}
+document.getElementById('ageOld').onclick = function () { age = 'old'; this.classList.add('on'); document.getElementById('ageYoung').classList.remove('on'); render(); };
+document.getElementById('ageYoung').onclick = function () { age = 'young'; this.classList.add('on'); document.getElementById('ageOld').classList.remove('on'); render(); };
+document.getElementById('resetBtn').onclick = function () { sel = {}; render(); };
+render();
+</script>
+</body>
+</html>
