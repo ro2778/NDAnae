@@ -37,12 +37,12 @@
       "bleep": "508",
       "am": {
         "name": "E. Cope",
-        "grade": "ST4",
+        "grade": "Fellow",
         "role": "LD"
       },
       "pm": {
         "name": "E. Cope",
-        "grade": "ST4",
+        "grade": "Fellow",
         "role": "LD"
       },
       "eve": {
@@ -67,7 +67,7 @@
       },
       "eve": {
         "name": "E. Cope",
-        "grade": "ST4",
+        "grade": "Fellow",
         "role": "LD"
       },
       "night": {
@@ -233,7 +233,7 @@
         "support": [
           {
             "name": "T. Johnson",
-            "grade": "Fellow"
+            "grade": "ST4"
           }
         ],
         "cancelled": false
@@ -244,7 +244,7 @@
         "support": [
           {
             "name": "T. Johnson",
-            "grade": "Fellow"
+            "grade": "ST4"
           }
         ],
         "cancelled": false
@@ -357,7 +357,7 @@
   },
   "date": "2026-11-17",
   "day": "Tue",
-  "scraped_at": "2026-11-17T09:40:15.046Z",
+  "scraped_at": "2026-11-17T14:07:11.599Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -498,7 +498,7 @@
           "support": [
             {
               "name": "T. Johnson",
-              "grade": "Fellow"
+              "grade": "ST4"
             }
           ],
           "cancelled": false
@@ -509,7 +509,7 @@
           "support": [
             {
               "name": "T. Johnson",
-              "grade": "Fellow"
+              "grade": "ST4"
             }
           ],
           "cancelled": false
@@ -569,7 +569,7 @@
           "support": [
             {
               "name": "E. Cope",
-              "grade": "ST4"
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
@@ -580,7 +580,7 @@
           "support": [
             {
               "name": "E. Cope",
-              "grade": "ST4"
+              "grade": "Fellow"
             }
           ],
           "cancelled": false
