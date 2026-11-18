@@ -106,25 +106,15 @@
       "ext": "3140",
       "type": "Elective Ortho",
       "am": {
-        "list": "Brunton / Ortho",
+        "list": "Extra Trauma / Trauma",
         "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       },
       "pm": {
-        "list": "Brunton / Ortho",
+        "list": "Extra Trauma / Trauma",
         "primary": "M. Abouelsaad",
-        "support": [
-          {
-            "name": "O. Kirby",
-            "grade": "CT2"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -162,13 +152,23 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "K. Pyatt",
-        "support": [],
+        "support": [
+          {
+            "name": "O. Kirby",
+            "grade": "CT2"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "K. Pyatt",
-        "support": [],
+        "support": [
+          {
+            "name": "O. Kirby",
+            "grade": "CT2"
+          }
+        ],
         "cancelled": false
       }
     },
@@ -382,7 +382,7 @@
   },
   "date": "2026-11-18",
   "day": "Wed",
-  "scraped_at": "2026-11-18T01:34:38.001Z",
+  "scraped_at": "2026-11-18T08:58:59.177Z",
   "tomorrow": {
     "available_consultants": {
       "am": "J. Achenbach",
@@ -660,7 +660,7 @@
         },
         "pm": {
           "list": "Nicholson / Gynae",
-          "primary": "N. Nath, B. Vidanapathirana",
+          "primary": "B. Vidanapathirana, N. Nath",
           "support": [],
           "cancelled": false
         }
