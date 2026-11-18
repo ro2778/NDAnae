@@ -9,8 +9,8 @@
       "bleep": "300",
       "am": "S. Hebard",
       "pm": "S. Hebard",
-      "eve": "S. Hebard",
-      "night": "S. Hebard"
+      "eve": "C. Don",
+      "night": "C. Don"
     },
     "504": {
       "label": "ITU Resident",
@@ -382,7 +382,7 @@
   },
   "date": "2026-11-18",
   "day": "Wed",
-  "scraped_at": "2026-11-18T13:40:44.311Z",
+  "scraped_at": "2026-11-18T16:12:52.488Z",
   "tomorrow": {
     "available_consultants": {
       "am": "J. Achenbach",
@@ -491,7 +491,7 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Sims / Ortho",
+          "list": "Extra Trauma / Ortho",
           "primary": "Hockridge J",
           "support": [
             {
@@ -502,7 +502,7 @@
           "cancelled": false
         },
         "pm": {
-          "list": "Sims / Ortho",
+          "list": "Extra Trauma / Ortho",
           "primary": "Hockridge J",
           "support": [
             {
@@ -654,13 +654,13 @@
         "type": "Gynae/Breast",
         "am": {
           "list": "Honey / MaxFax",
-          "primary": "N. Nath, B. Vidanapathirana",
+          "primary": "B. Vidanapathirana, N. Nath",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Nicholson / Gynae",
-          "primary": "N. Nath, B. Vidanapathirana",
+          "primary": "B. Vidanapathirana, N. Nath",
           "support": [],
           "cancelled": false
         }
