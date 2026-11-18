@@ -382,7 +382,7 @@
   },
   "date": "2026-11-18",
   "day": "Wed",
-  "scraped_at": "2026-11-18T08:58:59.177Z",
+  "scraped_at": "2026-11-18T13:40:44.311Z",
   "tomorrow": {
     "available_consultants": {
       "am": "J. Achenbach",
@@ -660,7 +660,7 @@
         },
         "pm": {
           "list": "Nicholson / Gynae",
-          "primary": "B. Vidanapathirana, N. Nath",
+          "primary": "N. Nath, B. Vidanapathirana",
           "support": [],
           "cancelled": false
         }
