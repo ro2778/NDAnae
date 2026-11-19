@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "J. Achenbach",
+    "am": "—",
     "pm": "—"
   },
   "on_call": {
@@ -94,7 +94,7 @@
     "itu_consultant": {
       "label": "ITU Consultant On Call",
       "bleep": "505",
-      "am": "N. Hollister",
+      "am": "J. Achenbach ITU AMN. Hollister",
       "pm": "J. Achenbach",
       "eve": "J. Achenbach",
       "night": "J. Achenbach"
@@ -269,13 +269,13 @@
       "type": "Gynae/Breast",
       "am": {
         "list": "Honey / MaxFax",
-        "primary": "B. Vidanapathirana, N. Nath",
+        "primary": "N. Nath, B. Vidanapathirana",
         "support": [],
         "cancelled": false
       },
       "pm": {
         "list": "Nicholson / Gynae",
-        "primary": "B. Vidanapathirana, N. Nath",
+        "primary": "N. Nath, B. Vidanapathirana",
         "support": [],
         "cancelled": false
       }
@@ -349,7 +349,7 @@
   "support": {
     "esa135": {
       "label": "ESA Bleep 135",
-      "am": "J. Achenbach N. Nath E. Cope",
+      "am": "N. Nath E. Cope",
       "pm": "N. Nath E. Cope"
     }
   },
@@ -382,7 +382,7 @@
   },
   "date": "2026-11-19",
   "day": "Thu",
-  "scraped_at": "2026-11-19T01:08:38.134Z",
+  "scraped_at": "2026-11-19T09:22:47.603Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
