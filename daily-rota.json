@@ -162,7 +162,7 @@
       },
       "pm": {
         "list": "Al-Abbasi/Sanders / UGI",
-        "primary": "M. Paul, J. Powell",
+        "primary": "J. Powell, M. Paul",
         "support": [
           {
             "name": "G. Goldsmith",
@@ -336,7 +336,7 @@
   },
   "date": "2026-11-20",
   "day": "Fri",
-  "scraped_at": "2026-11-20T09:00:39.870Z",
+  "scraped_at": "2026-11-20T13:50:27.795Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -431,15 +431,15 @@
         "type": "Elective Ortho",
         "am": {
           "list": "Kenaan GLANSO / Ortho",
-          "primary": "J. Achenbach [Glanso]",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         },
         "pm": {
           "list": "Kenaan GLANSO / Ortho",
-          "primary": "J. Achenbach [Glanso]",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th2": {
