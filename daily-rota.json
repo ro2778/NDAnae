@@ -162,7 +162,7 @@
       },
       "pm": {
         "list": "Al-Abbasi/Sanders / UGI",
-        "primary": "J. Powell, M. Paul",
+        "primary": "M. Paul, J. Powell",
         "support": [
           {
             "name": "G. Goldsmith",
@@ -336,7 +336,7 @@
   },
   "date": "2026-11-20",
   "day": "Fri",
-  "scraped_at": "2026-11-20T01:04:47.517Z",
+  "scraped_at": "2026-11-20T09:00:39.870Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
