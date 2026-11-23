@@ -369,7 +369,7 @@
   },
   "date": "2026-11-23",
   "day": "Mon",
-  "scraped_at": "2026-11-23T09:40:35.643Z",
+  "scraped_at": "2026-11-23T15:43:38.716Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
@@ -468,7 +468,7 @@
         "ext": "3140",
         "type": "Elective Ortho",
         "am": {
-          "list": "Sims / Ortho",
+          "list": "Possible extra trauma list / Trauma",
           "primary": "E. Szelei",
           "support": [
             {
@@ -479,7 +479,7 @@
           "cancelled": false
         },
         "pm": {
-          "list": "Sims / Ortho",
+          "list": "Possible extra trauma list / Trauma",
           "primary": "E. Szelei",
           "support": [
             {
@@ -546,13 +546,23 @@
         "am": {
           "list": "Sanders / UGI",
           "primary": "J. Preece",
-          "support": [],
+          "support": [
+            {
+              "name": "D.Siriwardana",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         },
         "pm": {
           "list": "Sanders / UGI",
           "primary": "J. Preece",
-          "support": [],
+          "support": [
+            {
+              "name": "D.Siriwardana",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
@@ -562,13 +572,13 @@
         "type": "Day Case",
         "am": {
           "list": "Misra / Urology",
-          "primary": "J. Powell",
+          "primary": "J. Powell, K. Pyatt",
           "support": [],
           "cancelled": false
         },
         "pm": {
           "list": "Al-Abbasi / UGI",
-          "primary": "J. Powell",
+          "primary": "J. Powell, K. Pyatt",
           "support": [],
           "cancelled": false
         }
@@ -579,25 +589,15 @@
         "type": "Day Case",
         "am": {
           "list": "Kale / Ortho",
-          "primary": "K. Pyatt",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Fellow"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         },
         "pm": {
           "list": "Kale / Ortho",
-          "primary": "K. Pyatt",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Fellow"
-            }
-          ],
-          "cancelled": false
+          "primary": "",
+          "support": [],
+          "cancelled": true
         }
       },
       "th7": {
