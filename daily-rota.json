@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "—",
-    "pm": "—"
+    "am": "E. Szelei",
+    "pm": "E. Szelei"
   },
   "on_call": {
     "300": {
@@ -97,25 +97,15 @@
       "type": "Elective Ortho",
       "am": {
         "list": "Possible extra trauma list / Trauma",
-        "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "L. Flain",
-            "grade": "ACCS Med"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       },
       "pm": {
         "list": "Possible extra trauma list / Trauma",
-        "primary": "E. Szelei",
-        "support": [
-          {
-            "name": "L. Flain",
-            "grade": "ACCS Med"
-          }
-        ],
-        "cancelled": false
+        "primary": "",
+        "support": [],
+        "cancelled": true
       }
     },
     "th2": {
@@ -152,13 +142,22 @@
       "am": {
         "list": "CEPOD / CEPOD",
         "primary": "E. Cope",
-        "support": [],
+        "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          }
+        ],
         "cancelled": false
       },
       "pm": {
         "list": "CEPOD / CEPOD",
         "primary": "E. Cope",
         "support": [
+          {
+            "name": "L. Flain",
+            "grade": "ACCS Med"
+          },
           {
             "name": "M. Cannings",
             "grade": "ACCS Anaes"
@@ -343,10 +342,10 @@
   },
   "date": "2026-11-24",
   "day": "Tue",
-  "scraped_at": "2026-11-24T04:22:23.659Z",
+  "scraped_at": "2026-11-24T11:30:12.653Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "B. Vidanapathirana D. Sanders Z. Ungvari N. Hollister S. Hebard M. Paul",
+      "am": "D. Sanders N. Hollister S. Hebard M. Paul B. Vidanapathirana Z. Ungvari",
       "pm": "—"
     },
     "on_call": {
