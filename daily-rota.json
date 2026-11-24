@@ -205,7 +205,7 @@
       },
       "pm": {
         "list": "Al-Abbasi / UGI",
-        "primary": "J. Powell, K. Pyatt",
+        "primary": "K. Pyatt, J. Powell",
         "support": [],
         "cancelled": false
       }
@@ -342,10 +342,10 @@
   },
   "date": "2026-11-24",
   "day": "Tue",
-  "scraped_at": "2026-11-24T15:32:51.247Z",
+  "scraped_at": "2026-11-24T18:36:02.675Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "S. Hebard N. Hollister B. Vidanapathirana Z. Ungvari D. Sanders M. Paul",
+      "am": "D. Sanders B. Vidanapathirana S. Hebard N. Hollister M. Paul Z. Ungvari",
       "pm": "—"
     },
     "on_call": {
