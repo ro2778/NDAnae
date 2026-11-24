@@ -199,7 +199,7 @@
       "type": "Day Case",
       "am": {
         "list": "Misra / Urology",
-        "primary": "J. Powell, K. Pyatt",
+        "primary": "K. Pyatt, J. Powell",
         "support": [],
         "cancelled": false
       },
@@ -342,10 +342,10 @@
   },
   "date": "2026-11-24",
   "day": "Tue",
-  "scraped_at": "2026-11-24T11:30:12.653Z",
+  "scraped_at": "2026-11-24T15:32:51.247Z",
   "tomorrow": {
     "available_consultants": {
-      "am": "D. Sanders N. Hollister S. Hebard M. Paul B. Vidanapathirana Z. Ungvari",
+      "am": "S. Hebard N. Hollister B. Vidanapathirana Z. Ungvari D. Sanders M. Paul",
       "pm": "—"
     },
     "on_call": {
@@ -354,8 +354,8 @@
         "bleep": "300",
         "am": "C. Cheesman",
         "pm": "C. Cheesman",
-        "eve": "D. Sanders OCC. Cheesman",
-        "night": "D. Sanders OCC. Cheesman"
+        "eve": "D. Sanders",
+        "night": "D. Sanders"
       },
       "504": {
         "label": "ITU Resident",
@@ -441,9 +441,9 @@
         },
         "pm": {
           "list": "Abed / Ortho",
-          "primary": "B. Vidanapathirana",
+          "primary": "",
           "support": [],
-          "cancelled": false
+          "cancelled": true
         }
       },
       "th2": {
@@ -485,13 +485,8 @@
         },
         "pm": {
           "list": "Misra / Urology",
-          "primary": "K. Tipping",
-          "support": [
-            {
-              "name": "D.Siriwardana",
-              "grade": "Fellow"
-            }
-          ],
+          "primary": "B. Vidanapathirana",
+          "support": [],
           "cancelled": false
         }
       },
@@ -508,7 +503,12 @@
         "pm": {
           "list": "CEPOD / CEPOD",
           "primary": "E. Szelei",
-          "support": [],
+          "support": [
+            {
+              "name": "D.Siriwardana",
+              "grade": "Fellow"
+            }
+          ],
           "cancelled": false
         }
       },
