@@ -1,6 +1,6 @@
 {
   "available_consultants": {
-    "am": "D. Sanders B. Vidanapathirana S. Hebard N. Hollister M. Paul Z. Ungvari",
+    "am": "S. Hebard B. Vidanapathirana M. Paul N. Hollister D. Sanders Z. Ungvari",
     "pm": "—"
   },
   "on_call": {
@@ -95,10 +95,15 @@
         "cancelled": false
       },
       "pm": {
-        "list": "Abed / Ortho",
+        "list": "Additional Trauma / Trauma",
         "primary": "",
-        "support": [],
-        "cancelled": true
+        "support": [
+          {
+            "name": "E. Cope",
+            "grade": "Fellow"
+          }
+        ],
+        "cancelled": false
       }
     },
     "th2": {
@@ -219,12 +224,7 @@
       "pm": {
         "list": "Banks / Breast",
         "primary": "Z. Ungvari",
-        "support": [
-          {
-            "name": "E. Cope",
-            "grade": "Fellow"
-          }
-        ],
+        "support": [],
         "cancelled": false
       }
     },
@@ -326,7 +326,7 @@
   },
   "date": "2026-11-25",
   "day": "Wed",
-  "scraped_at": "2026-11-25T02:57:59.347Z",
+  "scraped_at": "2026-11-25T10:18:01.089Z",
   "tomorrow": {
     "available_consultants": {
       "am": "Hockridge J",
