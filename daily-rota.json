@@ -1,7 +1,7 @@
 {
   "available_consultants": {
-    "am": "Hockridge J",
-    "pm": "—"
+    "am": "M. Paul Hockridge J",
+    "pm": "M. Paul"
   },
   "on_call": {
     "300": {
@@ -218,15 +218,15 @@
       "type": "Day Case",
       "am": {
         "list": "Das / Upper Limb Ortho",
-        "primary": "T. Western, M. Paul",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       },
       "pm": {
         "list": "Das / Upper Limb Ortho",
-        "primary": "T. Western, M. Paul",
+        "primary": "",
         "support": [],
-        "cancelled": false
+        "cancelled": true
       }
     },
     "th7": {
@@ -367,7 +367,7 @@
   },
   "date": "2026-11-26",
   "day": "Thu",
-  "scraped_at": "2026-11-26T02:05:09.281Z",
+  "scraped_at": "2026-11-26T09:57:06.516Z",
   "tomorrow": {
     "available_consultants": {
       "am": "—",
